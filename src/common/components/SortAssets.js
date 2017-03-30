@@ -13,12 +13,11 @@ class SortAssets extends Component{
 	/**
 	* @constructor defines state of the SortAssets Component
 	*/
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state={
-			value:''
+			value: props.value
 		}
-
 	}
 
 	/**
@@ -99,7 +98,8 @@ class SortAssets extends Component{
 }
 SortAssets.propTypes={
  sortOptions: PropTypes.array,
- change: PropTypes.func
+	change: PropTypes.func,
+	value: PropTypes.string
 };
 
 module.exports= SortAssets;

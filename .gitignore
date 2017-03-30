@@ -4,4 +4,6 @@ node_modules
 dist
 tmp
 *~
-.idea/workspace.xml
+.idea/
+src/**/**/.DS_Store
+lib/

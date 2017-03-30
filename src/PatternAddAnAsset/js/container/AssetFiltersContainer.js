@@ -4,9 +4,9 @@
  *
  *
  * @module MediaAssets
- * @file AssetFilterContainer - This container fetches media assets based on 
+ * @file AssetFilterContainer - This container fetches media assets based on
  selected folder and then renders the dynamic media data based on media type
-  in corresponding sub-component.
+ in corresponding sub-component.
  * @author TDC
  */
 
@@ -18,13 +18,14 @@ import {getSearchProductItems} from '../action/SearchLibraryAction';
 import {fetchSavedSearchData} from '../action/savedSearchAction';
 import assetFilter from '../components/browse/assetFilters';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
+import store from './../store'
 
 /**@function getSelectedValues -
  * This method is used to get the selected values by user.
  * @param {object} dataArray - Array containing values selected by user
  * @returns {string} - If array length is greater than 0 , it will return last element of that array
  * @returns {object} array - else it will return empty array object
-*/
+ */
 const getSelectedValues = (dataArray) => {
   if (dataArray.size > 1) {
     let latestItem = dataArray.size-1;
@@ -47,22 +48,22 @@ const getLastItem = (dataArray) => {
  * props you want to pass to a presentational component
  * @param {object} state
  * @returns {object} Object
-*/
+ */
 const mapStateToProps = (state) => {
   let tabVisibility = {};
-  let selectedIndex = 0;
+  let selectedIndex = null;
   let showTabs = false;
-   let data = getSelectedValues(state.assets);
-    let folderData = getLastItem(state.TreePaneReducers);
-   if(data.selectedIndex){
+  let data = getSelectedValues(state.assets);
+  let folderData = getLastItem(state.TreePaneReducers);
+  if(data.selectedIndex){
     selectedIndex = data.selectedIndex;
-   }
-   if(data.tabVisibility){
+  }
+  if(data.tabVisibility){
     tabVisibility = JSON.parse(data.tabVisibility);
-   }
-   if(data.showTabs){
+  }
+  if(data.showTabs){
     showTabs = true;
-   }
+  }
   return {
     selectedIndex:selectedIndex,
     tabVisibility:tabVisibility,
@@ -77,20 +78,21 @@ const mapStateToProps = (state) => {
  * injected into the presentational component
  * @param {function} dispatch
  * @returns {object} callback props
-*/
+ */
 const mapDispatchToProps = (dispatch) => {
   return {
-    tabHandleSelect: function (index, last) { 
+    tabHandleSelect: function (index, last) {
       sessionStorage.AssetTabIndex = index;
       // if(document.querySelector('.filter-container .tree-node-selected')){
-        // let nodeRef = document.querySelector('.filter-container .tree-node-selected');
-        let nodeRef = this.currentFolder;
-        window.tdc.patConfig.maxItemsFlag = false;
-        window.tdc.patConfig.assetsTotalCount = 0;
-        if (nodeRef) {
-            // let id = nodeRef.id;
-            dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS, index));
-        }
+      // let nodeRef = document.querySelector('.filter-container .tree-node-selected');
+      let nodeRef = this.currentFolder;
+      window.tdc.patConfig.maxItemsFlag = false;
+      window.tdc.patConfig.assetsTotalCount = 0;
+      if (nodeRef) {
+        // let id = nodeRef.id;
+        let displayCount = store.getState().userFilterReducer.displayvaluecount ? store.getState().userFilterReducer.displayvaluecount : DEFAULT_MAX_RESULTS
+        dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,displayCount, index));
+      }
       // }
     }
   };

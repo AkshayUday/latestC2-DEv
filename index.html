@@ -32,7 +32,9 @@
 
 
     <style type="text/css">     
-       
+       body .plProductLinkModal{
+        overflow:hidden;
+       }
         .container.one{
             margin:30px;
             border: 1px solid #d0d0d0;
@@ -49,8 +51,7 @@
         .container #bankCompResp,
         #assesmentResp,
         #bankResp,
-        #questionResp,
-        #interactivePatternResponse{
+        #questionResp{
             border: 1px solid #d0d0d0;
             /* padding: 0px 10px; */
             margin: 10px 0px;
@@ -66,8 +67,7 @@
         .container #bankCompResp table,
         #assesmentResp table,
         #bankResp table,
-        #questionResp table,
-        #interactivePatternResponse table{
+        #questionResp table{
          width:100%;
         }
 
@@ -78,8 +78,7 @@
         .container #bankCompResp table td,
         #assesmentResp table td,
         #bankResp table td,
-        #questionResp table td,
-        #interactivePatternResponse table td{
+        #questionResp table td{
             padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
@@ -91,8 +90,7 @@
         #assesmentResp p,
         #bankResp p,
         #questionResp p,
-        #ReviewAssetSaveResp p,
-        #interactivePatternResponse p{
+        #ReviewAssetSaveResp p{
         padding: 8px;
         line-height: 1.42857143;
         vertical-align: top;
@@ -164,7 +162,7 @@
         <div class="assessment-comp">
             <div style="margin-bottom:1em;">
                 <label for="skillsid" >x-apikey:</label>
-                <input type="text" value='5x8gLqCCfkOfgPkFd9YNotcAykeldvVd' id="apiKeyId" placeholder="Enter API Key"/>
+                <input type="text" id="apiKeyId" placeholder="Enter API Key"/>
             </div>
             <div style="margin-bottom:1em;">
                 <label for="skillsid" >X-PearsonSSOSession:</label>
@@ -262,7 +260,7 @@
 
             <div id="assesmentComp">
             </div>
-            <input type="button" id="#saveBtn" class="buttonStyle" value="Save" onclick="onSaveAssesment('name')"/>
+            <input type="button" id="#saveBtn" value="Save" class="buttonStyle" onclick="onSaveAssesment('name')"/>
             <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
                 <span>Data from Component to hosting application OnSave</span>
                 <a id="display1" href="javascript:toggle();">Hide</a>
@@ -272,7 +270,7 @@
            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
                 <span>Data from component to QUAD on property change of component</span>
                 <a id="display2" href="javascript:toggle2();">Hide</a>
-               <div id="compResp" class="pe-metadata-mvm">
+               <div id="compResp">
                 </div>
             </div>
             <br/>
@@ -359,7 +357,7 @@
            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
                 <span>Data from component to QUAD on property change of component</span>
                 <a id="display6" href="javascript:toggle6();">Hide</a>
-               <div id="bankCompResp" class="pe-metadata-mvm">
+               <div id="bankCompResp">
                 </div>
             </div>
             <br/>
@@ -445,13 +443,12 @@
             <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
                 <span>Data from component to QUAD on property change of component</span>
                 <a id="display4" href="javascript:toggle4();">Hide</a>
-               <div id="questionCompResp" class="pe-metadata-mvm">
+               <div id="questionCompResp">
                 </div>
             </div>
              <div style="margin-top: 20px;">
                 <div id="addAnAsset"></div>
                 <div id="productLink"></div> 
-                <div id="interactivePatternSelector"></div>
                 <div style="margin-bottom:1em;">
                     <label for="uuid" >UUID:</label>
                     <input type="text" id="assetUUID" placeholder="Enter the uuid"/>
@@ -490,7 +487,7 @@
                     </div>
                     <div class='row'>
                         <label for="tabVisibility" >Tab Visibility/EPS Url:</label>
-                        <input type="text" id="tabVisibility" value='{ "audio" : true, "image": true, "other":true, "video": true,"epsUrl":false, "defaulttab": "browse"}'/>
+                        <input type="text" id="tabVisibility" value='{ "audio" : true, "image": true, "other":true, "video": true,"epsUrl":false, "default": "video"}'/>
                     </div>
                     <div class='row'>
                         <label for="repoInput" >Repo Input:</label>
@@ -522,6 +519,7 @@
                     <div id="ProductLinkCallBackResp" style="display: block">
                     </div>
                 </div>
+
                 </div>
             <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;
             display:block;border: 1px solid #CCCCCC;padding: 10px;">
@@ -564,7 +562,7 @@
             <!--  <div id="ReviewAssetOnChnageResp" style="display: block">
                </div>
             </div>                                    
-            <br/>
+ 			<br/>
             <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;display:block;">
                 <span>Question Stem<span style='color:red'>*</span></span>
                 <!-- a id="ReviewAssetdisplay_2" href="#" >Hide</a-->
@@ -576,50 +574,11 @@
             </div>
             -->
             <br/>
-            <br/>    
-
-            <hr/>
-              <div class="SearchPattern" id="SearchPattern">
-               <h1>Seach Pattern</h1>
-               <div id='c5filenamediv'>
-               <div> <label> Enter Name or Filename </label> <input type="text" id="c5filename" name="c5filename" />
-               </div>
-            
-               <h3>Filter Type</h3>
-
-               <div id="c5filterType">            
-                <!-- <label>
-                <input type="checkbox" class="filterType" value="pdf" name="filterType" checked />pdf</label>
-                <label>
-                <br/>
-                <label>
-                <input type="checkbox" class="filterType" value="pop-up-window" name="filterType" checked />/pop-up-window</label>
-                 <br/>
-                <label>
-                <input type="checkbox" class="filterType" value="show-hide" name="filterType" checked />show-hide</label>
-                <label>
-                 <br/>
-                <label>
-                <input type="checkbox" class="filterType" value="web-link" name="filterType" checked />web-link</label>
-                <label> -->
-               </div>
-               <div>
-               <br/>
-               <br/>
-               <input type="button" id="interactivePattern" value="Open SearchSC Pattern" />
-               </div>
-               <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;">
-                     <span>Data from Interactive Pattern</span>
-                    
-                    <div id="interactivePatternResponse" style="display: block">
-                    </div>
-                </div>
-              </div>
-
+            <br/>                       
             </div>
     </div>
-    <!-- Babel-polyfill added to support IE browser -->
-    <script type="text/javascript">
+
+<script type="text/javascript">
     if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
         document.write('<script src="./lib/polyfill.min.js"><\/script>');
 </script>
