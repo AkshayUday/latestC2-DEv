@@ -1,0 +1,42 @@
+@import "../../../../styles/variables.css";
+
+.pagingdiv{
+  /*display: flex;*/
+  width:95%;
+  margin:10px auto;
+}
+.row{
+    /*display: flex;
+    margin-right: 0px!important;
+    margin-left: 0px!important;*/
+    lost-utility:clearfix;
+}
+
+/*.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}*/
+
+.libDataDiv{
+  /*composes: col-md-8 from "../../../../../styles/patterns.css";
+  display: flex;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+  width: 354px;*/
+  width:60%;
+  float:left;
+  min-height: 1px;
+}
+
+span.libDataStyle{
+    color: $Nobel;
+}
+
+.paginationDiv{
+  /*composes: col-md-4 from "../../../../../styles/patterns.css";*/
+  width:40%;
+  float:left;
+  text-align:right;
+}

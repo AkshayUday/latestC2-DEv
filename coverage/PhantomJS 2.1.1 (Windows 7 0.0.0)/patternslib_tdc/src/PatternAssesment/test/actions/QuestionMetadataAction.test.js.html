@@ -1,0 +1,1724 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for patternslib_tdc\src\PatternAssesment\test\actions\QuestionMetadataAction.test.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">patternslib_tdc/src/PatternAssesment/test/actions/</a> QuestionMetadataAction.test.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.26% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>226/259</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>10/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.07% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>57/67</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.75% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>216/249</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _stringify = require('babel-runtime/core-js/json/stringify');
+&nbsp;
+var _stringify2 = _interopRequireDefault(_stringify);
+&nbsp;
+var _MetadataAction = require('../../js/action/MetadataAction');
+&nbsp;
+var actions = _interopRequireWildcard(_MetadataAction);
+&nbsp;
+var _expect = require('expect');
+&nbsp;
+var _expect2 = _interopRequireDefault(_expect);
+&nbsp;
+var _MVMConstants = require('../../js/constants/MVMConstants');
+&nbsp;
+var types = _interopRequireWildcard(_MVMConstants);
+&nbsp;
+var _MetadataAPI = require('../../js/api/MetadataAPI');
+&nbsp;
+var _MetadataAPI2 = _interopRequireDefault(_MetadataAPI);
+&nbsp;
+var _store = require('../../js/store');
+&nbsp;
+var _store2 = _interopRequireDefault(_store);
+&nbsp;
+var _bluebird = require('bluebird');
+&nbsp;
+var _bluebird2 = _interopRequireDefault(_bluebird);
+&nbsp;
+var _metadataService = require('../../../common/util/metadataService');
+&nbsp;
+var _metadataService2 = _interopRequireDefault(_metadataService);
+&nbsp;
+var _MetadataApi = require('../../js/api/MetadataApi');
+&nbsp;
+var _MetadataApi2 = _interopRequireDefault(_MetadataApi);
+&nbsp;
+function _interopRequireWildcard(obj) { if (obj &amp;&amp; obj.__esModule) { return obj; } else { var newObj = {}; <span class="missing-if-branch" title="else path not taken" >E</span>if (obj != null) { for (var key in obj) { <span class="missing-if-branch" title="else path not taken" >E</span>if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
+&nbsp;
+//import {fetchMetaData, saveMetaData} from '../../js/action/MetadataAction';
+&nbsp;
+/***********For fetchMetaData Function ********/
+&nbsp;
+describe('async actions', function () {
+  var dispacthSpy;
+  var stateSpy;
+&nbsp;
+  before(function () {
+    dispacthSpy = sinon.spy(_store2.default, "dispatch");
+    stateSpy = sinon.spy(_store2.default, "getState");
+  });
+&nbsp;
+  it('should return a function', function () {
+    (0, _expect2.default)(actions.fetchMetaData()).toBeA('function');
+  });
+&nbsp;
+  it('dispatch should be called when fetching data', function () {
+    actions.fetchMetaData({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f" })(_store2.default.dispatch, _store2.default.getState);
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy.called).toEqual(true);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(stateSpy.called).toEqual(true);</span>
+    }, 1000);
+  });
+&nbsp;
+  after(function () {
+    dispacthSpy.restore();
+    stateSpy.restore();
+  });
+}); //used any testing library
+&nbsp;
+&nbsp;
+describe('stub getState', function () {
+  var apiSpy;
+&nbsp;
+  before(function () {
+    apiSpy = sinon.spy(_metadataService2.default, "send");
+    sinon.stub(_store2.default, "getState").returns({ "Metadatareducers": {} });
+  });
+&nbsp;
+  it('api should be called when getState is returning valid uuid', function () {
+    actions.fetchMetaData({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f" })(_store2.default.dispatch, _store2.default.getState);
+    (0, _expect2.default)(apiSpy.called).toEqual(true);
+  });
+&nbsp;
+  after(function () {
+    apiSpy.restore();
+    _store2.default.getState.restore();
+  });
+});
+&nbsp;
+describe('stub api and returning sucess should work', function () {
+  var dispacthSpy;
+  var data = void 0;
+  before(function () {
+    sinon.stub(_store2.default, "getState").returns({ "Metadatareducers": {} });
+    data = { "qmddata": "abcdefg" };
+    data = (0, _stringify2.default)(data);
+    sinon.stub(_metadataService2.default, "send").returns(_bluebird2.default.resolve({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f", 'name': 'question1' }));
+    dispacthSpy = sinon.spy(_store2.default, "dispatch");
+  });
+  it('dispatch a QuestionMetaData action', function () {
+    actions.fetchMetaData({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f" })(_store2.default.dispatch, _store2.default.getState);
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      var dispatchArg = dispacthSpy.args[0][0];</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy.called).toEqual(true);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.type).toEqual(types.SET_UUID);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.QMD_Data).toEqual({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f", 'name': 'question1', 'keywords': [] });</span>
+    }, 1000);
+  });
+  after(function () {
+    dispacthSpy.restore();
+    _metadataService2.default.send.restore();
+    _store2.default.getState.restore();
+  });
+});
+&nbsp;
+describe('stub api and returning sucess should work with Keywords as array', function () {
+  var dispacthSpy;
+  var data = void 0;
+  before(function () {
+    sinon.stub(_store2.default, "getState").returns({ "Metadatareducers": {} });
+    data = { "qmddata": "abcdefg" };
+    data = (0, _stringify2.default)(data);
+    sinon.stub(_metadataService2.default, "send").returns(_bluebird2.default.resolve({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f", 'keywords': ['tag1', 'tag2'] }));
+    dispacthSpy = sinon.spy(_store2.default, "dispatch");
+  });
+  it('dispatch a QuestionMetaData action', function () {
+    actions.fetchMetaData({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f" })(_store2.default.dispatch, _store2.default.getState);
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      var dispatchArg = dispacthSpy.args[0][0];</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy.called).toEqual(true);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.type).toEqual(types.SET_UUID);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.QMD_Data.keywords).toEqual([{ 'id': 0, 'name': 'tag1' }, { 'id': 1, 'name': 'tag2' }]);</span>
+    }, 1000);
+  });
+  after(function () {
+    dispacthSpy.restore();
+    _metadataService2.default.send.restore();
+    _store2.default.getState.restore();
+  });
+});
+&nbsp;
+describe('stub api and returning sucess should work with Keywords as String', function () {
+  var dispacthSpy;
+  var data = void 0;
+  before(function () {
+    sinon.stub(_store2.default, "getState").returns({ "Metadatareducers": {} });
+    data = { "qmddata": "abcdefg" };
+    data = (0, _stringify2.default)(data);
+    sinon.stub(_metadataService2.default, "send").returns(_bluebird2.default.resolve({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f", 'keywords': 'tag1' }));
+    dispacthSpy = sinon.spy(_store2.default, "dispatch");
+  });
+  it('dispatch a QuestionMetaData action', function () {
+    actions.fetchMetaData({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f" })(_store2.default.dispatch, _store2.default.getState);
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      var dispatchArg = dispacthSpy.args[0][0];</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy.called).toEqual(true);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.type).toEqual(types.SET_UUID);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.QMD_Data.keywords).toEqual([{ 'id': 0, 'name': 'tag1' }]);</span>
+    }, 1000);
+  });
+  after(function () {
+    dispacthSpy.restore();
+    _metadataService2.default.send.restore();
+    _store2.default.getState.restore();
+  });
+});
+&nbsp;
+describe('stub api and returning error should work', function () {
+  var dispacthSpy1;
+  var data = void 0;
+  before(function () {
+    sinon.stub(_store2.default, "getState").returns({ "Metadatareducers": {} });
+    data = { "qmddata": "abcdefg" };
+    data = (0, _stringify2.default)(data);
+    sinon.stub(_metadataService2.default, "send").returns(_bluebird2.default.reject({ "error": "error" }));
+    dispacthSpy1 = sinon.spy(_store2.default, "dispatch");
+  });
+  it('dispatch a QuestionMetaData action', function () {
+    actions.fetchMetaData({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f" })(_store2.default.dispatch, _store2.default.getState);
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      var dispatchArg = dispacthSpy1.args[0][0];</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy1.called).toEqual(true);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.type).toEqual(types.METADATA_GET);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.QMD_Data).toEqual({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f" });</span>
+    }, 1000);
+  });
+  after(function () {
+    dispacthSpy1.restore();
+    _metadataService2.default.send.restore();
+    _store2.default.getState.restore();
+  });
+});
+&nbsp;
+describe('async actions', function () {
+  var dispacthSpy;
+  var server;
+&nbsp;
+  before(function () {
+    sinon.stub(_store2.default, "getState").returns({ "Metadatareducers": {} });
+    dispacthSpy = sinon.spy(_store2.default, "dispatch");
+    server = sinon.fakeServer.create();
+    server.respondWith("GET", "https://uat.pearsonmeta.io/work/6e143c65-6abd-4af4-80fd-e1a657c8132f?db=qa6", [200, { "Content-Type": "application/json" }, (0, _stringify2.default)({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f", "name": "question1" })]);
+  });
+  it('fetch Question Metadata should work fine when mocking service', function () {
+    actions.fetchMetaData({ "uuid": "6e143c65-6abd-4af4-80fd-e1a657c8132f" })(_store2.default.dispatch, _store2.default.getState);
+    server.respond();
+    //console.log("server respond called");
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      var dispatchArg = dispacthSpy.args[0][0];</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy.called).toEqual(true);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.type).toEqual(types.SET_UUID);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.QMD_Data.uuid).toEqual("6e143c65-6abd-4af4-80fd-e1a657c8132f");</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.QMD_Data.name).toEqual("question1");</span>
+    }, 100);
+  });
+&nbsp;
+  after(function () {
+    dispacthSpy.restore();
+    server.restore();
+    _store2.default.getState.restore();
+  });
+});
+&nbsp;
+/***********For fetchMetaDataTaxonomy Function ********/
+&nbsp;
+describe('async actions for fetchMetaDataTaxonomy', function () {
+  var dispacthSpy;
+  var apiSpy;
+&nbsp;
+  before(function () {
+    dispacthSpy = sinon.spy(_store2.default, "dispatch");
+    apiSpy = sinon.spy(_MetadataApi2.default, "get_QMD_Data");
+  });
+&nbsp;
+  it('should return a function', function () {
+    (0, _expect2.default)(actions.fetchMetaDataTaxonomy()).toBeA('function');
+  });
+&nbsp;
+  it('dispatch should be called when fetching MetaDataTaxonomy data', function () {
+    actions.fetchMetaDataTaxonomy()(_store2.default.dispatch);
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy.called).toEqual(true);</span>
+    }, 100);
+  });
+&nbsp;
+  /* it('api should be called when fetching MetaDataTaxonomy data', () =&gt; {
+     actions.fetchMetaDataTaxonomy()(store.dispatch);
+     setTimeout(function(){
+       expect(apiSpy.called).toEqual(true);
+     },100)
+  })*/
+&nbsp;
+  after(function () {
+    dispacthSpy.restore();
+    apiSpy.restore();
+  });
+});
+&nbsp;
+/*describe('stub api and returning sucess should work', () =&gt; {
+  var dispacthSpy;
+  before(function () {
+     sinon.stub(MetaDataApi,"get_QMD_Data").returns(Promise.resolve({"text":JSON.stringify({"uuid":"6e143c65-6abd-4af4-80fd-e1a657c8132f",'name':'question1'})}));
+     dispacthSpy = sinon.spy(store,"dispatch");
+  });
+  it('dispatch a QuestionMetaData action', () =&gt; {
+    actions.fetchMetaDataTaxonomy()(store.dispatch,store.getState);
+    setTimeout(function(){
+      let dispatchArg = dispacthSpy.args[0][0];
+      debugger;
+      expect(dispacthSpy.called).toEqual(true);
+      expect(dispatchArg.length).toEqual(2);
+     },1000)
+  });
+  after(function () {
+     dispacthSpy.restore();
+     MetaDataApi.get_QMD_Data.restore();
+  });
+});
+&nbsp;
+describe('stub api and returning error should work', () =&gt; {
+  var dispacthSpy;
+  before(function () {
+     sinon.stub(MetaDataApi,"get_QMD_Data").returns(Promise.reject({"error":"error"}));
+     dispacthSpy = sinon.spy(store,"dispatch");
+  });
+  it('dispatch a QuestionMetaData action', () =&gt; {
+    actions.fetchMetaDataTaxonomy()(store.dispatch,store.getState);
+    setTimeout(function(){
+      //to be updated basd on code change
+     },100)
+  });
+  after(function () {
+     dispacthSpy.restore();
+     MetaDataApi.get_QMD_Data.restore();
+  });
+});*/
+&nbsp;
+/*describe('async actions', () =&gt; {
+  var dispacthSpy;
+  var fetchMetaDataSpy;
+  var server;
+  before(function () {
+     dispacthSpy = sinon.spy(store,"dispatch");
+     fetchMetaDataSpy = sinon.spy(fetchMetaData);
+     server = sinon.fakeServer.create();
+     server.respondWith("GET", "http://localhost:3000/questionMetaData", [
+    200,
+    {"Content-Type": "application/json"},
+    JSON.stringify({"name":"question1"})
+    ]);
+&nbsp;
+  });
+  it('fetchMetaDataTaxonomy should work fine when mocking service', () =&gt; {
+   
+    actions.fetchMetaDataTaxonomy()(store.dispatch);
+    server.respond();
+    console.log("server respond called");
+    setTimeout(function(){
+        let dispatchArg = dispacthSpy.args[0][0];
+        expect(dispacthSpy.called).toEqual(true);
+        expect(dispatchArg).toBeA('function');
+      },100)
+  });
+&nbsp;
+  after(function () {
+    dispacthSpy.restore();
+    server.restore();
+  });
+});/**/
+&nbsp;
+/***********For saveMetaData Function ********/
+describe('async actions', function () {
+  var dispacthSpySave;
+  var getStateSpySave;
+  var apiSpy;
+&nbsp;
+  before(function () {
+    dispacthSpySave = sinon.spy(_store2.default, "dispatch");
+    getStateSpySave = sinon.spy(_store2.default, "getState");
+    apiSpy = sinon.spy(_metadataService2.default, "send");
+  });
+&nbsp;
+  it('should return a function', function () {
+    (0, _expect2.default)(actions.saveMetaData()).toBeA('function');
+  });
+&nbsp;
+  /*it('dispatch should be called when saving MetaDataTaxonomy data', () =&gt; {
+     actions.saveMetaData({})(store.dispatch);
+      // expect(dispacthSpySave.called).toEqual(true);
+     //expect(dispacthSpySave.called).toEqual(true);
+  })*/
+&nbsp;
+  it('api should be called when saving MetaDataTaxonomy data', function () {
+    actions.saveMetaData({})(_store2.default.dispatch, _store2.default.getState);
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(apiSpy.called).toEqual(true);</span>
+    }, 300);
+  });
+&nbsp;
+  after(function () {
+    dispacthSpySave.restore();
+    getStateSpySave.restore();
+    apiSpy.restore();
+  });
+});
+&nbsp;
+describe('stub api and returning save sucess should work', function () {
+  var dispacthSpy2;
+  var getStateSpy2;
+  var data = void 0;
+  before(function () {
+    data = { "saveqmddata": "abcdefg" };
+    data = (0, _stringify2.default)(data);
+    sinon.stub(_metadataService2.default, "send").returns(_bluebird2.default.resolve({ "uuid": "12345" }));
+    dispacthSpy2 = sinon.spy(_store2.default, "dispatch");
+    getStateSpy2 = sinon.spy(_store2.default, "getState");
+  });
+  it('dispatch a Save QuestionMetaData action', function () {
+    actions.saveMetaData({ "name": "" })(_store2.default.dispatch, _store2.default.getState);
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      var dispatchArg = dispacthSpy2.args[0][0];</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy2.called).toEqual(true);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.type).toEqual(types.SET_UUID);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.QMD_Data.uuid).toEqual("12345");</span>
+    }, 1000);
+  });
+  after(function () {
+    dispacthSpy2.restore();
+    getStateSpy2.restore();
+    _metadataService2.default.send.restore();
+  });
+});
+&nbsp;
+describe('stub api and returning save error should work', function () {
+  var dispacthSpy1;
+  var getStateSpy1;
+  var data = void 0;
+  before(function () {
+    sinon.stub(_metadataService2.default, "send").returns(_bluebird2.default.reject(new EvalError({ 'message': 'rejected message' })));
+    dispacthSpy1 = sinon.spy(_store2.default, "dispatch");
+    getStateSpy1 = sinon.spy(_store2.default, "getState");
+  });
+  it('dispatch should not happen a Save QuestionMetaData action', function () {
+    actions.saveMetaData({})(_store2.default.dispatch, _store2.default.getState);
+    (0, _expect2.default)(dispacthSpy1.called).toEqual(false);
+  });
+  after(function () {
+    dispacthSpy1.restore();
+    getStateSpy1.restore();
+    _metadataService2.default.send.restore();
+  });
+});
+&nbsp;
+describe('async actions', function () {
+  var dispacthSpy;
+  var getStateSpy;
+  var server;
+&nbsp;
+  before(function () {
+    dispacthSpy = sinon.spy(_store2.default, "dispatch");
+    getStateSpy = sinon.spy(_store2.default, "getState");
+    server = sinon.fakeServer.create();
+    server.respondWith("POST", "https://uat.pearsonmeta.io/thing?db=qa6", [200, { "Content-Type": "application/json" }, (0, _stringify2.default)({ "uuid": "123654" })]);
+  });
+&nbsp;
+  it('Save Question Metadata should work fine when mocking service', function () {
+    actions.saveMetaData({})(_store2.default.dispatch, _store2.default.getState);
+    server.respond();
+    //console.log("server respond called");
+    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >      var dispatchArg = dispacthSpy.args[0][0];</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispacthSpy.called).toEqual(true);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.type).toEqual(types.SET_UUID);</span>
+<span class="cstat-no" title="statement not covered" >      (0, _expect2.default)(dispatchArg.QMD_Data.uuid).toEqual("123654");</span>
+    }, 100);
+  });
+&nbsp;
+  after(function () {
+    dispacthSpy.restore();
+    getStateSpy.restore();
+    server.restore();
+  });
+});
+&nbsp;
+/***********For populateAutoComplete Function ********/
+&nbsp;
+describe('async actions', function () {
+  var dispacthSpyAutocomplete;
+  var apiSpy;
+&nbsp;
+  before(function () {
+    dispacthSpyAutocomplete = sinon.spy(_store2.default, "dispatch");
+    apiSpy = sinon.spy(_MetadataApi2.default, "get_AutoComplete_Data");
+  });
+&nbsp;
+  it('should return a function', function () {
+    (0, _expect2.default)(actions.populateAutoComplete()).toBeA('function');
+  });
+&nbsp;
+  /* it('api should be called when calling autocomplete function', () =&gt; {
+     actions.populateAutoComplete()(store.dispatch);
+     expect(apiSpy.called).toEqual(true);
+  })*/
+&nbsp;
+  after(function () {
+    dispacthSpyAutocomplete.restore();
+    apiSpy.restore();
+  });
+});
+&nbsp;
+/*describe('stub api and returning sucess should work', () =&gt; {
+  var autoCompleteSpy;
+  let data;
+  before(function () {
+    data = {"autodata":"abcd"};
+    data = JSON.stringify(data);
+    sinon.stub(MetaDataApi, "get_AutoComplete_Data").returns(Promise.resolve({"text":JSON.stringify({"data":"abcd"})}));
+    autoCompleteSpy = sinon.spy(store,"dispatch");
+  });
+  it('dispatch a Autocomplete action', () =&gt; {
+    actions.populateAutoComplete("A")(store.dispatch);
+    setTimeout(function(){
+      let dispatchArg = autoCompleteSpy.args[0][0];
+      expect(autoCompleteSpy.called).toEqual(true);
+      expect(dispatchArg.type).toEqual(types.AUTO_COMPLETE);
+      expect(dispatchArg.data).toEqual({"data":"abcd"});
+    },1000)
+  });
+  after(function () {
+     autoCompleteSpy.restore();
+     MetaDataApi.get_AutoComplete_Data.restore();
+  });
+});
+&nbsp;
+describe('stub api and returning error should work', () =&gt; {
+  var dispacthAutoSpy;
+  let data;
+  before(function () {
+    data = {"autodata":"abcdefg"};
+    data = JSON.stringify(data);
+    sinon.stub(MetaDataApi, "get_AutoComplete_Data").returns(Promise.reject({"message":"error"}));
+   //sinon.stub(MetaDataApi, "get_AutoComplete_Data").returns(Promise.resolve({"text":JSON.stringify({"data":"abcd"})}));
+   
+    dispacthAutoSpy = sinon.spy(store,"dispatch");
+  });
+  it('dispatch a QuestionMetaData action', () =&gt; {
+    actions.populateAutoComplete()(store.dispatch);
+    setTimeout(function(){
+      let dispatchArg = dispacthAutoSpy.args[0][0];
+      expect(dispacthAutoSpy.called).toEqual(true);
+      expect(dispatchArg.type).toEqual(types.AUTO_COMPLETE);
+      expect(dispatchArg.QMD_Data).toEqual({'errMsg':'error'});
+    },1000)
+  });
+  after(function () {
+    dispacthAutoSpy.restore();
+    MetaDataApi.get_AutoComplete_Data.restore();
+  });
+});
+&nbsp;
+describe('zdfsdgrsfdgsd', () =&gt; {
+  var dispacthSpy;
+  var server;
+&nbsp;
+  before(function () {
+     dispacthSpy = sinon.spy(store,"dispatch");
+     server = sinon.fakeServer.create();
+     server.respondWith("GET", "http://localhost:3000/autoCompleteData", [
+    200,
+    {"Content-Type": "application/json"},
+    JSON.stringify("abcd")
+    ]);
+&nbsp;
+  });
+  it('fetch Question Metadata should work fine when mocking service', () =&gt; {
+    actions.populateAutoComplete()(store.dispatch);
+    server.respond();
+    console.log("server respond called");
+    setTimeout(function(){
+      let dispatchArg = dispacthSpy.args[0][0];
+      expect(dispacthSpy.called).toEqual(true);
+      expect(dispatchArg.type).toEqual(types.AUTO_COMPLETE);
+    },100)
+  });
+&nbsp;
+  after(function () {
+    dispacthSpy.restore();
+  });
+});*/
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Aug 19 2016 16:49:19 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

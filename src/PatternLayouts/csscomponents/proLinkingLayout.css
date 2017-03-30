@@ -1,0 +1,10 @@
+.productContainer{
+	display: flex;
+	flex-flow: column;
+	height: 30%;
+	lost-align: top-left;
+}
+.productContent{
+	display: flex;
+
+}

@@ -1,0 +1,133 @@
+@import "../../../styles/variables.css";
+
+.dropdown-container {
+  float: left;
+  display: block; 
+}
+.dropdown-container.show > .dropdown-list {
+  transform: scale(1, 1);
+}
+/*.show > .dropdown-list {
+  transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+}*/
+.dropdown-container > .dropdown-display {
+  float: left;
+  background: white;
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding-top: 2px;
+}
+.dropdown-container > .dropdown-display > * {
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+.dropdown-container > .dropdown-display > span:first-child {
+  font-size: 14px;
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.dropdown-container > .dropdown-display > i {
+  position: relative;
+  width: 14px;
+  margin-left: -24px;
+  font-size: 1.125em;
+  font-weight: bold;
+  padding-right: 10px;
+  text-align: right;
+}
+.dropdown-container > .dropdown-list {
+  float: left;
+  position: relative;
+  width: 100%;
+  transform: scale(1, 0);
+  transition: transform ease 250ms;
+}
+.dropdown-container > .dropdown-list > div {
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+  background: white;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+.dropdown-container > .dropdown-list > div > div {
+  float: left;
+  width: 100%;
+  padding: 0 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: solid 1px $Gainsboro;
+ }
+.dropdown-container > .dropdown-list > div > div:hover {
+  background: $WhiteSmoke;
+}
+.dropdown-container > .dropdown-list > div > .selected {
+  background: $Denim;
+  color: white;
+}
+.dropdown-container > .dropdown-list > div > div > * {
+  line-height: 40px !important;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 5px;
+}
+.dropdown-container > .dropdown-list > div > div > span {
+  float: left;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  color: inherit;
+}
+.dropdown-container > .dropdown-list > div > div > i {
+  float: left;
+  width: 20px;
+  margin-left: -20px;
+  display: none;
+}
+.dropdown-container > .dropdown-list > div > .selected > i {
+  display: inline-block;
+}
+.viewIconStyle{
+  font-size: 13px;
+  padding: 0px 0 0 10px;
+}
+.dropdownList{
+  transform: scale(1, 1);
+}
+
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
+.dropdownContainer{
+  float: left;
+  display: block; 
+}
+.dropdownDisplay {
+  float: left;
+  background: white;
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding-top: 2px;
+}
+/*.dropdownContainer.show > .dropdown-list {
+  transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+}*/

@@ -1,0 +1,117 @@
+.mainContainer{
+  composes: col100 from "../../../../styles/patterns.css";
+  font-size:14px;
+}
+
+.searchLibraryContainer{
+    composes: col100 from "../../../../styles/patterns.css";
+    margin-top:15px;
+}
+
+.searchHeadDiv{
+      composes: col100 from "../../../../styles/patterns.css";
+      min-height: 15px;
+      font-size: 14px;
+      margin-top:15px;
+}
+
+.asSearchText{
+    color:#000000;
+    float:left;
+}
+.asSearchValue{
+    color: #8c8c8c;
+    text-transform: capitalize;
+    float: left;
+}
+
+.searchAutoSuggestContainer{
+  composes: col70 from "../../../../styles/patterns.css";
+  margin: 10px auto;
+  min-height: 30px;
+}
+
+.searchAutoSuggestDiv{
+  width:95%;
+  float:left;
+}
+
+.searchBtnDiv{
+  width:5%;
+  float:left;
+}
+
+.searchBtnDiv button{
+    height: 29px;
+    background-color: #e6e6e6;
+    border: solid 1px #b3b3b3;
+    cursor:pointer;
+    background-image: url('b64---./images/searchIcon.png---');
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.searchPanelWrapper{
+    min-height:300x;
+    width:100%;
+}
+
+.searchPanelScroll{
+  flex-flow: column;
+  width: 100%;
+  height: 300px;
+}
+
+.paginationContainer{
+  width:100%;
+  margin-top:5px;
+}
+
+
+.searchLibCancelButton{
+     composes: c2GreyButton from "../../../../styles/patterns.css";
+}
+
+.searchLibSelectButton{
+     composes: c2BlueButton from "../../../../styles/patterns.css";
+}
+
+.searchLibHideClass{
+  display:none;
+}
+
+.searchLibActionDiv{
+    background: #e6e6e6;
+    clear: both;
+    padding: 15px 0px;
+    margin: 0px;
+    text-align: right;
+    border-top: 1px solid #bbb;
+    width: 100%;
+}
+
+.btn-bar{
+  composes: pe-btn-bar from '../../../../styles/patterns.css';
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+}
+.btnCancel{
+  composes: pe-btn from '../../../../styles/patterns.css';
+}
+.btnSelect{
+  composes: pe-btn from '../../../../styles/patterns.css';
+  composes: pe-btn--primary from '../../../../styles/patterns.css';
+  width: 93px;
+}
+
+
+.btnRun{
+  composes: pe-btn from '../../../../styles/patterns.css';
+  margin: 0px 10px;
+}
+
+.btnDelete{
+  composes: pe-btn from '../../../../styles/patterns.css';
+}

@@ -1,0 +1,39 @@
+.react-numeric-input{
+
+
+}
+.assessmentHours span b{
+
+border:none !important;
+background:none !important;
+box-shadow:none !important;
+bottom: 10px !important;
+}
+
+.assessmentHours span b:nth-child(2) i{
+  border-width: 0px 0.8ex 0.8ex!important;
+  border-color: transparent transparent rgba(0, 0, 0, 0.5) !important;
+}
+.assessmentHours span b:nth-child(3) i{
+  border-width: 0.8ex 0.8ex 0px !important;
+  border-color: rgba(0, 0, 0, 0.5) transparent transparent !important;
+
+} 
+.assessmentHours {
+    width: 10% !important;
+    float: left !important;;
+}
+.assessmentHours {
+        margin: 1px -90px !important
+}
+
+.assessmentHours label {
+    width: auto !important;
+    display: inline-block !important;
+    text-align: left !important;
+    min-width: 0px !important;
+    padding-right: 10px!important;
+    color: #8c8c8c !important;
+    font-size: 0.875rem !important; 
+    padding-top: 30px !important;
+}

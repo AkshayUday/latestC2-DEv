@@ -1,0 +1,592 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 308,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 7,
+      "column": 34
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "start": 0,
+      "end": 29,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 29
+        }
+      },
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 4,
+          "end": 28,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 4
+            },
+            "end": {
+              "line": 1,
+              "column": 28
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 4,
+            "end": 9,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 4
+              },
+              "end": {
+                "line": 1,
+                "column": 9
+              }
+            },
+            "name": "jsdom"
+          },
+          "init": {
+            "type": "CallExpression",
+            "start": 12,
+            "end": 28,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 12
+              },
+              "end": {
+                "line": 1,
+                "column": 28
+              }
+            },
+            "callee": {
+              "type": "Identifier",
+              "start": 12,
+              "end": 19,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 12
+                },
+                "end": {
+                  "line": 1,
+                  "column": 19
+                }
+              },
+              "name": "require"
+            },
+            "arguments": [
+              {
+                "type": "Literal",
+                "start": 20,
+                "end": 27,
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 20
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 27
+                  }
+                },
+                "value": "jsdom",
+                "rawValue": "jsdom",
+                "raw": "'jsdom'"
+              }
+            ]
+          }
+        }
+      ],
+      "kind": "var",
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " A super simple DOM ready for React to render into",
+          "start": 31,
+          "end": 83,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 52
+            }
+          },
+          "range": [
+            31,
+            83
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": " Store this DOM and the window in global scope ready for React to access",
+          "start": 84,
+          "end": 158,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 74
+            }
+          },
+          "range": [
+            84,
+            158
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "start": 159,
+      "end": 234,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 75
+        }
+      },
+      "expression": {
+        "type": "AssignmentExpression",
+        "start": 159,
+        "end": 233,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 0
+          },
+          "end": {
+            "line": 5,
+            "column": 74
+          }
+        },
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "start": 159,
+          "end": 174,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 15
+            }
+          },
+          "object": {
+            "type": "Identifier",
+            "start": 159,
+            "end": 165,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 6
+              }
+            },
+            "name": "global",
+            "leadingComments": null
+          },
+          "property": {
+            "type": "Identifier",
+            "start": 166,
+            "end": 174,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 15
+              }
+            },
+            "name": "document"
+          },
+          "computed": false,
+          "leadingComments": null
+        },
+        "right": {
+          "type": "CallExpression",
+          "start": 177,
+          "end": 233,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 18
+            },
+            "end": {
+              "line": 5,
+              "column": 74
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 177,
+            "end": 188,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 18
+              },
+              "end": {
+                "line": 5,
+                "column": 29
+              }
+            },
+            "object": {
+              "type": "Identifier",
+              "start": 177,
+              "end": 182,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 18
+                },
+                "end": {
+                  "line": 5,
+                  "column": 23
+                }
+              },
+              "name": "jsdom"
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 183,
+              "end": 188,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 24
+                },
+                "end": {
+                  "line": 5,
+                  "column": 29
+                }
+              },
+              "name": "jsdom"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 189,
+              "end": 232,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 30
+                },
+                "end": {
+                  "line": 5,
+                  "column": 73
+                }
+              },
+              "value": "<!doctype html><html><body></body></html>",
+              "rawValue": "<!doctype html><html><body></body></html>",
+              "raw": "'<!doctype html><html><body></body></html>'"
+            }
+          ]
+        },
+        "leadingComments": null
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " A super simple DOM ready for React to render into",
+          "start": 31,
+          "end": 83,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 52
+            }
+          },
+          "range": [
+            31,
+            83
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": " Store this DOM and the window in global scope ready for React to access",
+          "start": 84,
+          "end": 158,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 74
+            }
+          },
+          "range": [
+            84,
+            158
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "start": 235,
+      "end": 273,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 38
+        }
+      },
+      "expression": {
+        "type": "AssignmentExpression",
+        "start": 235,
+        "end": 272,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 0
+          },
+          "end": {
+            "line": 6,
+            "column": 37
+          }
+        },
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "start": 235,
+          "end": 248,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 6,
+              "column": 13
+            }
+          },
+          "object": {
+            "type": "Identifier",
+            "start": 235,
+            "end": 241,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 0
+              },
+              "end": {
+                "line": 6,
+                "column": 6
+              }
+            },
+            "name": "global"
+          },
+          "property": {
+            "type": "Identifier",
+            "start": 242,
+            "end": 248,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 13
+              }
+            },
+            "name": "window"
+          },
+          "computed": false
+        },
+        "right": {
+          "type": "MemberExpression",
+          "start": 251,
+          "end": 272,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 16
+            },
+            "end": {
+              "line": 6,
+              "column": 37
+            }
+          },
+          "object": {
+            "type": "Identifier",
+            "start": 251,
+            "end": 259,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 16
+              },
+              "end": {
+                "line": 6,
+                "column": 24
+              }
+            },
+            "name": "document"
+          },
+          "property": {
+            "type": "Identifier",
+            "start": 260,
+            "end": 272,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 25
+              },
+              "end": {
+                "line": 6,
+                "column": 37
+              }
+            },
+            "name": "parentWindow"
+          },
+          "computed": false
+        }
+      }
+    },
+    {
+      "type": "ExpressionStatement",
+      "start": 274,
+      "end": 308,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 34
+        }
+      },
+      "expression": {
+        "type": "CallExpression",
+        "start": 274,
+        "end": 307,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 33
+          }
+        },
+        "callee": {
+          "type": "MemberExpression",
+          "start": 274,
+          "end": 285,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 7,
+              "column": 11
+            }
+          },
+          "object": {
+            "type": "Identifier",
+            "start": 274,
+            "end": 281,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 7
+              }
+            },
+            "name": "console"
+          },
+          "property": {
+            "type": "Identifier",
+            "start": 282,
+            "end": 285,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 11
+              }
+            },
+            "name": "log"
+          },
+          "computed": false
+        },
+        "arguments": [
+          {
+            "type": "Literal",
+            "start": 286,
+            "end": 306,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 12
+              },
+              "end": {
+                "line": 7,
+                "column": 32
+              }
+            },
+            "value": "Setup completed...",
+            "rawValue": "Setup completed...",
+            "raw": "\"Setup completed...\""
+          }
+        ]
+      }
+    }
+  ]
+}

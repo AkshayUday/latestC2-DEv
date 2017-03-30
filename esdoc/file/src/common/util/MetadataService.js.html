@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/common/util/metadataService.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://bitbucket.pearson.com/scm/c2ai/patternslib.git">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/action</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-CMDChangeHandler">CMDChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MVMChangeHandler">MVMChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MVMSaveHandler">MVMSaveHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PMDChangeHandler">PMDChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_MVMData">fetch_MVMData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_MetaData">fetch_MetaData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_New_PName_Source">fetch_New_PName_Source</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_PMDData">fetch_PMDData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_PName_Source">fetch_PName_Source</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_QLTData">fetch_QLTData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-handleTagChange">handleTagChange</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/components/common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssessmentMetadata/js/components/common/AutoComplete.js~AutoComplete.html">AutoComplete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssessmentMetadata/js/components/common/Heading.js~Heading.html">Heading</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssessmentMetadata/js/components/common/TagElem.js~TagElem.html">TagElem</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/container</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MetadataContainer">MetadataContainer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCMD_Data">getCMD_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getMVM_Data">getMVM_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPLT_Data">getPLT_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPMD_Data">getPMD_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPName_Source">getPName_Source</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getQLT_Data">getQLT_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-metadataReducer">metadataReducer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/store</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/action</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-CMDChangeHandler">CMDChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MVMChangeHandler">MVMChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MVMSaveHandler">MVMSaveHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PMDChangeHandler">PMDChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_MVMData">fetch_MVMData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_MetaData">fetch_MetaData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_PMDData">fetch_PMDData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_QLTData">fetch_QLTData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-handleTagChange">handleTagChange</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/components/common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssetmentMetadata-July Code/js/components/common/Heading.js~Heading.html">Heading</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssetmentMetadata-July Code/js/components/common/TagElem.js~TagElem.html">TagElem</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/container</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MetadataContainer">MetadataContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fields">fields</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-metadataReducer">metadataReducer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCMD_Data">getCMD_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getMVM_Data">getMVM_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPLT_Data">getPLT_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPMD_Data">getPMD_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getQLT_Data">getQLT_Data</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/store</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/action</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getJobStatus">getJobStatus</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolders">getFolders</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toggle">toggle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchingAssets">fetchingAssets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-gettingThumbnails">gettingThumbnails</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fileUploadToServer">fileUploadToServer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/uploadInProgress.js~uploadInProgress.html">uploadInProgress</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-App">App</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-BrowseAssets">BrowseAssets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-SearchLibrary">SearchLibrary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fields">fields</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/components/checkJobStatus</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/checkJobStatus/IconComponent.js~IconComponent.html">IconComponent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/checkJobStatus/RenderColumn.js~RenderColumn.html">RenderColumn</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/checkJobStatus/RenderRow.js~RenderRow.html">RenderRow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/checkJobStatus/Table.js~Table.html">Table</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/components/common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/common/Labels.js~Labels.html">Labels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/common/pe-tooltip.js~PE_tooltip.html">PE_tooltip</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IconComponent">IconComponent</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/components/folderpane</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/folderpane/DefaultCellRenderer.js~DefaultCellRenderer.html">DefaultCellRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/folderpane/TreePane.js~TreePane.html">TreePane</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/container</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CheckJobStatusContainer">CheckJobStatusContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FileUploadContainer">FileUploadContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-treePaneContainer">treePaneContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UploadProgressContainer">UploadProgressContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsContainer">assetsContainer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/reducers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CheckJobStatusReducers">CheckJobStatusReducers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-folderTree">folderTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assets">assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fileUpload">fileUpload</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rootMetaData">rootMetaData</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/store</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">PatternAlpha/js/containers/button</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PatternAlpha/js/containers/button/Button.js~Button.html">Button</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">PatternBeta/js/containers/button</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PatternBeta/js/containers/button/ButtonLong.js~ButtonLong.html">ButtonLong</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/action</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getJobStatus">getJobStatus</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolders">getFolders</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toggle">toggle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchingAssets">fetchingAssets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-gettingThumbnails">gettingThumbnails</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fileUploadToServer">fileUploadToServer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/uploadInProgress.js~uploadInProgress.html">uploadInProgress</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-App">App</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-BrowseAssets">BrowseAssets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-SearchLibrary">SearchLibrary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fields">fields</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/components/checkJobStatus</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/checkJobStatus/IconComponent.js~IconComponent.html">IconComponent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/checkJobStatus/RenderColumn.js~RenderColumn.html">RenderColumn</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/checkJobStatus/RenderRow.js~RenderRow.html">RenderRow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/checkJobStatus/Table.js~Table.html">Table</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/components/common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/common/Labels.js~Labels.html">Labels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/common/pe-tooltip.js~PE_tooltip.html">PE_tooltip</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IconComponent">IconComponent</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/components/folderpane</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/folderpane/DefaultCellRenderer.js~DefaultCellRenderer.html">DefaultCellRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/folderpane/TreePane.js~TreePane.html">TreePane</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/container</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CheckJobStatusContainer">CheckJobStatusContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FileUploadContainer">FileUploadContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-treePaneContainer">treePaneContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UploadProgressContainer">UploadProgressContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsContainer">assetsContainer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/reducers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CheckJobStatusReducers">CheckJobStatusReducers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-folderTree">folderTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assets">assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fileUpload">fileUpload</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rootMetaData">rootMetaData</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/store</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/common/util/metadataService.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @module PatternsLib
+ */
+import * as jsonld from &apos;jsonld&apos;;
+
+import rest from &apos;./rest&apos;;
+
+const ctx = {
+  &apos;@context&apos;: {
+    &apos;id&apos;: &apos;@id&apos;,
+    &apos;type&apos;: {
+      &apos;@id&apos;: &apos;@type&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;graph&apos;: &apos;@graph&apos;,
+    &apos;notation&apos;: &apos;http://www.w3.org/2004/02/skos/core#notation&apos;,
+    &apos;prefLabel&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2004/02/skos/core#prefLabel&apos;,
+      &apos;@container&apos;: &apos;@language&apos;
+    },
+    &apos;altLabel&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2004/02/skos/core#altLabel&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;hiddenLabel&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2004/02/skos/core#altLabel&apos;,
+      &apos;@container&apos;: &apos;@language&apos;
+    },
+    &apos;narrower&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2004/02/skos/core#narrower&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;broader&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2004/02/skos/core#broader&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;related&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2004/02/skos/core#related&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;inScheme&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2004/02/skos/core#inScheme&apos;,
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;topConceptOf&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2004/02/skos/core#topConceptOf&apos;,
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;topConcept&apos;: &apos;http://www.w3.org/2004/02/skos/core#hasTopConcept&apos;,
+    &apos;language&apos;: &apos;http://schema.org/inLanguage&apos;,
+    &apos;about&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.org/about&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;contentSize&apos;: &apos;http://schema.org/contentSize&apos;,
+    &apos;discipline&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/content/discipline&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;knowledgeLevel&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/learn/knowledgeLevel&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;audience&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.org/audience&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;accessibilityFeature&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.org/accessibilityFeature&apos;,
+      &apos;@container&apos;: &apos;@set&apos;
+    },
+    &apos;duration&apos;: &apos;http://schema.org/duration&apos;,
+    &apos;dateCreated&apos;: &apos;http://schema.org/dateCreated&apos;,
+    &apos;status&apos;: &apos;http://schema.org/status&apos;,
+    &apos;timeRequired&apos;: &apos;http://schema.org/timeRequired&apos;,
+    &apos;format&apos;: &apos;http://purl.org/dc/terms/format&apos;,
+    &apos;hasPart&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.org/hasPart&apos;
+    },
+    &apos;sameAs&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2002/07/owl#sameAs&apos;,
+      &apos;@type&apos;: &apos;@id&apos;
+    },
+    &apos;isDefinedBy&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/2000/01/rdf-schema#isDefinedBy&apos;,
+      &apos;@type&apos;: &apos;@id&apos;
+    },
+    &apos;eTag&apos;: &apos;http://schema.pearson.com/ns/raf/eTag&apos;,
+    &apos;security&apos;: &apos;http://schema.pearson.com/ns/raf/security&apos;,
+    &apos;removal&apos;: &apos;http://schema.pearson.com/ns/changeset/removal&apos;,
+    &apos;addition&apos;: &apos;http://schema.pearson.com/ns/changeset/addition&apos;,
+    &apos;replacement&apos;: &apos;http://schema.pearson.com/ns/changeset/replacement&apos;,
+    &apos;subject&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/changeset/subject&apos;
+    },
+    &apos;predicate&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/changeset/predicate&apos;
+    },
+    &apos;object&apos;: {
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/changeset/object&apos;
+    },
+    &apos;ifMatch&apos;: {
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/raf/ifMatch&apos;
+    },
+    &apos;ifNonMatch&apos;: {
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/raf/ifNonMatch&apos;
+    },
+    &apos;uuid&apos;: {
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/content/uuid&apos;
+    },
+    &apos;hasContributor&apos;: &apos;http://schema.pearson.com/ns/content/hasContributor&apos;,
+    &apos;hasAlignment&apos;: &apos;http://schema.pearson.com/ns/learn/hasAlignment&apos;,
+    &apos;identifiedBy&apos;: &apos;http://schema.pearson.com/ns/content/identifiedBy&apos;,
+    &apos;contributorRole&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/content/contributorRole&apos;
+    },
+    &apos;contributorAgent&apos;: &apos;http://schema.pearson.com/ns/content/contributorAgent&apos;,
+    &apos;alignmentType&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/learn/alignmentType&apos;
+    },
+    &apos;alignmentObjective&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/learn/alignmentObjective&apos;
+    },
+    &apos;idTerm&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/content/idTerm&apos;
+    },
+    &apos;idValue&apos;: &apos;http://schema.pearson.com/ns/content/idValue&apos;,
+    &apos;Person&apos;: &apos;http://schema.org/Person&apos;,
+    &apos;results&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/ns/ldp#contains&apos;,
+      &apos;@container&apos;: &apos;@list&apos;
+    },
+    &apos;name&apos;: {
+      &apos;@id&apos;: &apos;http://schema.org/name&apos;,
+      &apos;@container&apos;: &apos;@language&apos;
+    },
+    &apos;isPartOf&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.org/isPartOf&apos;
+    },
+    &apos;description&apos;: {
+      &apos;@id&apos;: &apos;http://schema.org/description&apos;,
+      &apos;@container&apos;: &apos;@language&apos;
+    },
+    &apos;keyword&apos;: {
+      &apos;@id&apos;: &apos;http://schema.pearson.com/ns/content/keyword&apos;,
+      &apos;@container&apos;: &apos;@language&apos;
+    },
+    &apos;workExample&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.org/workExample&apos;
+    },
+    &apos;exampleOfWork&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://schema.org/exampleOfWork&apos;
+    },
+    &apos;DirectContainer&apos;: &apos;http://www.w3.org/ns/ldp#DirectContainer&apos;,
+    &apos;PageSortCriterion&apos;: &apos;http://www.w3.org/ns/ldp#PageSortCriterion&apos;,
+    &apos;Ascending&apos;: &apos;http://www.w3.org/ns/ldp#Ascending&apos;,
+    &apos;pageSortCriteria&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/ns/ldp#pageSortCriteria&apos;,
+      &apos;@container&apos;: &apos;@list&apos;,
+      &apos;@type&apos;: &apos;@id&apos;
+    },
+    &apos;order&apos;: {
+      &apos;@type&apos;: &apos;@id&apos;,
+      &apos;@id&apos;: &apos;http://www.w3.org/ns/ldp#pageSortOrder&apos;
+    },
+    &apos;pageSequence&apos;: {
+      &apos;@id&apos;: &apos;http://www.w3.org/ns/ldp#pageSequence&apos;,
+      &apos;@type&apos;: &apos;@id&apos;
+    },
+    &apos;SingletonProperty&apos;: &apos;http://schema.pearson.com/ns/raf/SingletonProperty&apos;,
+    &apos;Work&apos;: &apos;http://schema.pearson.com/ns/content/Work&apos;,
+    &apos;Manifestation&apos;: &apos;http://schema.pearson.com/ns/content/Manifestation&apos;,
+    &apos;Container&apos;: &apos;http://schema.pearson.com/ns/content/Container&apos;,
+    &apos;LearningObjective&apos;: &apos;http://schema.pearson.com/ns/learn/LearningObjective&apos;,
+    &apos;ObjectivesFramework&apos;: &apos;http://schema.pearson.com/ns/learn/ObjectivesFramework&apos;
+  }
+    };
+
+/**
+  * MetadataService module facilitates JSON to JSON-LD (and reverse) Transformation.
+  * It also handles the MDS API REST CALLs.
+  *
+  * Expected Input JSON structure:
+  *
+  *      let buffer = {
+  *          &apos;libConfig&apos; : this.props.libConfig,          // Includes host app supplied init values for lib + Should have all Taxonomies
+  *          &apos;patConfig&apos; : this.props.patConfig,          // Includes host app supplied init values for pattern
+  *
+  *          &apos;req&apos;       : &apos;ProductMetadata&apos;,             // ProductMetadata / AssessmentMetadata / QuestionMetadata / ImageMetadata / AudioMetadata / VideoMetadata
+  *          &apos;action&apos;    : &apos;Create&apos;,                      // Create / Read One / Update / Delete / Search / Read All
+  *
+  *          &apos;data&apos; : {
+  *                &apos;uuid&apos;:&apos;&apos;,                               // Only required for actioon = Update/Delete/Read One
+  *                &apos;status&apos; : &apos;&apos;,                           // Not sure if this is needed (when asset is deleted the status is set to unavailable)
+  *
+  *                &apos;filename&apos; : &apos;&apos;,                         // This is prob. only for Asset
+  *                &apos;discipline&apos; : &apos;Mathematics&apos;,            // Taxonomy value
+  *                &apos;difficultyLevel&apos; : &apos;Easy&apos;,              // Taxonomy value
+  *                &apos;trigger&apos; : &apos;&apos;,                          // Not sure if this is needed
+  *                &apos;knowledgeLevel&apos; : &apos;Grade 10&apos;,           //
+  *                &apos;hasAlignment&apos; : &apos;&apos;,                     // Taxonomy value
+  *
+  *                &apos;audience&apos; : &apos;Parents&apos;,                  // Taxonomy value
+  *                &apos;keywords&apos; : [&apos;key1&apos;, &apos;key2&apos;, &apos;key3&apos;],   //
+  *                &apos;name&apos;: &apos;Some Product Name&apos;,             // 
+  *                &apos;timeRequired&apos; : {                       // 
+  *                    &apos;hh&apos;:&apos;01&apos;,
+  *                    &apos;mm&apos;:&apos;20&apos;,
+  *                    &apos;ss&apos;:&apos;30&apos;
+  *                },
+  *                &apos;description&apos; : &apos;Some description for Product with decipline Math and knowledge level of Grade 10&apos;,
+  *                &apos;pafId&apos; : &apos;&apos;,                            //
+  *                &apos;alternateName&apos; : &apos;&apos;,                    // altText (used for &lt;img&gt; tag)
+  *                &apos;caption&apos; : &apos;&apos;,                          // image caption text
+  *                &apos;copyrightHolder&apos; : &apos;&apos;,                  //
+  *                &apos;contentUrl&apos; : &apos;&apos;,                       // URN of content   (prob Alfresco UUID)
+  *                &apos;thumbnail&apos; : &apos;&apos;,                        // URN of thumbnail (prob Alfresco UUID)
+  *                &apos;dateCreated&apos; : &apos;&apos;,                      //
+  *                &apos;dateModified&apos; : &apos;&apos;,                     //
+  *                &apos;captionFileName&apos; : &apos;&apos;,                  // close caption file name (only for video)
+  *                &apos;transcriptFileName&apos; : &apos;&apos;,               // transcription file name (only for audio/video)
+  *
+  *                &apos;searchterms&apos; : &apos;&apos;,                      // used for providing search terms or query string 
+  *          }
+  *      }
+  *  Modified into JSON-LD for use by rest.send()
+  *
+  *      let config = {
+  *          method: &apos;&apos;,                                // GET, POST, PUT, DELETE
+  *          url:&apos;&apos;,                                    // REST endpoint url
+  *          data: {                                    // JSON-LD data for C1 MDS
+  *          },
+  *      }
+  */
+
+function _createContext(buffer) {
+    //  &apos;@context&apos;: {}
+    return {
+        &apos;id&apos;: &apos;@id&apos;,
+        &apos;type&apos;: &apos;@type&apos;,
+
+        &apos;Work&apos;: &apos;http://schema.pearson.com/ns/content/Work&apos;,
+        &apos;status&apos;: &apos;http://schema.pearson.com/ns/content/status&apos;,
+
+        &apos;AssessmentItem&apos;: &apos;http://schema.pearson.com/ns/content/AssessmentItem&apos;,
+        &apos;ClosedCaption&apos;: &apos;http://schema.pearson.com/ns/content/ClosedCaption&apos;,
+        &apos;Transcript&apos;: &apos;http://schema.pearson.com/ns/content/Transcript&apos;,
+
+        &apos;filename&apos;: &apos;http://schema.pearson.com/ns/content/filename&apos;,
+        &apos;discipline&apos;: &apos;http://schema.pearson.com/ns/content/discipline&apos;,
+
+        &apos;difficultyLevel&apos;: &apos;http://schema.pearson.com/ns/learn/difficultyLevel&apos;,
+        &apos;trigger&apos;: &apos;http://schema.pearson.com/ns/learn/trigger&apos;,
+        &apos;knowledgeLevel&apos;: &apos;http://schema.pearson.com/ns/learn/knowledgeLevel&apos;,
+        &apos;hasAlignment&apos;: &apos;http://schema.pearson.com/ns/learn/hasAlignment&apos;,
+
+        &apos;audience&apos; : &apos;http://schema.org/CreativeWork/audience&apos;,
+        &apos;keywords&apos; : &apos;http://schema.org/CreativeWork/keywords&apos;,
+        &apos;CreativeWork&apos;: &apos;http://schema.org/CreativeWork&apos;,
+        &apos;name&apos;: &apos;http://schema.org/CreativeWork/name&apos;,
+        &apos;timeRequired&apos;: &apos;http://schema.org/CreativeWork/timeRequired&apos;,
+        &apos;description&apos;: &apos;http://schema.org/CreativeWork/description&apos;,
+
+
+        &apos;pafId&apos;: &apos;http://schema.pearson.com/ns/system/pafId&apos;,
+        &apos;alternateName&apos; : &apos;http://schema.org/alternateName&apos;,
+        &apos;caption&apos; : &apos;http://schema.org/caption&apos;,
+        &apos;copyrightHolder&apos; : &apos;http://schema.org/copyrightHolder&apos;,
+        &apos;contentUrl&apos; : &apos;http://schema.org/contentUrl&apos;,
+        &apos;thumbnail&apos; : &apos;http://schema.org/thumbnail&apos;,
+        &apos;dateCreated&apos; : &apos;http://schema.org/dateCreated&apos;,
+        &apos;dateModified&apos; : &apos;http://schema.org/dateModified&apos;
+    };
+};
+
+function _createJSONLD(context, buffer) {
+    let obj = {
+        &apos;@context&apos;    : context,
+        &apos;id&apos;          : &apos;&apos;,
+        &apos;metadataType&apos;: buffer.req
+    };
+
+    if (buffer.req === &apos;ProductMetadata&apos; ||
+        buffer.req === &apos;AssessmentMetadata&apos; ||
+        buffer.req === &apos;QuestionMetadata&apos;) {
+        obj[&apos;type&apos;] = [&apos;Work&apos;, &apos;CreativeWork&apos;];
+    }
+    else
+        if (buffer.req === &apos;ImageMetadata&apos;) {
+            obj[&apos;type&apos;] = [&apos;Work&apos;, &apos;ImageObject&apos;];
+        }
+    else
+        if (buffer.req === &apos;AudioMetadata&apos; ||
+            buffer.req === &apos;VideoMetadata&apos;) {
+            obj[&apos;type&apos;] = [&apos;Work&apos;, &apos;MediaObject&apos;];
+        }
+    else
+        obj[&apos;type&apos;] = [&apos;Work&apos;, &apos;UNSUPPORTED&apos;];
+
+    //NOTE: If adding new fields here then same needs in _createJSON
+
+    if (buffer.data.filename)
+        obj[&apos;filename&apos;] = buffer.data.filename;
+
+    if (buffer.data.discipline)
+        obj[&apos;discipline&apos;] = buffer.data.discipline;
+
+    if (buffer.data.difficultyLevel)
+        obj[&apos;difficultyLevel&apos;] = buffer.data.difficultyLevel;
+
+    if (buffer.data.trigger)
+        obj[&apos;trigger&apos;] = buffer.data.trigger;
+
+/*    This gives HTML 400 Bad Request on POST
+
+    if (buffer.data.knowledgeLevel)
+        obj[&apos;knowledgeLevel&apos;] = buffer.data.knowledgeLevel;
+*/
+    if (buffer.data.hasAlignment)
+        obj[&apos;hasAlignment&apos;] = buffer.data.hasAlignment;
+
+    if (buffer.data.audience)
+        obj[&apos;audience&apos;] = buffer.data.audience;
+
+    if (buffer.data.keywords)
+        obj[&apos;keywords&apos;] = buffer.data.keywords;
+
+    if (buffer.data.name)
+        obj[&apos;name&apos;] = buffer.data.name;
+
+    if (buffer.data.timeRequired)
+        obj[&apos;timeRequired&apos;] = buffer.data.timeRequired;
+
+    if (buffer.data.description)
+        obj[&apos;description&apos;] = buffer.data.description;
+
+    if (buffer.data.pafId)
+        obj[&apos;pafId&apos;] = buffer.data.pafId;
+
+    if (buffer.data.alternateName)
+        obj[&apos;alternateName&apos;] = buffer.data.alternateName;
+
+    if (buffer.data.caption)
+        obj[&apos;caption&apos;] = buffer.data.caption;
+
+    if (buffer.data.copyrightHolder)
+        obj[&apos;copyrightHolder&apos;] = buffer.data.copyrightHolder;
+
+    if (buffer.data.contentUrl)
+        obj[&apos;contentUrl&apos;] = buffer.data.contentUrl;
+
+    if (buffer.data.thumbnail)
+        obj[&apos;thumbnail&apos;] = buffer.data.thumbnail;
+
+    if (buffer.data.dateCreated)
+        obj[&apos;dateCreated&apos;] = buffer.data.dateCreated;
+
+    if (buffer.data.dateModified)
+        obj[&apos;dateModified&apos;] = buffer.data.dateModified;
+
+    if (buffer.data.captionFileName)
+        obj[&apos;captionFileName&apos;] = buffer.data.captionFileName;
+
+    if (buffer.data.transcriptFileName)
+        obj[&apos;transcriptFileName&apos;] = buffer.data.transcriptFileName;
+
+    return obj;
+}
+
+function _createConfig(buffer) {
+    let method = null;
+    let url = null;
+    let jsonld = null;
+
+    switch (buffer.action) {
+    case &apos;Create&apos; :
+        method = &apos;POST&apos;;
+        url = buffer.libConfig.server + &apos;/thing&apos; + buffer.libConfig.database;
+        jsonld = _createJSONLD(context, buffer);
+        break;
+    case &apos;Read One&apos; :
+        method = &apos;GET&apos;;
+        url = buffer.libConfig.server + &apos;/work/&apos; + buffer.data.uuid + buffer.libConfig.database;
+        break;
+    case &apos;Update&apos; :
+        method = &apos;PUT&apos;;
+        url = buffer.libConfig.server + &apos;/work/&apos; + buffer.data.uuid + buffer.libConfig.database;
+        jsonld = _createJSONLD(context, buffer);
+        break;
+    case &apos;Delete&apos; :
+        method = &apos;DELETE&apos;;
+        url = buffer.libConfig.server + &apos;/work/&apos; + buffer.data.uuid + buffer.libConfig.database;
+        break;
+    case &apos;Search&apos; :
+        method = &apos;GET&apos;;
+        url = buffer.libConfig.server + &apos;/work/&apos; + buffer.libConfig.database + buffer.data.searchterms;
+        break;
+    }
+
+    let context = _createContext(buffer);
+    let config = {
+        &apos;method&apos;: method,
+        &apos;url&apos;: url,
+        &apos;headers&apos;: buffer.libConfig.headers,
+        &apos;data&apos;: jsonld                            // only req&apos;d for POST &amp; PUT; for others it&apos;ll be null
+    }
+    return config;
+};
+
+function _createJSON(reply) {
+    let obj = { };
+
+    for (let k in reply) {
+        if (k.includes(&apos;filename&apos;)) {
+            obj[&apos;filename&apos;] = reply[k];
+        }
+        else
+            if (k.includes(&apos;discipline&apos;)) {
+                obj[&apos;discipline&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;difficultyLevel&apos;)) {
+                obj[&apos;difficultyLevel&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;trigger&apos;)) {
+                obj[&apos;trigger&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;knowledgeLevel&apos;)) {
+                obj[&apos;knowledgeLevel&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;hasAlignment&apos;)) {
+                obj[&apos;hasAlignment&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;audience&apos;)) {
+                obj[&apos;audience&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;keywords&apos;)) {
+                obj[&apos;keywords&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;name&apos;)) {
+                obj[&apos;name&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;timeRequired&apos;)) {
+                obj[&apos;timeRequired&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;description&apos;)) {
+                obj[&apos;description&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;pafId&apos;)) {
+                obj[&apos;pafId&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;alternateName&apos;)) {
+                obj[&apos;alternateName&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;caption&apos;)) {
+                obj[&apos;caption&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;copyrightHolder&apos;)) {
+                obj[&apos;copyrightHolder&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;contentUrl&apos;)) {
+                obj[&apos;contentUrl&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;thumbnail&apos;)) {
+                obj[&apos;thumbnail&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;dateCreated&apos;)) {
+                obj[&apos;dateCreated&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;dateModified&apos;)) {
+                obj[&apos;dateModified&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;captionFileName&apos;)) {
+                obj[&apos;captionFileName&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;transcriptFileName&apos;)) {
+                obj[&apos;trnascriptFileName&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;uuid&apos;)) {
+                obj[&apos;uuid&apos;] = reply[k];
+            }
+        else
+            if (k.includes(&apos;id&apos;)) {
+                obj[&apos;id&apos;] = reply[k];
+            }
+        else
+            console.log(&apos;MetadataService:_creatJSON() - ignoring field : &apos; + k);
+    }
+    return obj;
+}
+
+
+/**
+  * send transforms supplied json into json-ld and makes REST call to MDS Server.
+  * returns a response from MDS Server after transforming json-ld into json.
+  *
+  *
+  */
+export default {
+    send : function (buffer) {
+        let promise = new Promise(function (fulfill, reject) {
+            let config = _createConfig(buffer);
+            console.log(&apos;MetadataService:send - transformed JSON-LD %o&apos;, config);
+
+            let restPromise = rest.send(config)
+            restPromise.then(function (reply) {
+                console.log(&apos;MetadataService:send - transorm jsonld to json for %o&apos;, reply);
+
+                let json = _createJSON(reply);
+                fulfill(json);
+                //reply[&apos;@context&apos;] = ctx;
+                // a possible format for &apos;reply&apos; is listed below
+                /*
+                  jsonld.compact(reply, ctx, function (err, compacted) {
+                  console.log(&apos;MetadataService:send - do jsonld.compact() result is : &apos; +
+                  JSON.stringify(compacted, null, 2) +
+                  &apos; err is &apos; + err);
+                  return compacted;
+                  });
+                */
+            })
+                .catch(function (reply) {
+                    reject(reply);
+                });
+        });
+
+        return promise;
+    }
+};
+
+
+/*
+reply format
+{&apos;@context&apos;:[&apos;http://schema.pearson.com/context/content-context.jsonld&apos;],&apos;id&apos;:&apos;urn:pearson:work:db066023-041b-4753-8dfc-10ba12ed235b&apos;,&apos;type&apos;:[&apos;Work&apos;,&apos;http://schema.org/Thing&apos;,&apos;http://schema.org/CreativeWork&apos;,&apos;http://www.w3.org/2000/01/rdf-schema#Class&apos;,&apos;http://www.w3.org/2002/07/owl#Class&apos;],&apos;http://schema.org/keywords&apos;:[&apos;WordB&apos;,&apos;WordA&apos;],&apos;http://schema.pearson.com/ns/content/discipline&apos;:&apos;Mathematics&apos;,&apos;uuid&apos;:&apos;db066023-041b-4753-8dfc-10ba12ed235b&apos;,&apos;security&apos;:&apos;_:b0&apos;,&apos;http://www.w3.org/2000/01/rdf-schema#comment&apos;:[&apos;The most generic kind of creative work, including books, movies, photographs, software programs, etc.&apos;,&apos;The most generic type of item.&apos;],&apos;http://www.w3.org/2000/01/rdf-schema#isDefinedBy&apos;:{&apos;id&apos;:&apos;https://data.pearson.com/work/db066023-041b-4753-8dfc-10ba12ed235b/metadata&apos;},&apos;http://www.w3.org/2000/01/rdf-schema#label&apos;:[&apos;CreativeWork&apos;,&apos;Thing&apos;,&apos;Work&apos;],&apos;http://www.w3.org/2000/01/rdf-schema#subClassOf&apos;:[{&apos;id&apos;:&apos;http://schema.org/Thing&apos;},{&apos;id&apos;:&apos;http://schema.org/CreativeWork&apos;}],&apos;sameAs&apos;:[&apos;https://data.pearson.com/work/db066023-041b-4753-8dfc-10ba12ed235b&apos;]}
+
+*/
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

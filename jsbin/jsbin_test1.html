@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body style="padding:20px; margin:20px; border: 1px solid black;">
+  <h2 style="text-align:center;">C1 MDS API Tester</h2>
+  <span>Select Environment : </span>
+  <input name="type" type="radio" id="env" value="uat" onclick="onclickEnv(this, 'uat')" checked> UAT </input>&nbsp;&nbsp;&nbsp;
+  <input name="type" type="radio" id="env" value="stg" onclick="onclickEnv(this, 'stg')" > STG </input>
+  <br/>
+  <br/>
+  <span>Authorization Token:</span>&nbsp;&nbsp;
+  <input type="text" placeholder="" onblur="onblurAuth(this)" id="auth" style="width:250px;">  
+  <span>Required for UAT</span>  <br/>
+  <br/>
+  <span>API Key:</span>&nbsp;&nbsp;
+  <input type="text" placeholder="" onblur="onblurAPIKey(this)" id="apikey" style="width:250px;">  
+  <span>Required for STG</span>  <br/>
+  <br/>
+  <br/>  <span>SSOSession Key:</span>&nbsp;&nbsp;  
+  <input type="text" placeholder="" onblur="onblurSSOKey(this)" id="ssokey" style="width:250px;">  
+  <span>Required for STG</span>  <br/>
+  <br/>
+  <hr/>
+  <br/>
+  <span> I. Taxonomies :</span>&nbsp;&nbsp;
+  <button type="button" onclick="runTaxonomyGET(this,'audience')">Audience</button>
+  <button type="button" onclick="runTaxonomyGET(this, 'difficulty')">Difficulty Level</button>
+  <button type="button" onclick="runTaxonomyGET(this, 'discipline')">Discipline</button>
+  <br/>
+  <br/>
+  <span>II. Create an AssessmentInstrument :</span>&nbsp;&nbsp;
+  <button type="button" onclick="runPOST()">POST</button>
+  <br/>
+  <br/>
+  <span>III. Update an AssessmentInstrument :</span>&nbsp;&nbsp;
+  <button type="button" onclick="runPUT()">PUT</button>
+  &nbsp;&nbsp;OR&nbsp;&nbsp;
+  <button type="button" onclick="runPATCH()">PATCH</button>
+  <br/>
+  <br/>
+  <span>IV. Fetch an AssessmentInstrument :</span> <br/>
+  <span>UUID:</span>&nbsp;&nbsp;
+  
+  <input type="text" placeholder="" onblur="onblurUUID(this)" id="uuid" style="width:250px;">
+
+  <button type="button" onclick="runGET()">GET</button>
+  <br/>
+  <br/>
+  <hr/>
+  <br/>
+  <p>Instructions:</p>
+  <ul>
+  <li>Bring up Chrome Browser Inspector and monitor messages on console log.
+  </li>
+  <li>Use DHC test suite to obtain Authorization Token (Basic xxxx)
+  </li>
+  <li> Use DHC test suite to obtain SSOSession Key.
+  </li>
+  </ul>
+
+  <p> If you are getting following error in console log then SSOKey is incorrect.
+    Please reacquire and retest:
+  </p>
+  <p>
+    XMLHttpRequest cannot load https://staging.data.pearson.com/thing?db=qa2. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://null.jsbin.com' is therefore not allowed access. The response had HTTP status code 401.
+  </p>  
+
+  <br/>
+  <br/>
+  <br/>
+  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="./jsbin_test1.js"></script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,12 @@
+.holder{
+	composes: pe-btn-bar from '../../styles/patterns.css';
+    width: 870px;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    margin: 0px;
+    bottom: 0px;
+}
+.btnClassName{
+	composes: pe-btn from '../../styles/patterns.css';
+}

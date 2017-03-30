@@ -1,0 +1,44 @@
+# Set environment variables: http://docs.solanolabs.com/Setup/setting-environment-variables/
+# Sensitive values should be set with solano cli gem: `solano config:add <scope> <key> <value>`
+environment: 
+  'NPM_TOKEN': '59a1a319-c299-4ace-b9ef-13119f96c48a'      # set to appropriate value
+
+nodejs:
+  version: '5.9.0'
+ 
+tests: # Are these parallel safe, or do they need to be run in order?
+  - npm run ci
+  #- ./test/shell_scripts/run_tests.sh
+  #- ./test/shell_scripts/tests_build_status.sh
+
+# Instead of coding directly in the config file, script files could be called instead
+hooks:
+  pre_setup: |
+    set -e # Exit on error
+    npm install
+    #chmod +x test/shell_scripts/run_tests.sh
+    #chmod +x test/shell_scripts/tests_build_status.sh
+  post_build: |
+    set -e # Exit on error
+    # Only publish if all tests have passed
+    if [[ "passed" != "$TDDIUM_BUILD_STATUS" ]]; then
+      echo "\$TDDIUM_BUILD_STATUS = $TDDIUM_BUILD_STATUS"
+      echo "Will only deploy on passed builds"
+      exit
+    fi
+    # Only publish on 'master' branch
+    if [[ "master" != "$TDDIUM_CURRENT_BRANCH" ]]; then
+      echo "\$TDDIUM_CURRENT_BRANCH = $TDDIUM_CURRENT_BRANCH"
+      echo "Will only depoloy on master branch"
+      exit
+    fi
+    # Ensure necessary environment variables are present
+    if [[ -z "$NPM_TOKEN" ]]; then
+      echo 'ERROR: The $NPM_TOKEN value are not all set!'
+      echo 'Please use `solano config:add repo <key> <value>` cli command to set sensitive values'
+      echo 'See: http://docs.solanolabs.com/Setup/setting-environment-variables/'
+      exit 1
+    fi
+    echo $NPM_TOKEN
+    # Publish package
+    npm run npm-publish || true # Uses environment variables for auth credentials

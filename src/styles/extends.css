@@ -1,0 +1,6 @@
+/* extends */
+/* extend : bg-green */
+@define-extend bg-green {
+    background: green;
+}
+

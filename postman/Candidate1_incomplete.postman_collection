@@ -1,0 +1,1271 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Candidate1",
+		"_postman_id": "cc8626a8-3030-e7a8-291c-60f75e0bef96",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "$C1Tests",
+			"description": "",
+			"item": [
+				{
+					"name": "POST_WORK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "var data = JSON.parse(responseBody); \nvar c1testuuid = data.uuid;\npostman.setEnvironmentVariable(\"c1testuuid\", c1testuuid);"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET_POSTED_WORK",
+					"request": {
+						"url": "{{server}}/work/{{c1testuuid}}{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{rolesXY}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET_WORKs",
+					"request": {
+						"url": "{{server}}/work{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{rolesXY}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assessment",
+			"description": "",
+			"item": [
+				{
+					"name": "Create_Assessment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "var data = JSON.parse(responseBody); \nvar asmtuuid = data.uuid;\npostman.setEnvironmentVariable(\"asmtuuid\", asmtuuid);"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"@context\": {\n  \"id\": \"@id\",\n  \"type\": \"@type\",\n\n  \"Work\": \"http://schema.pearson.com/ns/content/Work\",\n  \"status\": \"http://schema.pearson.com/ns/content/status\",\n\n  \"AssessmentItem\": \"http://schema.pearson.com/ns/content/AssessmentItem\",\n  \"ClosedCaption\": \"http://schema.pearson.com/ns/content/ClosedCaption\",\n  \"Transcript\": \"http://schema.pearson.com/ns/content/Transcript\",\n  \"filename\": \"http://schema.pearson.com/ns/content/filename\",\n  \"discipline\": \"http://schema.pearson.com/ns/content/discipline\",\n  \"keyword\": \"http://schema.pearson.com/ns/content/keyword\",\n \n  \"difficultyLevel\": \"http://schema.pearson.com/ns/learn/difficultyLevel\",\n  \"trigger\": \"http://schema.pearson.com/ns/learn/trigger\",\n  \"knowledgeLevel\": \"http://schema.pearson.com/ns/learn/knowledgeLevel\",\n  \"hasAlignment\": \"http://schema.pearson.com/ns/learn/hasAlignment\",\n\n  \"keywords\" : \"http://schema.org/keywords\",\n  \"CreativeWork\": \"http://schema.org/CreativeWork\",\n  \"name\": \"http://schema.org/name\",\n  \"timeRequired\": \"http://schema.org/timeRequired\",\n  \"description\": \"http://schema.org/description\",\n  \"audience\": \"http://schema.org/audience\"\n\n },\n\n \"id\": \"\",\n \"type\": [\"Work\", \"CreativeWork\"],\n \"filename\": \"SomeFileName\",\n \"discipline\": \"Mathematics\",\n \"keywords\": [\"WordA\", \"WordB\"] \n}\n\n \n \n \n "
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_Assessment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/work/{{asmtuuid}}{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Assessment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/work/{{savedURN}}{{database}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Asset(incomplete)",
+			"description": "",
+			"item": [
+				{
+					"name": "Create_Asset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Asset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/work/{{savedURN}}{{database}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_Asset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/work/{{savedURN}}{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Query_Assets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/search{{database}}&type=http://schema.pearson.com/ns/MediaObject",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product(incomplete)",
+			"description": "",
+			"item": [
+				{
+					"name": "Create_Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/work/{{savedURN}}{{database}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/work/{{savedURN}}{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Question(incomplete)",
+			"description": "",
+			"item": [
+				{
+					"name": "Create_Question",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Question",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/work/{{savedURN}}{{database}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_Question",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/work/{{savedURN}}{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Static(incomplete)",
+			"description": "",
+			"item": [
+				{
+					"name": "Read_Discipline_List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_DifficultyLevel_List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_ResourceType_List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_Audience_List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_Keywords_List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_GoalAlignment_List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read_Keywords_List copy copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload(incomplete)",
+			"description": "",
+			"item": [
+				{
+					"name": "Create_Upload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/thing{{database}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"\",\n\t\"type\": \"Work\",\n\t\"field1\": \"field1ValueA\",\n\t\"field2\": \"field2ValueA\",\n\t\"field3\": \"field3ValueA\",\n\t\"sameAs\": \"https://data.pearson.com/work/12345\",\n\t\"http://www.w3.org/2000/01/rdf-schema#label\": \"Title of Work is in maths\",\n\t\"http://purl.org/dc/terms/title\": \"Work including maths\",\n\t\"@context\": {\n\t\t\"id\": \"@id\",\n\t\t\"type\": \"@type\",\n\t\t\"@language\": \"en\",\n\t\t\"field1\": \"http://schema.pearson.com/ns/content/field1\",\n\t\t\"field2\": \"http://schema.pearson.com/ns/content/field2\",\n\t\t\"field3\": \"http://schema.pearson.com/ns/content/field3\",\n\t\t\"Work\": \"http://schema.pearson.com/ns/content/Work\",\n\t\t\"sameAs\": \"http://www.w3.org/2002/07/owl#sameAs\",\n\t\t\"isDefinedBy\": \"http://schema.pearson.com/ns/learn/GoalFramework\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Util",
+			"description": "",
+			"item": [
+				{
+					"name": "GET THING CONTEXT JSON-LD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Has correct text\"] = responseBody.has(\"My first blog post :)\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{server}}/context/thing.jsonld{{database}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "{{encoding}}",
+								"description": ""
+							},
+							{
+								"key": "X-Roles",
+								"value": "{{roles}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"description": ""
+							},
+							{
+								"key": "option",
+								"value": "value1",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

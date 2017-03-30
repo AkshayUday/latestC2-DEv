@@ -1,0 +1,130 @@
+@lost flexbox flex
+.assetContainer{
+	lost-flex-container: column;
+	margin-top: 20px;
+}
+.assetContainerWrapper{
+	lost-flex-container: column;
+}
+.filterTab{
+	lost-flex-container: row;
+	margin-top: 7px;
+}
+.browseassetthree{
+	lost-flex-container: row;
+	position: relative;
+    left: calc(99.9% * 1/8 - (30px - 30px * 1/8) + 30px);
+}
+.browseassetfour{
+	lost-flex-container: row;
+	position: relative;
+	left: calc(99.9% * 0.53 - (30px - 30px * 0.53) + 30px);
+}
+.collapseAsset{
+	lost-flex-container: row;
+	width: 800px;
+}
+.unCollapseAsset{
+	lost-flex-container: row;
+	width: 600px;
+}
+.pe-sortbox{
+	lost-flex-container: row;
+	position: relative;
+    left: calc(99.9% * 1/30 - (30px - 30px * 1/30) + 30px);
+}
+.slSortbox{
+	lost-flex-container: row;
+	position: relative;
+    left: calc(99.9% * 0.52 - (30px - 30px * 1/30) + 67px);
+}
+.view-options{
+	lost-flex-container: row;
+	position: relative;
+    left: calc(99.9% * 0.1 - (30px - 30px * 0.2) + 30px);
+}
+.slOptions{
+	lost-flex-container: row;
+	position: relative;
+    left: calc(99.9% * 0.58 - (30px - 30px * 0.2) + 30px);
+}
+.searchViewOptions{
+	lost-flex-container: row;
+	margin-top: 5px;
+}
+.results-container{
+	lost-flex-container: column;
+	margin-top: 7px;
+}
+.listContainer{
+	lost-flex-container: row;
+	margin-top: 10px;
+}
+.assetRow{
+	lost-flex-container: row;
+}
+.toolBar{
+	margin-top: 2px;
+}
+.displayBtn{
+	lost-flex-container: row;
+}
+.listViewColumn{
+	lost-flex-container: row;
+	list-style-type: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #d0d0d0;
+    width: 100%;
+}
+
+.listViewTitle{
+	lost-flex-container: row;
+	width: 35%;
+    float: left;
+    padding-left: 6%;
+}
+
+.listViewType{
+	lost-flex-container: row;
+	width: 16.66%;
+    float: left;
+}
+
+.listViewAddedBy{
+	lost-flex-container: row;
+	width: 16.66%;
+    float: left;
+}
+
+.listViewDateModifed{
+	lost-flex-container: row;
+	width: 25%;
+    float: left;
+}
+
+/* Ramesh - specific CSS*/
+
+.slFilterRow{
+	width:100%;
+	lost-utility:clearfix;
+	margin:10px 0px;
+}
+
+.itemsPerPageDiv{
+	lost-column:3/4;
+}
+
+.savedSearchDiv{
+	lost-column:1/4;
+	text-align:right;
+}
+
+.savedSearchDiv a{
+	text-decoration: underline;
+    color: #0C65A5;
+}
+
+.alertMsg{
+	padding:20px 10px;
+}
+

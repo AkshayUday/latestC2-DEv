@@ -1,0 +1,8 @@
+@import "../../../styles/variables.css";
+
+.itemPerPageSelectBox{
+	composes: pe-select from "../../../styles/patterns.css";
+	width: 200px;
+    border: none;
+    color: $Cerulean;
+}

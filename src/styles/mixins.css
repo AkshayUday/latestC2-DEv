@@ -1,0 +1,12 @@
+/* mixins */
+/* mixin : currency */
+@define-mixin currency $name {
+    padding-left: 16px;
+
+    &::after {
+        content: $(name);
+        width:16px;
+        height:16px;
+    }
+}
+

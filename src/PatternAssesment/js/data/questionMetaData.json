@@ -1,0 +1,86 @@
+ {
+  "filename":"",
+  "quesName":"",
+  "urn" : "",
+  "contentType":"",
+  "audience":"",
+  "difficultyLevel":"",
+  "publisher":"",
+  "knowledgeLevel":"",
+  "discipline":"",
+  "goalAlignment":"",
+  "timeReq":"",
+  "planId":"",
+  "objAlign":"",
+  "hours":"00",
+  "mins":"00",
+  "secs":"00",
+  "audienceRolesData":[{"value":0,"text":"Choose Audience Role"},
+                    {"value":5,"text":"General Audience"},
+                    {"value":6,"text":"Instructor Only"},
+                    {"value":7,"text":"Student Only"},
+                    {"value":8,"text":"Parents Only"}
+    ],
+    "contentTypeData":[{"value":0,"text":"Choose a Content Type"},
+        {"value":9,"text":"Narrative Text"},
+        {"value":10,"text":"Video"},
+        {"value":11,"text":"Audio"},
+        {"value":12,"text":"Interactive"},
+        {"value":13,"text":"Image"},
+        {"value":14,"text":"Assessment Item"}
+    ],
+    "difficultyLevelData":[{"id":0,"text":"Choose Difficulty Level"},
+        {"value":15,"text":"Easy"},
+        {"value":16,"text":"Moderate"},
+        {"value":17,"text":"Difficult"}
+    ],
+    "knowledgeLevelData":[{"id":0,"text":"Choose Knowledge Level"},
+        {"value":18,"text":"Expert"},
+        {"value":19,"text":"Practioner"},
+        {"value":20,"text":"Beginner"}
+    ],
+    "alignmentTypeData":[{"id":0,"text":"Choose Publisher"},
+        {"value":21,"text":"Align Type 1"},
+        {"value":22,"text":"Align Type 2"},
+        {"value":23,"text":"Align Type 3"},
+        {"value":24,"text":"Align Type 4"}
+    ],
+    "disciplineData":[{"id":0,"text":"Choose one or more Disciplines"},
+        {"value":25,"text":"Discipline 1"},
+        {"value":26,"text":"Discipline 2"}
+    ],
+    "goalAlignmentData":[{"id":0,"text":"Choose Skill Level"},
+        {"value":27,"text":"Goal 1"},
+        {"value":28,"text":"Goal 2"}
+    ],
+    "goalKeywords": [],
+    "prodKeywords": [],
+    "prodSuggestions": [{
+      "id": "3",
+      "name": "English"
+    }, {
+      "id": "4",
+      "name": "Poetry"
+    }, {
+      "id": "5",
+      "name": "mathematics"
+  },{
+        "id": "1",
+        "name": "Whitman"
+    }, {
+      "id": "2",
+      "name": "Dickinson"
+    }],
+    "keywords": [],
+"languages":[{
+    "name": "C",
+    "year": "1972"
+    }, {
+    "name": "Elm",
+    "year": "2012"
+  },
+  {
+    "name": "Welcome",
+    "year": "2015"
+  }]
+}

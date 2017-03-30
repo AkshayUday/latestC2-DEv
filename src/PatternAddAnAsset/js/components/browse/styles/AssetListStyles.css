@@ -1,0 +1,12 @@
+@import "../../../../../styles/variables.css";
+
+.resource{
+	list-style-type: none;
+    float: left;
+    border: 1px solid $HairlineGray;
+    margin: 0px;
+    display: flex;
+    width: 196px;
+	height: 260px;
+	margin: 0 -1px -1px 0;
+}

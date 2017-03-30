@@ -1,0 +1,28 @@
+@import "../../../../../styles/variables.css";
+
+.patternFilter{
+    composes: pe_filter from "../../../../../styles/patterns.css";
+    font-size: 12px;
+    color: #666;
+    margin: 5px 0px 10px 10px !important;
+}
+
+.patternFilterEnabled{
+    composes: pe_filter_enabled from "../../../../../styles/patterns.css";
+    margin-left: 10px !important;
+}
+
+.folderTree{
+
+}
+
+.folderEllipsis{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 70%;
+}
+.folderIcon {
+    display: inline;
+    /*color: #A6A8AB;*/
+    color: $Pitch;
+}

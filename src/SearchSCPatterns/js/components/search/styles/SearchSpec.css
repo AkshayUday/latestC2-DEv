@@ -1,0 +1,93 @@
+.header{
+	display: flex;
+	flex-flow: column wrap;
+	width: 100%;
+    padding-bottom: 2%;
+}
+
+.labelClass{
+
+}
+
+
+.searchTextBox > input{
+	width: 100%;
+}
+
+.searchTextBox{
+	display: flex;
+    flex: 1;
+}
+
+.seachTexBoxWrapper{
+	display: flex;
+	padding-top: 2%;
+}
+
+.searchBtn{
+	display: flex;
+    flex: 1;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+.searchBtn i{
+	width: 5%;
+    padding-left: 7px;
+    line-height: 29px;
+    height: 29px;
+    color: #565656;
+    background: #e6e6e6;
+    border: 1px solid #b3b3b3;
+    font-size: 16px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.SearchWrapper{
+    display: flex;
+    flex: 1;
+    flex-flow: column wrap;
+}
+
+/** Filter Model **/
+.filterDisplayWrapper{
+    display: flex;
+    flex-flow: column wrap;
+    /*margin-top: 2%;*/
+    border-top: 1px solid lightgrey;
+    padding-top: 2%;
+    color: grey;
+}
+.filterRow{
+    display: flex;
+}
+.filterSecond{
+    composes: filterRow;
+    flex: 1;
+    padding-top: 13px;
+}
+.filterSelectBox{
+    position: relative;
+    left: calc(1%);
+
+}
+.saveSearch{
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    text-decoration: underline;
+    color: blue;
+}
+.filterInteractive{
+    display: flex;
+    flex:1;
+    padding-bottom: 5%;
+}
+.sortWrapper{
+    display: flex;
+    flex: 1;
+}
+.filterSort{
+    display: flex;
+    padding-left: 1%;
+}

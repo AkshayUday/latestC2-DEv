@@ -1,0 +1,57 @@
+/* Variables */
+/* Color Variables - source : http://pearson-higher-ed.github.io/design/c/colors/ */
+$Pitch:	#231f20;
+$GrayNo1:	#565656;
+$RoyalNavy:	#094877;
+$Hyperdrive:	#0d65a6;
+$Firetruck:	#D0021B;
+$Spruce:	#076826;	
+
+$BrightlyLit:	#E6E6E6;	
+$OffWhite:	#F2F2F2;	
+$DirtyIce:	#F8F8F8;	
+$White:	#FFFFFF;	
+$BlueMilk:	#D9EEFF;
+$Highlighter:	#FDEC2E;
+
+$Boring:	#A6A8AB;
+$Sidewalk:	#B3B3B3;
+$HairlineGray:	#D0D0D0;
+
+$GrayWash:	#AEAEAE;
+$Black:	#000000;
+$GutenbergBlack:	#333333;
+$FullMoon:	#424242;
+
+$Asphalt:	#3f3f3f;
+$SmokeGray:	#545454;
+
+$BasicBlue:	#107ACA;
+$Sea:	#0C5D99;
+$DeepSea:	#0A4D80;
+$SkyBlue:	#9DC0DB;
+
+$SandyGray:	#6d6d6d;
+
+/* Added by TDC */
+$LightGray: #CCCCCC;
+$Sgilightgray: #aaa;
+$SmokeWhite: #F3F3F3;
+$Lochmara: #1B6DAB;
+$Cerulean: #0C65A5;
+$Mischka: #A6A8AB;
+$GrayForty: #666666;
+$CuriousBlue: #337ab7;
+$Gainsboro: #dddddd;
+$BahamaBlue: #23527c;
+$Whisper: #eeeeee;
+$AppGray: #777777;
+$Nobel: #999999;
+$SteelBlue: #4688B9;
+$WhiteSmoke:#F0F0F0;
+$Denim:#2875C7;
+
+/* Widths Variables */
+$column: 200px;
+
+

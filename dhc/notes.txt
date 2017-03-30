@@ -1,0 +1,30 @@
+10/31/2016
+- Use context c2-staging-qa2
+- Run PRIVATE scripts first to obtain SSOSession token
+- Run FT/... scripts for Fast Track Components
+- Run PL/... scripts for asset metadata update & search tests
+- Ignore PL/$WIP, PL/OLD_QUERIES
+- PL/MEDIA-SEARCH has two sets of searches.
++ Searching by Manifestation and then adding corresponding Work
++ Searching by Work and then adding corresponding Manifestation
+  Focus on search by Work as there will fewer Work.
+
+09/11/2016
+Upgrades to support http to https migration
+Usage
+  ASSESSMENT
+  - Use it alpha order
+  - POST is req'd
+  - PATCH does changes against the POSTed data
+    (The ASSESSMENT PATCH can be used for other types eg. VIDEO etc.,)
+  - Subsequent GET fetches results after PATCH induced changes
+  - MULTIPLE/SINGLE works
+  - bug : Found issues within C1 API. Does not appear to work with array data types
+  - PUT is not working (prob needs ifMatch parameter) but no priority given as it returns diff URN. No use for it in C2
+  IMAGE
+  - Similar setup to ASSESSMENT
+  - 
+  QUERIES
+  - Name describes the query 
+  - Paging and return counts are not working. Needs some research.
+  

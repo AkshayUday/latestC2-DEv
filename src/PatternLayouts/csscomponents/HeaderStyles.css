@@ -1,0 +1,14 @@
+@lost flexbox flex;
+.header{
+	lost-flex-container: row;
+	background-color: #e6e6e6;
+   	height: 10%;
+    border-bottom: 1px solid #bbb;    
+	lost-align: middle-left;
+}
+
+.title{
+	lost-flex-container: row;
+	font-size: 20px;
+	padding: 1rem;
+}

@@ -1,0 +1,19 @@
+.container{
+	width: 100%;
+	min-height: 250px;
+}
+
+.column{
+	padding:8px;
+}
+.row{
+	padding: 8px 4px;
+}
+
+.savedSearchChkbox{
+	margin-right:15px;
+}
+
+.alertMsg{
+	padding:20px 10px;
+}

@@ -1,0 +1,652 @@
+{
+  "coverage": "0%",
+  "expectCount": 189,
+  "actualCount": 0,
+  "files": {
+    "src/UploadContent/js/components/App.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        6
+      ]
+    },
+    "src/BrowseAssets/js/components/App.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        6
+      ]
+    },
+    "src/AssessmentMetadata/js/components/common/AutoComplete.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        29,
+        41,
+        31,
+        56,
+        38,
+        62,
+        33
+      ]
+    },
+    "src/UploadContent/js/components/BrowseAssets.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        5
+      ]
+    },
+    "src/BrowseAssets/js/components/BrowseAssets.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        5
+      ]
+    },
+    "src/PatternAlpha/js/containers/button/Button.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        7,
+        9,
+        13,
+        165
+      ]
+    },
+    "src/PatternBeta/js/containers/button/ButtonLong.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        6,
+        8,
+        13,
+        20
+      ]
+    },
+    "src/AssessmentMetadata/js/action/metadata.js": {
+      "expectCount": 11,
+      "actualCount": 0,
+      "undocumentLines": [
+        107,
+        79,
+        116,
+        97,
+        22,
+        10,
+        67,
+        44,
+        55,
+        33,
+        88
+      ]
+    },
+    "src/AssetmentMetadata-July Code/js/action/Metadata.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        100,
+        73,
+        109,
+        91,
+        26,
+        13,
+        50,
+        38,
+        82
+      ]
+    },
+    "src/BrowseAssets/js/container/CheckJobStatusContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        32
+      ]
+    },
+    "src/UploadContent/js/container/CheckJobStatusContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        32
+      ]
+    },
+    "src/UploadContent/js/reducers/CheckJobStatusReducers.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        7
+      ]
+    },
+    "src/BrowseAssets/js/reducers/CheckJobStatusReducers.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        7
+      ]
+    },
+    "src/UploadContent/js/components/folderpane/DefaultCellRenderer.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        8,
+        20,
+        15
+      ]
+    },
+    "src/BrowseAssets/js/components/folderpane/DefaultCellRenderer.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        8,
+        20,
+        15
+      ]
+    },
+    "src/BrowseAssets/js/container/FileUploadContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        52
+      ]
+    },
+    "src/UploadContent/js/container/FileUploadContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        52
+      ]
+    },
+    "src/AssessmentMetadata/js/components/common/Heading.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        9,
+        10,
+        12,
+        15
+      ]
+    },
+    "src/AssetmentMetadata-July Code/js/components/common/Heading.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        18,
+        32
+      ]
+    },
+    "src/UploadContent/js/components/common/Image.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/UploadContent/js/components/checkJobStatus/IconComponent.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7
+      ]
+    },
+    "src/BrowseAssets/js/components/common/Image.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/BrowseAssets/js/components/checkJobStatus/IconComponent.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7
+      ]
+    },
+    "src/UploadContent/js/components/common/Labels.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        5
+      ]
+    },
+    "src/BrowseAssets/js/components/common/Labels.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        5
+      ]
+    },
+    "src/AssetmentMetadata-July Code/js/container/Metadata.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        42
+      ]
+    },
+    "src/AssessmentMetadata/js/container/Metadata.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        32
+      ]
+    },
+    "src/UploadContent/js/components/common/pe-tooltip.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        5,
+        82,
+        7
+      ]
+    },
+    "src/BrowseAssets/js/components/common/pe-tooltip.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        5,
+        82,
+        7
+      ]
+    },
+    "src/UploadContent/js/components/checkJobStatus/RenderColumn.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        5
+      ]
+    },
+    "src/BrowseAssets/js/components/checkJobStatus/RenderColumn.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        5
+      ]
+    },
+    "src/UploadContent/js/components/checkJobStatus/RenderRow.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        8,
+        26,
+        49,
+        66,
+        10,
+        17
+      ]
+    },
+    "src/BrowseAssets/js/components/checkJobStatus/RenderRow.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        8,
+        26,
+        49,
+        66,
+        10,
+        17
+      ]
+    },
+    "src/UploadContent/js/components/SearchLibrary.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        5
+      ]
+    },
+    "src/BrowseAssets/js/components/SearchLibrary.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        5
+      ]
+    },
+    "src/UploadContent/js/components/checkJobStatus/Table.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        9,
+        18,
+        23,
+        11
+      ]
+    },
+    "src/BrowseAssets/js/components/checkJobStatus/Table.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        9,
+        18,
+        23,
+        11
+      ]
+    },
+    "src/AssessmentMetadata/js/components/common/TagElem.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        9,
+        10,
+        12,
+        22,
+        17,
+        30
+      ]
+    },
+    "src/AssetmentMetadata-July Code/js/components/common/TagElem.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        7,
+        9,
+        19,
+        14,
+        27
+      ]
+    },
+    "src/UploadContent/js/components/folderpane/TreePane.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        13,
+        7,
+        17,
+        10
+      ]
+    },
+    "src/BrowseAssets/js/components/folderpane/TreePane.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        13,
+        7,
+        17,
+        10
+      ]
+    },
+    "src/BrowseAssets/js/container/UploadProgressContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        21
+      ]
+    },
+    "src/UploadContent/js/container/UploadProgressContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        21
+      ]
+    },
+    "src/UploadContent/js/reducers/assets.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        6
+      ]
+    },
+    "src/BrowseAssets/js/reducers/assets.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        6
+      ]
+    },
+    "src/BrowseAssets/js/container/assetsContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        30
+      ]
+    },
+    "src/UploadContent/js/container/assetsContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        30
+      ]
+    },
+    "src/UploadContent/js/components/uploadInProgress.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        13,
+        15,
+        18,
+        11
+      ]
+    },
+    "src/BrowseAssets/js/components/uploadInProgress.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        13,
+        15,
+        18,
+        11
+      ]
+    },
+    "src/UploadContent/js/action/assets.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        14
+      ]
+    },
+    "src/BrowseAssets/js/action/assets.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        14
+      ]
+    },
+    "src/UploadContent/js/components/SingleFileUpload.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/BrowseAssets/js/components/SingleFileUpload.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/AssetmentMetadata-July Code/js/container/MetadataComponent.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        28
+      ]
+    },
+    "src/UploadContent/js/reducers/fileUpload.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "src/BrowseAssets/js/reducers/fileUpload.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "src/UploadContent/js/action/fileUploadAction.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/BrowseAssets/js/action/fileUploadAction.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/UploadContent/js/reducers/TreePaneReducer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        10
+      ]
+    },
+    "src/BrowseAssets/js/reducers/TreePaneReducer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        10
+      ]
+    },
+    "src/AssessmentMetadata/js/reducers/index.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        18,
+        14,
+        10,
+        22,
+        30,
+        26
+      ]
+    },
+    "src/AssetmentMetadata-July Code/js/reducers/index.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        18,
+        14,
+        10,
+        22,
+        26
+      ]
+    },
+    "src/AssetmentMetadata-July Code/js/reducers/MetadataReducer.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        72,
+        23
+      ]
+    },
+    "src/AssessmentMetadata/js/reducers/metadata.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        55,
+        16
+      ]
+    },
+    "src/BrowseAssets/js/action/TreePaneAction.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        18
+      ]
+    },
+    "src/UploadContent/js/action/TreePaneAction.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        18
+      ]
+    },
+    "src/UploadContent/js/action/CheckJobStatusAction.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
+    "src/BrowseAssets/js/action/CheckJobStatusAction.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
+    "src/UploadContent/js/reducers/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "src/BrowseAssets/js/reducers/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "src/UploadContent/js/store/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        11
+      ]
+    },
+    "src/AssetmentMetadata-July Code/js/store/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        12
+      ]
+    },
+    "src/AssessmentMetadata/js/store/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        10
+      ]
+    },
+    "src/BrowseAssets/js/store/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        11
+      ]
+    },
+    "src/BrowseAssets/js/container/TreePaneContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        36
+      ]
+    },
+    "src/UploadContent/js/container/TreePaneContainer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        36
+      ]
+    }
+  }
+}

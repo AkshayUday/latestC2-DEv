@@ -1,0 +1,9 @@
+{
+    "use": ["postcss-initial", "precss", "postcss-cssnext"],
+    "input": "src/styles/patterns.css",
+    "output": "tmp/patterns_raw.css",
+    "autoprefixer": {
+        "browsers": "> 5%"
+    }
+}
+

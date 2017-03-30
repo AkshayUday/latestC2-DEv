@@ -1,0 +1,61 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 1394,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 39,
+      "column": 2
+    }
+  },
+  "sourceType": "module",
+  "body": [],
+  "leadingComments": [
+    {
+      "type": "Block",
+      "value": "import Metadata actions from '../../js/action/Metadata'\n\nlet React = require('react');\nlet ReactDOM = require('react-dom');\nlet TestUtils = require('react-addons-test-utils'); //I like using the Test Utils, but you can just use the DOM API instead.\nlet Metadata = require('../js/action/Metadata'); //my root-test lives in components/__tests__/, so this is how I require in my components.\nlet chai = require('chai');\nlet expect = chai.expect;\nlet plt_data ={\n  \"tags\": [\n                { \"id\": \"1\", \"name\": \"Apples\" },\n                { \"id\": \"2\", \"name\": \"Pears\" }\n            ],\n            \"suggestions\": [\n                { \"id\": \"3\", \"name\": \"Bananas\" },\n                { \"id\": \"4\", \"name\": \"Mangos\" },\n                { \"id\": \"5\", \"name\": \"Lemons\" },\n                { \"id\": \"6\", \"name\": \"Apricots\" }\n            ]\n}\n\n  describe('MVM action test', () => {\n  \n  it('should return a function', () => {\n    this.MetadataComp = TestUtils.renderIntoDocument(<Metadata />);\n    expect(actions.MVMChangeHandler()).toBeA('function');\n  })\n\n  it('dispatch a MVMChange action', () => {\n     this.MetadataComp = TestUtils.renderIntoDocument(<Metadata />);\n    const getState = () => ({plt_data});\n    const dispatch = expect.createSpy();\n    actions.MVMChangeHandler()(dispatch, getState);\n    expect(dispatch).toHaveBeenCalledWith({type: 'metadataConstants.CHANGE_MVM', plt_data});\n  })\n\n});\n\n",
+      "start": 0,
+      "end": 1394,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 2
+        }
+      },
+      "range": [
+        0,
+        1394
+      ]
+    }
+  ],
+  "innerComments": [
+    {
+      "type": "Block",
+      "value": "import Metadata actions from '../../js/action/Metadata'\n\nlet React = require('react');\nlet ReactDOM = require('react-dom');\nlet TestUtils = require('react-addons-test-utils'); //I like using the Test Utils, but you can just use the DOM API instead.\nlet Metadata = require('../js/action/Metadata'); //my root-test lives in components/__tests__/, so this is how I require in my components.\nlet chai = require('chai');\nlet expect = chai.expect;\nlet plt_data ={\n  \"tags\": [\n                { \"id\": \"1\", \"name\": \"Apples\" },\n                { \"id\": \"2\", \"name\": \"Pears\" }\n            ],\n            \"suggestions\": [\n                { \"id\": \"3\", \"name\": \"Bananas\" },\n                { \"id\": \"4\", \"name\": \"Mangos\" },\n                { \"id\": \"5\", \"name\": \"Lemons\" },\n                { \"id\": \"6\", \"name\": \"Apricots\" }\n            ]\n}\n\n  describe('MVM action test', () => {\n  \n  it('should return a function', () => {\n    this.MetadataComp = TestUtils.renderIntoDocument(<Metadata />);\n    expect(actions.MVMChangeHandler()).toBeA('function');\n  })\n\n  it('dispatch a MVMChange action', () => {\n     this.MetadataComp = TestUtils.renderIntoDocument(<Metadata />);\n    const getState = () => ({plt_data});\n    const dispatch = expect.createSpy();\n    actions.MVMChangeHandler()(dispatch, getState);\n    expect(dispatch).toHaveBeenCalledWith({type: 'metadataConstants.CHANGE_MVM', plt_data});\n  })\n\n});\n\n",
+      "start": 0,
+      "end": 1394,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 2
+        }
+      },
+      "range": [
+        0,
+        1394
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+/* ProductLink.js CSS */
+
+/*.ProductLinkModal .plModalBodyDiv .plBodyHead{*/
+.plBodyHead{
+    padding:15px 0px;
+    font-size: 15px;
+    lost-column:1 0;
+}
+
+
+/*.ProductLinkModal .plModalBodyDiv .plAutoSuggestDiv{
+*/
+.plAutoSuggestDiv{
+     lost-column:3/4 0;
+}
+
+/*.ProductLinkModal .plModalBodyDiv .plAutoSuggestBtnDiv{
+*/
+.plAutoSuggestBtnDiv{
+    lost-column:1/4 0;
+}
+
+/*.ProductLinkModal .plModalBodyDiv .plAutoSuggestBtnDiv .plLinkButton{
+*/
+.plLinkButton{
+    composes: c2BlueButton from "../../../styles/patterns.css";
+    composes: col100 from "../../../styles/patterns.css";
+
+}
+
+
+.product-linkcls-loader {   
+    /* composes:lostColumnOne; */
+    background-image: url('b64---./images/loading.gif---');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color:rgba(255, 255, 255, 0.26);    
+    height: 198px;
+    background-size: 100px;
+}
+
+
+
+

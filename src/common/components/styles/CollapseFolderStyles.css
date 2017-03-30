@@ -1,0 +1,28 @@
+@import "../../../styles/variables.css";
+
+.pe-btn{
+	display: flex;
+	border: solid 1px $HairlineGray;
+    border-radius: 3px;
+    font-weight: normal;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 0.875rem;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 11px;
+}
+.pe-btn--medium{
+	display: flex;
+	float: left;
+    background-color: $BasicBlue;
+    color: $White;
+}
+.slider{
+	display: flex;
+}

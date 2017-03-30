@@ -1,0 +1,1364 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for patternslib_tdc\src\common\util\metadataService.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">patternslib_tdc/src/common/util/</a> metadataService.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.78% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>34/107</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>10/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.09% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>25/89</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+&nbsp;
+var _promise = require('babel-runtime/core-js/promise');
+&nbsp;
+var _promise2 = _interopRequireDefault(_promise);
+&nbsp;
+var _jsonld = require('jsonld');
+&nbsp;
+var jsonld = _interopRequireWildcard(_jsonld);
+&nbsp;
+var _rest = require('./rest');
+&nbsp;
+var _rest2 = _interopRequireDefault(_rest);
+&nbsp;
+function _interopRequireWildcard(obj) { <span class="missing-if-branch" title="if path not taken" >I</span>if (obj &amp;&amp; obj.__esModule) { <span class="cstat-no" title="statement not covered" >return obj; </span>} else { var newObj = {}; <span class="missing-if-branch" title="else path not taken" >E</span>if (obj != null) { for (var key in obj) { <span class="missing-if-branch" title="else path not taken" >E</span>if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : <span class="branch-1 cbranch-no" title="branch not covered" >{ default: obj };</span> }
+&nbsp;
+/**
+ * @module PatternsLib
+ */
+var ctx = {
+    '@context': {
+        'id': '@id',
+        'type': {
+            '@id': '@type',
+            '@container': '@set'
+        },
+        'graph': '@graph',
+        'notation': 'http://www.w3.org/2004/02/skos/core#notation',
+        'prefLabel': {
+            '@id': 'http://www.w3.org/2004/02/skos/core#prefLabel',
+            '@container': '@language'
+        },
+        'altLabel': {
+            '@id': 'http://www.w3.org/2004/02/skos/core#altLabel',
+            '@container': '@set'
+        },
+        'hiddenLabel': {
+            '@id': 'http://www.w3.org/2004/02/skos/core#altLabel',
+            '@container': '@language'
+        },
+        'narrower': {
+            '@id': 'http://www.w3.org/2004/02/skos/core#narrower',
+            '@container': '@set'
+        },
+        'broader': {
+            '@id': 'http://www.w3.org/2004/02/skos/core#broader',
+            '@container': '@set'
+        },
+        'related': {
+            '@id': 'http://www.w3.org/2004/02/skos/core#related',
+            '@container': '@set'
+        },
+        'inScheme': {
+            '@id': 'http://www.w3.org/2004/02/skos/core#inScheme',
+            '@type': '@id',
+            '@container': '@set'
+        },
+        'topConceptOf': {
+            '@id': 'http://www.w3.org/2004/02/skos/core#topConceptOf',
+            '@type': '@id',
+            '@container': '@set'
+        },
+        'topConcept': 'http://www.w3.org/2004/02/skos/core#hasTopConcept',
+        'language': 'http://schema.org/inLanguage',
+        'about': {
+            '@type': '@id',
+            '@id': 'http://schema.org/about',
+            '@container': '@set'
+        },
+        'contentSize': 'http://schema.org/contentSize',
+        'discipline': {
+            '@type': '@id',
+            '@id': 'http://schema.pearson.com/ns/content/discipline',
+            '@container': '@set'
+        },
+        'knowledgeLevel': {
+            '@type': '@id',
+            '@id': 'http://schema.pearson.com/ns/learn/knowledgeLevel',
+            '@container': '@set'
+        },
+        'audience': {
+            '@type': '@id',
+            '@id': 'http://schema.org/audience',
+            '@container': '@set'
+        },
+        'accessibilityFeature': {
+            '@type': '@id',
+            '@id': 'http://schema.org/accessibilityFeature',
+            '@container': '@set'
+        },
+        'duration': 'http://schema.org/duration',
+        'dateCreated': 'http://schema.org/dateCreated',
+        'status': 'http://schema.org/status',
+        'timeRequired': 'http://schema.org/timeRequired',
+        'format': 'http://purl.org/dc/terms/format',
+        'hasPart': {
+            '@type': '@id',
+            '@id': 'http://schema.org/hasPart'
+        },
+        'sameAs': {
+            '@id': 'http://www.w3.org/2002/07/owl#sameAs',
+            '@type': '@id'
+        },
+        'isDefinedBy': {
+            '@id': 'http://www.w3.org/2000/01/rdf-schema#isDefinedBy',
+            '@type': '@id'
+        },
+        'eTag': 'http://schema.pearson.com/ns/raf/eTag',
+        'security': 'http://schema.pearson.com/ns/raf/security',
+        'removal': 'http://schema.pearson.com/ns/changeset/removal',
+        'addition': 'http://schema.pearson.com/ns/changeset/addition',
+        'replacement': 'http://schema.pearson.com/ns/changeset/replacement',
+        'subject': {
+            '@type': '@id',
+            '@id': 'http://schema.pearson.com/ns/changeset/subject'
+        },
+        'predicate': {
+            '@type': '@id',
+            '@id': 'http://schema.pearson.com/ns/changeset/predicate'
+        },
+        'object': {
+            '@id': 'http://schema.pearson.com/ns/changeset/object'
+        },
+        'ifMatch': {
+            '@id': 'http://schema.pearson.com/ns/raf/ifMatch'
+        },
+        'ifNonMatch': {
+            '@id': 'http://schema.pearson.com/ns/raf/ifNonMatch'
+        },
+        'uuid': {
+            '@id': 'http://schema.pearson.com/ns/content/uuid'
+        },
+        'hasContributor': 'http://schema.pearson.com/ns/content/hasContributor',
+        'hasAlignment': 'http://schema.pearson.com/ns/learn/hasAlignment',
+        'identifiedBy': 'http://schema.pearson.com/ns/content/identifiedBy',
+        'contributorRole': {
+            '@type': '@id',
+            '@id': 'http://schema.pearson.com/ns/content/contributorRole'
+        },
+        'contributorAgent': 'http://schema.pearson.com/ns/content/contributorAgent',
+        'alignmentType': {
+            '@type': '@id',
+            '@id': 'http://schema.pearson.com/ns/learn/alignmentType'
+        },
+        'alignmentObjective': {
+            '@type': '@id',
+            '@id': 'http://schema.pearson.com/ns/learn/alignmentObjective'
+        },
+        'idTerm': {
+            '@type': '@id',
+            '@id': 'http://schema.pearson.com/ns/content/idTerm'
+        },
+        'idValue': 'http://schema.pearson.com/ns/content/idValue',
+        'Person': 'http://schema.org/Person',
+        'results': {
+            '@id': 'http://www.w3.org/ns/ldp#contains',
+            '@container': '@list'
+        },
+        'name': {
+            '@id': 'http://schema.org/name',
+            '@container': '@language'
+        },
+        'isPartOf': {
+            '@type': '@id',
+            '@id': 'http://schema.org/isPartOf'
+        },
+        'description': {
+            '@id': 'http://schema.org/description',
+            '@container': '@language'
+        },
+        'keyword': {
+            '@id': 'http://schema.pearson.com/ns/content/keyword',
+            '@container': '@language'
+        },
+        'workExample': {
+            '@type': '@id',
+            '@id': 'http://schema.org/workExample'
+        },
+        'exampleOfWork': {
+            '@type': '@id',
+            '@id': 'http://schema.org/exampleOfWork'
+        },
+        'DirectContainer': 'http://www.w3.org/ns/ldp#DirectContainer',
+        'PageSortCriterion': 'http://www.w3.org/ns/ldp#PageSortCriterion',
+        'Ascending': 'http://www.w3.org/ns/ldp#Ascending',
+        'pageSortCriteria': {
+            '@id': 'http://www.w3.org/ns/ldp#pageSortCriteria',
+            '@container': '@list',
+            '@type': '@id'
+        },
+        'order': {
+            '@type': '@id',
+            '@id': 'http://www.w3.org/ns/ldp#pageSortOrder'
+        },
+        'pageSequence': {
+            '@id': 'http://www.w3.org/ns/ldp#pageSequence',
+            '@type': '@id'
+        },
+        'SingletonProperty': 'http://schema.pearson.com/ns/raf/SingletonProperty',
+        'Work': 'http://schema.pearson.com/ns/content/Work',
+        'Manifestation': 'http://schema.pearson.com/ns/content/Manifestation',
+        'Container': 'http://schema.pearson.com/ns/content/Container',
+        'LearningObjective': 'http://schema.pearson.com/ns/learn/LearningObjective',
+        'ObjectivesFramework': 'http://schema.pearson.com/ns/learn/ObjectivesFramework'
+    }
+};
+&nbsp;
+/**
+  * MetadataService module facilitates JSON to JSON-LD (and reverse) Transformation.
+  * It also handles the MDS API REST CALLs.
+  *
+  * Expected Input JSON structure:
+  *
+  *      let buffer = {
+  *          'libConfig' : this.props.libConfig,          // Includes host app supplied init values for lib + Should have all Taxonomies
+  *          'patConfig' : this.props.patConfig,          // Includes host app supplied init values for pattern
+  *
+  *          'req'       : 'ProductMetadata',             // ProductMetadata / AssessmentMetadata / QuestionMetadata / AssetMetadata
+  *          'action'    : 'Create',                      // Create / Read One / Update / Delete / Search / Read All
+  *
+  *          'data' : {
+  *                'urn':'',                                // Only required for actioon = Update/Delete/Read
+  *                'status' : '',                           // Not sure if this is needed
+  *                'filename' : '',                         // This is prob. only for Asset
+  *                'discipline' : 'Mathematics',            // Taxonomy value
+  *                'difficultyLevel' : 'Easy',              // Taxonomy value
+  *                'trigger' : '',
+  *                'knowledgeLevel' : 'Grade 10',
+  *                'hasAlignment' : '',                     // Taxonomy value
+  *                'keywords' : ['key1', 'key2', 'key3'],
+  *                'name': 'Some Product Name',
+  *                'timeRequired' : {
+  *                    'hh':'01',
+  *                    'mm':'20',
+  *                    'ss':'30'
+  *          },
+  *          'description' : 'Some description for Product with decipline Math and knowledge level of Grade 10',
+  *          'audience' : 'Parents',                  // Taxonomy value
+  *          'searchterms' : ''
+  *      }
+  *
+  *  Modified into JSON-LD for use by rest.send()
+  *
+  *      let config = {
+  *          method: '',                                // GET, POST, PUT, DELETE
+  *          url:'',                                    // REST endpoint url
+  *          data: {                                    // JSON-LD data for C1 MDS
+  *          },
+  *      }
+  */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _createContext() {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        'id': '@id',
+        'type': '@type',
+&nbsp;
+        'Work': 'http://schema.pearson.com/ns/content/Work',
+        'status': 'http://schema.pearson.com/ns/content/status',
+&nbsp;
+        'AssessmentItem': 'http://schema.pearson.com/ns/content/AssessmentItem',
+        'ClosedCaption': 'http://schema.pearson.com/ns/content/ClosedCaption',
+        'Transcript': 'http://schema.pearson.com/ns/content/Transcript',
+        'filename': 'http://schema.pearson.com/ns/content/filename',
+        'discipline': 'http://schema.pearson.com/ns/content/discipline',
+&nbsp;
+        'difficultyLevel': 'http://schema.pearson.com/ns/learn/difficultyLevel',
+        'trigger': 'http://schema.pearson.com/ns/learn/trigger',
+        'knowledgeLevel': 'http://schema.pearson.com/ns/learn/knowledgeLevel',
+        'hasAlignment': 'http://schema.pearson.com/ns/learn/hasAlignment',
+&nbsp;
+        'audience': 'http://schema.org/CreativeWork/audience',
+        'keywords': 'http://schema.org/CreativeWork/keywords',
+        'CreativeWork': 'http://schema.org/CreativeWork',
+        'name': 'http://schema.org/CreativeWork/name',
+        'timeRequired': 'http://schema.org/CreativeWork/timeRequired',
+        'description': 'http://schema.org/CreativeWork/description'
+&nbsp;
+    };
+};
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _createJSONLD(context, buffer) {</span>
+<span class="cstat-no" title="statement not covered" >    var obj = {</span>
+        '@context': context,
+        'type': ['Work', 'CreativeWork'],
+        'metadataType': buffer.req
+    };
+    //NOTE: If adding new fields here then same needs in _createJSON
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.name) <span class="cstat-no" title="statement not covered" >obj['name'] = buffer.data.name;</span></span>
+    /*if (buffer.data.product){
+        obj['product'] = buffer.data.product;
+    }*/
+&nbsp;
+    /*if (buffer.data.urn){
+        obj['urn'] = buffer.data.urn;
+    }*/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.filename) <span class="cstat-no" title="statement not covered" >obj['filename'] = buffer.data.filename;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.desc) {</span>
+<span class="cstat-no" title="statement not covered" >        obj['description'] = buffer.data.desc;</span>
+    }
+&nbsp;
+    /*if (buffer.data.contentType){
+        obj['contentType'] = buffer.data.contentType;
+    }*/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.keywords) <span class="cstat-no" title="statement not covered" >obj['keywords'] = buffer.data.keywords;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.timeRequired) <span class="cstat-no" title="statement not covered" >obj['timeRequired'] = buffer.data.timeRequired;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.discipline) <span class="cstat-no" title="statement not covered" >obj['discipline'] = buffer.data.discipline;</span></span>
+&nbsp;
+    //sending goalAlignmanent as hasAlignment
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.goalAlignment) <span class="cstat-no" title="statement not covered" >obj['hasAlignment'] = buffer.data.goalAlignment;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.difficultyLevel) <span class="cstat-no" title="statement not covered" >obj['difficultyLevel'] = buffer.data.difficultyLevel;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (buffer.data.audience) <span class="cstat-no" title="statement not covered" >obj['audience'] = buffer.data.audience;</span></span>
+&nbsp;
+    /*if (buffer.data.knowledgeLevel)
+        obj['knowledgeLevel'] = buffer.data.knowledgeLevel; */
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return obj;</span>
+}
+&nbsp;
+function _createConfig(buffer) {
+    var method = void 0;
+    var url = void 0;
+    switch (buffer.action) {
+        case 'Create':
+            method = 'POST';
+            url = buffer.libConfig.server + '/thing' + buffer.libConfig.database;
+<span class="cstat-no" title="statement not covered" >            break;</span>
+        case 'Read One':
+            method = 'GET';
+            url = buffer.libConfig.server + '/work/' + buffer.data.uuid + buffer.libConfig.database;
+<span class="cstat-no" title="statement not covered" >            break;</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >        case 'Update':</span>
+<span class="cstat-no" title="statement not covered" >            method = 'PUT';</span>
+<span class="cstat-no" title="statement not covered" >            url = buffer.libConfig.server + '/work/' + buffer.data.uuid + buffer.libConfig.database;</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+<span class="branch-3 cbranch-no" title="branch not covered" >        case 'Delete':</span>
+<span class="cstat-no" title="statement not covered" >            method = 'DELETE';</span>
+<span class="cstat-no" title="statement not covered" >            url = buffer.libConfig.server + '/work/' + buffer.data.uuid + buffer.libConfig.database;</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+<span class="branch-4 cbranch-no" title="branch not covered" >        case 'Search':</span>
+<span class="cstat-no" title="statement not covered" >            method = 'GET';</span>
+<span class="cstat-no" title="statement not covered" >            url = buffer.libConfig.server + '/work/' + buffer.libConfig.database + buffer.data.searchterms;</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+<span class="branch-5 cbranch-no" title="branch not covered" >        default:</span>
+<span class="cstat-no" title="statement not covered" >            method = '';</span>
+<span class="cstat-no" title="statement not covered" >            url = '';</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var context = _createContext();</span>
+<span class="cstat-no" title="statement not covered" >    var jsonld = _createJSONLD(context, buffer);</span>
+<span class="cstat-no" title="statement not covered" >    var config = {</span>
+        'method': method,
+        'url': url,
+        'headers': buffer.libConfig.headers,
+        'data': jsonld
+    };
+<span class="cstat-no" title="statement not covered" >    return config;</span>
+};
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _createJSON(reply) {</span>
+<span class="cstat-no" title="statement not covered" >    var obj = {};</span>
+<span class="cstat-no" title="statement not covered" >    for (var k in reply) {</span>
+<span class="cstat-no" title="statement not covered" >        if (k.includes('/name')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['name'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('filename')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['filename'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('description')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['desc'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('keywords')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['keywords'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('timeRequired')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['timeRequired'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('discipline')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['discipline'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('hasAlignment')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['goalAlignment'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('difficultyLevel')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['difficultyLevel'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('audience')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['audience'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('knowledgeLevel')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['knowledgeLevel'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('uuid')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['uuid'] = reply[k];</span>
+<span class="cstat-no" title="statement not covered" >            obj['urn'] = reply[k];</span>
+        } else <span class="cstat-no" title="statement not covered" >if (k.includes('id')) {</span>
+<span class="cstat-no" title="statement not covered" >            obj['id'] = reply[k];</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    return obj;</span>
+}
+&nbsp;
+/**
+  * send transforms supplied json into json-ld and makes REST call to MDS Server.
+  * returns a response from MDS Server after transforming json-ld into json.
+  *
+  *
+  */
+exports.default = {
+    send: function send(buffer) {
+        var promise = new _promise2.default(function (fulfill, reject) {
+            var config = _createConfig(buffer);
+<span class="cstat-no" title="statement not covered" >            var restPromise = _rest2.default.send(config);</span>
+<span class="cstat-no" title="statement not covered" >            restPromise.then(<span class="fstat-no" title="function not covered" >function (reply) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var json = _createJSON(reply);</span>
+<span class="cstat-no" title="statement not covered" >                fulfill(json);</span>
+            }).catch(<span class="fstat-no" title="function not covered" >function (reply) {</span>
+<span class="cstat-no" title="statement not covered" >                reject(reply);</span>
+            });
+        });
+&nbsp;
+        return promise;
+    }
+};
+&nbsp;
+/*
+reply format
+{'@context':['http://schema.pearson.com/context/content-context.jsonld'],'id':'urn:pearson:work:db066023-041b-4753-8dfc-10ba12ed235b',"type":["Work","http://schema.org/Thing","http://schema.org/CreativeWork","http://www.w3.org/2000/01/rdf-schema#Class","http://www.w3.org/2002/07/owl#Class"],"http://schema.org/keywords":["WordB","WordA"],"http://schema.pearson.com/ns/content/discipline":"Mathematics","uuid":"db066023-041b-4753-8dfc-10ba12ed235b","security":"_:b0","http://www.w3.org/2000/01/rdf-schema#comment":["The most generic kind of creative work, including books, movies, photographs, software programs, etc.","The most generic type of item."],"http://www.w3.org/2000/01/rdf-schema#isDefinedBy":{"id":"https://data.pearson.com/work/db066023-041b-4753-8dfc-10ba12ed235b/metadata"},"http://www.w3.org/2000/01/rdf-schema#label":["CreativeWork","Thing","Work"],"http://www.w3.org/2000/01/rdf-schema#subClassOf":[{"id":"http://schema.org/Thing"},{"id":"http://schema.org/CreativeWork"}],"sameAs":["https://data.pearson.com/work/db066023-041b-4753-8dfc-10ba12ed235b"]}
+&nbsp;
+*/
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Aug 19 2016 16:49:19 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

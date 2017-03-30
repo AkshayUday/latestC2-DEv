@@ -1,0 +1,68 @@
+/* Tab Specific CSS */
+
+.searchTabsContainer{
+  width:90%;
+  margin:0px auto;
+}
+
+.c2TabsWrapper{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.c2Tab{
+  /*border: 1px solid #ddd;*/
+  cursor: pointer;
+  z-index: 1;
+  white-space: nowrap;
+  margin-left: -1px;
+  padding: .5em 1.8em;
+}
+@media only screen and (max-width: 600px) {
+    .c2Tab{
+        width:100%;
+    }
+}
+
+.c2Tab:focus{
+  z-index: 2;
+  outline:none;
+}
+
+.c2Tab[aria-selected='true'] {
+  color: #4688B9;
+  border-bottom: 5px solid #094877;
+}
+
+.c2Tab[aria-expanded="true"]{
+    order:0;
+}
+
+.c2Panel {
+  width: 100%;
+  margin-top: -1px;
+  background-color:#FFFFFF;
+  display: none;
+  order:1;
+  border-top: 1px solid #CCCCCC;
+  margin-top: 0.5px;
+ /* max-height:250px;
+  overflow:auto;*/
+}
+
+.c2Panel[aria-hidden='false']{
+    display: block;
+}
+
+@media only screen and (max-width: 600px) {
+    .c2Panel{
+        order:0;
+    }
+}
+
+.disableTab{
+   pointer-events: none;
+   cursor: default;
+   color: #CCCCCC;
+}

@@ -1,0 +1,56 @@
+@import "../../../styles/variables.css";
+
+/* Tab Specific CSS */
+.parentTabWrapper{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $SmokeWhite;
+}
+
+.parentTabs{
+    background: $SmokeWhite;
+  /*border: 1px solid #ddd;*/
+  cursor: pointer;
+  z-index: 1;
+  white-space: nowrap;
+  margin-left: -1px;
+  padding: .5em 1.8em;
+}
+@media only screen and (max-width: 600px) {
+    .parentTabs{
+        width:100%;
+    }
+}
+
+.parentTabs:focus{
+  z-index: 2;
+  outline:none;
+}
+
+.parentTabs[aria-selected='true'] {
+  color: $SteelBlue;
+  border-bottom: 5px solid $RoyalNavy;
+}
+
+.parentTabs[aria-expanded="true"]{
+    order:0;
+}
+
+.parentTabPanel {
+  width: 100%;
+  margin-top: -1px;
+  background-color: $White;
+  display: none;
+  order:1;
+}
+
+.parentTabPanel[aria-hidden='false']{
+    display: block;
+}
+
+@media only screen and (max-width: 600px) {
+    .parentTabPanel{
+        order:0;
+    }
+}

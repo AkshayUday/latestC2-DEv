@@ -1,0 +1,38 @@
+@lost flexbox flex;
+
+.mainModal{
+	lost-flex-container: column;
+}
+
+.title{
+	lost-align: middle-left;
+}
+
+.header{
+	lost-flex-container: row;
+	justify-content: space-between;
+	background-color: #e6e6e6;
+    border-bottom: 1px solid #bbb;
+    flex: 1 10%;
+}
+
+.bodySection{
+	lost-flex-container: column;
+	lost-align: top-center;
+	flex: 1 30%;
+}
+
+.contentBox{
+	lost-flex-container: row;
+}
+
+.footer{
+	lost-align: middle-right;
+	background-color: #e6e6e6;
+    border-bottom: 1px solid #bbb;
+    flex: 1 10%;
+}
+.modalMain{
+	padding: 2px !important;
+	width: 40% !important;
+}

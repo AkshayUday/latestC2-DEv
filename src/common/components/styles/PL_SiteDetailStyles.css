@@ -1,0 +1,14 @@
+.container{
+      font-size: 14px;
+}
+
+.siteLabel{
+    color:#000000;
+    float:left;
+}
+.siteTitle{
+    color: #8c8c8c;
+    text-transform: capitalize;
+    float: left;
+    margin-left: 5px;
+}

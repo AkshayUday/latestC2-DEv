@@ -1,0 +1,74 @@
+@lost flexbox flex;
+.browseContainer .browseassetContainer{
+	lost-flex-container: column;
+}
+.browsePanelWrapper{
+    min-height:380px;
+    width:100%;
+}
+
+.browsePanelScroll{
+  flex-flow: column;
+  width: 100%;
+  height: 380px;
+}
+.browseAssetBody{
+	lost-flex-container: row;
+	margin-top: 15px;
+}
+.browseAssetTitle{
+	composes: col100 from "../../../../styles/patterns.css";
+	font-size: 14px;
+	margin-top:15px;
+	min-height:15px;
+}
+.browseTitle{
+	margin-left: 10px;
+    color: #000;
+}
+.browseResult{
+	color: #8F8C8D;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.filter-container{
+	display: flex;
+	width: 25%;
+	flex-flow: column wrap;
+	height: 200px;
+}
+.filters-label{
+	font-size: 18px;
+    color: #666666;
+    margin-left: 12px;
+}
+.filtersContent{
+	lost-flex-container: column;
+}
+.pe-search-results-container .browse-tab-results{
+	display: flex;
+	width: 75%;
+    float: left
+}
+.browse-paging{
+	display: flex;
+}
+.btn-bar{
+	composes: pe-btn-bar from '../../../../styles/patterns.css';
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+}
+.btnCancel{
+	composes: pe-btn from '../../../../styles/patterns.css';
+}
+.btnSelect{
+	composes: pe-btn from '../../../../styles/patterns.css';
+	composes: pe-btn--primary from '../../../../styles/patterns.css';
+	width: 93px;
+}
+
+.paginationContainer{
+	width:100%;
+	margin-top:5px;
+}

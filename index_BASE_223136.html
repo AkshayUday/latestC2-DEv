@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Patterns Library Sample App</title>
+    <meta http-equiv="cache-control" content="max-age=0" /> 
+    <meta http-equiv="cache-control" content="no-cache" /> 
+    <meta http-equiv="expires" content="0" /> 
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" /> 
+    <meta http-equiv="pragma" content="no-cache" />
+   
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <!-- Review Asset Metadata links Starts-->
+    <!--link rel="stylesheet" href="css/minimalist.css"-->
+    <!-- link rel="stylesheet" href="css/flowplayer.audio.css" -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/ReactHtml5Video.css">
+    <link rel="stylesheet" href="https://releases.flowplayer.org/6.0.5/skin/minimalist.css">
+    <link rel="stylesheet" href="https://releases.flowplayer.org/6.0.5/skin/playful.css">  
+    <link rel="stylesheet" href="https://releases.flowplayer.org/audio/flowplayer.audio.css">    
+
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>    
+    <script src="https://cdn.ckeditor.com/4.5.10/standard-all/ckeditor.js"></script>   
+    <script src="https://releases.flowplayer.org/6.0.5/flowplayer.min.js"></script>
+    <script src="https://releases.flowplayer.org/audio/flowplayer.audio.min.js"></script>
+    <script src="http://releases.flowplayer.org/js/flowplayer-3.2.13.min.js"></script> -->
+     <!-- Review Asset Metadata links Ends-->
+    
+    <!-- <script>
+        CKEDITOR.disableAutoInline = true;
+    </script>        -->
+
+
+    <style type="text/css">     
+       body .plProductLinkModal{
+        overflow:hidden;
+       }
+        .container.one{
+            margin:30px;
+            border: 1px solid #d0d0d0;
+            padding:20px;
+        }
+        .container.one label{
+         color:#000;
+         border:none;
+        }
+        .container #compResp,
+        .container #questionCompResp,
+        .container #ReviewAssetOnChnageResp,
+        .container #ReviewAssetSaveResp,
+        .container #bankCompResp,
+        #assesmentResp,
+        #bankResp,
+        #questionResp{
+            border: 1px solid #d0d0d0;
+            /* padding: 0px 10px; */
+            margin: 10px 0px;
+            width: 50%;
+            border-width: 0px 1px 1px 1px;
+        }
+
+        /* Release 1 CSS fixes */
+         .container #compResp table,
+        .container #questionCompResp table,
+        .container #ReviewAssetOnChnageResp table,
+        .container #ReviewAssetSaveResp table,
+        .container #bankCompResp table,
+        #assesmentResp table,
+        #bankResp table,
+        #questionResp table{
+         width:100%;
+        }
+
+        .container #compResp table td,
+        .container #questionCompResp table td,
+        .container #ReviewAssetOnChnageResp table td,
+        .container #ReviewAssetSaveResp table td,
+        .container #bankCompResp table td,
+        #assesmentResp table td,
+        #bankResp table td,
+        #questionResp table td{
+            padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #d0d0d0;
+    text-align: left;
+        }
+
+
+        #assesmentResp p,
+        #bankResp p,
+        #questionResp p,
+        #ReviewAssetSaveResp p{
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #d0d0d0;
+        margin:0px;
+        text-align: left; 
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .assessment-comp label,
+        .bank-comp label,
+        .question-comp label{
+            width:200px;
+            display:inline-block;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .question-comp input[type="text"],
+        .bank-comp label, .bank-comp input[type="text"],
+        .bank-comp label,
+        .assessment-comp input[type="text"]{
+        padding: 0px 10px;
+        height: 36px;
+        color: #a6a8ab;
+        font-size: 16px;
+        border-radius: 3px;
+        border: solid 1px #d0d0d0;
+        
+       }
+        .question-comp select,
+        .bank-comp select,
+        .assessment-comp select{
+        padding: 0px 12px;
+        height: 36px;
+        border-radius: 3px;
+        width:auto;
+        }
+        .assessment-comp button{
+            color: inherit;
+            font: inherit;
+            margin: 0;
+        }
+        .buttonStyle{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: normal;
+        }
+            
+        .addAnAssetTable{
+        border-collapse: collapse;
+        width: 100%;
+        }
+        .addAnAssetTable, .addAnAssetTd {
+        border: 1px solid darkgrey;
+        padding: 10px;
+        }
+
+    </style>
+
+  </head>
+  <body class="body">
+    <div class="container one">
+    <h1 style="
+        color: #231f20;
+        font-size: 24px;
+        text-align: left;
+        border-bottom: 2px solid #a6a8ab;
+        font-weight: bold;
+        margin:0px;">Security Configuration</h1>
+        <br/>
+        <div class="assessment-comp">
+            <div style="margin-bottom:1em;">
+                <label for="skillsid" >x-apikey:</label>
+                <input type="text" id="apiKeyId" placeholder="Enter API Key"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="skillsid" >X-PearsonSSOSession:</label>
+                <input type="text" id="sessionKeyId" placeholder="Enter Session Key"/>
+            </div>     
+        </div>
+        <div class='AddAnAssetLaunch'>
+            <div class='row'>
+                <label for="loginUrl" >Login Url:</label>
+                <input type="text" id="loginUrl" value='https://identity-internal-test.pearson.com/auth/json/pearson/authenticate'/>
+            </div>
+            <div class='row'>
+                <label for="userName" >Username:</label>
+                <input type="text" id="alfuname" placeholder="Enter Alfresco Username"/>
+                </div>
+            <div class='row'>
+                <label for="password" >Password:</label>
+                <input type="password" id="alfpwd" placeholder="Enter Alfresco Password"/>
+            </div>
+            <input type="button" id="#launchBtn" value="Login" onclick='generateToken()'/>  
+        </div>
+        <br/>
+        <br/>
+
+    <h1 style="
+    color: #231f20;
+    font-size: 24px;
+    text-align: left;
+    border-bottom: 2px solid #a6a8ab;
+    font-weight: bold;
+    margin:0px;"> Assessment Component</h1>
+        <br/>
+        <div class="assessment-comp">
+            <div style="margin-bottom:1em;">
+            <label for="name" >Name:</label>
+            <input type="text" id="name" placeholder="Enter the name"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="assesmentUUID">UUID:</label>
+                <input type="text" id="assesmentUUID" placeholder="Enter the uuid"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="planidTargid" >Plan Id:</label>
+                <input type="text" id="planidTargid" placeholder="Enter the plan id"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="publisherTargid" >Publisher:</label>
+                <input type="text" id="publisherTargid" placeholder="Enter the publisher name"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="ISBNid" >ISBN:</label>
+                <input type="text" id="ISBNid" placeholder="Enter the ISBN"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="moduleNoid" >Module No:</label>
+                <input type="text" id="moduleNoid" placeholder="Enter the Module No"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="chapterNoid">Chapter No:</label>
+                <input type="text" id="chapterNoid" placeholder="Enter the Chapter No"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="authorId" >Book Author:</label>
+                <input type="text" id="authorId" placeholder="Enter Book Author"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="copyRightid" >Copy Right Info:</label>
+                <input type="text" id="copyRightid" placeholder="Enter Copy Right Info"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="objAlignid" >Objective Alignment:</label>
+                <input type="text" id="objAlignid" placeholder="Enter Objective Alignment"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="skillsid" >Skill Codes:</label>
+                <input type="text" id="skillsid" placeholder="Enter Skills Codes"/>
+            </div>
+           <!--  <div style="margin-bottom:1em;">
+                <label for="contentType" >Content Type:</label>
+                <select style="padding: 0px 25px;" name="contentTypeid">
+                  <option value="">Choose a Content Type</option>
+                  <option value="NarrativeText">Narrative Text</option>
+                  <option value="Video">Video</option>
+                  <option value="Audio">Audio</option>
+                  <option value="Interactive">Interactive</option>
+                  <option value="Image">Image</option>
+                  <option value="Assessment Item">Assessment Item</option>
+                </select>
+            </div> -->
+            <input type="button" id="#launchBtn" value="Launch" class="buttonStyle" onclick="onLaunchAssesment('name','assesmentUUID','planidTargid',
+            'publisherTargid','ISBNid','moduleNoid','chapterNoid','authorId',
+            'copyRightid','objAlignid','skillsid','apiKeyId','sessionKeyId',
+            '#assesmentComp','AssesmentMetadata','production')"/>
+            </div>
+
+            <div id="assesmentComp">
+            </div>
+            <input type="button" id="#saveBtn" value="Save" class="buttonStyle" onclick="onSaveAssesment('name')"/>
+            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+                <span>Data from Component to hosting application OnSave</span>
+                <a id="display1" href="javascript:toggle();">Hide</a>
+                <div id="assesmentResp" style="display: block">
+                </div>
+            </div>
+           <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+                <span>Data from component to QUAD on property change of component</span>
+                <a id="display2" href="javascript:toggle2();">Hide</a>
+               <div id="compResp">
+                </div>
+            </div>
+            <br/>
+            <br/>
+    <h1 style="
+    color: #231f20;
+    font-size: 24px;
+    text-align: left;
+    border-bottom: 2px solid #a6a8ab;
+    font-weight: bold;
+    margin:0px;"> Bank Component</h1>
+        <br/>
+        <div class="bank-comp">
+            <div style="margin-bottom:1em;">
+            <label for="name" >Name:</label>
+            <input type="text" id="bankName" required placeholder="Enter the name"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="assesmentUUID">UUID:</label>
+                <input type="text" id="bankUUID" placeholder="Enter the uuid"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="planidTargid" >Plan Id:</label>
+                <input type="text" id="bankPlanidTargid" placeholder="Enter the plan id"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="publisherTargid" >Publisher:</label>
+                <input type="text" id="bankPublisherTargid" placeholder="Enter the publisher name"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="ISBNid" >ISBN:</label>
+                <input type="text" id="bankISBNid" placeholder="Enter the ISBN"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="moduleNoid" >Module No:</label>
+                <input type="text" id="bankModuleNoid" placeholder="Enter the Module No"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="chapterNoid">Chapter No:</label>
+                <input type="text" id="bankChapterNoid" placeholder="Enter the Chapter No"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="authorId" >Book Author:</label>
+                <input type="text" id="bankAuthorId" placeholder="Enter Book Author"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="copyRightid" >Copy Right Info:</label>
+                <input type="text" id="bankCopyRightid" placeholder="Enter Copy Right Info"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="objAlignid" >Objective Alignment:</label>
+                <input type="text" id="bankObjAlignid" placeholder="Enter Objective Alignment"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="skillsid" >Skill Codes:</label>
+                <input type="text" id="bankSkillsid" placeholder="Enter Skills Codes"/>
+            </div>
+           <!--  <div style="margin-bottom:1em;">
+                <label for="contentType" >Content Type:</label>
+                <select style="padding: 0px 25px 0px 5px;" name="bankContentTypeid">
+                  <option value="">Choose a Content Type</option>
+                  <option value="NarrativeText">Narrative Text</option>
+                  <option value="Video">Video</option>
+                  <option value="Audio">Audio</option>
+                  <option value="Interactive">Interactive</option>
+                  <option value="Image">Image</option>
+                  <option value="Assessment Item">Assessment Item</option>
+                </select>
+            </div> -->
+            <input type="button" id="#launchBtn" value="Launch" class="buttonStyle" onclick="onLaunchBank('bankName','bankUUID','bankPlanidTargid',
+            'bankPublisherTargid','bankISBNid','bankModuleNoid','bankChapterNoid','bankAuthorId',
+            'bankCopyRightid','bankObjAlignid','bankSkillsid','apiKeyId','sessionKeyId','#bankComp','AssesmentMetadata','production')"/>
+            </div>
+
+            <div id="bankComp">
+            </div>
+            <input type="button" id="#bankSaveBtn" class="buttonStyle" value="Save" onclick="onSaveBank('bankName')"/>
+            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+                <span>Data from Component to hosting application OnSave</span>
+                <a id="display5" href="javascript:toggle5();">Hide</a>
+                <div id="bankResp" style="display: block">
+                </div>
+            </div>
+           <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+                <span>Data from component to QUAD on property change of component</span>
+                <a id="display6" href="javascript:toggle6();">Hide</a>
+               <div id="bankCompResp">
+                </div>
+            </div>
+            <br/>
+            <br/>
+
+    <h1 style="
+    color: #231f20;
+    font-size: 24px;
+    text-align: left;
+    border-bottom: 2px solid #a6a8ab;
+    font-weight: bold;
+    margin:0px;">Question Assessment</h1>
+        <br/>
+        <div class="question-comp">
+            <div style="margin-bottom:1em;">
+            <label for="name">Name:</label>
+            <input type="text" id="qname" placeholder="Enter the name"/>
+            </div>
+            <div style="margin-bottom:1em;">
+            <label for="uuid" >UUID:</label>
+            <input type="text" id="uuid" placeholder="Enter the uuid"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="questionPlanidTargid" >Plan Id:</label>
+                <input type="text" id="questionPlanidTargid" placeholder="Enter the plan id"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="questionPublisherTarg" >Publisher:</label>
+                <input type="text" id="questionPublisherTarg" placeholder="Enter the publisher name"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="questionISBNid" >ISBN:</label>
+                <input type="text" id="questionISBNid" placeholder="Enter the ISBN"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="questionModuleNoid" >Module No:</label>
+                <input type="text" id="questionModuleNoid" placeholder="Enter the Module No"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="questionChapterNoid" >Chapter No:</label>
+                <input type="text" id="questionChapterNoid" placeholder="Enter the Chapter No"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="questionBookAuthorid" >Book Author:</label>
+                <input type="text" id="questionBookAuthorid" placeholder="Enter the Book Author"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="questionCopyRightid">Copy Right Info:</label>
+                <input type="text" id="questionCopyRightid" placeholder="Enter Copy Right Info"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="objAlignid" >Objective Alignment:</label>
+                <input type="text" id="quesObjAlignid" placeholder="Enter Objective Alignment"/>
+            </div>
+            <div style="margin-bottom:1em;">
+                <label for="skillsid" >Skill Codes:</label>
+                <input type="text" id="quesSkillsid" placeholder="Enter Skills Codes"/>
+            </div>
+           <!--  <div style="margin-bottom:1em;">
+                <label for="contentType">Content Type:</label>
+                <select name="QcontentTypeid">
+                  <option value="">Choose a Content Type</option>
+                  <option value="NarrativeText">Narrative Text</option>
+                  <option value="Video">Video</option>
+                  <option value="Audio">Audio</option>
+                  <option value="Interactive">Interactive</option>
+                  <option value="Image">Image</option>
+                  <option value="Assessment Item">Assessment Item</option>
+                </select>
+            </div> -->
+            <input type="button" id="#launchBtn" value="Launch" class="buttonStyle" onclick="onLaunchQuestion('qname', 'uuid','questionPlanidTargid','questionPublisherTarg','questionISBNid','questionModuleNoid','questionChapterNoid','questionBookAuthorid','questionCopyRightid','quesObjAlignid','quesSkillsid','apiKeyId','sessionKeyId',
+            '#questionComp','AssesmentMetadata','production')"/>
+            </div>
+            <div id="questionComp">
+            </div>
+            <input type="button" id="#saveBtn" class="buttonStyle" value="Save" onclick="onSaveQuestion('qname')"/>
+            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+                <span>Data from Component to hosting application OnSave</span>
+                <a id="display3" href="javascript:toggle3();">Hide</a>
+                <div id="questionResp">
+                </div>
+            <div>
+            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+                <span>Data from component to QUAD on property change of component</span>
+                <a id="display4" href="javascript:toggle4();">Hide</a>
+               <div id="questionCompResp">
+                </div>
+            </div>
+             <div style="margin-top: 20px;">
+                <div id="addAnAsset"></div>
+                <div id="productLink"></div> 
+                <div style="margin-bottom:1em;">
+                    <label for="uuid" >UUID:</label>
+                    <input type="text" id="assetUUID" placeholder="Enter the uuid"/>
+                </div>
+                
+                <div style="margin-bottom:1em;">
+                    <label for="PAFID" >PAF ID:</label>
+                    <input type="text" id="PAFID" placeholder="Enter the PAFID"/>
+                </div>
+
+                <div style="margin-bottom:1em;">
+                    <label for="uuid" >Caption:</label>
+                    <input type="text" id="caption" placeholder="Enter the caption"/>
+                </div>
+                <div style="margin-bottom:1em;">
+                    <label for="uuid" >Alt Text:</label>
+                    <input type="text" id="altText" placeholder="Enter the altText"/>
+                </div>
+                <div style="margin-bottom:1em;">
+                    <label for="uuid" >Copyright Info:</label>
+                    <input type="text" id="copyRightInfo" placeholder="Enter the Copyright"/>
+                </div>
+                <div class='AddAnAssetLaunch'>
+                    <h1>Add An Asset</h1>
+<!--                     <div class='row'>
+                        <label for="alfToken" >Alf Token:</label>
+                        <input type="text" id="alfToken" placeholder="Enter Alfresco Token"/>
+                    </div> -->
+                   <!--  <div class='row'>
+                        <label for="imagesPath" >Images Path:</label>
+                        <input type="text" id="imagesPath" value='http://52.52.203.197/dev/patternsapp/images/'/>
+                    </div> -->
+                    <div class='row'>
+                        <label for="nodeRef" >Site NodeRef:</label>
+                        <input type="text" id="nodeRef" placeholder="Enter site nodeRef"/>
+                    </div>
+                    <div class='row'>
+                        <label for="tabVisibility" >Tab Visibility/EPS Url:</label>
+                        <input type="text" id="tabVisibility" value='{ "audio" : true, "image": true, "other":true, "video": true,"epsUrl":false, "default": "video"}'/>
+                    </div>
+                    <div class='row'>
+                        <label for="repoInput" >Repo Input:</label>
+                        <input type="text" id="repoInput" 
+                        value='[{"repo":"https://staging.api.pearson.com/content/cmis/ukwip","repoName":"UK"},{"repo":"https://staging.api.pearson.com/content/cmis/ukwip","repoName":"US East"},{"repo":"https://staging.api.pearson.com/content/cmis/uswip","repoName":"US East1"}]'
+                        placeholder="Enter Repo Input"/>
+                    </div>
+                    <div class='row'>
+                        <label for="repoInst" >Repo Instance:</label>
+                        <input type="text" id="repoInst" placeholder="Enter Repo Instance"/>
+                    </div>
+                    <div class='row'>
+                        <label for="repoName" >Repo Name:</label>
+                        <input type="text" id="repoName" placeholder="Enter Repo Name"/>
+                    </div>
+                    
+                    <div class='row'>
+                        <label for="workURN" >Work URN:</label>
+                        <input type="text" name="workURN" id="workURN" value='{"wURN":true}'/>
+                    </div>
+
+                    <input type="button" id="#openAsset" value="OpenAsset" onclick="onLaunchAddAnAsset('#addAnAsset','assetUUID','PAFID','caption','altText', 'copyRightInfo','AddAnAsset')"/>
+                    &nbsp; &nbsp; 
+                    <input type="button" id="productLinkClk" value="Open Product Link" />
+
+                <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;">
+                     <span>Data from Component(Link Product) to hosting application</span>
+                    
+                    <div id="ProductLinkCallBackResp" style="display: block">
+                    </div>
+                </div>
+
+                </div>
+            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;
+            display:block;border: 1px solid #CCCCCC;padding: 10px;">
+                <span>Question Stem<span style='color:red'>*</span></span>               
+                 <div id='questionStem' style="display:block;">
+                  <img src="./images/default-thumbnail.gif" id='questionStemImg' data-workid="" style="width:100px;height:100px;border:1px solid gainsboro;" />
+                   <span>What do the works of Emily Dickinson and walt Whitman have in common?</span>
+               </div>
+               <div id='addAnAssetCBResp'> 
+               </div>
+            </div>
+            <div class="dataDiv" id='EpsContainer' style="margin-bottom:1em;margin-top:1em;
+            display:block;border: 1px solid #CCCCCC;padding: 10px;">
+                <!--< span>EPS Image<span style='color:red'>*</span></span>               
+                 <div id='questionStem' style="display:block;">
+                  <img src="./images/default-thumbnail.gif" id='epsUrlImg' data-workid="" style="width:100px;height:100px;border:1px solid gainsboro;" />-->
+                  <a href='' id='EpsUrl' target='_blank'>Eps Url</a>
+                   <p>EPS image will only display when resource is manually pushed to EPS from Alfresco/Share</p>
+               </div>
+            </div>
+
+               <!--  <input type="button" id="#openAsset" value="OpenAsset" onclick="onLaunchAddAnAsset('#addAnAsset','assetUUID','PAFID','caption','altText', 'copyRightInfo','AddAnAsset')"/> -->
+                      
+                
+                <!-- <input type="button" id="clkReview" value="Show Assets Review" 
+                    onclick="onLaunchReviewAsset('#reviewAsset', 'ReviewAsset',
+                        'assetUUID','PAFID','caption','altText', 'copyRightInfo')"/>
+
+            <div id="reviewAsset"></div> -->                   
+            <!--
+            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;">
+                <span>Data from Component(ReviewAsset) to hosting application OnSave</span>
+                <!-- a id="ReviewAssetdisplay_1" href="#" >Hide</a-->
+            <!--    <div id="ReviewAssetSaveResp" style="display: block">
+                </div>
+            </div>
+           <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;">
+                <span>Data from component(ReviewAsset) to QUAD on property change of component(ReviewAsset)</span>
+                <!-- a id="ReviewAssetdisplay_2" href="#" >Hide</a-->
+            <!--  <div id="ReviewAssetOnChnageResp" style="display: block">
+               </div>
+            </div>                                    
+ 			<br/>
+            <div class="dataDiv" style="margin-bottom:1em;margin-top:1em;display:block;">
+                <span>Question Stem<span style='color:red'>*</span></span>
+                <!-- a id="ReviewAssetdisplay_2" href="#" >Hide</a-->
+            <!--  <div id='questionStem' style="display:block;">
+                 <img src="/images/default-thumbnail.gif" id='questionStemImg' data-workid="" style="width:100px;height:100px;border:1px solid gainsboro;" />
+                 <span>What do the works of Emily Dickinson and walt Whitman have in common?</span>
+               </div>
+
+            </div>
+            -->
+            <br/>
+            <br/>                       
+            </div>
+    </div>
+
+<script type="text/javascript">
+    if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+        document.write('<script src="./lib/polyfill.min.js"><\/script>');
+</script>
+    <script src="/lib/PatternsLib.js"></script>
+    <script src="indexpage.js"></script>
+  </body>
+</html>

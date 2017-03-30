@@ -1,0 +1,92 @@
+@import "../../../styles/variables.css";
+
+
+/* Acts as a container */
+.ProductLinkModal{
+	max-width: 500px!important;
+    composes: padding0 from "../../../styles/patterns.css";
+	composes: col100 from "../../../styles/patterns.css";
+    composes: c2FontFamily from "../../../styles/patterns.css";
+}
+
+
+.plProductLinkModal{
+    max-width: 500px!important;
+    composes: padding0 from "../../../styles/patterns.css";
+    composes: col100 from "../../../styles/patterns.css";
+    composes: c2FontFamily from "../../../styles/patterns.css";
+}
+
+
+
+
+/* Product linking header container */
+/*.ProductLinkModal .plModalHeadDiv{
+*/  
+ .plModalHeadDiv{  
+    padding:15px 15px;
+    background-color: $BrightlyLit;
+    lost-utility:clearfix;
+    border-bottom: 1px solid #bbb;
+}
+
+/* .pageTitle ; hypen can be used to separate words; But in JS, use camel case */
+/*.ProductLinkModal .plModalHeadDiv .plModalTitle {*/
+.plModalTitle {
+   lost-column:3/4 0;
+   font-size: 20px;
+   line-height: 30px;
+}
+
+/*.ProductLinkModal .plModalHeadDiv .plCloseButtonDiv {*/
+.plCloseButtonDiv {
+    composes: close from "../../../styles/patterns.css";
+    composes: textAlignright from "../../../styles/patterns.css";
+    lost-column:1/4 0;
+}
+
+/*.ProductLinkModal .plModalBodyDiv {*/
+.plModalBodyDiv{
+	padding: 5px 10px;
+    lost-utility:clearfix;
+    composes: minHeight200 from "../../../styles/patterns.css";
+}
+
+
+
+
+
+
+
+
+/*.ProductLinkModal .plModalBodyDiv .plAutoSuggestBtnDiv button{
+*/
+
+
+
+/*.ProductLinkModal .plModalFooterDiv{
+*/
+.plModalFooterDiv{
+	padding:15px 15px;
+	background-color: $BrightlyLit;
+    composes: textAlignright from "../../../styles/patterns.css";
+    border-top: 1px solid #bbb;
+}
+
+/*.ProductLinkModal .plModalFooterDiv .plCancelButton{*/
+.plCancelButton{
+     composes: c2GreyButton from "../../../styles/patterns.css";
+}
+
+/*.productLinkclsLoader {
+    z-index: 9999;
+    background: url(../../../../images/loading.gif) center no-repeat rgba(255, 255, 255, 0.26);
+    display: block;
+    position: relative;
+    height: 200px;
+    background-size: 100px;
+}*/
+
+
+
+

@@ -1,0 +1,5 @@
+@lost flexbox flex;
+.bodysection{
+	lost-flex-container: column;
+	height: 100%
+}

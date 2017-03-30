@@ -1,0 +1,116 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 167,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 167
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExpressionStatement",
+      "start": 0,
+      "end": 167,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 167
+        }
+      },
+      "expression": {
+        "type": "CallExpression",
+        "start": 0,
+        "end": 166,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 166
+          }
+        },
+        "callee": {
+          "type": "MemberExpression",
+          "start": 0,
+          "end": 13,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 13
+            }
+          },
+          "object": {
+            "type": "Identifier",
+            "start": 0,
+            "end": 7,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 7
+              }
+            },
+            "name": "console"
+          },
+          "property": {
+            "type": "Identifier",
+            "start": 8,
+            "end": 13,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 13
+              }
+            },
+            "name": "error"
+          },
+          "computed": false
+        },
+        "arguments": [
+          {
+            "type": "Literal",
+            "start": 14,
+            "end": 165,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 14
+              },
+              "end": {
+                "line": 1,
+                "column": 165
+              }
+            },
+            "value": "ReactifyError: D:\\reatSample\\c2_1\\js\\app.js: Parse Error: Line 9: Illegal import declaration while parsing file: D:\\reatSample\\c2_1\\js\\app.js",
+            "rawValue": "ReactifyError: D:\\reatSample\\c2_1\\js\\app.js: Parse Error: Line 9: Illegal import declaration while parsing file: D:\\reatSample\\c2_1\\js\\app.js",
+            "raw": "\"ReactifyError: D:\\\\reatSample\\\\c2_1\\\\js\\\\app.js: Parse Error: Line 9: Illegal import declaration while parsing file: D:\\\\reatSample\\\\c2_1\\\\js\\\\app.js\""
+          }
+        ]
+      }
+    }
+  ]
+}

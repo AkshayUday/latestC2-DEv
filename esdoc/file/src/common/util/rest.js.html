@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/common/util/rest.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://bitbucket.pearson.com/scm/c2ai/patternslib.git">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/action</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-CMDChangeHandler">CMDChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MVMChangeHandler">MVMChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MVMSaveHandler">MVMSaveHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PMDChangeHandler">PMDChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_MVMData">fetch_MVMData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_MetaData">fetch_MetaData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_New_PName_Source">fetch_New_PName_Source</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_PMDData">fetch_PMDData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_PName_Source">fetch_PName_Source</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_QLTData">fetch_QLTData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-handleTagChange">handleTagChange</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/components/common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssessmentMetadata/js/components/common/AutoComplete.js~AutoComplete.html">AutoComplete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssessmentMetadata/js/components/common/Heading.js~Heading.html">Heading</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssessmentMetadata/js/components/common/TagElem.js~TagElem.html">TagElem</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/container</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MetadataContainer">MetadataContainer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCMD_Data">getCMD_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getMVM_Data">getMVM_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPLT_Data">getPLT_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPMD_Data">getPMD_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPName_Source">getPName_Source</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getQLT_Data">getQLT_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-metadataReducer">metadataReducer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssessmentMetadata/js/store</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/action</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-CMDChangeHandler">CMDChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MVMChangeHandler">MVMChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MVMSaveHandler">MVMSaveHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PMDChangeHandler">PMDChangeHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_MVMData">fetch_MVMData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_MetaData">fetch_MetaData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_PMDData">fetch_PMDData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetch_QLTData">fetch_QLTData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-handleTagChange">handleTagChange</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/components/common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssetmentMetadata-July Code/js/components/common/Heading.js~Heading.html">Heading</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AssetmentMetadata-July Code/js/components/common/TagElem.js~TagElem.html">TagElem</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/container</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MetadataContainer">MetadataContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fields">fields</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-metadataReducer">metadataReducer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCMD_Data">getCMD_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getMVM_Data">getMVM_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPLT_Data">getPLT_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPMD_Data">getPMD_Data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getQLT_Data">getQLT_Data</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">AssetmentMetadata-July Code/js/store</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/action</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getJobStatus">getJobStatus</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolders">getFolders</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toggle">toggle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchingAssets">fetchingAssets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-gettingThumbnails">gettingThumbnails</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fileUploadToServer">fileUploadToServer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/uploadInProgress.js~uploadInProgress.html">uploadInProgress</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-App">App</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-BrowseAssets">BrowseAssets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-SearchLibrary">SearchLibrary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fields">fields</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/components/checkJobStatus</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/checkJobStatus/IconComponent.js~IconComponent.html">IconComponent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/checkJobStatus/RenderColumn.js~RenderColumn.html">RenderColumn</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/checkJobStatus/RenderRow.js~RenderRow.html">RenderRow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/checkJobStatus/Table.js~Table.html">Table</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/components/common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/common/Labels.js~Labels.html">Labels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/common/pe-tooltip.js~PE_tooltip.html">PE_tooltip</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IconComponent">IconComponent</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/components/folderpane</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/folderpane/DefaultCellRenderer.js~DefaultCellRenderer.html">DefaultCellRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/BrowseAssets/js/components/folderpane/TreePane.js~TreePane.html">TreePane</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/container</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CheckJobStatusContainer">CheckJobStatusContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FileUploadContainer">FileUploadContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-treePaneContainer">treePaneContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UploadProgressContainer">UploadProgressContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsContainer">assetsContainer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/reducers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CheckJobStatusReducers">CheckJobStatusReducers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-folderTree">folderTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assets">assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fileUpload">fileUpload</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rootMetaData">rootMetaData</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">BrowseAssets/js/store</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">PatternAlpha/js/containers/button</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PatternAlpha/js/containers/button/Button.js~Button.html">Button</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">PatternBeta/js/containers/button</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PatternBeta/js/containers/button/ButtonLong.js~ButtonLong.html">ButtonLong</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/action</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getJobStatus">getJobStatus</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolders">getFolders</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toggle">toggle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchingAssets">fetchingAssets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-gettingThumbnails">gettingThumbnails</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fileUploadToServer">fileUploadToServer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/uploadInProgress.js~uploadInProgress.html">uploadInProgress</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-App">App</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-BrowseAssets">BrowseAssets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-SearchLibrary">SearchLibrary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fields">fields</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/components/checkJobStatus</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/checkJobStatus/IconComponent.js~IconComponent.html">IconComponent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/checkJobStatus/RenderColumn.js~RenderColumn.html">RenderColumn</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/checkJobStatus/RenderRow.js~RenderRow.html">RenderRow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/checkJobStatus/Table.js~Table.html">Table</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/components/common</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/common/Labels.js~Labels.html">Labels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/common/pe-tooltip.js~PE_tooltip.html">PE_tooltip</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IconComponent">IconComponent</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/components/folderpane</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/folderpane/DefaultCellRenderer.js~DefaultCellRenderer.html">DefaultCellRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/UploadContent/js/components/folderpane/TreePane.js~TreePane.html">TreePane</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/container</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CheckJobStatusContainer">CheckJobStatusContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FileUploadContainer">FileUploadContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-treePaneContainer">treePaneContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UploadProgressContainer">UploadProgressContainer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsContainer">assetsContainer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/reducers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CheckJobStatusReducers">CheckJobStatusReducers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-folderTree">folderTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assets">assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fileUpload">fileUpload</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rootMetaData">rootMetaData</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">UploadContent/js/store</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/common/util/rest.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import $ from &apos;jquery&apos;;
+
+/* SUPPORT FOR  ES6 FETCH IS VERY LIMITED IN SAFARI.
+   SO RESORT TO USING JQUERY&apos;S AJAX SUPPORT
+
+const parseFetchRespJson = function (resp, resolve, reject) {
+	  console.log(&apos;rest:parseFetchRespJson - parse resp from server %o&apos;, resp);
+    // Format for AJAX &apos;resp&apos; is in format: 
+	  //   { code:, data:{}, msg:&apos;ok&apos; }
+    //
+	  if (resp.code === &apos;0&apos;) {
+	      resolve(resp);
+	  }
+	  else {
+	      reject(resp); 
+	  }
+};
+
+const parseFetchRespBlob = function (resp, resolve, reject) {
+	  console.log(&apos;rest:parseFetchRespBlob - parse resp from server %o&apos;, resp);
+	  // process your BLOB further
+	  // Needs to understand how to get the right data from resp
+	  // which is format { code:, data:{}, msg:&apos;ok&apos; }
+	  const objectURL = URL.createObjectURL(resp);
+	  console.log(&apos;rest:parseFetchRespBlob - success&apos;);
+	  resolve(objectURL);
+}
+
+const parseFetchResp = function (resp, resolve, reject) {
+	  const ct = resp.headers.get(&apos;content-type&apos;);
+	  if (ct &amp;&amp; ct.indexOf(&apos;application/json&apos;) !== -1) {
+	      return resp.json().then(function (resp) {
+		        parseFetchRespJson(resp, resolve, reject);
+	      });
+	  } 
+	  else if (ct &amp;&amp; ct.indexOf(&apos;application/blob&apos;) !== -1) {
+	      return resp.blob().then(function (resp) {
+		        parseFetchRespBlob(resp, resolve, reject);
+	      });
+	  }
+	  else {
+        // Other parsers:
+	      // resp.blob()          note: allof these returns promise
+	      // resp.arrayBuffer()
+	      // resp.json()
+	      // resp.text()
+	      // resp.formData()
+	      console.log(&apos;rest:parseFetchResp  - Oops, we have not got the expected content type!&apos;);
+
+	      return resp.json().then(function (resp) {
+		        parseFetchRespJson(resp, resolve, reject);
+	      });
+	  }
+
+	  reject(&apos;netwk:parseFetchResp - Unhandled resp type&apos;);
+};
+
+const serverFetch = function (config, resolve, reject) {
+	  console.log(&apos;rest:serverFetch - This may not be supported in all browsers. EX. IE10+ &gt;&gt;&gt; Use Polyfill &lt;&lt;&lt;&lt;&apos;);
+
+	  let myHeaders = new Headers(config.headers);
+
+    console.log(&apos;rest:serverFetch - header value for X-Roles is %o&apos;, myHeaders.get(&apos;X-Roles&apos;));
+    console.log(&apos;rest:serverFetch - header value for Authorization is %o&apos;, myHeaders.get(&apos;Authorization&apos;));
+
+	  let myInit = { method: config.method,                              // *GET
+                   headers: myHeaders,
+                   mode: &apos;cors&apos;,                                       // *cors/no-cors/same-origin/navigate
+		               // credentials: &apos;omit&apos;,                             // *omit/same-origin/include  
+                   // cache: &apos;default&apos;,                                // default/no-store/reload/no-cache/force-cache
+		               body: (config.method === &apos;GET&apos;) ? null : JSON.stringify(config.data)  //  Blob/BufferSource/FormData
+		               // redirect:                                        // follow/error/manual
+		               // integrity:
+	               };
+
+	  let myRequest = new Request(config.url, myInit);
+	  let p = fetch(myRequest);
+
+	  p.then(function (resp) {
+        console.log(&apos;rest:serverFetch - Success resp is %o&apos;, resp);
+	      parseFetchResp(resp, resolve, reject);
+	  }).catch(function (resp) {
+        console.log(&apos;rest:serverFetch - Failure resp is %o&apos;, resp);
+	      reject(resp.data);
+	  });
+};
+*/
+
+
+const serverFetchJQuery = function (config, resolve, reject, p) {
+
+    $.ajax({
+        url: config.url,
+        type: config.method,
+        headers: config.headers,
+        data: (config.method === &apos;GET&apos;) ? null : JSON.stringify(config.data),
+        dataType: &apos;json&apos;, 
+        success:function (data)
+        {
+            console.log(&apos;rest:serverFetchJQuery - Success : Data received %o &apos;, data);
+            resolve(data);
+        },
+        error:function (jqXHR,textStatus,errorThrown)
+        {
+            console.log(&apos;rest:serverFetchJQuery - Failure : %o &apos;, errorThrown);
+	          reject(errorThrown);
+        }
+    });
+};
+
+// Exports
+export default {
+    send : function (config) {
+	      console.log(&apos;rest:restService - ajax req for %o begin&apos;, config);
+
+        let p = new Promise(function (resolve, reject) {
+            try {
+		            serverFetchJQuery(config, resolve, reject);     // Generic
+		            //serverFetch(config, resolve, reject);
+		            //serverFetchJQueryGet(config, resolve, reject);    // Just for testing GET  call 
+            }
+            catch (e) {
+                reject(&apos;Exception in REST processing : &apos; + e);
+            }
+        });
+
+	      console.log(&apos;rest:restService - async ajax req finished (but resp may notbe received yet)&apos;);
+	      return p;
+    }
+};
+
+
+/*
+
+  xhrFields: {
+    withCredentials: true
+  },
+  username: &apos;myuser&apos;,
+  password: &apos;mypassword&apos;,
+
+  Access-Control-Allow-Credentials &#x2192;true
+  Access-Control-Allow-Headers &#x2192;origin, content-type, accept, authorization
+  Access-Control-Allow-Methods &#x2192;GET, POST, PUT, DELETE, OPTIONS, HEAD
+  Access-Control-Allow-Origin &#x2192;*
+
+  The following works
+  curl -k --verbose --request GET https://develop.pearsonmeta.io/work/d813b8a9-fa60-46c4-bcbd-e4a3ca37cc12?db=qa5 --header &apos;Origin: http://localhost:5000&apos; --header &apos;Authorization: Basic c3RyYXdiZXJyeToqbnJSUEc0akA1b1JCUnVDMkckITh4IzVqSFA=&apos; --header &apos;X-Roles: roleX,roleA,roleB&apos; --header &apos;Content-Type: application/json&apos; --header &apos;Accept: application/ld+json&apos;
+
+  xhr.setRequestHeader(&apos;Content-Type&apos;, &apos;text/plain&apos;);
+
+//
+//
+// SAMPLE FOR GET
+//
+//
+//
+const serverFetchJQueryGet = function (config, resolve, reject, p) {
+
+    let url = &apos;https://uat.pearsonmeta.io/work/db066023-041b-4753-8dfc-10ba12ed235b?db=qa6&apos;; 
+    let action = &apos;GET&apos;;
+//    let contentType =&apos;application/x-www-form-urlencoded; charset=utf-8&apos;;
+
+    $.ajax({
+        url: url,
+        type: action,
+        headers: config.headers,
+        success:function (data)
+        {
+            console.log(&apos;rest:serverFetchJQuery - Success : Data received %o &apos;, data);
+            resolve(data);
+        },
+        error:function (jqXHR,textStatus,errorThrown)
+        {
+            console.log(&apos;rest:serverFetchJQuery - Failure : %o &apos;, errorThrown);
+	          reject(errorThrown);
+        }
+/ *
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader(&apos;Authorization&apos;, &apos;Basic c3RyYXdiZXJyeToqbnJSUEc0akA1b1JCUnVDMkckITh4IzVqSFA=&apos;);
+//            xhr.setRequestHeader(&apos;X-Roles&apos;, &apos;roleX,roleA,roleB&apos;);
+            xhr.setRequestHeader(&apos;Content-Type&apos;, &apos;application/ld+json;charset=UTF-8&apos;);
+            xhr.setRequestHeader(&apos;Accept&apos;, &apos;application/ld+json&apos;);
+        }
+* /
+    });
+
+};
+*/
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

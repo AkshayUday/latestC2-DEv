@@ -1,0 +1,22 @@
+
+.chooseButton {
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size:15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    float:left;
+    margin-right: 10px;
+}
+
+
+ .uploadbutton {
+    background-color: #F7F7F7;
+    color: black;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
