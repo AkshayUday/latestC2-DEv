@@ -67,14 +67,14 @@ return {
 }
 }
 
-const updateSearchValueAction = (value) => {debugger;
+const updateSearchValueAction = (value) => {
   return {
 		type: 'UPDATE_SEARCH_VALUE',
 		text : value
   }
 }
 
-const updateAllAsset = (allAsset,sarr,savedSearch) => {debugger;
+const updateAllAsset = (allAsset,sarr,savedSearch) => {
  return {
 		type: 'UPDATE_ALL_ASSET',
 		data : allAsset,
@@ -85,7 +85,7 @@ const updateAllAsset = (allAsset,sarr,savedSearch) => {debugger;
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	onFocus(event){debugger;
+  	onFocus(event){
   		//console.log(event);
   		//console.log('onFocus');
 
@@ -103,13 +103,12 @@ const mapDispatchToProps = (dispatch) => {
 			});
 	    }
 
-        localforage.getItem('last_three_search').then(function (lastthree){debugger;
+        localforage.getItem('last_three_search').then(function (lastthree){
             let searchdata = [];
             let allAsset = [];
             searchdata =  takeRight(uniqBy(lastthree,'term'),3);
             
               allAsset = dispatch((() => { return (dispatch,getState) => {
-			  //debugger;
 			  //console.log(getState().autoComplete);
 			  return chain(getState().autoComplete).last().pick('data').value();
 
@@ -140,7 +139,6 @@ const mapDispatchToProps = (dispatch) => {
     componentDidUpdate(){
 
     	/*dispatch((() => { return (dispatch,getState) => {
-    		//debugger;
      	    //console.log(getState().autoComplete);							
 	 	 }
 	 	}

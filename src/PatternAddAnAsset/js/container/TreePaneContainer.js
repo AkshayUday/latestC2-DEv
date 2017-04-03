@@ -25,6 +25,7 @@ const getSelectedValues = (dataArray) => {
   }
   return [];
 }
+const localforage = require('localforage');
 /**
 * @function mapStateToProps If specified, the component will subscribe to 
 * Redux store updates. Any time it updates, mapStateToProps will be called. 
@@ -92,7 +93,10 @@ const mapDispatchToProps = (dispatch) => {
            type : 'RESET_BROWSE_TABS',
            data : false
         });
-        dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,0,undefined,viewName));
+       localforage.getItem('persistFilterSettings')
+         .then((filterSettings) => {
+           dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO, filterSettings.displayvaluecount, 0, filterSettings.sortIndex, viewName));
+         })
       }, 
       getSubFolders:function (foldername,child, nodeRef) { 
       	dispatch(getSubFolders('browseasset',foldername,child, nodeRef));

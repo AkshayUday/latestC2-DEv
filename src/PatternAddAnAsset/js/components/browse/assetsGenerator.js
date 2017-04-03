@@ -99,7 +99,9 @@ class assetsContainer extends Component {
       Filters =  [],
       difficultyLevelData = this.props.difficultLevelData
     dataArray = JSON.parse(JSON.stringify(this.props.assetsData));
+    console.log('---assestgen--1>', this.props.sortIndex)
     sortBar = <Sort sortOptions={sortData} value={this.props.sortIndex} change={this.onSort.bind(this)}/>
+    console.log('---assestgen--2>', this.props.sortIndex)
     toolBar = <ToolBar changeView={this.changeView.bind(this)}/>
 
     if(this.props.pageDetails.viewName === 'list-view' && dataArray != null){
@@ -131,6 +133,7 @@ class assetsContainer extends Component {
 
     let viewTabs;
     if(this.props.isSearchLibrary){
+      console.log('---if--->')
       let self = this;
       if(this.props.pageDetails.viewName !== 'list-view' && dataArray != null){
         size = 4;
@@ -178,7 +181,7 @@ class assetsContainer extends Component {
 
 
     }else{ // browse Asset
-
+      console.log('---else--->')
       if(this.props.collapse){
         toggleView = AssetGeneratorStyles.unCollapseAsset;
       }else{
@@ -241,7 +244,7 @@ class assetsContainer extends Component {
     </div>
   );
 
-    let empty = < div className = {AssetGeneratorStyles.alertMsg} > No results found < /div>;
+    let empty = < div className = {AssetGeneratorStyles.alertMsg} > No results found </div>;
     return ( resultsArray.length > 0 ? body : empty );
   }
 }

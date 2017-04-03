@@ -10,6 +10,9 @@ import AddAnAsset from './AddAnAsset'
 import { Link, browserHistory, hashHistory } from 'react-router';
 import PL_Layout from '../../../PatternLayouts/PL_Layout'
 import PopupStyles from './Styles/EntryPopupStyles.css'
+import store from './../store'
+import localForage from 'localforage';
+
 class EntryPopup extends React.Component{
 	constructor(props){
 		super(props);
@@ -24,6 +27,7 @@ class EntryPopup extends React.Component{
 	closeOnSelect() {
 		this.setState({open:false});
 		document.querySelector('body').style.overflow='auto';
+		localForage.setItem('persistFilterSettings',store.getState().userFilterReducer)
 	}
 
 	render(){ 
