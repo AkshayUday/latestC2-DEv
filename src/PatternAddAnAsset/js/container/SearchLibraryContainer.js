@@ -127,12 +127,10 @@ const mapDispatchToProps = (dispatch) => {
         }
 
 			localforage.setItem('last_three_search', lastvalue, function (err, val) {
-				console.log(val);
           let searchString = document.querySelector('#searchAutoSuggest input').value.trim();
           localforage.getItem('persistFilterSettings')
             .then((filterSettings) => {
-              console.log(filterSettings.displayvaluecount,filterSettings.sortIndex)
-              dispatch(getSearchProductItems(searchString,DEFAULT_PAGE_NO,filterSettings.displayvaluecount,0,filterSettings.sortIndex.toString()));
+              dispatch(getSearchProductItems(searchString,DEFAULT_PAGE_NO,filterSettings.displayvaluecount,0,filterSettings.sortIndex));
               dispatch({
                 type : 'SEND_TO_QUAD',
                 data : {}

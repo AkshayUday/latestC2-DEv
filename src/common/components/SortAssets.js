@@ -20,6 +20,14 @@ class SortAssets extends Component{
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.value) {
+			this.setState({
+				value: nextProps.value
+			});
+		}
+	}
+
 	/**
 	* @function change method is used to change the state of the 
 	* SortAssets component

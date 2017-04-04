@@ -150,9 +150,9 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
         .then(function (res){
           window.tdc.patConfig.maxItemsFlag = true;
           window.tdc.patConfig.assetsTotalCount = res.body.numItems;
-          let filteredResults =  res.body.results.slice(0,store.getState().userFilterReducer.displayvaluecount);
+          let filteredResults =  res.body.results.slice(0,maxItems);
           res.body.results = filteredResults;
-          let assetData = getAssetsData(res,index,limit,pageNo,store.getState().userFilterReducer.displayvaluecount,fileTypeIndex,viewName);
+          let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
           dispatch({
             type : DISPLAY_ASSETS,
             data : assetData
@@ -161,7 +161,7 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
           dispatch({
             type: 'CHECK_SELECT',
             payload: {
-              displayvaluecount:  store.getState().userFilterReducer.displayvaluecount,
+              displayvaluecount:  maxItems,
               sortIndex: indexForSort
             }
           })
