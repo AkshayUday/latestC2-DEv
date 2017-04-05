@@ -17,6 +17,8 @@ import {getSearchProductItems,saveSearchValues} from '../action/SearchLibraryAct
 import assetsGenerator from '../components/browse/assetsGenerator';
 import {getCurrentValues} from '../utils/util';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
+import store from './../store'
+const localforage = require('localforage');
 
 /**@function getSelectedValues -
  * This method is used to get the selected values by user.
@@ -76,7 +78,8 @@ const mapStateToProps = (state) => {
   if (data.length !== 0) {
     temp = JSON.parse(JSON.stringify(data.items));
   }
-  const { sortIndex } = state.userFilterReducer
+  const { sortIndex } = state.userFilterReducer;
+  const { viewName } = state.userFilterReducer;
   return {
     assetsData: temp,
     pageDetails: Array.isArray(data)? {}: data,
@@ -86,7 +89,8 @@ const mapStateToProps = (state) => {
     difficultLevelData: [],
     searchValue:'',
     currentFolder : folderData.currentFolder,
-    sortIndex
+    sortIndex,
+    viewName
   }
 }
 /**@function mapDispatchToProps
@@ -128,18 +132,18 @@ const mapDispatchToProps = (dispatch) => {
 
     onChange:function (event,sortIndex){
       event.preventDefault();
-      let viewName = 'grid-view';
+      //let viewName = 'grid-view';
       let fileTypeIndex = findFileTypeIndex('#browseTabsContainer');
-      if (document.querySelector('#viewDropDownContainer span i')) {
-        if(document.querySelector('#viewDropDownContainer span i').className==='fa fa-list'){
-          viewName = 'list-view';
-        }
-      }
+      //if (document.querySelector('#viewDropDownContainer span i')) {
+      //  if(document.querySelector('#viewDropDownContainer span i').className==='fa fa-list'){
+      //    viewName = 'list-view';
+      //  }
+      //}
       // if (document.querySelector('.filter-container .tree-node-selected')) {
       // let nodeRef = document.querySelector('.filter-container .tree-node-selected');
       let nodeRef = this.currentFolder;
       // let id = nodeRef.id;
-      dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,parseInt(event.target.value),fileTypeIndex,sortIndex,viewName));
+      dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,parseInt(event.target.value),fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
       // }
     },
 
@@ -169,24 +173,41 @@ const mapDispatchToProps = (dispatch) => {
       //nodeRef = document.querySelector('.filter-container .pe_filter_enabled');
       let nodeRef = this.currentFolder;
       // let id = nodeRef.id;
-      dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+      dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
       // }
     },
 
     changeView:function (viewName,sortIndex){
       let maxItems;
       let fileTypeIndex = findFileTypeIndex('#browseTabsContainer');
-      if(viewName === 'list-view'){
-        maxItems = 25;
-      }else{
-        maxItems = 9;
-      }
+      let nodeRef = this.currentFolder;
+      //if(viewName === 'list-view'){
+      //  maxItems = 25;
+      //}else{
+      //  maxItems = 9;
+      //}
       // if (document.querySelector('.filter-container .tree-node-selected')) {
       // let nodeRef = document.querySelector('.filter-container .tree-node-selected');
       // let id = nodeRef.id;
-      let nodeRef = this.currentFolder;
-      dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+
+
       // }
+
+      if(viewName === 'list-view'){
+        localforage.getItem('persistFilterSettings')
+          .then((filterSettings) => {
+            maxItems = filterSettings.displayValueCountForList > 25 ? filterSettings.displayValueCountForList : store.getState().userFilterReducer.displayValueCountForList;
+            dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+          })
+      }else{
+        localforage.getItem('persistFilterSettings')
+          .then((filterSettings) => {
+            maxItems = filterSettings.displayvaluecount > 9 ? filterSettings.displayvaluecount : store.getState().userFilterReducer.displayvaluecount;
+            dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+          })
+      }
+
+
     }
   }
 }

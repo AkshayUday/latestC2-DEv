@@ -149,8 +149,10 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
       dispatch({
         type: 'CHECK_SELECT',
         payload: {
-          displayvaluecount: maxItems,
-          sortIndex: indexForSort
+          displayvaluecount: viewName !== 'list-view' ? maxItems : store.getState().userFilterReducer.displayvaluecount,
+          sortIndex: indexForSort,
+          viewName: viewName,
+          displayValueCountForList: viewName === 'list-view' ? maxItems : store.getState().userFilterReducer.displayValueCountForList
         }
       })
     });

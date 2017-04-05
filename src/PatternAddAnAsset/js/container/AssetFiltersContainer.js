@@ -90,8 +90,8 @@ const mapDispatchToProps = (dispatch) => {
       window.tdc.patConfig.assetsTotalCount = 0;
       if (nodeRef) {
         // let id = nodeRef.id;
-        let displayCount = store.getState().userFilterReducer.displayvaluecount ? store.getState().userFilterReducer.displayvaluecount : DEFAULT_MAX_RESULTS
-        dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,displayCount, index));
+        const displayCount = store.getState().userFilterReducer.viewName === 'list-view' ? store.getState().userFilterReducer.displayValueCountForList : store.getState().userFilterReducer.displayvaluecount;
+        dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,displayCount, index, store.getState().userFilterReducer.sortIndex,store.getState().userFilterReducer.viewName));
       }
       // }
     }

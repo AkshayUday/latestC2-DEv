@@ -16,6 +16,8 @@ import { bindActionCreators } from 'redux';
 import {getSearchProductItems,saveSearchValues,updateDifficultyLevel} from '../action/SearchLibraryAction';
 import assetsGenerator from '../components/browse/assetsGenerator';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
+import store from './../store'
+const localforage = require('localforage');
 
 /**@function getSelectedValues -
  * This method is used to get the selected values by user.
@@ -79,7 +81,8 @@ const mapStateToProps = (state) => {
   if(state.autoComplete.length > 0){
     searchValue = state.autoComplete[state.autoComplete.length-1].text;
   }
-  const { sortIndex } = state.userFilterReducer
+  const { sortIndex } = state.userFilterReducer;
+  const { viewName } = state.userFilterReducer;
   return {
     assetsData: temp,
     pageDetails: Array.isArray(data)? {}: data,
@@ -88,7 +91,8 @@ const mapStateToProps = (state) => {
     isSearchLibrary: true,
     difficultLevelData: [],
     searchValue:searchValue,
-    sortIndex
+    sortIndex,
+    viewName
   }
 }
 /**@function mapDispatchToProps
@@ -116,15 +120,15 @@ const mapDispatchToProps = (dispatch) => {
 
     onChange:function (event,sortIndex){
       event.preventDefault();
-      let viewName;
+      // let viewName = 'list-view';
       let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
-      if(document.querySelector('#viewDropDownContainer span i').className==='fa fa-list'){
-        viewName = 'list-view';
-      }else{
-        viewName = 'grid-view';
-      }
+      //if(document.querySelector('#viewDropDownContainer span i').className==='fa fa-list'){
+      //  viewName = 'list-view';
+      //}else{
+      //  viewName = 'grid-view';
+      //}
       let searchValue = document.querySelector('#searchAutoSuggest input').value;
-      dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,parseInt(event.target.value),fileTypeIndex,sortIndex,viewName));
+      dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,parseInt(event.target.value),fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
     },
 
     setSelectedItem: function (record) {
@@ -148,19 +152,26 @@ const mapDispatchToProps = (dispatch) => {
       let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
       let searchValue = document.querySelector('#searchAutoSuggest input').value;
       let maxItems = parseInt(document.querySelector('#itemPerPageSelectBox').value);
-      dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+      dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
     },
 
     changeView:function (viewName,sortIndex){
       let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
+      let searchValue = document.querySelector('#searchAutoSuggest input').value;
       let maxItems;
       if(viewName === 'list-view'){
-        maxItems = 25;
+        localforage.getItem('persistFilterSettings')
+          .then((filterSettings) => {
+            maxItems = filterSettings.displayValueCountForList > 25 ? filterSettings.displayValueCountForList : store.getState().userFilterReducer.displayValueCountForList;
+            dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+          })
       }else{
-        maxItems = 9;
+        localforage.getItem('persistFilterSettings')
+          .then((filterSettings) => {
+            maxItems = filterSettings.displayvaluecount > 9 ? filterSettings.displayvaluecount : store.getState().userFilterReducer.displayvaluecount;
+            dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+          })
       }
-      let searchValue = document.querySelector('#searchAutoSuggest input').value;
-      dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
     }
   }
 }

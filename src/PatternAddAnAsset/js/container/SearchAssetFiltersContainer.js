@@ -100,8 +100,8 @@ const mapDispatchToProps = (dispatch) => {
       if(index!==4){
         if(document.querySelector('#searchAutoSuggest input')){
           const searchValue = document.querySelector('#searchAutoSuggest input').value;
-          const displayCount = store.getState().userFilterReducer.displayvaluecount ? store.getState().userFilterReducer.displayvaluecount : DEFAULT_MAX_RESULTS
-          dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,displayCount,index, store.getState().userFilterReducer.sortIndex));
+          const displayCount = store.getState().userFilterReducer.viewName === 'list-view' ? store.getState().userFilterReducer.displayValueCountForList : store.getState().userFilterReducer.displayvaluecount
+          dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,displayCount,index, store.getState().userFilterReducer.sortIndex, store.getState().userFilterReducer.viewName));
         }
       }else{
         dispatch(fetchSavedSearchData(DEFAULT_PAGE_NO,DEFAULT_SAVED_SEARCH_MAX_RESULTS));

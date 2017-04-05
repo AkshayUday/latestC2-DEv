@@ -138,8 +138,10 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
           dispatch({
             type: 'CHECK_SELECT',
             payload: {
-              displayvaluecount: maxItems,
-              sortIndex: indexForSort
+              displayvaluecount: viewName !== 'list-view' ? maxItems : store.getState().userFilterReducer.displayvaluecount,
+              sortIndex: indexForSort,
+              viewName: viewName,
+              displayValueCountForList: viewName === 'list-view' ? maxItems : store.getState().userFilterReducer.displayValueCountForList
             }
           })
         },function (error){
@@ -161,8 +163,10 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
           dispatch({
             type: 'CHECK_SELECT',
             payload: {
-              displayvaluecount:  maxItems,
-              sortIndex: indexForSort
+              displayvaluecount: viewName !== 'list-view' ? maxItems : store.getState().userFilterReducer.displayvaluecount,
+              sortIndex: indexForSort,
+              viewName: viewName,
+              displayValueCountForList: viewName === 'list-view' ? maxItems : store.getState().userFilterReducer.displayValueCountForList
             }
           })
         },function (error){

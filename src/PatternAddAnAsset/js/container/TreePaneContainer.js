@@ -77,16 +77,16 @@ const mapDispatchToProps = (dispatch) => {
            })
       }      
 
-      let viewName;
-      if(document.querySelectorAll('.dropdown-display').length > 0){
-        let getviewName = document.querySelectorAll('.dropdown-display')[0]['children'][0]['children'][0].getAttribute('CLASS');
-      
-        if(getviewName == 'fa fa-th'){
-          viewName = 'grid-view';
-        }else{
-          viewName = 'list-view';
-        }
-      }    
+      //let viewName;
+      //if(document.querySelectorAll('.dropdown-display').length > 0){
+      //  let getviewName = document.querySelectorAll('.dropdown-display')[0]['children'][0]['children'][0].getAttribute('CLASS');
+      //
+      //  if(getviewName == 'fa fa-th'){
+      //    viewName = 'grid-view';
+      //  }else{
+      //    viewName = 'list-view';
+      //  }
+      //}
       window.tdc.patConfig.maxItemsFlag = false;
       window.tdc.patConfig.assetsTotalCount = 0;
        dispatch({
@@ -95,7 +95,13 @@ const mapDispatchToProps = (dispatch) => {
         });
        localforage.getItem('persistFilterSettings')
          .then((filterSettings) => {
-           dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO, filterSettings.displayvaluecount, 0, filterSettings.sortIndex, viewName));
+           let displayCount;
+           if (filterSettings.viewName === 'list-view') {
+             displayCount = filterSettings.displayValueCountForList ? filterSettings.displayValueCountForList: 25;
+           } else {
+             displayCount = filterSettings.displayvaluecount ? filterSettings.displayvaluecount: 9;
+           }
+           dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO, displayCount, 0, filterSettings.sortIndex, filterSettings.viewName));
          })
       }, 
       getSubFolders:function (foldername,child, nodeRef) { 

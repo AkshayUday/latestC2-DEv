@@ -101,7 +101,7 @@ class assetsContainer extends Component {
       difficultyLevelData = this.props.difficultLevelData
     dataArray = JSON.parse(JSON.stringify(this.props.assetsData));
     sortBar = <Sort sortOptions={sortData} value={this.props.sortIndex} change={this.onSort}/>
-    toolBar = <ToolBar changeView={this.changeView.bind(this)}/>
+    toolBar = <ToolBar viewName={this.props.viewName} changeView={this.changeView.bind(this)}/>
 
     if(this.props.pageDetails.viewName === 'list-view' && dataArray != null){
       size = 1;
@@ -268,7 +268,8 @@ assetsContainer.propTypes = {
   //handlePageChange:PropTypes.func,
   searchValue:PropTypes.string,
   collapse : PropTypes.bool,
-  sortIndex: PropTypes.string
+  sortIndex: PropTypes.string,
+  viewName: PropTypes.string
 }
 
 module.exports = assetsContainer;

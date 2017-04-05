@@ -20,11 +20,17 @@ class toolBar extends Component  {
       name: 'fa fa-th',
       value: 'grid-view'
     }];
+    let selectedItem
+    if(this.props.viewName === 'list-view') {
+      selectedItem = views[0]
+    } else {
+      selectedItem = views[1]
+    }
     return (
         <div className={ToolBarStyles.dropdownWrapper}>
             <Dropdown
                   list={views}
-                  selected={views[1]}
+                  selected={selectedItem}
                   onChange={this.handleChange.bind(this)}/>
       </div>
     )
@@ -32,7 +38,8 @@ class toolBar extends Component  {
 }
 
 toolBar.propTypes = {
-  changeView: PropTypes.func
+  changeView: PropTypes.func,
+  viewName: PropTypes.string
 }
 
 module.exports = toolBar;

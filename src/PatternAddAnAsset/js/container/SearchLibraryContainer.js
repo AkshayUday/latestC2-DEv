@@ -130,7 +130,13 @@ const mapDispatchToProps = (dispatch) => {
           let searchString = document.querySelector('#searchAutoSuggest input').value.trim();
           localforage.getItem('persistFilterSettings')
             .then((filterSettings) => {
-              dispatch(getSearchProductItems(searchString,DEFAULT_PAGE_NO,filterSettings.displayvaluecount,0,filterSettings.sortIndex));
+              let displayCount;
+              if (filterSettings.viewName === 'list-view') {
+                displayCount = filterSettings.displayValueCountForList ? filterSettings.displayValueCountForList: 25;
+              } else {
+                displayCount = filterSettings.displayvaluecount ? filterSettings.displayvaluecount: 9;
+              }
+              dispatch(getSearchProductItems(searchString,DEFAULT_PAGE_NO,displayCount,0,filterSettings.sortIndex, filterSettings.viewName));
               dispatch({
                 type : 'SEND_TO_QUAD',
                 data : {}
