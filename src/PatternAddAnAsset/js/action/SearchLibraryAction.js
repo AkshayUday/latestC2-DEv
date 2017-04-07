@@ -136,25 +136,32 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
 
     //AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
     //let token = JSON.parse(success.text).data.ticket;
-    searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex]) .then(function (res) {
-      //console.log(res);
-
-      let assetData=getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName);
-      dispatch({
-        type : SEARCH_DISPLAY_ASSETS,
-        data : assetData
-      });
-      dispatch(searchLibButtonVisibility(false));
-      const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex
-      dispatch({
-        type: 'CHECK_SELECT',
-        payload: {
-          displayvaluecount: viewName !== 'list-view' ? maxItems : store.getState().userFilterReducer.displayvaluecount,
-          sortIndex: indexForSort,
-          viewName: viewName,
-          displayValueCountForList: viewName === 'list-view' ? maxItems : store.getState().userFilterReducer.displayValueCountForList
-        }
-      })
+    searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex])
+      .then(function (res) {
+        let assetData = getAssetData(res, index, limit, pageNo, maxItems, value, fileTypeIndex, viewName);
+        dispatch({
+          type: SEARCH_DISPLAY_ASSETS,
+          data: assetData
+        });
+        dispatch(searchLibButtonVisibility(false));
+        const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex
+        localforage.getItem('persistFilterSettings')
+          .then((filterSettings) => {
+            let displayCountForGrid, displayCountForList
+            if (viewName !== 'list-view') {
+              displayCountForGrid = maxItems
+              displayCountForList = filterSettings.displayValueCountForList
+            } else {
+              displayCountForGrid = filterSettings.displayvaluecount
+              displayCountForList = maxItems
+            }
+            dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
+            localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
+          }).catch(function (err) {
+          console.log('serach library action', err)
+          dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
+          localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
+        });
     });
     //});
 

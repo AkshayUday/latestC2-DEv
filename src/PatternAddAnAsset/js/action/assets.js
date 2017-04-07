@@ -17,6 +17,7 @@ import { DISPLAY_ASSETS, SEND_TO_QUAD} from '../constants/fileUploadConstants';
 import {getAssetData} from '../../../common/components/browseAssetUtil';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 import store from '../../js/store'
+import localforage from 'localforage'
 
 let i = 1;
 
@@ -135,15 +136,23 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             data : assetData
           });
           const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex
-          dispatch({
-            type: 'CHECK_SELECT',
-            payload: {
-              displayvaluecount: viewName !== 'list-view' ? maxItems : store.getState().userFilterReducer.displayvaluecount,
-              sortIndex: indexForSort,
-              viewName: viewName,
-              displayValueCountForList: viewName === 'list-view' ? maxItems : store.getState().userFilterReducer.displayValueCountForList
-            }
-          })
+          localforage.getItem('persistFilterSettings')
+            .then((filterSettings) => {
+              let displayCountForGrid, displayCountForList
+              if (viewName !== 'list-view') {
+                displayCountForGrid = maxItems
+                displayCountForList = filterSettings.displayValueCountForList
+              } else {
+                displayCountForGrid = filterSettings.displayvaluecount
+                displayCountForList = maxItems
+              }
+              dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
+              localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
+            }).catch(function (err) {
+            console.log('assets action on maxItemsFlag is exists', err)
+            dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: 'grid-view', displayValueCountForList: 25 }});
+            localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
+          });
         },function (error){
           console.log('fetching assets data:' + error);
         })
@@ -159,19 +168,27 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             type : DISPLAY_ASSETS,
             data : assetData
           });
-          const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex
-          dispatch({
-            type: 'CHECK_SELECT',
-            payload: {
-              displayvaluecount: viewName !== 'list-view' ? maxItems : store.getState().userFilterReducer.displayvaluecount,
-              sortIndex: indexForSort,
-              viewName: viewName,
-              displayValueCountForList: viewName === 'list-view' ? maxItems : store.getState().userFilterReducer.displayValueCountForList
-            }
-          })
+          const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
+          localforage.getItem('persistFilterSettings')
+            .then((filterSettings) => {
+              let displayCountForGrid, displayCountForList
+              if (viewName !== 'list-view') {
+                displayCountForGrid = maxItems
+                displayCountForList = filterSettings.displayValueCountForList
+              } else {
+                displayCountForGrid = filterSettings.displayvaluecount
+                displayCountForList = maxItems
+              }
+              dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
+              localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
+            }).catch(function (err) {
+            console.log('assets action on maxItemsFlag not exists', err)
+            dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: 'grid-view', displayValueCountForList: 25 }});
+            localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
+          });
         },function (error){
           console.log('fetching assets data:' + error);
-        })
+          })
     }
     //})
 

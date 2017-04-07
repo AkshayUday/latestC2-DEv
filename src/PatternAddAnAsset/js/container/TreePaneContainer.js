@@ -75,18 +75,7 @@ const mapDispatchToProps = (dispatch) => {
              type : 'SEND_TO_QUAD',
              data : {}
            })
-      }      
-
-      //let viewName;
-      //if(document.querySelectorAll('.dropdown-display').length > 0){
-      //  let getviewName = document.querySelectorAll('.dropdown-display')[0]['children'][0]['children'][0].getAttribute('CLASS');
-      //
-      //  if(getviewName == 'fa fa-th'){
-      //    viewName = 'grid-view';
-      //  }else{
-      //    viewName = 'list-view';
-      //  }
-      //}
+      }
       window.tdc.patConfig.maxItemsFlag = false;
       window.tdc.patConfig.assetsTotalCount = 0;
        dispatch({
@@ -102,7 +91,20 @@ const mapDispatchToProps = (dispatch) => {
              displayCount = filterSettings.displayvaluecount ? filterSettings.displayvaluecount: 9;
            }
            dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO, displayCount, 0, filterSettings.sortIndex, filterSettings.viewName));
-         })
+         }).catch(function (err) {
+             console.log('Localforage not exist in TreePaneContainer', err)
+             let viewName;
+             if(document.querySelectorAll('.dropdown-display').length > 0){
+               let getviewName = document.querySelectorAll('.dropdown-display')[0]['children'][0]['children'][0].getAttribute('CLASS');
+
+               if(getviewName == 'fa fa-th'){
+                 viewName = 'grid-view';
+               }else{
+                 viewName = 'list-view';
+               }
+             }
+             dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,0,undefined,viewName));
+       });
       }, 
       getSubFolders:function (foldername,child, nodeRef) { 
       	dispatch(getSubFolders('browseasset',foldername,child, nodeRef));

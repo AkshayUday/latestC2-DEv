@@ -120,13 +120,7 @@ const mapDispatchToProps = (dispatch) => {
 
     onChange:function (event,sortIndex){
       event.preventDefault();
-      // let viewName = 'list-view';
       let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
-      //if(document.querySelector('#viewDropDownContainer span i').className==='fa fa-list'){
-      //  viewName = 'list-view';
-      //}else{
-      //  viewName = 'grid-view';
-      //}
       let searchValue = document.querySelector('#searchAutoSuggest input').value;
       dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,parseInt(event.target.value),fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
     },

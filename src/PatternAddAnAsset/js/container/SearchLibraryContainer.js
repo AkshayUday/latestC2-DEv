@@ -152,7 +152,17 @@ const mapDispatchToProps = (dispatch) => {
               // 	//document.querySelectorAll('#searchfilterAssets .ReactTabs__Tab')[0].click();
               // }
               //    }
-            })
+            }).catch(function (err) {
+              console.log('Localforage not exist in SearchLibraryContainer', err)
+              dispatch(getSearchProductItems(searchString, DEFAULT_PAGE_NO, DEFAULT_MAX_RESULTS, 0));
+              dispatch({
+                type: 'SEND_TO_QUAD',
+                data: {}
+              });
+
+              document.querySelectorAll('#displayContainerDiv')[ 0 ].style.display = 'block';
+              document.querySelectorAll('#assetSelectBtn')[ 0 ].style.display = 'inline-block';
+          });
 			});
 
       })

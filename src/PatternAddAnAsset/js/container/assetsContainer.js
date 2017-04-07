@@ -132,19 +132,9 @@ const mapDispatchToProps = (dispatch) => {
 
     onChange:function (event,sortIndex){
       event.preventDefault();
-      //let viewName = 'grid-view';
       let fileTypeIndex = findFileTypeIndex('#browseTabsContainer');
-      //if (document.querySelector('#viewDropDownContainer span i')) {
-      //  if(document.querySelector('#viewDropDownContainer span i').className==='fa fa-list'){
-      //    viewName = 'list-view';
-      //  }
-      //}
-      // if (document.querySelector('.filter-container .tree-node-selected')) {
-      // let nodeRef = document.querySelector('.filter-container .tree-node-selected');
       let nodeRef = this.currentFolder;
-      // let id = nodeRef.id;
       dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,parseInt(event.target.value),fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
-      // }
     },
 
     setSelectedItem: function (record) {
@@ -167,32 +157,14 @@ const mapDispatchToProps = (dispatch) => {
       if (document.querySelector('#itemPerPageSelectBox')) {
         maxItems = parseInt(document.querySelector('#itemPerPageSelectBox').value);
       }
-
-      // if (document.querySelector('.filter-container .tree-node-selected')) {
-      // let nodeRef = document.querySelector('.filter-container .tree-node-selected');
-      //nodeRef = document.querySelector('.filter-container .pe_filter_enabled');
       let nodeRef = this.currentFolder;
-      // let id = nodeRef.id;
       dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
-      // }
     },
 
     changeView:function (viewName,sortIndex){
       let maxItems;
       let fileTypeIndex = findFileTypeIndex('#browseTabsContainer');
       let nodeRef = this.currentFolder;
-      //if(viewName === 'list-view'){
-      //  maxItems = 25;
-      //}else{
-      //  maxItems = 9;
-      //}
-      // if (document.querySelector('.filter-container .tree-node-selected')) {
-      // let nodeRef = document.querySelector('.filter-container .tree-node-selected');
-      // let id = nodeRef.id;
-
-
-      // }
-
       if(viewName === 'list-view'){
         localforage.getItem('persistFilterSettings')
           .then((filterSettings) => {
