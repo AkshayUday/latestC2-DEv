@@ -13,7 +13,7 @@ export default {
   	let store = localForage.createInstance({
 	          name: saveObj.type   
 	    });
-	return store.setItem(saveObj.userId,saveObj.saveInputObj);
+	return store.setItem(saveObj.userId,saveObj);
 	}
    
 }
