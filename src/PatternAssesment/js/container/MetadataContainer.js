@@ -66,53 +66,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
       errMsg = metadata.errMsg;
      }
 
-/*     if (state.form.mvm!==undefined) {debugger;
-       let metadata = state.form.mvm;
-       const metadataReducer = getSelectedValues(state.Metadatareducers);
-       return {
-        uuid :(metadataReducer!==undefined  && metadataReducer.uuid!==undefined)?metadataReducer.uuid:'',
-        filename : metadata.filename.value,
-        name : metadata.name.value,
-        urn : (metadataReducer!==undefined  && metadataReducer.urn!==undefined)?metadataReducer.urn:'',
-        planId: metadata.planId.value,
-        isbn: metadata.isbn.value,
-        modNo: metadata.modNo.value,
-        chapNo: metadata.chapNo.value,
-        author: metadata.author.value,
-        contentType : metadata.contentType.value,
-        audience :  metadata.audience.value,
-        difficultyLevel :metadata.difficultyLevel.value,
-        knowledgeLevel : metadata.knowledgeLevel.value,
-        publisher : metadata.publisher.value,
-        objAlign : metadata.objAlign.value,
-        discipline : metadata.discipline.value,
-        goalAlignment : metadata.goalAlignment.value,
-        timeReq : metadata.timeReq.value,
-        desc : metadata.desc.value,
-        keywords: metadata.keywords.value,
-        prodKeywords: metadata.prodKeywords.value,
-        goalKeywords: metadata.goalKeywords.value,
-         //product: product,
-         hours: metadata.hours.value,
-         mins: metadata.mins.value,
-         secs: metadata.secs.value,
-         copyrightInfo: metadata.copyrightInfo.value,
-         errMsg: errMsg,
-         //audienceRolesData : metadata.audienceRolesData,
-         audienceRolesData:(state.form.mvm!==undefined  && state.form.mvm
-         .audienceRolesData!==undefined)?metadata.audience.value:'',
-         /*if(state.form.mvm.difficultyLevelData!==undefined){
-            difficultyLevelData : metadata.difficultyLevelData
-         }
-         if(state.form.mvm.audienceRolesData!==undefined){
-            audienceRolesData : metadata.audienceRolesData
-         }
-         if(state.form.mvm.disciplineData!==undefined){
-            disciplineData : metadata.disciplineData
-         }*/
-   // }
-   //  }
-     //if (metadata.contentTypeData && state.autoComplete.length === 1) {debugger;
+
       const initialValue = {
         uuid : metadata.uuid,
         filename : metadata.filename,
@@ -141,15 +95,12 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
          mins: metadata.mins,
          secs: metadata.secs,
           patConfig:patConfig,
-          //product: product,
          copyrightInfo: metadata.copyrightInfo,
           errMsg: errMsg,
           eTag: metadata.eTag
       }
       return {
-          //suggestions: metadata.suggestions,
           prodSuggestions: metadata.prodSuggestions,
-          //goalSuggestions: metadata.goalSuggestions,
           contentTypeData : metadata.contentTypeData,
           audienceRolesData : metadata.audienceRolesData,
           difficultyLevelData : metadata.difficultyLevelData,
@@ -184,11 +135,10 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
           prodKeywords: metadata.prodKeywords,
           goalKeywords: metadata.goalKeywords,
           hours: metadata.hours,
-         mins: metadata.mins,
-         secs: metadata.secs,
+          mins: metadata.mins,
+          secs: metadata.secs,
           patConfig:patConfig,
-          //product: product,
-           copyrightInfo: metadata.copyrightInfo,
+          copyrightInfo: metadata.copyrightInfo,
           'initialValues': initialValue
     }
   //}
@@ -212,8 +162,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       delete ownProps.libConfig.headers['X-Roles-Test']; 
     }
     metadata.libConfig = ownProps.libConfig;
-    //metadata.libConfig.headers['x-apikey'] = ownProps.patConfig.patSetup.apiKeyId;
-    //metadata.libConfig.headers['X-PearsonSSOSession'] = ownProps.patConfig.patSetup.sessionKeyId;
   }
 
   return {

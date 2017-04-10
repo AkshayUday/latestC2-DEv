@@ -229,3 +229,12 @@ font-size:14px;
 padding-bottom: 6px;
 }
 }
+.assessmentCheckbox label {
+        float:left;
+        margin: 5px 0px;
+       font-size: 14px;
+    }
+.assessmentCheckbox input {   
+        margin: 7px 0px;
+        width: 50px;  
+    }

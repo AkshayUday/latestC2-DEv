@@ -50,11 +50,10 @@ render() {
         return ''
       }
     }
-
         return (
             <input
             id={this.props.id}
-            className= {this.props.className +' '+ inputState(this.props.value)}
+            className= {this.props.className}
               ref="input" type="radio"
               name={this.props.name}
                required={this.props.required}

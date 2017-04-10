@@ -49,13 +49,17 @@ export function populateAutoComplete(text,savedSearch,lastThreeSearch) {
             // if(checkAndAdd(autoCompleteData,titleVal)==false){
             // autoCompleteData.push({term:titleVal});
             // }
-
-            if(checkAndAdd(autoCompleteData,_titleVal)==false){
-            autoCompleteData.push({term:_titleVal});
+           
+            if(_titleVal != ''){
+              if(checkAndAdd(autoCompleteData,_titleVal)==false){
+                autoCompleteData.push({term:_titleVal});
+              }
             }
-
-            if(checkAndAdd(autoCompleteData,_nameVal)==false){
-            autoCompleteData.push({term:_nameVal});
+           
+            if(_nameVal != ''){
+              if(checkAndAdd(autoCompleteData,_nameVal)==false){
+                autoCompleteData.push({term:_nameVal});
+              }
             }
     
 

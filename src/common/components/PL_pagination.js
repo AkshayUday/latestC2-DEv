@@ -2,31 +2,25 @@ import React, { Component, PropTypes } from 'react';
 import styles from './styles/PL_PaginationStyles.css';
 
 
-class Pagination extends Component {
-    constructor(props, context) {
-        super(props, context)
-        
-    }
-
-    render(){
+const Pagination = (props) => {
         return (
           <div className={styles.paginationContainer}>
           <ul className={styles.pagination}>
-           <li className={this.props.pageNumber==1 ? styles.disabled : ''}>
+           <li className={props.pageNumber==1 ? styles.disabled : ''}>
                 <a onClick={ (e) => {
                     e.preventDefault();{
-                  if(this.props.pageNumber>1)
-                    this.props.onChange(this.props.pageNumber-1);
+                  if(props.pageNumber>1)
+                    props.onChange(props.pageNumber-1);
                   }
                 }} href='#'>
                    «
                 </a>
             </li>
-            <li className={styles.active}><a href='#'>{this.props.pageNumber}</a></li>
-            <li className={this.props.lastPage ? styles.disabled : ''}><a onClick={ (e) => {
+            <li className={styles.active}><a href='#'>{props.pageNumber}</a></li>
+            <li className={props.lastPage ? styles.disabled : ''}><a onClick={ (e) => {
                     e.preventDefault();
-                    if(!this.props.lastPage){
-                      this.props.onChange(this.props.pageNumber+1);
+                    if(!props.lastPage){
+                      props.onChange(props.pageNumber+1);
                    }
                 }} href='#'>
                     »
@@ -34,7 +28,6 @@ class Pagination extends Component {
           </ul>
           </div>
         )
-    }
 }
 
 Pagination.propTypes = {

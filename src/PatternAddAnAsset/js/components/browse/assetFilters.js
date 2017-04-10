@@ -112,7 +112,6 @@ class AssetFilters extends Component {
   return c2TabData.map(c2TabData => ({
     key: c2TabData.index, // Optional. Equals to tab index if this property is omitted
     tabClassName: c2TabData.className, 
-    panelClassName: 'childPanel', // Optional
     title: c2TabData.name,
     getContent: () => c2TabData.content,
   }));

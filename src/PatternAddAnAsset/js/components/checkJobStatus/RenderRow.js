@@ -45,54 +45,55 @@ toggle(type){
 * @function getAssets method is used for format a children DOM to display
 * onclick of the displayed asset
 */
-getAssets(node, style){
-	const assets = node;
-	let assetArry = [];
-	let key;
-	for(key in assets){
+// getAssets(node, style){
+// 	const assets = node;
+// 	let assetArry = [];
+// 	let key;
+// 	debugger;
+// 	for(key in assets){
 
-		if(assets.hashasOwnProperty('name') && 
-			assets.hashasOwnProperty('size')){
-			assetArry.push(
-				<div key={key}className={Styles.children}>
-				<div className={Styles.col13} style={style}>{assets[key].name}</div>
-				<div className={Styles.col13} style={style}>{assets[key].size}</div>
-				<div className={Styles.col13} style={style}><ProgressBar percentage={'0'}/></div>
-				<div className={Styles.col13} style={style}>
+// 		if(assets.hashasOwnProperty('name') && 
+// 			assets.hashasOwnProperty('size')){
+// 			assetArry.push(
+// 				<div key={key}className={Styles.children}>
+// 				<div className={Styles.col13} style={style}>{assets[key].name}</div>
+// 				<div className={Styles.col13} style={style}>{assets[key].size}</div>
+// 				<div className={Styles.col13} style={style}><ProgressBar percentage={'0'}/></div>
+// 				<div className={Styles.col13} style={style}>
 
-				<span className={Styles.img}>
-				<i className="fa fa-check-circle" aria-hidden="true"></i>
-				</span>
-				<span>{assets[key].status}</span>
-				</div>
+// 				<span className={Styles.img}>
+// 				<i className="fa fa-check-circle" aria-hidden="true"></i>
+// 				</span>
+// 				<span>{assets[key].status}</span>
+// 				</div>
 
 
-				</div>
-				);
-			}
-		}
-		return assetArry;
-	}
+// 				</div>
+// 				);
+// 			}
+// 		}
+// 		return assetArry;
+// 	}
 
 	/**
 	* @function getChildren method is used for get the children for the object
 	* make necessary state changes
 	*/
-	getChildren(self, assetRow){
-
-		let asset = assetRow.assets;
-		let style = {};
-		if(assetRow.Name !== this.state.display){
-			style.display = 'none';
-		}else if(assetRow.Name === this.state.display){
-			if(this.state.visible){
-				style.display = 'none';
-			}else{
-				style.display = '';
-			}
-		}
-		return this.getAssets(asset, style);
-	}
+	// getChildren(self, assetRow){
+	// 	debugger;
+	// 	let asset = assetRow.assets;
+	// 	let style = {};
+	// 	if(assetRow.Name !== this.state.display){
+	// 		style.display = 'none';
+	// 	}else if(assetRow.Name === this.state.display){
+	// 		if(this.state.visible){
+	// 			style.display = 'none';
+	// 		}else{
+	// 			style.display = '';
+	// 		}
+	// 	}
+	// 	return this.getAssets(asset, style);
+	// }
 
 	/**
 	* @default render method will be used for returning the DOM to called functions
@@ -101,41 +102,40 @@ getAssets(node, style){
 		let childList;
 		let self = this;
 		let nameElement;
-	
 		let rows = this.props.rows.map(function (item,index){
 			let rowArr = [];
-			childList = self.getChildren(self,item);
-
-			for(let row in item){
-
-				if(row === 'Name'){
+			//childList = self.getChildren(self,item);
+		let row = Object.keys(item);
+			// for(let row in item){
+			for(let i=0;i<row.length;i++){
+				if(row[i] === 'Name'){
 					//nameElement = <u><a onClick={self.toggle.bind(self,item)}>{item[row]}</a></u>;
-					nameElement = <div className={Styles.colMd5}><span className={Styles.fileName}>{item[row]}</span></div>;
+					nameElement = <div className={Styles.colMd5}><span className={Styles.fileName}>{item[row[i]]}</span></div>;
 				}
-				else if(row === 'Progress'){
-					if(item[row] === 100){
+				else if(row[i] === 'Progress'){
+					if(item[row[i]] === 100){
 						nameElement = <div className={Styles.colMd2}><ProgressBar percentage={'100'}/></div>;
 
 					}else{
-						nameElement = <div className={Styles.colMd2}><ProgressBar percentage={item[row]}/></div>;
+						nameElement = <div className={Styles.colMd2}><ProgressBar percentage={item[row[i]]}/></div>;
 					}
-				}else if(row === 'status'){
-					if(item[row] === 'Success') {
-					nameElement = (<div className={Styles.colMd4 +' '+Styles.jobstatusText}><span className={Styles.parentImg}>
+				}else if(row[i] === 'status'){
+					if(item[row[i]] === 'Success') {
+					nameElement = (<div className={Styles.colMd4 +' '+Styles.jobstatusText}><span className={Styles.successImg}>
 					<i className="fa fa-check-circle" aria-hidden="true"></i>
 					</span>
-					<span>{item[row]}</span></div>);
-					}else if(item[row] === 'Uploading'){
-					nameElement = (<div className={Styles.colMd4 +' '+Styles.jobstatusText}><span className={Styles.parentImg}>
+					<span>{item[row[i]]}</span></div>);
+					}else if(item[row[i]] === 'Uploading'){
+					nameElement = (<div className={Styles.colMd4 +' '+Styles.jobstatusText}><span className={Styles.loaderImg}>
 					<i className="fa fa-spinner fa-spin checkJobStatusLoader"></i></span>
-					<span>{item[row]}</span></div>);
+					<span>{item[row[i]]}</span></div>);
 					}else{
-						nameElement = (<div className={Styles.colMd4 +' '+Styles.jobstatusText}><span><i className="fa fa-times-circle checkJobStatusSuccess">
-						</i>{item[row]}</span></div>);
+						nameElement = (<div className={Styles.colMd4 +' '+Styles.jobstatusText}><span className={Styles.failureImg}><i className="fa fa-times-circle checkJobStatusSuccess">
+						</i></span><span>{item[row[i]]}</span></div>);
 					}
 				}else{
 					if(row !== 'assets'){
-						nameElement = <div className={Styles.colMd1}>{item[row]}</div>;
+						nameElement = <div className={Styles.colMd1}>{item[row[i]]}</div>;
 					}else{
 						nameElement = '';
 					}
@@ -147,7 +147,7 @@ getAssets(node, style){
 				}
 			}			
 
-			rowArr.push(childList);
+			//rowArr.push(childList);
 			return <div key={Math.random()} className={Styles.row +' '+ Styles.subRows}>{rowArr}</div>
 
 		});

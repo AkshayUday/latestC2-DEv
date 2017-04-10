@@ -29,7 +29,7 @@ import styles from './styles/MVMStyles.css';
 import {fetchMetaData, saveMetaData} from '../../action/MetadataAction';
 export const fields = ['uuid','filename', 'name', 'urn', 'isbn','modNo','chapNo','author','contentType', 'planId','audience',
                        'difficultyLevel','knowledgeLevel','publisher','discipline', 'goalAlignment','objAlign','metadataType',
-                       'timeReq','desc','keywords','prodKeywords','goalKeywords','hours','mins','secs','copyrightInfo','eTag'];
+                       'timeReq','desc','keywords','prodKeywords','goalKeywords','hours','mins','secs','copyrightInfo','adaptiveFlag','eTag'];
 /**
  * The validations value.
  * @type {object}
@@ -62,6 +62,7 @@ let validations = {
      'mins':false,
      'secs':false,
      'copyrightInfo':false,
+     'adaptiveFlag':false,
      'eTag':false,
      'metadataType':false
 };
@@ -77,7 +78,10 @@ class MVMComponent extends React.Component{
  *  @param  {function}  props.onSuggestionsUpdateRequested
 */
 constructor(props) {
-    super(props);
+   super(props);
+    this.state = {
+      isChecked: true,
+    };
 /**
  * The displayName MVMComponent.
  * @type {string}
@@ -120,6 +124,11 @@ componentDidMount(){
    //hiddenDiv.addClass('hiddendiv');
    //jquery('body').prepend(hiddenDiv);*/
 }
+toggleChange = () => {
+    this.setState({
+      isChecked: !this.state.isChecked,
+    });
+  }
 
 handleChange(tags,src){ 
     this.props.handleChange(tags,src);
@@ -284,7 +293,7 @@ render() {
   const{
     fields : {uuid, filename,name,urn,contentType,audience,modNo,author,planId,chapNo,difficultyLevel,
               knowledgeLevel,copyrightInfo,discipline,publisher,isbn,goalAlignment,objAlign,timeReq,desc,keywords,
-              prodKeywords,goalKeywords,hours,mins,secs,eTag,metadataType},
+              prodKeywords,goalKeywords,hours,mins,secs,eTag,adaptiveFlag,metadataType},
     handleSubmit
   }= this.props;
     return (
@@ -360,6 +369,10 @@ render() {
                     <Label for ="copyrightInfo " text={formatMessage(messages.MVM_copyrightInfo)}/>
                     <TextBox value = {copyrightInfo } placeholder="Add the copyright information"/>
                 </div>
+                <div className={styles.assessmentCheckbox}>
+                      <label> Adaptive Flag </label>
+                       <input type="checkbox" checked={this.state.isChecked} onChange={this.toggleChange.bind(this)}/>
+                 </div>
                </div>
             </section>
             </div>
@@ -394,7 +407,7 @@ MVMComponent = reduxForm({
     form: 'mvm',
      fields: ['uuid', 'filename','name','urn','isbn','planId','modNo','chapNo','author','contentType','audience','difficultyLevel',
               'knowledgeLevel','publisher','copyrightInfo','discipline','goalAlignment','objAlign','timeReq','desc','keywords',
-              'prodKeywords','goalKeywords','hours','mins','secs','eTag','metadataType'],
+              'prodKeywords','goalKeywords','hours','mins','secs','eTag','adaptiveFlag','metadataType'],
      ...generateValidation(validations)
   })(MVMComponent);
 

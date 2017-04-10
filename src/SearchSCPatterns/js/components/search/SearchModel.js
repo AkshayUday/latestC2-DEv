@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Label from '../../../../common/components/Label';
 import TextBox from '../../../../common/components/TextBox';
-import SearchModal from './styles/SearchSpec.css'
+import SearchModal from './styles/SearchSpec.css';
+import Search from '../../../../common/components/AutoSuggest';
+
 class SearchModel extends Component {
 
 	constructor(props){
@@ -9,8 +11,11 @@ class SearchModel extends Component {
 		this.textValueChange = this.textValueChange.bind(this);
 		this.onSearchIconClick = this.onSearchIconClick.bind(this);
 		this.state={
-			textValue:''
+			textValue:'',
+			value: '',		
+	      	suggestions: []
 		}
+		this.getAutoData = this.getAutoData.bind(this);
 	}
 	textValueChange(textValue){ 
 		this.setState({textValue: textValue.target.value});
@@ -18,16 +23,20 @@ class SearchModel extends Component {
 	onSearchIconClick(){ 
 		this.props.filter(this.state.textValue);
 	}
+	getAutoData(val){ 
+      this.setState({textValue: val});		
+      this.props.currAutoData(val);		
+	}
 	render(){
 
 		return (
 				<div className={SearchModal.header}>
 					<div className={SearchModal.labelClass}>
-						<Label for='searchInteractive' text='Enter Name or Filename'/>
+						<Label for='searchInteractive' text={this.props.patternTitle}/>
 					</div>
 					<div className={SearchModal.seachTexBoxWrapper}>
 						<div className={SearchModal.searchTextBox}>
-							<TextBox className='searchBox' onChange={this.textValueChange}/>
+							<Search autoSuggestData = {this.props.autoSuggestData}  hostfilename = {this.props.hostfilename} getAutoData = {this.getAutoData}/>
 						</div>
 						<div className={SearchModal.searchBtn}>
 							<i className="fa fa-search" aria-hidden="true"  
@@ -40,7 +49,12 @@ class SearchModel extends Component {
 	}
 }
 SearchModel.propTypes={
-	filter: React.PropTypes.func
+	filter: React.PropTypes.func,
+	suggestions: React.PropTypes.object,		
+	autoSuggestData: React.PropTypes.array,		
+	currAutoData: React.PropTypes.func,
+	hostfilename: React.PropTypes.string,
+	patternTitle: React.PropTypes.string
 }
 
 export default SearchModel;

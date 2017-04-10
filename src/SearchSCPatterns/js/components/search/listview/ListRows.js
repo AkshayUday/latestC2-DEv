@@ -14,7 +14,7 @@ class ListRows extends Component{
 
 	render(){ 
 		let self = this;
-		let isZibra = this.props.zibraRows ? ListStyles.zibrarows : '';
+		let isZibra = this.props.zibraRows ? ListStyles.zibrarows : ListStyles.noZibraRows;
 		let rowContent = 'No Results Found';
 		if(this.props.rows.length > 0){
 			rowContent = this.props.rows.map(function (row){

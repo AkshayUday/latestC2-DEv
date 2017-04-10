@@ -38,7 +38,6 @@ ReactTabs__TabPanel.uploadAssets .right-wrapper{
 */
 
 #assetSingleFileUploadSection  {
-border:0px solid green;
 margin-top:15px;
 
 
@@ -74,6 +73,9 @@ margin-top:15px;
 	 width:25%;
 	 float:left;
 	 clear:both;
+ }
+ .uploadFolderScroll{
+    height:auto;
  }
 .right-wrapper{
 	width:75%;

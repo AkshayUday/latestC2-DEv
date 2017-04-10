@@ -18,19 +18,30 @@ class InteractiveModal extends React.Component{
 		this.clearModal = props.clearModal;
 		this.closeOnSelect = this.closeOnSelect.bind(this);
 		this.getCallBackData = this.getCallBackData.bind(this);
+		this.closeModal = this.closeModal.bind(this);
 		this.state = {
 			open : true,
+			selectfreeze: false,
 			callBackValue: {}
 		}
+		document.querySelector('body').style.overflow='hidden'; // Prevent Background application Scroll
 	}
 
 	closeOnSelect() {
+		document.querySelector('body').style.overflow='auto'; // Enable background scroll after modal is closed
 		this.setState({open:false});
 		this.clearModal();
-		bean.fire(this.props.patConfig,this.props.patConfig.resultsEventId,this.state.callBackValue);
+		bean.fire(this.props.patConfig,this.props.patConfig.eventId,this.state.callBackValue);
+	}
+
+	closeModal(){
+		document.querySelector('body').style.overflow='auto'; // Enable background scroll after modal is closed
+		this.setState({open:false});
+		this.props.clearModal();
 	}
 
 	getCallBackData(selectedRecord){
+		this.setState({selectfreeze: true})
 		this.setState({callBackValue:selectedRecord});
 	}
 
@@ -40,7 +51,7 @@ class InteractiveModal extends React.Component{
 		return(
 			<PL_Layout open={open} modalTitle={Title} 
 				modalClass={PopupStyles.modalLayout}
-				modalClose={this.closeOnSelect}>
+				modalClose={this.closeModal}>
 				
 				<div className={PopupStyles.modalBodyDiv}>
 					<div className={PopupStyles.interactiveContent}>
@@ -48,8 +59,8 @@ class InteractiveModal extends React.Component{
 	          		</div>
 	          	</div>
 	          	<PL_Footer>
-	                    <button className={PopupStyles.btnCancel} onClick={this.closeBrowseAssets} type="button">{cancelLabel}</button>
-	                    <button className={PopupStyles.btnSelect} onClick={this.closeOnSelect} id='assetSelectBtn' type="button">{acceptLabel}</button>
+	                    <button className={PopupStyles.btnCancel} onClick={this.closeModal} type="button">{cancelLabel}</button>
+	                    <button className={this.state.selectfreeze?PopupStyles.btnSelect : PopupStyles.btnSelectdisabled} disable={this.state.selectfreeze} onClick={this.state.selectfreeze?this.closeOnSelect:''} id='assetSelectBtn' type="button">{acceptLabel}</button>
 	          	</PL_Footer>
 			</PL_Layout>
 

@@ -33,7 +33,7 @@ render() {
         return (
             <input
             id={this.props.id}
-            className= {this.props.className +' '+ inputState(this.props.value)}
+            className= {this.props.className}
               ref="input" type="checkbox"
               name={this.props.name}
               record = {this.props.record}

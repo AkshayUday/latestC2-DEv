@@ -43,7 +43,10 @@ export default {
         const promise = new Promise(function (fulfill, reject) {
             const config = _createConfig(buffer);
             const restPromise = rest.send(config)
+            let _value;
+
             restPromise.then(function (reply) {
+                _value = reply;
               if(reply !== undefined){
               	const json = MLCommon.modifyResData(reply);
                 fulfill(json);
@@ -53,6 +56,16 @@ export default {
             }).catch(function (reply) {
                     reject(reply);
             });
+
+            setTimeout(() => { 
+               
+               if(_value == undefined){
+                console.log('timeout');
+                reject(new Error('timeout'));
+               }
+                
+            }, 15000)
+
         });
         return promise;
     }

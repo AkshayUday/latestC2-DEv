@@ -69,8 +69,9 @@ let nodeRef;
 
   export function flagRootFolders(treeFolders){
     let folderObj;
-    for(let folderItem in treeFolders){
-      folderObj = treeFolders[folderItem];
+    //for(let folderItem in treeFolders){
+      for(let folderItem=0;folderItem<treeFolders.length;folderItem++){
+        folderObj = treeFolders[folderItem];
       if(folderObj.fileName){
         folderObj.isParent = true;
         treeFolders[folderItem] = folderObj;
@@ -124,7 +125,8 @@ let nodeRef;
 export function removeCSSSelector(model, nodeRef){ 
 
   let child;
-  for(let obj in model){
+  // for(let obj in model){
+  for(let obj=0;obj<model.length;obj++){
     child = model[obj];
     if(child.style !== undefined 
        // && child.style.includes('tree-node-selected')
@@ -143,7 +145,8 @@ export function removeCSSSelector(model, nodeRef){
 
 export function getTreeFolder(model, child){ 
   let obj;
-  for(let treeItem in model){
+  //for(let treeItem in model){
+  for(let treeItem=0;treeItem<model.length;treeItem++){
       obj = model[treeItem];
       if(obj.path === child.path){
         model[treeItem] = child;
@@ -219,7 +222,8 @@ export function identifyOnToggle(model, nodeRef){
 
   let folderObj;
   let isParent = false;
-  for(let folderItem in model){
+  //for(let folderItem in model){
+  for(let folderItem=0;folderItem<model.length;folderItem++){
     folderObj = model[folderItem];
     if(folderObj.isParent){
         if(folderObj.path === nodeRef){

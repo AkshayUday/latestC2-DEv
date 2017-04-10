@@ -23,7 +23,7 @@ module.exports = {
         // SplitString = FileName.split('.');
         SplitString = FileName.substr(FileName.lastIndexOf('.')+1, FileName.length);
         // FileExtension = SplitString[1];
-        if(AllowFileFormats.indexOf(SplitString)===-1){
+        if(AllowFileFormats.indexOf(SplitString.toLowerCase())===-1){
           errors.file = 'Error: wrong file type'
         }
         else if(values.file[0].size>MaxFileSize){

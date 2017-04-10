@@ -2,11 +2,8 @@
 
 
 /* Acts as a container */
-.ProductLinkModal{
-	max-width: 500px!important;
-    composes: padding0 from "../../../styles/patterns.css";
-	composes: col100 from "../../../styles/patterns.css";
-    composes: c2FontFamily from "../../../styles/patterns.css";
+.plContainer{
+	all: initial;
 }
 
 
@@ -75,7 +72,7 @@
 
 /*.ProductLinkModal .plModalFooterDiv .plCancelButton{*/
 .plCancelButton{
-     composes: c2GreyButton from "../../../styles/patterns.css";
+     composes: c2BlueButton from "../../../styles/patterns.css";
 }
 
 /*.productLinkclsLoader {

@@ -6,19 +6,17 @@ const PL_ScrollBar = (props) => {
 let isBoolean = true;
 let scrollContent = (
 
-	<Scroll
+        <Scroll
          className={props.classname}
-         contentClassName="content"
+         contentClassName={props.contentName}
          verticalScrollbarStyle={verticalScrollStyle}
          verticalContainerStyle={verticalContainerStyle}
          horizontalScrollbarStyle={horizontalScrollBarStyle}
          horizontalContainerStyle={horizontalContainer}
          smoothScrolling= {isBoolean}
          vertical={isBoolean}
-         horizontal={isBoolean}
-        >
-        	{props.children}
-
+         horizontal={isBoolean}>
+        {props.children}
         </Scroll>);
 
         return(scrollContent);

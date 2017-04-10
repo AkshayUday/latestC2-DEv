@@ -1,3 +1,9 @@
+.addAnAssetContainer{
+	all: initial;
+}
+
+
+
 .addAnAssetLayout{
 	display: flex;
 	width: 900px;
@@ -6,6 +12,12 @@
 	composes: c2FontFamily from "../../../../styles/patterns.css";
 	min-height: 545px;
 }
+
+
+.addAnAssetLayout input{
+  padding:1px!important;
+}
+
 .modalBodyDiv{
 	padding: 0px;
 	margin: 10px 10px 0px 10px;

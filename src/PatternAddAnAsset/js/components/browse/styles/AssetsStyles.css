@@ -196,8 +196,8 @@
 }   
 
 .listImageSize{
-    width: 53px !important;
-    height: 40px !important;
+/*    width: 53px !important;
+    height: 40px !important;*/
     margin-bottom: 8px;
 }
 
@@ -208,6 +208,13 @@
     text-overflow: ellipsis;
     width: 66.66%;
     float: left;
+}
+
+input[type="radio"].PlRadio{
+    height: 13px;
+    position: static;
+    width: 13px;
+    margin: 3px;
 }
 
 .resource-type{

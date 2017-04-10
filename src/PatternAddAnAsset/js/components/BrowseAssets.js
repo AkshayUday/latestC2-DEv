@@ -73,14 +73,14 @@ class BrowseAssets extends Component {
                     if(this.props.folder[0].fileName === undefined){
                     leftPanel = (<div className={BrowseAsset.filtersContent}>
                                 <div className={BrowseAsset.filtersLabel}>Documents</div>
-                                <PL_Scroll className='area'>
+                                <PL_Scroll classname={BrowseAsset.area} contentName={BrowseAsset.scroll}>
                                     <FolderTree clearModal={this.props.clearModal}/>
                                 </PL_Scroll>
                                 </div>);
                     }else{
                       leftPanel = (<div className={BrowseAsset.filtersContent}>
                                 <div className={BrowseAsset.filtersLabel}>Documents</div>
-                                <PL_Scroll classname='area'>
+                                <PL_Scroll classname={BrowseAsset.area} contentName={BrowseAsset.scroll}>
                                    <FolderTree clearModal={this.props.clearModal}
                                           browsestate={isBoolean} folder={this.props.folder}/>
                                 </PL_Scroll>

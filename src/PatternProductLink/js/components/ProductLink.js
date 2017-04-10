@@ -6,7 +6,7 @@ import bean from 'bean';
 
 // Import Component Style
 import styles from './productlink.css';
-import theme from './autosuggestTheme.css';
+import theme from './plautosuggestTheme.css';
 
 import {messages} from './ProductLinkDefaultMessages';
 

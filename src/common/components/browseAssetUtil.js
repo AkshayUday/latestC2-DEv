@@ -34,7 +34,7 @@ export function getNodeRef(nodeRef){
 */
 export function highlightChildren(model, fileName){
 	
-    for(let obj in model)  {
+    for(let obj=0; obj<model.length; obj++)  {
       let item = model[obj];
       if(item.fileName === fileName){
         item.style = 'pe_filter_enabled tree-node-selected link-view';
@@ -66,7 +66,7 @@ let childrens = document.querySelectorAll('.filter-container .tree-node-selected
 */
 export function getFirstObj(data){
   let node;
-  for(let obj in data){
+  for(let obj=0; obj<data.length; obj++){
      node = data[obj];
     if(Number(obj) === 0){
       return node;
@@ -107,7 +107,7 @@ export function trimFolderName(fileName, lengthOfChar){
 */
 export function getFirstName(data){
   let name;
-  for(let obj in data){
+  for(let obj=0; obj<data.length; obj++){
     if(data[obj].hasOwnProperty('fileName')){
     let node = data[obj];
     if(Number(obj) === 0){
@@ -156,7 +156,7 @@ export function getAssetData(dataArray){
   dataArray = JSON.parse(JSON.stringify(dataArray));
   if(dataArray && dataArray.items.length > 0){
     let items = dataArray.items;
-    for(let obj in items){
+    for(let obj=0;obj<items.length;items++){
       assetItem = items[obj];
       if(assetItem.type !== 'forumpost'){
         assetArray.push(assetItem);

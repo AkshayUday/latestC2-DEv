@@ -47,6 +47,7 @@
   "zibraRows": false,
   "Title": "Search Library",
   "cancelLabel": "Cancel",
-  "acceptLabel": "Select"
+  "acceptLabel": "Select",
+  "patternTitle":"Enter Search Term"
 }
 

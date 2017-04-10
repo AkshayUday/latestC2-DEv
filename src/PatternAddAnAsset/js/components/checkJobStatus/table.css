@@ -198,10 +198,22 @@
  .col-md-11 {width: 91.66%;}
  .col-md-12 {width: 100%;}
 
- .parentImg{
+ .successImg{
     float: left;
     margin-right: 5px;
     color:#006625;
+}
+
+ .failureImg{
+    float: left;
+    margin-right: 5px;
+    color:#A9443F;
+}
+
+ .loaderImg{
+    float: left;
+    margin-right: 5px;
+    color:#8A8A8A;
 }
 
 

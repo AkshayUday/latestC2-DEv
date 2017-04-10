@@ -30,16 +30,16 @@ constructor(props) {
 */
 
     this.displayName = 'TextBox';
-    this.handleChange = this.handleChange.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
  }
 
  myFunction(e){
 
   }
 
-handleChange(e) {
+/*handleChange(e) {
     this.props.onChange(e);
-}
+}*/
 
 
 /**
@@ -64,7 +64,6 @@ render() {
                  disabled={this.props.disabled}
                  className={this.props.className}
                  autoComplete={this.props.autocomplete}
-                 onChange={this.handleChange}
             />
         )
     }
@@ -79,8 +78,7 @@ TextBox.propTypes= {
     maxLength:React.PropTypes.string,
     readOnly:React.PropTypes.bool,
     className:React.PropTypes.string,
-    autocomplete:React.PropTypes.string,
-    onChange: React.PropTypes.func
+    autocomplete:React.PropTypes.string
 }
 TextBox.defaultProps ={
       id:'',

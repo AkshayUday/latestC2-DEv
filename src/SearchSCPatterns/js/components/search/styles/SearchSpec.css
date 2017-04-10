@@ -1,12 +1,16 @@
 .header{
 	display: flex;
-	flex-flow: column wrap;
+	/*flex-flow: column wrap;*/
 	width: 100%;
-    padding-bottom: 2%;
+    flex: 1;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 1%;
 }
 
 .labelClass{
-
+    display: flex;
+    flex: 0.4;
+    align-items: center;
 }
 
 
@@ -21,7 +25,8 @@
 
 .seachTexBoxWrapper{
 	display: flex;
-	padding-top: 2%;
+	/*padding-top: 2%;*/
+    flex: 2;
 }
 
 .searchBtn{
@@ -31,10 +36,10 @@
     justify-content: flex-start;
 }
 .searchBtn i{
-	width: 5%;
+	width: 7%;
     padding-left: 7px;
     line-height: 29px;
-    height: 29px;
+    /*height: 29px;*/
     color: #565656;
     background: #e6e6e6;
     border: 1px solid #b3b3b3;
@@ -45,8 +50,8 @@
 
 .SearchWrapper{
     display: flex;
-    flex: 1;
     flex-flow: column wrap;
+    width: 100%;
 }
 
 /** Filter Model **/
@@ -54,9 +59,10 @@
     display: flex;
     flex-flow: column wrap;
     /*margin-top: 2%;*/
-    border-top: 1px solid lightgrey;
-    padding-top: 2%;
+    /*border-top: 1px solid lightgrey;*/
     color: grey;
+    flex: 1;
+    padding-top: 1%;
 }
 .filterRow{
     display: flex;
@@ -67,8 +73,8 @@
     padding-top: 13px;
 }
 .filterSelectBox{
-    position: relative;
-    left: calc(1%);
+    /*position: relative;
+    left: calc(1%);*/
 
 }
 .saveSearch{
@@ -90,4 +96,34 @@
 .filterSort{
     display: flex;
     padding-left: 1%;
+}
+
+.errorDisplay{
+    color: red;
+}
+
+
+/* Select box specific styles */
+
+.DisplayItemCount {
+    border: 1px solid #ccc;
+    width: 50px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("b64---./images/dropdown_arrow.png---") no-repeat 90% 50%;
+    margin:0px 5px;
+}
+
+.DisplayItemCount select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.DisplayItemCount select:focus {
+    outline: none;
 }

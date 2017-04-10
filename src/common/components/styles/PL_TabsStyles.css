@@ -16,6 +16,7 @@
   white-space: nowrap;
   margin-left: -1px;
   padding: .5em 1.8em;
+  font-size: 16px;
 }
 @media only screen and (max-width: 600px) {
     .parentTabs{

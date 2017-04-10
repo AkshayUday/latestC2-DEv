@@ -33,6 +33,7 @@ displayJson(jsonObj,self){
 					<CheckboxComponent
 						name={searchTerm}
 						val={searchTerm}
+						className={savedSearchStyles.PlCheckBox}
 						id={id}
 						checked={item.isChecked}
 						onChangeHandler={self.checkChangeHandler.bind(this)}/>

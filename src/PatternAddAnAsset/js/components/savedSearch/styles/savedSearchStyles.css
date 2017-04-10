@@ -10,6 +10,12 @@
 	padding: 8px 4px;
 }
 
+input[type="checkbox"].PlCheckBox {
+    height: 13px;
+    position: static;
+    width: 13px;
+}
+
 .savedSearchChkbox{
 	margin-right:15px;
 }

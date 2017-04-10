@@ -90,7 +90,7 @@ class assets extends Component {
       let modify = item.modifiedBy !== undefined ? 'Uploaded by: '+item.modifiedBy : '';
       let fileInfo = item.size !== undefined ? ' File size: '+ fileSize + fileType : '';
        let pageRender;
-       let radioBtn = <Radio name='assetsCheckbox' ref='radioComp' record={item} checked= {checked} customFn = {setSelectedItem} parent = {this.assetSelectedEvent}/>
+       let radioBtn = <Radio name='assetsCheckbox' className={AssetStyles.PlRadio} ref='radioComp' record={item} checked= {checked} customFn = {setSelectedItem} parent = {this.assetSelectedEvent}/>
        let imgTag = <img src={item.url} alt='product image' />
        let self = this;
        if(this.props.pageView === 'grid-view'){

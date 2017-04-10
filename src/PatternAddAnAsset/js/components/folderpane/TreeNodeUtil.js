@@ -40,7 +40,8 @@ export default{
 			objectId, cmisName, parentId;
 
        let jsonFolderData = jsonData.results;
-		for(let obj in jsonFolderData){
+		//for(let obj in jsonFolderData){
+		for(let obj=0;obj<jsonFolderData.length;obj++){
 			tempObj = jsonFolderData[obj];
 			baseTypeId = tempObj.properties['cmis:baseTypeId'];
 			objectId = tempObj.properties['cmis:objectTypeId'];
@@ -64,7 +65,6 @@ export default{
 						treeContainer.push(treeObj);
 					}
 				}
-
 			}
 		}
 

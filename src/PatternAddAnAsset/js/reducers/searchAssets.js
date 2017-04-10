@@ -30,23 +30,8 @@ let initilizeValues = Immutable.List.of([]);
 const searchAssets = (state = initilizeValues, action)=>{
   switch(action.type) {
     case SEARCH_DISPLAY_ASSETS:
-    let temp = action.data.items;
-    for (let i in temp) {
-      // if(temp[i].mimetype.indexOf('audio') >= 0){
-      //  // if(temp[i].mimetype.includes('audio')){
-      //   temp[i].url = window.tdc.libConfig.imagesPath+'/defaultAudio.png'
-      //   //temp[i].url = '../../images/defaultAudio.png'
-      //   //temp[i].url = 'https://'+location.host+'/images/defaultAudio.png';
-      // }else{
-        let temp1 = temp[i].nodeRef.split('/');
-        let refId = temp1[temp1.length -1];
-        let imageUrl = window.tdc.libConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+refId+'/content/thumbnails/doclib';
-        //let imageUrl = format(serviceUrls.thumbnail+'?alf_ticket={1}', [refId, action.data.token]);
-        temp[i].url = imageUrl;
-    //}
-  }
-    return state.push(action.data);
-
+      return state.push(action.data);
+    break;
     case UPDATE_ASSET_TAB_INDEX:
       let data = state.get(state.size-1);
       data.selectedIndex = action.data;

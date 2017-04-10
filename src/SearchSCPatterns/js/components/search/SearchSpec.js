@@ -3,18 +3,23 @@ import SearchStyles from './styles/SearchSpec.css'
 import SearchModel from './SearchModel'
 import FilterModel from './FilterModel'
 import ListView from './listview/ListView'
-import Pagination from '../../../../common/components/PL_Pagination'
+import SearchPaging from './SearchPaging'
+
 import Util from '../../util/SearchAssetsUtil'
+
 const rows = [];
 class SearchSpec extends Component{
 	constructor(props){ 
 		super(props);
 		this.filterFlag = this.filterFlag.bind(this);
 		this.getValue = this.getValue.bind(this);
+		this.handleItemCountChange = this.handleItemCountChange.bind(this);
 		this.handlePageChange = this.handlePageChange.bind(this);
 		this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
 		this.onColumnSort = this.onColumnSort.bind(this);
-		let tempRow = rows.slice(0,9);
+		this.componentWillMount = props.componentWillMount;		
+		this.savedSearch = props.savedSearch.bind(this);		
+		this.currAutoData = this.currAutoData.bind(this);
 		if(this.getAssetsWithManifestation){
 			this.getAssetsWithManifestation = props.getAssetsWithManifestation.bind(this);
 		}
@@ -23,15 +28,12 @@ class SearchSpec extends Component{
 			config : this.props.componentConfig,
 			pageNo:1,
 			pageLimit:25,
-			numberFound: rows.length,
-			rows: tempRow,
-			totalRecords: tempRow.length,
-			index:0,
 			columnsort : false,
 			clickedItem : '',
 			freeText: '',
-			actionTypes: new Map()
-			}
+			actionTypes: new Map(),
+			sugSaveVal: ''
+		}
 	}
 	onColumnSort(columnName, mdsProperty){ 
 		
@@ -49,6 +51,15 @@ class SearchSpec extends Component{
 	filterFlag(flag){
 		this.setState({filterStatus : !flag});
 	}
+
+	handleItemCountChange(event){
+		this.setState({pageNo : 1});
+		this.setState({pageLimit: parseInt(event.target.value)});
+		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', 1));
+		this.state.actionTypes.set('PAGING_MAX', Util.getActionObj('GET_PAGE_MAX', parseInt(event.target.value)));
+		this.getAssetsWithManifestation();
+	}
+
 	handlePageChange(pageNo){
 		this.setState({pageNo : pageNo});
 		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', pageNo));
@@ -58,7 +69,8 @@ class SearchSpec extends Component{
 
 	getValue(textValue){ 
 		this.setState({freeText : textValue});
-		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', this.state.pageNo));
+		this.setState({pageNo: 1});
+		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', 1));
 		this.state.actionTypes.set('PAGING_MAX', Util.getActionObj('GET_PAGE_MAX', this.state.pageLimit));
 
 		let type, value;
@@ -73,7 +85,9 @@ class SearchSpec extends Component{
 		this.state.actionTypes.set('FREE_TEXT', Util.getActionObj(type, value));
 		this.getAssetsWithManifestation();
 	}
-
+	currAutoData(sugValue){		
+		this.setState({sugSaveVal: sugValue});		
+	}
 	onRadioBtnClick(selectedRecord){
 		this.props.getCallBackData(selectedRecord);
 	}
@@ -83,22 +97,36 @@ class SearchSpec extends Component{
 		this.props.getFilterType();
 	}
 
-	render(){ 
+	render(){
 		const{columns, displayOptions, 
 			  sortOptions, saveSearch,
-			zibraRows,filters} = this.state.config;
+			zibraRows,filters, patternTitle} = this.state.config;
        
-		let lastPage = true;
-		if(this.props.results.length>0){
-			lastPage = false;
-		}
+			let pageDetail ={
+				totalRecords: this.props.results.length,
+				pageNo: this.state.pageNo,
+				pageLimit: this.state.pageLimit,
+				lastPage: true
+			}
+
+		
 		let displayHead = (
 				<div className={SearchStyles.SearchWrapper}>
-					<SearchModel filter={this.getValue}/>
+				<div id="errorDisplay" className={SearchStyles.errorDisplay}>
+                {this.props.error}
+				</div>
+					<SearchModel patternTitle={patternTitle} filter={this.getValue} autoSuggestData= {this.props.autoSuggestData}
+					getAutoData={this.props.getAutoData} currAutoData={this.currAutoData} hostfilename = {this.props.patConfig.patSetup.filename}/>
 					<FilterModel filterStatus={this.filterFlag.bind(this)} 
 								 displayOptions={displayOptions}
 								 sortOptions={sortOptions}
-								 saveSearch={saveSearch} filters={filters} />
+								 saveSearch={saveSearch} filters={filters} 
+								 getAssetsWithManifestation = {this.props.getAssetsWithManifestation.bind(this)} 
+								 getValue = {this.getValue.bind(this)}
+								 hostfilename = {this.props.patConfig.patSetup.filename}
+								 savedSearch={this.savedSearch}
+								 onChange={this.handleItemCountChange}
+								 />
 					<ListView flag={this.state.filterStatus} 
 							  columns={columns}
 							  zibraRows={zibraRows} rows={this.props.results}
@@ -107,7 +135,7 @@ class SearchSpec extends Component{
 							  columnsort = {this.state.columnsort}
 							  clickedItem = {this.state.clickedItem}
 							  />
-					<Pagination pageNumber={this.state.pageNo} lastPage={lastPage} onChange={this.handlePageChange}/>
+					<SearchPaging pageDetails={pageDetail} handlePageChange={this.handlePageChange}/>
 				</div>
 			);
 		return(displayHead)
@@ -121,7 +149,14 @@ SearchSpec.propTypes = {
 	getFilterType: React.PropTypes.func,
 	flagRender: React.PropTypes.bool,
 	patConfig: React.PropTypes.object,
-	getCallBackData: React.PropTypes.func
+	getCallBackData: React.PropTypes.func,
+	error : React.PropTypes.string,
+	componentWillMount: React.PropTypes.func,
+	saveSearch: React.PropTypes.func,
+	autoSuggestData: React.PropTypes.array,
+	savedSearch: React.PropTypes.func,
+	srSaveValue: React.PropTypes.string,
+	getAutoData: React.PropTypes.string
 }
 export default SearchSpec;
 

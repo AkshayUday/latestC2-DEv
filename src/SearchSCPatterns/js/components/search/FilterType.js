@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {includes} from 'lodash';
+import Style from './styles/FilterType.css';
+
 
 class FilterType extends React.Component {
    constructor(props) {
@@ -17,6 +19,7 @@ class FilterType extends React.Component {
     this.createCheckbox = this.createCheckbox.bind(this);
     this.createCheckboxes = this.createCheckboxes.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
   }
 
   componentWillMount(){
@@ -24,17 +27,23 @@ class FilterType extends React.Component {
     this.singleselect = new Map();
 
     let initialfilterTypeVal = window.tdc.patConfig.patSetup.filterType;
-    for(let i=0; i<initialfilterTypeVal.length; i++){
-        this.selectedCheckboxes.add(initialfilterTypeVal[i]);
+    if(initialfilterTypeVal !=''){
+      for(let i=0; i<initialfilterTypeVal.length; i++){
+          this.selectedCheckboxes.add(initialfilterTypeVal[i]);
+      }
+      this.props.setFilterTypeValue([...this.selectedCheckboxes]);
     }
 
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.filterTypeData.length > 0){
+    console.log(nextProps.filterTypeData.length);
+    if(nextProps.filterTypeData.length > 0) {
       if(nextProps.filterTypeData.length != this.props.filters[0]['options'].length){
          this.props.filters[0]['options'] = nextProps.filterTypeData;
-         this.setState({filters:this.props.filters,showFilterType:true})
+         this.setState({filters:this.props.filters,showFilterType:false});
+         // this.props.getAssetsWithManifestation();
+         this.props.getValue(this.props.hostfilename);
       }
      
     }else{
@@ -46,7 +55,7 @@ class FilterType extends React.Component {
   }
 
   componentDidUpdate(){
-
+    document.addEventListener('click', this.handleDocumentClick, false);
   }
 
   componentWillUpdate(){
@@ -58,8 +67,16 @@ class FilterType extends React.Component {
   }
   
   componentWillUnmount(){
-
+    document.removeEventListener('click', this.handleDocumentClick, false);
   }
+
+  handleDocumentClick(e) {   
+    let filterType = this.refs.filterType;
+    if (!filterType.contains(e.target)) {
+      this.setState({showFilterType:false})
+    }
+  }
+
 
   toggleCheckbox(ev){
    // console.log([...this.props.filmultiSelect]);
@@ -120,7 +137,7 @@ class FilterType extends React.Component {
      checked  = (this.singleselect.get('value') == label.display)?true:false;
     }
 
-    return(<div  key={key}><label>
+    return( <div key={key}><label>
       <input type="checkbox" id={'filterType' + key} name={'filterType' + key}
       value={label.display} onChange={this.toggleCheckbox}  checked={checked} />{label.display}</label></div>)
     
@@ -129,13 +146,18 @@ class FilterType extends React.Component {
 
   createCheckboxes(){
    // console.log(this.state.filters[0]['options']);
-   return this.state.filters[0]['options'].map(this.createCheckbox);
+   
+   return(<div id="filterOption" className={Style.filterOption}>
+    {this.state.filters[0]['options'].map(this.createCheckbox)}
+   </div>)
+
+   // return this.state.filters[0]['options'].map(this.createCheckbox);
   }
 
   onClick(ev){
     ev.preventDefault();
     this.setState({showFilterType: !this.state.showFilterType});
-    // this.props.filterStatus(this.state.showFilterType);
+    this.props.filterStatus(this.state.showFilterType);
   }
     
 
@@ -146,13 +168,11 @@ class FilterType extends React.Component {
     let toggleIcon = this.state.showFilterType?'fa-chevron-down':'fa-chevron-up';
 
     return (      
-      <div>
+      <div ref="filterType">
         <div id="filterType">
         <label>Filter: Type <a onClick={this.onClick} href='#' style={{color:'black'}}><i className={'fa ' + toggleIcon} aria-hidden="true"></i></a></label>
          </div>
-        <div id="filterOption">
         {this.state.showFilterType && this.createCheckboxes()}
-        </div>
       </div>
     );
   }
@@ -162,7 +182,10 @@ FilterType.propTypes = {
   filterStatus: React.PropTypes.func,
   filters : React.PropTypes.array,
   filterTypeData:React.PropTypes.array,
-  setFilterTypeValue : React.PropTypes.func
+  setFilterTypeValue : React.PropTypes.func,
+  getAssetsWithManifestation : React.PropTypes.func,
+  getValue : React.PropTypes.func,
+  hostfilename: React.PropTypes.string
 }
 
 

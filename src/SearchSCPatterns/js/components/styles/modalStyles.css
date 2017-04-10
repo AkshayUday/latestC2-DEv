@@ -12,6 +12,7 @@
 }
 .interactiveContent{
 	display: flex;
+	flex-flow: column wrap;
 }
 
 .btn-bar{
@@ -29,4 +30,13 @@
 	composes: pe-btn from '../../../../styles/patterns.css';
 	composes: pe-btn--primary from '../../../../styles/patterns.css';
 	width: 93px;
+}
+.btnSelectdisabled{
+	composes: btnSelect;
+	cursor: not-allowed;
+    border: 0;
+    color: #ffffff;
+    background: #9dc0db;
+    box-shadow: none;
+    text-decoration: none;
 }

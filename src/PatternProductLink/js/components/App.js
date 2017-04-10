@@ -134,7 +134,7 @@ return(
  return(  
 	<IntlProvider locale={locale} messages={translations[locale]}>
 		<Provider store={store}>
-		 <Modal open={this.state.open} closeOnOverlayClick={false} modalClassName={styles.plProductLinkModal} onClose={this.closeModal} little>
+		 <Modal open={this.state.open} overlayClassName={styles.plContainer} closeOnOverlayClick={false} modalClassName={styles.plProductLinkModal} onClose={this.closeModal} little>
         <div className={styles.plModalHeadDiv}>
 			<div className={styles.plModalTitle}>Link to a Product</div>
 			

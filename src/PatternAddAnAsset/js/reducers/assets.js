@@ -30,21 +30,7 @@ const assets = (state = initilizeValues, action)=>{
 
   switch(action.type) {
     case DISPLAY_ASSETS:
-    let temp = action.data.items;
-    for (let i in temp) {
-      //   if(temp[i].mimetype.indexOf('audio') >= 0){
-      // //if(temp[i].mimetype.includes('audio')){
-      //   //temp[i].url = 'https://'+location.host+'/images/defaultAudio.png';
-      //   temp[i].url = window.tdc.libConfig.imagesPath+'/defaultAudio.png'
-      // }else{
-        let temp1 = temp[i].nodeRef.split('/');
-        let refId = temp1[temp1.length -1];
-        //let imageUrl = format(serviceUrls.thumbnail+'?alf_ticket={1}', [refId, action.data.token]);
-        let imageUrl = window.tdc.libConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+refId+'/content/thumbnails/doclib';
-        temp[i].url = imageUrl;
-      //}
-    }
-    return state.push(action.data);
+      return state.push(action.data);
     break;
     case 'RESET_BROWSE_TABS':
       let assetdata = state.get(state.size-1);

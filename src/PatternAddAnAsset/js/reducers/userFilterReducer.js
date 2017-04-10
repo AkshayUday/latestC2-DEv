@@ -21,3 +21,4 @@ const userFilterReducer = (state = initilizeValues, action)=>{
 }
 
 module.exports= userFilterReducer ;
+

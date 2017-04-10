@@ -23,29 +23,29 @@ export default{
   	saveLocalForageData(inputData){
   		let saveObj = [];
   		let saveResObj = [];
+  		let tempArr = [];
   		const promise = new Promise(function (fulfill, reject) {
   			const getPromise = localForage.getLocalForageData(inputData);
   			getPromise.then(function (replyGetData){
   				if(replyGetData === undefined ||replyGetData === null || replyGetData.length == 0){
           			saveObj.push(inputData.saveValue);
 			    }else if(replyGetData.length > 0){
-			        //saveObj = saveThreeValues(replyGetData);
-			        /*let rawLength = replyGetData.length;
-				    if(rawLength.length > 2){
-				      replyGetData.shift();
-				    }
-				    saveObj = replyGetData.slice();
-				    saveObj.push(inputData.saveValue);*/
-				    let rawLength = replyGetData.length;
+			    	let replyLength = replyGetData.length;
+			    	for(let i=0;i<replyGetData.length;i++){
+	  					if(replyGetData[i]!==inputData.saveValue){
+	  						tempArr.push(replyGetData[i]);
+	  					}
+  					}
+				    let rawLength = tempArr.length;
 				    if(rawLength==1){
-				      saveObj = replyGetData.slice();
+				      saveObj = tempArr.slice();
 				      saveObj.push(inputData.saveValue);
 				    }else if(rawLength==2){
-				      saveObj = replyGetData.slice();
+				      saveObj = tempArr.slice();
 				      saveObj.push(inputData.saveValue);
 				    }else{
-				      replyGetData.shift();
-				      saveObj = replyGetData.slice();
+				      tempArr.shift();
+				      saveObj = tempArr.slice();
 				      saveObj.push(inputData.saveValue);
 				    }
 				}

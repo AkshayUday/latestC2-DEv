@@ -45,9 +45,10 @@ class CheckboxComponent extends Component {
    	 let name = this.props.name;
    	 let id = this.props.id;
      let checked = this.props.checked;
+     let className = this.props.className;
    	  let self = this;
       return (
-         <input type="checkbox" name={name} id={id} checked={checked} onChange={this.changedBox}/>
+         <input type="checkbox" className={className} name={name} id={id} checked={checked} onChange={this.changedBox}/>
 
       );
    }
@@ -57,6 +58,7 @@ CheckboxComponent.propTypes = {
         id: PropTypes.any,
         name: PropTypes.string,
         checked: PropTypes.any,
+        className: PropTypes.string,
         onChangeHandler: PropTypes.func
     }
 

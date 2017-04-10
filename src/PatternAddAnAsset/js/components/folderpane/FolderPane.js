@@ -54,7 +54,8 @@ class FolderPane extends Component{
     		let child;
     		let oldStyle;
     		this.setState({expanded: !this.state.expanded});
-    		for(let obj in model){
+    		//for(let obj in model){
+    		for(let obj=0;obj<model.length;obj++){
     			if(model[obj].hasOwnProperty('fileName')){
     			child = model[obj];
     			if(child.fileName === foldername){
@@ -116,7 +117,8 @@ class FolderPane extends Component{
         	let folderName;
         	let fileNameObj;
         	let cssStyle;
-			for(let folder in model){
+			//for(let folder in model){
+			for(let folder=0;folder<model.length;folder++){
 				// folderName = trimFolderName(model[folder].fileName);
 				folderName = model[folder].fileName;
 				fileNameObj = model[folder];
