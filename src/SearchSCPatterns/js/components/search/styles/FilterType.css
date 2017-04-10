@@ -1,0 +1,9 @@
+.filterOption{
+    max-height: 50px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 9999;
+    background: white;
+    min-height: 50%;
+    border: 1px solid lightgrey;
+}

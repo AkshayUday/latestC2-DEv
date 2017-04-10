@@ -1,0 +1,1 @@
+console.error("ReactifyError: D:\\reatSample\\c2_1\\js\\app.js: Parse Error: Line 9: Illegal import declaration while parsing file: D:\\reatSample\\c2_1\\js\\app.js");

@@ -1,0 +1,7 @@
+@import "../../../styles/variables.css";
+
+.hyperStyle{
+	color: $Cerulean;
+	composes: c2FontFamily from "../../../styles/patterns.css";
+	font-size:14px;
+}

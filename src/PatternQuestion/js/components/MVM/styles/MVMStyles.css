@@ -1,0 +1,240 @@
+.containerMetaData section > h2 {
+    margin-bottom: 15px;
+    width:100%;
+}
+.containerMetaData{
+   composes: c2FontFamily from "../../../../../styles/patterns.css";
+}
+ .assessmentMetaData {
+    display: block;
+    width: 100%;
+}
+/*.assessmentMetaData .assessmentFieldHorizontal {
+    display: block;
+}*/
+.assessmentMetaData .assessmentInput input:disabled, .assessmentInput.assessmentInput--disabled input {
+    background: #EFEFEF;   
+}
+.assessmentMetaData .assessmentInput input {
+    /*height: 27px;*/
+}
+.assessmentMetaData input[placeholder] {
+    font-size: 14px;
+    width: 50%;
+    height: 27px;
+    margin: 0px 0px 20px 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.assessmentFieldHorizontal input {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.assessmentFieldHorizontal input, .assessmentFieldHorizontal textarea, .assessmentFieldHorizontal select, .assessmentFieldHorizontal input[type=time] {
+    width: 100%;
+    display: table-cell;
+    margin: 10px 0;
+    font-size: 14px     
+}
+.assessmentInput input, .assessmentInput textarea {
+    color: #231f20;
+    background: #ffffff;
+    border: solid 1px #d0d0d0;
+    -webkit-appearance: none;
+    border-radius: 3px;
+}
+.assessmentMetaData .assessmentInput label {
+    line-height: 0.875rem;   
+}
+.assessmentInput label {
+    font-weight: normal;
+    margin-bottom: 6px;
+}
+.containerMetaData .assessmentInput textarea {
+    height: 90px;
+    line-height: normal;
+    padding: 8px 0px 0px 5px;
+    font-size: 14px;
+    display: block;
+    margin: 0px;
+}
+.assessmentInput input, .assessmentInput textarea {
+    color: #231f20;
+    background: #ffffff;
+    border: solid 1px #d0d0d0;
+    -webkit-appearance: none;
+    border-radius: 3px;
+}
+.assessmentMetaData .assessmentInput label {
+    line-height: 0.875rem;
+}
+.assessmentInput label {
+    line-height: 0.875rem;
+}
+.assessmentTimer {
+    overflow: hidden;
+    display: flex;
+
+}
+.assessmentMetaData .assessmentInput label {
+    line-height: 0.875rem;
+}
+.assessmentHours {
+    width: 17%;
+    float: left;
+}
+.assessmentMinutes {
+    float: left;
+    width: 19%;
+}
+.assessmentMinutes, .assessmentSeconds {
+    margin-left: 20px;
+}
+.assessmentHours, .assessmentMinutes, .assessmentSeconds {
+    float: left;
+}
+.assessmentSeconds {
+    width: 20%;
+}
+.assessmentHours label, .assessmentMinutes label, .assessmentSeconds label {
+    width: auto;
+    display: inline-block !important;
+    text-align: left;
+    min-width: 0px;
+    padding-right:10px;
+    color: #8c8c8c !important;  
+}
+.assessmentHours span, .assessmentMinutes span, .assessmentSeconds span {
+    display: inline-block;
+}
+.assessmentHours, .assessmentMinutes, .assessmentSeconds {
+    float: left;
+}
+.assessmentHours span input, .assessmentMinutes span input, .assessmentSeconds span input {
+    margin: 0px;
+    padding-right: 0.1ex !important;
+    height: 27px;
+}
+.assessmentMinutes,.assessmentSeconds{
+margin-left:20px;
+}
+.assessmentMetaData .assessmentInput input {
+    /*height: 27px;*/
+}
+.assessmentMetaData .assessmentInput .pe-label--bold {
+    display: block;
+}
+ .assessmentInput textarea {
+    color: #231f20;
+    background: #ffffff;
+    border: solid 1px #d0d0d0;
+    -webkit-appearance: none;
+    /*border-radius: 3px;*/
+}
+.containerMetaData .assessmentInput textarea{
+    height: 90px;
+    line-height:normal;
+    padding:8px 0px 0px 5px;
+    font-size:14px;
+    display:block;
+    margin:0px;
+    font-family: Arial;
+    width: 51.5%;
+    margin-bottom: 13px;
+}
+.assessmentInput textarea{
+  width: 100%;
+    padding: 12px;
+}
+.assessmentInput textarea {
+    color: #231f20;
+    background: #ffffff;
+    border: solid 1px #d0d0d0;
+    -webkit-appearance: none;
+}
+.assessmentInput input,
+.assessmentInput textarea,
+.assessmentInput select,
+.assessmentInput input[type=time] {
+    width: 100%;
+    padding: 12px;
+    height: 27px;
+}
+.assessmentMetaData select {
+    padding: 0px 6px;
+}
+.assessmentMetaData select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background-image: url('b64---./images/dropdown_arrow.png---');
+    background-repeat: no-repeat;
+    background-position: 99% center;
+    display: inline-block;
+    min-height: 27px;
+    border: solid 1px #d0d0d0;
+    border-radius: 3px;
+    font-size: 14px;
+    width: 52%;
+    display: table-cell;
+    margin-bottom: 12px;
+}
+.assessmentMetaData .pe-input label{
+        
+        line-height: 0.875rem;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;        
+        color: #231f20;     
+        background-color: #ffffff;      
+        font-size: 14px;
+        margin-bottom:6px;
+;
+}
+.assessmentMetaData .assessmentInput label {
+    color: #231f20;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-weight: normal;
+    display: block;
+    margin-bottom: 6px;
+}
+.assessmentMetaData .assessmentInput .assessmentBold {
+    display: block;
+}
+.assessmentMetaData .assessmentFieldHorizontal label {
+    display: block;
+    min-width:0px;
+    text-align:left;
+}
+.react-numeric-input b{
+border:none !important;
+background:none !important;
+box-shadow:none !important;
+}
+
+.react-numeric-input b:nth-child(2) i{
+  border-width: 0px 0.8ex 0.8ex!important;
+  border-color: transparent transparent rgba(0, 0, 0, 0.5) !important;
+}
+.react-numeric-input b:nth-child(3) i{
+  border-width: 0.8ex 0.8ex 0px !important;
+  border-color: rgba(0, 0, 0, 0.5) transparent transparent !important;
+} 
+
+.assessmentFieldHorizontal{
+    margin-bottom:20px;
+label{
+font-size:14px;
+padding-bottom: 6px;
+}
+}
+.assessmentCheckbox label {
+        float:left;
+        margin: 5px 0px;
+       font-size: 14px;
+    }
+.assessmentCheckbox input {   
+        margin: 7px 0px;
+        width: 50px;  
+    }
