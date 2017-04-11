@@ -7,7 +7,8 @@ const initilizeData = [{
   recentSearchData:[],
   savedSearchData:[],
   autoSuggestData: [],
-  errorMsg:''
+  errorMsg:'',
+  displayCount: 25
 }
 ]
 
@@ -41,6 +42,9 @@ const searchAssetsReducer = (state = initilizeData, action) => {
 
     case 'EXCEPTION_OCCURED':
     return [...state, {..._last, errorMsg: action.value}];
+
+    case 'UPDATE_DISPLAY_COUNT':
+      return [...state, {..._last, displayCount: action.value}];
 
     default:
     return state

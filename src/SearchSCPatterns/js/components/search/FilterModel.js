@@ -15,6 +15,7 @@ class FilterModel extends Component{
 
 	}
 	render(){
+		{console.log('------>', this.props.selectedCount)}
 		let saveSearch = this.props.saveSearch ? <HyperLink onClick={this.props.savedSearch} name='save search'/> : ''
 		let filterModel = (
 		<div className={SearchModal.filterDisplayWrapper}>

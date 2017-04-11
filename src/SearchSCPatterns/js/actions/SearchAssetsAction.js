@@ -5,12 +5,17 @@ import {map,last,includes}  from 'lodash';
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
 import SavedSearchUtil from '../util/SavedSearchUtil';
+import localforage from 'localforage'
 
 /**
 * This method is used to invoke the API and get back the search data for 
 * particular search and post it in state.
 **/
-export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){ 
+export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
+	console.log(filterObj)
+	console.log(filterTypeValue)
+	console.log(filterTypeData)
+	console.log(libConfig)
 	return (dispatch, getState) => { 
 		let srValue = '';
 		let queryObject = {
@@ -72,6 +77,7 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
           type: 'ACTIVATE'
         })
         if(srValue){
+					debugger;
         	let saveSrData = {};
 	    	saveSrData.userId=libConfig.userId;
 	    	//saveSrData.patternName=libConfig.patternName;
@@ -126,6 +132,7 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
 }
 
 export function saveLocalForageData(inputData){
+	console.log('-----saveLocalForageData----->')
 	return (dispatch, getState) => {
 		let saveResPromise = localForageService.saveLocalForageData(inputData);
     	saveResPromise.then(function (replyGet){
@@ -145,6 +152,7 @@ export function saveLocalForageData(inputData){
 }
 
 export function getOnLoadLocalForageData(inputData){
+	console.log('-----getOnLoadLocalForageData----->')
 	return (dispatch, getState) => {
 		if(inputData.userId.length > 0){
 			let recentArr = [];
@@ -153,6 +161,16 @@ export function getOnLoadLocalForageData(inputData){
 			let getResPromise = localForageService.getLocalForageData(inputData);
 			getResPromise.then(function (replyGet){
 				if(replyGet !== undefined){
+					localforage.getItem('persistFilterSettings')
+						.then((filterSettings) => {
+							dispatch({
+								type: 'UPDATE_DISPLAY_COUNT',
+								value: filterSettings.displayValueCountForList
+							});
+						}).catch((error) => {
+							console.log(`Unable to fetch localForage data : ${err}`)
+					})
+					console.log('------After-----')
 					if(replyGet[inputData.patternName].recentSearch !== undefined){
 						recentArr = replyGet[inputData.patternName].recentSearch.slice();
 						dispatch({
@@ -204,6 +222,15 @@ export function getOnLoadLocalForageData(inputData){
 	}
 }
 
+function saveToLocalForage(inputData){
+	console.log(inputData)
+	return {
+		displayvaluecount: inputData.gridMode,
+		sortIndex: '2',
+		viewName: 'list-view',
+		displayValueCountForList: inputData.listMode
+	}
+}
 export function getFilterType(libConfig){ 
 	return (dispatch, getState) => { 
 		let actionObj = getActionObject({type:'GET_FILTER_TYPE'});
