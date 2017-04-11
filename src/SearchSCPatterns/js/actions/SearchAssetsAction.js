@@ -74,8 +74,15 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
         if(srValue){
         	let saveSrData = {};
 	    	saveSrData.userId=libConfig.userId;
-	    	saveSrData.type=SearchConstants.RECENT_SEARCH;
+	    	//saveSrData.patternName=libConfig.patternName;
+	    	saveSrData.patternName='addAnAsset';
+	    	saveSrData.type=SearchConstants.LOCAL_INSTANCE;		
+	    	saveSrData.saveType=SearchConstants.RECENT_SEARCH;
 	    	saveSrData.saveValue=srValue;
+	    	saveSrData.gridMode = 9;		
+			saveSrData.listMode = 25;		
+			saveSrData.sortColName = 'title';		
+			saveSrData.order = 'ascending';
 	    	dispatch(saveLocalForageData(saveSrData));
         }
 
@@ -143,69 +150,50 @@ export function getOnLoadLocalForageData(inputData){
 			let recentArr = [];
 			let savedSrArr = [];
 			let saveArr = [];
-			inputData.type = SearchConstants.RECENT_SEARCH;
 			let getResPromise = localForageService.getLocalForageData(inputData);
 			getResPromise.then(function (replyGet){
-				if(replyGet.length > 0){
-					recentArr = replyGet.slice();
-					dispatch({
-		    			type: 'GET_RECENT_SR_RESULT',
-				    	value: recentArr
-		    		});
+				if(replyGet !== undefined){
+					if(replyGet[inputData.patternName].recentSearch !== undefined){
+						recentArr = replyGet[inputData.patternName].recentSearch.slice();
+						dispatch({
+			    			type: 'GET_RECENT_SR_RESULT',
+					    	value: recentArr
+		    			});
+					}
+					if(replyGet[inputData.patternName].saveSearch !== undefined){
+						savedSrArr = replyGet[inputData.patternName].saveSearch.slice();
+						dispatch({
+			    			type: 'GET_SAVED_SR_RESULT',
+					    	value: savedSrArr
+		    			});
+					}
+					let autoSuggest = {};
+					if(recentArr.length>0 || recentArr !== undefined){
+						autoSuggest.recentArr = recentArr.slice();
+					}
+					if(savedSrArr.length>0 || savedSrArr !== undefined){
+						autoSuggest.savedSrArr = savedSrArr.slice();
+					}
+					if(autoSuggest.recentArr.length > 0 || autoSuggest.savedSrArr.length > 0){
+						saveArr = SavedSearchUtil.formatAutoSuggestionData(autoSuggest);
+		    			console.log('saveArr');
+		    			console.log(saveArr);
+		    			dispatch({
+		    				type: 'GET_SUG_DATA',
+				    		value: saveArr
+		    			});
+					}else{
+						dispatch({
+				    		type: 'EXCEPTION_OCCURED',
+				    		value: {errMsg: 'No Suggestion to display'}
+	    				});
+					}
 				}else{
 					dispatch({
 		    			type: 'EXCEPTION_OCCURED',
 				    	value: {errMsg: 'Recent Search is empty'}
 		    		});
 				}
-			inputData.type = SearchConstants.SAVE_SEARCH;
-			let getSaveResPromise = localForageService.getLocalForageData(inputData);
-			getSaveResPromise.then(function (saveReplyGet){
-				if(saveReplyGet.length > 0){
-					savedSrArr = saveReplyGet.slice();
-					dispatch({
-			    		type: 'GET_SAVED_SR_RESULT',
-			    		value: savedSrArr
-	    			});
-				}else{
-					dispatch({
-		    			type: 'EXCEPTION_OCCURED',
-				    	value: {errMsg: 'Saved Search is empty'}
-		    		});
-				}
-				let autoSuggest = {};
-				if(recentArr.length>0){
-					autoSuggest.recentArr = recentArr.slice();
-				}
-				if(savedSrArr.length>0){
-					autoSuggest.savedSrArr = savedSrArr.slice();
-				}
-				if(autoSuggest.recentArr.length > 0 || autoSuggest.savedSrArr.length > 0){
-					saveArr = SavedSearchUtil.formatAutoSuggestionData(autoSuggest);
-	    			console.log('saveArr');
-	    			console.log(saveArr);
-	    			dispatch({
-	    				type: 'GET_SUG_DATA',
-			    		value: saveArr
-	    			});
-				}else{
-					dispatch({
-			    		type: 'EXCEPTION_OCCURED',
-			    		value: {errMsg: 'No Suggestion to display'}
-    				});
-				}
-			},function (error){
-				dispatch({
-		    		type: 'EXCEPTION_OCCURED',
-		    		value: {errMsg: 'Exception occured'}
-    			});
-			}).catch(e => {
-				dispatch({
-		    		type: 'EXCEPTION_OCCURED',
-		    		value: {errMsg: e.message}
-    			});
-			});
-
 			});
 		}else{
 			dispatch({

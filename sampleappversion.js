@@ -1,0 +1,1 @@
+document.getElementById('version').innerHTML = "PL Build : commit c10f8aec2774f34aa09321f318d7ed995c2c07cb Author: M <553633@CTS.COM> Date: Thu Jan 19 17:26:02 2017 +0530 CSS fix for list view and Fix for ATIC-350";

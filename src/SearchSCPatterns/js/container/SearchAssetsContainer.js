@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 	}
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => { 
+const mapDispatchToProps = (dispatch, ownProps) => {
 	return{
 		getAssetsWithManifestation: function (){
 		
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 	 			} 
 	 		}
  		)())
-
+			ownProps.libConfig.patternName = ownProps.patConfig.pattern;
 			dispatch(getAssets(this.state.actionTypes, this.props.filterTypeValue, _filterTypeData,ownProps.libConfig));
 		},
 		getFilterType: function (){
@@ -36,13 +36,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		savedSearch: function (){		
 			let inputData = {};		
 			inputData.saveValue = this.state.sugSaveVal;		
-			inputData.userId = ownProps.libConfig.userId;;		
-			inputData.type = SearchConstants.SAVE_SEARCH;	
+			inputData.userId = ownProps.libConfig.userId;
+			inputData.patternName = ownProps.patConfig.pattern;
+			//inputData.patternName = 'addAnAsset';	
+			inputData.type = SearchConstants.LOCAL_INSTANCE;	
+			inputData.saveType = SearchConstants.SAVE_SEARCH;
+			inputData.gridMode = 9;		
+			inputData.listMode = 25;		
+			inputData.sortColName = 'title';		
+			inputData.order = 'ascending';
 			dispatch(saveLocalForageData(inputData));		
 		},		
 		componentWillMount() {		
 			let inputData = {};		
-			inputData.userId = ownProps.libConfig.userId;		
+			inputData.userId = ownProps.libConfig.userId;
+			inputData.patternName = ownProps.patConfig.pattern;		
+			//inputData.patternName = 'addAnAsset';		
+			inputData.type = SearchConstants.LOCAL_INSTANCE;	
       		dispatch(getOnLoadLocalForageData(inputData));		
       	}
 	}

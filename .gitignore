@@ -4,6 +4,3 @@ node_modules
 dist
 tmp
 *~
-.idea/
-src/**/**/.DS_Store
-lib/

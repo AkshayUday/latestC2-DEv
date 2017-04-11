@@ -6,12 +6,6 @@ export default{
 		let recSrVal = {};
 		let saveSrValue = {};
 		let suggestion = [];
-		/*if(typeof autoSuggestObj != undefined || typeof autoSuggestObj.recentArr != undefined){
-			recSrVal = this.convert_Array_To_Object(autoSuggestObj.recentArr);
-		} 
-		if(typeof autoSuggestObj != undefined || typeof autoSuggestObj.savedSrArr != undefined){
-			saveSrValue = this.convert_Array_To_Object(autoSuggestObj.savedSrArr);
-		}*/
 		if(autoSuggestObj == undefined || autoSuggestObj.recentArr == undefined){
 			console.log('Recent Search is empty');
 		}else{
