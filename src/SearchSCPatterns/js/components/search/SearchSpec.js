@@ -53,7 +53,6 @@ class SearchSpec extends Component{
 	}
 
 	handleItemCountChange(event){
-		console.log('-------------->', parseInt(event.target.value))
 		this.setState({pageNo : 1});
 		this.setState({pageLimit: parseInt(event.target.value)});
 		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', 1));
@@ -127,6 +126,7 @@ class SearchSpec extends Component{
 								 hostfilename = {this.props.patConfig.patSetup.filename}
 								 savedSearch={this.savedSearch}
 								 onChange={this.handleItemCountChange}
+						     displayCount={this.props.displayCount}
 								 />
 					<ListView flag={this.state.filterStatus} 
 							  columns={columns}
@@ -157,7 +157,8 @@ SearchSpec.propTypes = {
 	autoSuggestData: React.PropTypes.array,
 	savedSearch: React.PropTypes.func,
 	srSaveValue: React.PropTypes.string,
-	getAutoData: React.PropTypes.string
+	getAutoData: React.PropTypes.string,
+	displayCount: React.PropTypes.number
 }
 export default SearchSpec;
 

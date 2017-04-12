@@ -7,7 +7,6 @@ import SearchConstants from '../constants/SavedSearchConstant';
 
 const mapStateToProps = (state) => {
 	let searchData = last(state.SearchAssetsReducer);
-	console.log('state', state)
 	return {
 		results: searchData.listResults,
 		filterTypeValue: searchData.filterTypeValue,

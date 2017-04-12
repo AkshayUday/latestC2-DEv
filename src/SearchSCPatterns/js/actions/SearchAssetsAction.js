@@ -12,10 +12,6 @@ import localforage from 'localforage'
 * particular search and post it in state.
 **/
 export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
-	console.log(filterObj)
-	console.log(filterTypeValue)
-	console.log(filterTypeData)
-	console.log(libConfig)
 	return (dispatch, getState) => { 
 		let srValue = '';
 		let queryObject = {
@@ -77,19 +73,24 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
           type: 'ACTIVATE'
         })
         if(srValue){
-					debugger;
+					if (typeof srValue === 'number') {
+						dispatch({
+							type: 'UPDATE_DISPLAY_COUNT',
+							value: srValue
+						});
+					}
         	let saveSrData = {};
-	    	saveSrData.userId=libConfig.userId;
-	    	//saveSrData.patternName=libConfig.patternName;
-	    	saveSrData.patternName='addAnAsset';
-	    	saveSrData.type=SearchConstants.LOCAL_INSTANCE;		
-	    	saveSrData.saveType=SearchConstants.RECENT_SEARCH;
-	    	saveSrData.saveValue=srValue;
-	    	saveSrData.gridMode = 9;		
-			saveSrData.listMode = 25;		
-			saveSrData.sortColName = 'title';		
-			saveSrData.order = 'ascending';
-	    	dispatch(saveLocalForageData(saveSrData));
+					saveSrData.userId = libConfig.userId;
+					//saveSrData.patternName=libConfig.patternName;
+					saveSrData.patternName = 'addAnAsset';
+					saveSrData.type = SearchConstants.LOCAL_INSTANCE;
+					saveSrData.saveType = SearchConstants.RECENT_SEARCH;
+					saveSrData.saveValue = srValue;
+					saveSrData.gridMode = 9;
+					saveSrData.listMode = 25;
+					saveSrData.sortColName = 'title';
+					saveSrData.order = 'ascending';
+					dispatch(saveLocalForageData(saveSrData));
         }
 
 		const promise = getSearchResults(queryObject,libConfig);
@@ -132,7 +133,6 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
 }
 
 export function saveLocalForageData(inputData){
-	console.log('-----saveLocalForageData----->')
 	return (dispatch, getState) => {
 		let saveResPromise = localForageService.saveLocalForageData(inputData);
     	saveResPromise.then(function (replyGet){
@@ -152,7 +152,6 @@ export function saveLocalForageData(inputData){
 }
 
 export function getOnLoadLocalForageData(inputData){
-	console.log('-----getOnLoadLocalForageData----->')
 	return (dispatch, getState) => {
 		if(inputData.userId.length > 0){
 			let recentArr = [];
@@ -161,16 +160,27 @@ export function getOnLoadLocalForageData(inputData){
 			let getResPromise = localForageService.getLocalForageData(inputData);
 			getResPromise.then(function (replyGet){
 				if(replyGet !== undefined){
-					localforage.getItem('persistFilterSettings')
-						.then((filterSettings) => {
-							dispatch({
-								type: 'UPDATE_DISPLAY_COUNT',
-								value: filterSettings.displayValueCountForList
-							});
-						}).catch((error) => {
+					if (inputData.saveValue && typeof inputData.saveValue === 'number') {
+						localforage.getItem('persistFilterSettings')
+							.then((filterSettings) => {
+							localforage.setItem('persistFilterSettings', {
+								displayvaluecount: filterSettings.displayvaluecount,
+								sortIndex: filterSettings.sortIndex,
+								viewName: filterSettings.viewName,
+								displayValueCountForList: inputData.saveValue
+							})
+						})
+					} else {
+						localforage.getItem('persistFilterSettings')
+							.then((filterSettings) => {
+								dispatch({
+									type: 'UPDATE_DISPLAY_COUNT',
+									value: filterSettings.displayValueCountForList
+								});
+							}).catch((error) => {
 							console.log(`Unable to fetch localForage data : ${err}`)
-					})
-					console.log('------After-----')
+						})
+					}
 					if(replyGet[inputData.patternName].recentSearch !== undefined){
 						recentArr = replyGet[inputData.patternName].recentSearch.slice();
 						dispatch({
@@ -194,8 +204,6 @@ export function getOnLoadLocalForageData(inputData){
 					}
 					if(autoSuggest.recentArr.length > 0 || autoSuggest.savedSrArr.length > 0){
 						saveArr = SavedSearchUtil.formatAutoSuggestionData(autoSuggest);
-		    			console.log('saveArr');
-		    			console.log(saveArr);
 		    			dispatch({
 		    				type: 'GET_SUG_DATA',
 				    		value: saveArr
@@ -222,15 +230,6 @@ export function getOnLoadLocalForageData(inputData){
 	}
 }
 
-function saveToLocalForage(inputData){
-	console.log(inputData)
-	return {
-		displayvaluecount: inputData.gridMode,
-		sortIndex: '2',
-		viewName: 'list-view',
-		displayValueCountForList: inputData.listMode
-	}
-}
 export function getFilterType(libConfig){ 
 	return (dispatch, getState) => { 
 		let actionObj = getActionObject({type:'GET_FILTER_TYPE'});

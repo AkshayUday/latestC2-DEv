@@ -15,7 +15,6 @@ class FilterModel extends Component{
 
 	}
 	render(){
-		{console.log('------>', this.props.selectedCount)}
 		let saveSearch = this.props.saveSearch ? <HyperLink onClick={this.props.savedSearch} name='save search'/> : ''
 		let filterModel = (
 		<div className={SearchModal.filterDisplayWrapper}>
@@ -25,7 +24,7 @@ class FilterModel extends Component{
           </div>
           	<div className={SearchModal.DisplayItemCount}>
 	          <SelectBox id='interactiveSelectBox'
-	          value={this.props.selectedCount}
+	          value={this.props.selectedCount ? this.props.selectedCount : this.props.displayCount}
 	          onChange={this.props.onChange} 
 	          options={this.props.displayOptions}/>
         	</div>
@@ -62,6 +61,7 @@ FilterModel.propTypes={
 	saveType: React.PropTypes.string,
 	savedSearch: React.PropTypes.func,
 	onChange: React.PropTypes.func,
-	selectedCount: React.PropTypes.number
+	selectedCount: React.PropTypes.number,
+	displayCount: React.PropTypes.number
 }
 export default FilterModel;
