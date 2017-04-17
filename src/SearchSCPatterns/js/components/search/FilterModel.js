@@ -24,7 +24,6 @@ class FilterModel extends Component{
           </div>
           	<div className={SearchModal.DisplayItemCount}>
 	          <SelectBox id='interactiveSelectBox'
-	          value={this.props.selectedCount}
 	          onChange={this.props.onChange} 
 	          options={this.props.displayOptions}/>
         	</div>

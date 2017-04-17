@@ -14,7 +14,8 @@ const mapStateToProps = (state) => {
 		error:searchData.error,
 		recentSearchData: searchData.recentSearchData,
 		savedSearchData: searchData.savedSearchData,
-		autoSuggestData: searchData.autoSuggestData
+		autoSuggestData: searchData.autoSuggestData,
+		localForData: searchData.localForData
 	}
 }
 
@@ -35,16 +36,28 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		},
 		savedSearch: function (){		
 			let inputData = {};		
-			inputData.saveValue = this.state.sugSaveVal;		
+			//inputData.saveValue = this.state.sugSaveVal;		
 			inputData.userId = ownProps.libConfig.userId;
 			inputData.patternName = ownProps.patConfig.pattern;
 			//inputData.patternName = 'addAnAsset';	
 			inputData.type = SearchConstants.LOCAL_INSTANCE;	
 			inputData.saveType = SearchConstants.SAVE_SEARCH;
-			inputData.gridMode = 9;		
-			inputData.listMode = 25;		
-			inputData.sortColName = 'title';		
-			inputData.order = 'ascending';
+			inputData.gridMode = 9;
+			inputData.viewMode = 'listView';
+			inputData.isThreeSave = true;
+			inputData.saveValue = this.state.sugSaveVal;
+			if(this.state.actionTypes !== '' && this.state.actionTypes !== undefined){		
+				let uiMaps = this.state.actionTypes;		
+				for(let valueObj of uiMaps.values()){	
+					if(valueObj.type==='GET_SORT_ASC' || valueObj.type==='GET_SORT_DESC'){		
+						inputData.order = valueObj.type;		
+						inputData.sortColName = valueObj.value;		
+					}		
+					if(valueObj.type==='GET_PAGE_MAX'){		
+						inputData.listMode = valueObj.value;		
+					}		
+				}		
+			}		
 			dispatch(saveLocalForageData(inputData));		
 		},		
 		componentWillMount() {		

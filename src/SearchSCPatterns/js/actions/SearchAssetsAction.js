@@ -13,6 +13,7 @@ import SavedSearchUtil from '../util/SavedSearchUtil';
 export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){ 
 	return (dispatch, getState) => { 
 		let srValue = '';
+		let sortObj = {}
 		let queryObject = {
 			action: 'Search',
 			data:{
@@ -28,7 +29,16 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
 				queryparams = getActionObject(valueObj);
 				queryparams = setSearchTextValue(queryparams, valueObj);
 				searchterms = searchterms.concat(queryparams);
-				srValue = valueObj.value;
+				if(valueObj.type==='GET_GENERIC_ALL'){
+					srValue = valueObj.value;
+				}
+				if(valueObj.type==='GET_SORT_ASC' || valueObj.type==='GET_SORT_DESC'){
+					sortObj.sortType = valueObj.type;
+					sortObj.sortColumn = valueObj.value;
+				}
+				if(valueObj.type==='GET_PAGE_MAX'){
+					sortObj.displayCount = valueObj.value;
+				}
 				/*pagingParams = setPagingParams(valueObj);
 				searchterms = searchterms.concat(pagingParams);*/
 			}
@@ -74,15 +84,18 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
         if(srValue){
         	let saveSrData = {};
 	    	saveSrData.userId=libConfig.userId;
-	    	//saveSrData.patternName=libConfig.patternName;
-	    	saveSrData.patternName='addAnAsset';
+	    	saveSrData.patternName=libConfig.patternName;
+	    	//saveSrData.patternName='addAnAsset';
 	    	saveSrData.type=SearchConstants.LOCAL_INSTANCE;		
 	    	saveSrData.saveType=SearchConstants.RECENT_SEARCH;
 	    	saveSrData.saveValue=srValue;
+	    	saveSrData.filterTypeValue=_getfilterType.toString();
 	    	saveSrData.gridMode = 9;		
-			saveSrData.listMode = 25;		
-			saveSrData.sortColName = 'title';		
-			saveSrData.order = 'ascending';
+			saveSrData.listMode = sortObj.displayCount;		
+			saveSrData.sortColName = sortObj.sortColumn;;		
+			saveSrData.order = sortObj.sortType;
+			saveSrData.viewMode = 'listView';		
+			saveSrData.isThreeSave = true;
 	    	dispatch(saveLocalForageData(saveSrData));
         }
 
@@ -188,6 +201,10 @@ export function getOnLoadLocalForageData(inputData){
 				    		value: {errMsg: 'No Suggestion to display'}
 	    				});
 					}
+					dispatch({		
+						type: 'GET_LOCAL_FORAGE_DATA',		
+						value: replyGet		
+					});
 				}else{
 					dispatch({
 		    			type: 'EXCEPTION_OCCURED',

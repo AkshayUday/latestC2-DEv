@@ -53,6 +53,7 @@ class SearchSpec extends Component{
 	}
 
 	handleItemCountChange(event){
+		event.preventDefault();
 		this.setState({pageNo : 1});
 		this.setState({pageLimit: parseInt(event.target.value)});
 		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', 1));

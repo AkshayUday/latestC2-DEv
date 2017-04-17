@@ -7,7 +7,8 @@ const initilizeData = [{
   recentSearchData:[],
   savedSearchData:[],
   autoSuggestData: [],
-  errorMsg:''
+  errorMsg:'',
+  localForData: {}
 }
 ]
 
@@ -38,6 +39,9 @@ const searchAssetsReducer = (state = initilizeData, action) => {
 
     case 'GET_SAVED_SR_RESULT':
     return [...state, {..._last, savedSearchData : action.value}];
+
+    case 'GET_LOCAL_FORAGE_DATA':   
+    return [...state, {..._last, localForData : action.value}];
 
     case 'EXCEPTION_OCCURED':
     return [...state, {..._last, errorMsg: action.value}];

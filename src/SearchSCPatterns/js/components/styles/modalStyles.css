@@ -13,6 +13,7 @@
 .interactiveContent{
 	display: flex;
 	flex-flow: column wrap;
+	min-height:465px;
 }
 
 .btn-bar{

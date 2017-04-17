@@ -12,8 +12,13 @@ const SearchPaging = (props) => {
         pageDetails.lastPage = false;
         pageDetailComp = (<PageDetail pageDetails = {pageDetails}/>);
       }
+      
       let paginationComp = (<Pagination pageNumber={pageDetails.pageNo} lastPage={pageDetails.lastPage} onChange={props.handlePageChange}/>);
-        return (
+
+      if(pageDetails.pageNo==1 && pageDetails.totalRecords==0){
+          paginationComp = '';
+      }
+      return (
             <div className={SearchPagingStyles.pagingContainer}>
               {pageDetailComp}
               {paginationComp}
