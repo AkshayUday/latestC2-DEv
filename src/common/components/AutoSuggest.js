@@ -133,11 +133,11 @@ const suggestions = [
 ];
 
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-function escapeRegexCharacters(str) {debugger
+function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function getSuggestions(value) {debugger
+function getSuggestions(value) {
   const escapedValue = escapeRegexCharacters(value.trim());
   
   if (escapedValue === '') {
@@ -156,23 +156,23 @@ function getSuggestions(value) {debugger
     }); //.filter(section => section.languages.length > 0)
 }
 
-function getSuggestionValue(suggestion) {debugger
+function getSuggestionValue(suggestion) {
   return suggestion.name;
 }
 
-function renderSuggestion(suggestion) {debugger
+function renderSuggestion(suggestion) {
   return (
     <span>{suggestion.name}</span>
   );
 }
 
-function renderSectionTitle(section) {debugger
+function renderSectionTitle(section) {
   return (
     <strong>{section.title}</strong>
   );
 }
 
-function getSectionSuggestions(section) {debugger
+function getSectionSuggestions(section) {
   return section.searchterm;
 }
 
@@ -188,7 +188,7 @@ class Search extends Component {
     this.onFocus = this.onFocus.bind(this);   
   }
 
-  onChange = (event, { newValue, method }) => {debugger
+  onChange = (event, { newValue, method }) => {
 
     this.setState({
       value: newValue
@@ -198,13 +198,13 @@ class Search extends Component {
 
   };
   
-  onSuggestionsFetchRequested = ({ value }) => {debugger
+  onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value)
     });
   };
 
-  onSuggestionsUpdateRequested = ({value,reason}) => {debugger
+  onSuggestionsUpdateRequested = ({value,reason}) => {
     this.setState({
       suggestions: getSuggestions(value)
     });

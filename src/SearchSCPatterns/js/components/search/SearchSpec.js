@@ -127,6 +127,7 @@ class SearchSpec extends Component{
 								 hostfilename = {this.props.patConfig.patSetup.filename}
 								 savedSearch={this.savedSearch}
 								 onChange={this.handleItemCountChange}
+						     displayCount={this.props.displayCount}
 								 />
 					<ListView flag={this.state.filterStatus} 
 							  columns={columns}
@@ -157,7 +158,8 @@ SearchSpec.propTypes = {
 	autoSuggestData: React.PropTypes.array,
 	savedSearch: React.PropTypes.func,
 	srSaveValue: React.PropTypes.string,
-	getAutoData: React.PropTypes.string
+	getAutoData: React.PropTypes.string,
+	displayCount: React.PropTypes.number
 }
 export default SearchSpec;
 
