@@ -25,7 +25,8 @@ const getSelectedValues = (dataArray) => {
   }
   return [];
 }
-const localforage = require('localforage');
+import localForageService from '../../../common/util/localForageService';
+import SearchConstants from '../constants/SavedSearchConstant';
 /**
 * @function mapStateToProps If specified, the component will subscribe to 
 * Redux store updates. Any time it updates, mapStateToProps will be called. 
@@ -82,15 +83,20 @@ const mapDispatchToProps = (dispatch) => {
            type : 'RESET_BROWSE_TABS',
            data : false
         });
-       localforage.getItem('persistFilterSettings')
-         .then((filterSettings) => {
+       let inputData = {};
+       inputData.userId = window.tdc.libConfig.alfuname;
+       inputData.patternName = window.tdc.patConfig.pattern;
+       inputData.type = SearchConstants.LOCAL_INSTANCE;
+       let getResPromise = localForageService.getLocalForageData(inputData);
+       getResPromise.then(function (replyGet) {
+         const {gridMode, listMode, sortIndex, viewMode} =  replyGet[ inputData.patternName ].displayCount;
            let displayCount;
-           if (filterSettings.viewName === 'list-view') {
-             displayCount = filterSettings.displayValueCountForList ? filterSettings.displayValueCountForList: 25;
+           if (viewMode === 'list-view') {
+             displayCount = listMode ? listMode: 25;
            } else {
-             displayCount = filterSettings.displayvaluecount ? filterSettings.displayvaluecount: 9;
+             displayCount = gridMode ? gridMode: 9;
            }
-           dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO, displayCount, 0, filterSettings.sortIndex, filterSettings.viewName));
+           dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO, displayCount, 0, sortIndex, viewMode));
          }).catch(function (err) {
              console.log('Localforage not exist in TreePaneContainer', err)
              let viewName;

@@ -18,12 +18,14 @@ import fileUploadApi from '../api/fileUploadApi';
 import { SAVED_SEARCH_VALUE,SEARCH_DISPLAY_ASSETS,UPDATE_CHECKBOX_VALUE,SEARCH_BUTTON_VISIBILITY }
   from '../constants/searchLibraryConstants';
 import { fetchSavedSearchData, checkBoxHandler } from '../action/savedSearchAction';
-const localforage = require('localforage');
+// const localforage = require('localforage');
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,DEFAULT_SAVED_SEARCH_MAX_RESULTS} from '../constants/paginationConstants';
 import {AUTO_COMPLETE} from '../constants/searchLibraryConstants';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 import bean from 'bean';
 import store from '../../js/store'
+import localForageService from '../../../common/util/localForageService';
+import SearchConstants from '../constants/SavedSearchConstant';
 
 function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName){
   res.body.showTabs = true;
@@ -92,7 +94,7 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
  * The object mimicking the metadata object, but with every action wrapped into the 'dispatch' call.
  * This action creator returns a function.
  */
-export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sortIndex,viewName){
+export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sortIndex,viewName = 'grid-mode'){
   return dispatch => {
     let index, limit;
     index = (pageNo*maxItems)-maxItems;
@@ -134,8 +136,6 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
       3:'ORDER BY cmis:name'
     };
 
-    //AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
-    //let token = JSON.parse(success.text).data.ticket;
     searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex])
       .then(function (res) {
         let assetData = getAssetData(res, index, limit, pageNo, maxItems, value, fileTypeIndex, viewName);
@@ -144,53 +144,51 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
           data: assetData
         });
         dispatch(searchLibButtonVisibility(false));
-        const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex
-        localforage.getItem('persistFilterSettings')
-          .then((filterSettings) => {
-            let displayCountForGrid, displayCountForList
+        const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
+        let inputData = {}
+        inputData.userId = window.tdc.libConfig.alfuname;
+        inputData.patternName = window.tdc.patConfig.pattern;
+        inputData.type = SearchConstants.LOCAL_INSTANCE;
+        let getResPromise = localForageService.getLocalForageData(inputData);
+        getResPromise.then(function (replyGet){
+          if (replyGet[ inputData.patternName ].displayCount !== undefined) {
+            const {gridMode, listMode } =  replyGet[ inputData.patternName ].displayCount;
+            let displayCountForGrid, displayCountForList;
             if (viewName !== 'list-view') {
-              displayCountForGrid = maxItems
-              displayCountForList = filterSettings.displayValueCountForList
+              displayCountForGrid = maxItems;
+              displayCountForList = listMode;
             } else {
-              displayCountForGrid = filterSettings.displayvaluecount
-              displayCountForList = maxItems
+              displayCountForGrid = gridMode;
+              displayCountForList = maxItems;
             }
             dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
-            localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
-          }).catch(function (err) {
-          console.log('serach library action', err)
+            saveToLocalForageService();
+          } else {
+            dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
+            saveToLocalForageService();
+          }
+        }).catch(function (err) {
+          console.log('serach library action', err);
           dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
-          localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
+          saveToLocalForageService();
         });
     });
-    //});
-
-
-// if(window.tdc.libConfig.alfToken==''){
-// AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
-//       let token = JSON.parse(success.text).data.ticket;
-//       searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex],token)
-//       .then(function (res) {
-//       let assetData=getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName,token);
-//           dispatch({
-//             type : SEARCH_DISPLAY_ASSETS,
-//             data : assetData
-//           });
-//        })
-//     })
-//   }else{
-//       searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex],window.tdc.libConfig.alfToken)
-//       .then(function (res) {
-//       let assetData = getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName,window.tdc.libConfig.alfToken);
-//           dispatch({
-//             type : SEARCH_DISPLAY_ASSETS,
-//             data : assetData
-//           });
-//        })
-//     }
   }
 }
 
+const saveToLocalForageService = () => {
+  let inputData = {};
+  const {displayvaluecount, sortIndex, viewName, displayValueCountForList} = store.getState().userFilterReducer;
+  inputData.userId = window.tdc.libConfig.alfuname;
+  inputData.patternName = window.tdc.patConfig.pattern;
+  inputData.type = SearchConstants.LOCAL_INSTANCE;
+  inputData.saveType = SearchConstants.SAVE_SEARCH;
+  inputData.gridMode = displayvaluecount;
+  inputData.viewMode = viewName;
+  inputData.listMode = displayValueCountForList;
+  inputData.sortIndex = sortIndex;
+  localForageService.saveLocalForageData(inputData);
+}
 
 export function getProductDetails(){
   return dispatch => {
@@ -219,14 +217,6 @@ export function getDifficultyLevels(){
       })
     })
   }
-}
-
-const getDifficultyLevelValues = (dataArray) => {
-  if (dataArray.length > 0) {
-    return dataArray[dataArray.length-1];
-  }
-
-  return [];
 }
 
 /** @function saveSearchValues -

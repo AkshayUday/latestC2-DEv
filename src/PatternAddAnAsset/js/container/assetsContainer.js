@@ -18,7 +18,8 @@ import assetsGenerator from '../components/browse/assetsGenerator';
 import {getCurrentValues} from '../utils/util';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
 import store from './../store'
-const localforage = require('localforage');
+import localForageService from '../../../common/util/localForageService';
+import SearchConstants from '../constants/SavedSearchConstant';
 
 /**@function getSelectedValues -
  * This method is used to get the selected values by user.
@@ -165,21 +166,25 @@ const mapDispatchToProps = (dispatch) => {
       let maxItems;
       let fileTypeIndex = findFileTypeIndex('#browseTabsContainer');
       let nodeRef = this.currentFolder;
+      let inputData = {};
+      inputData.userId = window.tdc.libConfig.alfuname;
+      inputData.patternName = window.tdc.patConfig.pattern;
+      inputData.type = SearchConstants.LOCAL_INSTANCE;
       if(viewName === 'list-view'){
-        localforage.getItem('persistFilterSettings')
-          .then((filterSettings) => {
-            maxItems = filterSettings.displayValueCountForList > 25 ? filterSettings.displayValueCountForList : store.getState().userFilterReducer.displayValueCountForList;
-            dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
-          })
+        let getResPromise = localForageService.getLocalForageData(inputData);
+        getResPromise.then(function (replyGet) {
+          const {listMode } =  replyGet[ inputData.patternName ].displayCount;
+          maxItems = listMode > 25 ? listMode : store.getState().userFilterReducer.displayValueCountForList;
+          dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+        })
       }else{
-        localforage.getItem('persistFilterSettings')
-          .then((filterSettings) => {
-            maxItems = filterSettings.displayvaluecount > 9 ? filterSettings.displayvaluecount : store.getState().userFilterReducer.displayvaluecount;
-            dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
-          })
+        let getResPromise = localForageService.getLocalForageData(inputData);
+        getResPromise.then(function (replyGet) {
+          const {gridMode } =  replyGet[ inputData.patternName ].displayCount;
+          maxItems = gridMode > 9 ? gridMode : store.getState().userFilterReducer.displayvaluecount;
+          dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+        })
       }
-
-
     }
   }
 }

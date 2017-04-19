@@ -16,8 +16,9 @@ import fileUploadApi from '../api/fileUploadApi';
 import { DISPLAY_ASSETS, SEND_TO_QUAD} from '../constants/fileUploadConstants';
 import {getAssetData} from '../../../common/components/browseAssetUtil';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
-import store from '../../js/store'
-import localforage from 'localforage'
+import store from '../../js/store';
+import localForageService from '../../../common/util/localForageService';
+import SearchConstants from '../constants/SavedSearchConstant';
 
 let i = 1;
 
@@ -94,7 +95,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
  * This action creator returns a function.
  */
 export function fetchingAssets(nodeRef,pageNo,maxItems,
-                               fileTypeIndex, sortIndex,viewName){
+                               fileTypeIndex, sortIndex,viewName = 'grid-mode'){
   return dispatch => {
     let index, limit;
     index = (pageNo*maxItems)-maxItems;
@@ -135,24 +136,7 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             type : DISPLAY_ASSETS,
             data : assetData
           });
-          const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex
-          localforage.getItem('persistFilterSettings')
-            .then((filterSettings) => {
-              let displayCountForGrid, displayCountForList
-              if (viewName !== 'list-view') {
-                displayCountForGrid = maxItems
-                displayCountForList = filterSettings.displayValueCountForList
-              } else {
-                displayCountForGrid = filterSettings.displayvaluecount
-                displayCountForList = maxItems
-              }
-              dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
-              localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
-            }).catch(function (err) {
-            console.log('assets action on maxItemsFlag is exists', err)
-            dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: 'grid-view', displayValueCountForList: 25 }});
-            localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
-          });
+          persistDisplayCount(dispatch, sortIndex, viewName, maxItems)
         },function (error){
           console.log('fetching assets data:' + error);
         })
@@ -168,59 +152,58 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             type : DISPLAY_ASSETS,
             data : assetData
           });
-          const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
-          localforage.getItem('persistFilterSettings')
-            .then((filterSettings) => {
-              let displayCountForGrid, displayCountForList
-              if (viewName !== 'list-view') {
-                displayCountForGrid = maxItems
-                displayCountForList = filterSettings.displayValueCountForList
-              } else {
-                displayCountForGrid = filterSettings.displayvaluecount
-                displayCountForList = maxItems
-              }
-              dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
-              localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
-            }).catch(function (err) {
-            console.log('assets action on maxItemsFlag not exists', err)
-            dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: 'grid-view', displayValueCountForList: 25 }});
-            localforage.setItem('persistFilterSettings',store.getState().userFilterReducer)
-          });
+          persistDisplayCount(dispatch, sortIndex, viewName, maxItems)
         },function (error){
           console.log('fetching assets data:' + error);
           })
     }
-    //})
-
-
-//   if(window.tdc.libConfig.alfToken==''){
-//   AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
-//       let token = JSON.parse(success.text).data.ticket;
-//       assetsApi.get_assets(nodeRef, index, limit, fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],token)
-//       .then(function (res){
-//       let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName,token);
-//           dispatch({
-//             type : DISPLAY_ASSETS,
-//             data : assetData
-//           });
-//       },function (error){
-//        console.log('fetching assets data:' + error);
-//       })
-//     })
-// }else{
-//       assetsApi.get_assets(nodeRef, index, limit, fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],window.tdc.libConfig.alfToken)
-//       .then(function (res){
-//       let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName,window.tdc.libConfig.alfToken);
-//           dispatch({
-//             type : DISPLAY_ASSETS,
-//             data : assetData
-//           });
-
-//       });
-//   }
   }
 }
 
+const persistDisplayCount = (dispatch, sortIndex, viewName, maxItems) => {
+  const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
+  let inputData = {}
+  inputData.userId = window.tdc.libConfig.alfuname;
+  inputData.patternName = window.tdc.patConfig.pattern;
+  inputData.type = SearchConstants.LOCAL_INSTANCE;
+  let getResPromise = localForageService.getLocalForageData(inputData);
+  getResPromise.then(function (replyGet) {
+    if (replyGet[ inputData.patternName ].displayCount !== undefined) {
+      const {gridMode, listMode } =  replyGet[ inputData.patternName ].displayCount;
+      let displayCountForGrid, displayCountForList;
+      if (viewName !== 'list-view') {
+        displayCountForGrid = maxItems;
+        displayCountForList = listMode;
+      } else {
+        displayCountForGrid = gridMode;
+        displayCountForList = maxItems;
+      }
+      dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList } });
+      saveToLocalForageService();
+    } else {
+      dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: 'grid-view', displayValueCountForList: 25 }});
+      saveToLocalForageService();
+    }
+  }).catch(function (err) {
+    console.log('assets action on maxItemsFlag not exists', err);
+    dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: 'grid-view', displayValueCountForList: 25 }});
+    saveToLocalForageService();
+  });
+}
+
+const saveToLocalForageService = () => {
+  let inputData = {};
+  const {displayvaluecount, sortIndex, viewName, displayValueCountForList} = store.getState().userFilterReducer;
+  inputData.userId = window.tdc.libConfig.alfuname;
+  inputData.patternName = window.tdc.patConfig.pattern;
+  inputData.type = SearchConstants.LOCAL_INSTANCE;
+  inputData.saveType = SearchConstants.SAVE_SEARCH;
+  inputData.gridMode = displayvaluecount;
+  inputData.viewMode = viewName;
+  inputData.listMode = displayValueCountForList;
+  inputData.sortIndex = sortIndex;
+  localForageService.saveLocalForageData(inputData);
+}
 /** @function selectedRecord -
  * This method is used for sending selected asset data to another page.
  * @param {object} record - Asset data object to be sent to another page

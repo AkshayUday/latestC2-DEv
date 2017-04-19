@@ -20,6 +20,8 @@ import { Link, browserHistory, hashHistory } from 'react-router'
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
 import {find} from 'lodash';
 import {getCurrentValues} from '../utils/util';
+import SearchConstants from '../constants/SavedSearchConstant';
+import localForageService from '../../../common/util/localForageService';
 
 import bean from 'bean';
 
@@ -126,48 +128,33 @@ const mapDispatchToProps = (dispatch) => {
 
         }
 
-			localforage.setItem('last_three_search', lastvalue, function (err, val) {
-          let searchString = document.querySelector('#searchAutoSuggest input').value.trim();
-          localforage.getItem('persistFilterSettings')
-            .then((filterSettings) => {
-              let displayCount;
-              if (filterSettings.viewName === 'list-view') {
-                displayCount = filterSettings.displayValueCountForList ? filterSettings.displayValueCountForList: 25;
+          localforage.setItem('last_three_search', lastvalue, function (err, val) {
+            let searchString = document.querySelector('#searchAutoSuggest input').value.trim();
+            let inputData = {};
+            inputData.userId = window.tdc.libConfig.alfuname;
+            inputData.patternName = window.tdc.patConfig.pattern;
+            inputData.type = SearchConstants.LOCAL_INSTANCE;
+            let getResPromise = localForageService.getLocalForageData(inputData);
+            getResPromise.then(function (replyGet) {
+              if (replyGet[ inputData.patternName ].displayCount !== undefined) {
+                const {viewMode, gridMode, listMode, sortIndex } =  replyGet[ inputData.patternName ].displayCount;
+                let displayCount;
+                if (replyGet[ inputData.patternName ].displayCount.viewMode === 'list-view') {
+                  displayCount = listMode ? listMode : 25;
+                } else {
+                  displayCount = gridMode ? gridMode : 9;
+                }
+                patternExistance(dispatch, searchString, displayCount, sortIndex, viewMode)
               } else {
-                displayCount = filterSettings.displayvaluecount ? filterSettings.displayvaluecount: 9;
+                patternExistance(dispatch, searchString)
               }
-              dispatch(getSearchProductItems(searchString,DEFAULT_PAGE_NO,displayCount,0,filterSettings.sortIndex, filterSettings.viewName));
-              dispatch({
-                type : 'SEND_TO_QUAD',
-                data : {}
-              });
-
-              document.querySelectorAll('#displayContainerDiv')[0].style.display = 'block';
-              document.querySelectorAll('#assetSelectBtn')[0].style.display = 'inline-block';
-
-              //let selectedTabEle = document.querySelector('#searchfilterAssets .ReactTabs__Tab--selected');
-              //    if(selectedTabEle !== undefined){
-              //      let selectedTab = selectedTabEle.textContent;
-              // if(selectedTab === 'Saved Search'){
-              // 	//document.querySelectorAll('#searchfilterAssets .ReactTabs__Tab')[0].click();
-              // }
-              //    }
             }).catch(function (err) {
               console.log('Localforage not exist in SearchLibraryContainer', err)
-              dispatch(getSearchProductItems(searchString, DEFAULT_PAGE_NO, DEFAULT_MAX_RESULTS, 0));
-              dispatch({
-                type: 'SEND_TO_QUAD',
-                data: {}
-              });
-
-              document.querySelectorAll('#displayContainerDiv')[ 0 ].style.display = 'block';
-              document.querySelectorAll('#assetSelectBtn')[ 0 ].style.display = 'inline-block';
+              patternExistance(dispatch, searchString)
+            })
           });
-			});
-
-      })
-   },
-
+        })
+      },
     closeSearchLibrary: function (){
       this.props.closePopup();
       dispatch({
@@ -195,6 +182,21 @@ const mapDispatchToProps = (dispatch) => {
 
   }
 	}
+
+const patternExistance = (dispatch, searchString, displayCount, sortIndex, viewMode) => {
+  if (sortIndex !== undefined && viewMode !== undefined) {
+    dispatch(getSearchProductItems(searchString, DEFAULT_PAGE_NO, displayCount, 0, sortIndex, viewMode));
+  } else {
+    dispatch(getSearchProductItems(searchString, DEFAULT_PAGE_NO, DEFAULT_MAX_RESULTS, 0));
+  }
+  dispatch({
+    type: 'SEND_TO_QUAD',
+    data: {}
+  });
+
+  document.querySelectorAll('#displayContainerDiv')[ 0 ].style.display = 'block';
+  document.querySelectorAll('#assetSelectBtn')[ 0 ].style.display = 'inline-block';
+}
 
 const SearchLibraryContainer = connect(
   mapStateToProps,

@@ -9,6 +9,8 @@ export default {
       saveInputObj[inputData.patternName].displayCount.gridMode = inputData.gridMode;
       saveInputObj[inputData.patternName].displayCount.listMode = inputData.listMode;
       saveInputObj[inputData.patternName].displayCount.viewMode = inputData.viewMode;
+      if(inputData.sortIndex !== undefined)
+        saveInputObj[inputData.patternName].displayCount.sortIndex = inputData.sortIndex;
       saveInputObj[inputData.patternName].recentSearch = inputData.saveInputtObj[0];
       saveInputObj[inputData.patternName].saveSearch = inputData.saveInputtObj[1];
       saveInputObj[inputData.patternName].sortSelection={};

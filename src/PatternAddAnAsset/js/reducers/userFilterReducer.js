@@ -1,8 +1,8 @@
 let initilizeValues = {
-  'displayvaluecount':'9',
+  'displayvaluecount':9,
   'sortIndex': '0',
   'viewName': 'grid-view',
-  'displayValueCountForList': '25'
+  'displayValueCountForList': 25
 }
 
 const userFilterReducer = (state = initilizeValues, action)=>{

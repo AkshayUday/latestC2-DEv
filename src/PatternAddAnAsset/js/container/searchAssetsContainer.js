@@ -16,8 +16,9 @@ import { bindActionCreators } from 'redux';
 import {getSearchProductItems,saveSearchValues,updateDifficultyLevel} from '../action/SearchLibraryAction';
 import assetsGenerator from '../components/browse/assetsGenerator';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
-import store from './../store'
-const localforage = require('localforage');
+import store from './../store';
+import localForageService from '../../../common/util/localForageService';
+import SearchConstants from '../constants/SavedSearchConstant';
 
 /**@function getSelectedValues -
  * This method is used to get the selected values by user.
@@ -153,18 +154,24 @@ const mapDispatchToProps = (dispatch) => {
       let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
       let searchValue = document.querySelector('#searchAutoSuggest input').value;
       let maxItems;
-      if(viewName === 'list-view'){
-        localforage.getItem('persistFilterSettings')
-          .then((filterSettings) => {
-            maxItems = filterSettings.displayValueCountForList > 25 ? filterSettings.displayValueCountForList : store.getState().userFilterReducer.displayValueCountForList;
-            dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
-          })
-      }else{
-        localforage.getItem('persistFilterSettings')
-          .then((filterSettings) => {
-            maxItems = filterSettings.displayvaluecount > 9 ? filterSettings.displayvaluecount : store.getState().userFilterReducer.displayvaluecount;
-            dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
-          })
+      let inputData = {};
+      inputData.userId = window.tdc.libConfig.alfuname;
+      inputData.patternName = window.tdc.patConfig.pattern;
+      inputData.type = SearchConstants.LOCAL_INSTANCE;
+      if (viewName === 'list-view') {
+        let getResPromise = localForageService.getLocalForageData(inputData);
+        getResPromise.then(function (replyGet) {
+          const {listMode } =  replyGet[ inputData.patternName ].displayCount;
+          maxItems = listMode > 25 ? listMode : store.getState().userFilterReducer.displayValueCountForList;
+          dispatch(getSearchProductItems(searchValue, DEFAULT_PAGE_NO, maxItems, fileTypeIndex, sortIndex, viewName));
+        })
+      } else {
+        let getResPromise = localForageService.getLocalForageData(inputData);
+        getResPromise.then(function (replyGet) {
+          const {gridMode } =  replyGet[ inputData.patternName ].displayCount;
+          maxItems = gridMode > 9 ? gridMode : store.getState().userFilterReducer.displayvaluecount;
+          dispatch(getSearchProductItems(searchValue, DEFAULT_PAGE_NO, maxItems, fileTypeIndex, sortIndex, viewName));
+        })
       }
     }
   }
