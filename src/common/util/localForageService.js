@@ -28,11 +28,15 @@ export default{
   		const promise = new Promise(function (fulfill, reject) {
   			const getPromise = localForage.getLocalForageData(inputData);
   			getPromise.then(function (replyGetData){
-				if(replyGetData=== undefined || replyGetData === null){
+				/*if(replyGetData=== undefined || replyGetData === null){
 					if(inputData.saveType === 'RecentSearch'){
-						saveRecentObj.push(inputData.saveValue);
+						if(inputData.saveValue){
+							saveRecentObj.push(inputData.saveValue);
+						}
 					}else{
-						saveSrObj.push(inputData.saveValue);
+						if(inputData.saveValue){
+							saveSrObj.push(inputData.saveValue);
+						}
 					}
 				}else{
 					if(inputData.saveType === 'RecentSearch'){
@@ -64,11 +68,15 @@ export default{
 							}
 						}
 					}
-				}
-				saveObj.push(saveRecentObj);
+				}*/
+				/*saveObj.push(saveRecentObj);
 				saveObj.push(saveSrObj);
-			    inputData.saveInputtObj = saveObj;
-			    let modSaveObj = serviceUtil.constructSaveInputObj(inputData);
+			    inputData.saveInputtObj = saveObj;*/
+			    saveObj = serviceUtil.constructInputSearchObj(inputData,replyGetData);
+			    if(saveObj.length > 0){
+			    	inputData.saveInputtObj = saveObj;
+			    }
+			    let modSaveObj = serviceUtil.constructSaveInputObj(inputData,replyGetData);
 			    modSaveObj.type = inputData.type;
 			    if(replyGetData === null){
 			    	replyGetData = modSaveObj;
