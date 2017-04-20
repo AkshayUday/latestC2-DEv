@@ -28,11 +28,6 @@ export default {
       }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection.columnName !== undefined){
         saveInputObj[inputData.patternName].sortSelection.columnName = replyGetData[inputData.patternName].sortSelection.columnName;
       }
-    
-     if(inputData.sortIndex !== undefined)
-        saveInputObj[inputData.patternName].displayCount.sortIndex = inputData.sortIndex
-    
-    
       if(inputData.order !== undefined){
         saveInputObj[inputData.patternName].sortSelection.order = inputData.order;
       }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection.order !== undefined){
@@ -53,12 +48,16 @@ export default {
 
     constructTempArr(rawArr,inputData){
       let tempArr = [];
+      if(inputData.patternName === 'interactivePattern'){
+        tempArr = this.checkCaseInSensitive(rawArr,inputData);
+      }else{
         for(let i=0;i<rawArr.length;i++){
           if(rawArr[i]!==inputData.saveValue){
             tempArr.push(rawArr[i]);
+          }
         }
-      }
-        return this.saveThreeValues(tempArr,inputData);
+      }     
+      return this.saveThreeValues(tempArr,inputData);
     },
 
     saveThreeValues(tempArr,inputData){
@@ -160,7 +159,7 @@ export default {
         replyGetData[inputData.patternName] === undefined){
           saveSrObj.push(inputData.saveValue);
         }else{
-          saveSrObj = this.validateSearch(replyGetData[inputData.patternName].recentSearch,inputData);
+          saveSrObj = this.validateSearch(replyGetData[inputData.patternName].saveSearch,inputData);
           if(replyGetData[inputData.patternName].recentSearch !== undefined ||
           replyGetData[inputData.patternName].recentSearch !== null){
             if(replyGetData[inputData.patternName].recentSearch.length > 0){
@@ -184,6 +183,16 @@ export default {
       finalObj.push(saveRecentObj);
       finalObj.push(saveSrObj);
       return finalObj
+    },
+
+    checkCaseInSensitive(rawArr,inputData){
+      let tempArr = [];
+      for(let i=0;i<rawArr.length;i++){
+          if(rawArr[i].toLocaleLowerCase()!==inputData.saveValue.toLocaleLowerCase()){
+              tempArr.push(rawArr[i]);
+          }
+      }
+      return tempArr
     }
 
 }
