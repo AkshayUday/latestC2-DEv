@@ -23,8 +23,8 @@ class SearchModel extends Component {
 	onSearchIconClick(){ 
 		this.props.filter(this.state.textValue);
 	}
-	getAutoData(val){ 
-      this.setState({textValue: val});		
+	getAutoData(val){ 		
+      this.state.textValue = val;
       this.props.currAutoData(val);		
 	}
 	render(){
@@ -36,7 +36,7 @@ class SearchModel extends Component {
 					</div>
 					<div className={SearchModal.seachTexBoxWrapper}>
 						<div className={SearchModal.searchTextBox}>
-							<Search autoSuggestData = {this.props.autoSuggestData}  hostfilename = {this.props.hostfilename} getAutoData = {this.getAutoData}/>
+							<Search autoSuggestData = {this.props.autoSuggestData}  hostfilename = {this.props.hostfilename} onSearchIconClick={this.onSearchIconClick} getAutoData = {this.getAutoData}/>
 						</div>
 						<div className={SearchModal.searchBtn}>
 							<i className="fa fa-search" aria-hidden="true"  
