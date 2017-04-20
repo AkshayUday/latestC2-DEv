@@ -12,7 +12,7 @@
     }, {
       "display": "Type",
       "property": "taxonomicType",
-      "sort": true,
+      "sort": false,
       "align": "center"
     },{
       "display": "Date Modified",
