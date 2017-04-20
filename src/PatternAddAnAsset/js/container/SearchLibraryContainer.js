@@ -127,42 +127,25 @@ const mapDispatchToProps = (dispatch) => {
         }
 
 			localforage.setItem('last_three_search', lastvalue, function (err, val) {
+				console.log(val);
           let searchString = document.querySelector('#searchAutoSuggest input').value.trim();
-          localforage.getItem('persistFilterSettings')
-            .then((filterSettings) => {
-              let displayCount;
-              if (filterSettings.viewName === 'list-view') {
-                displayCount = filterSettings.displayValueCountForList ? filterSettings.displayValueCountForList: 25;
-              } else {
-                displayCount = filterSettings.displayvaluecount ? filterSettings.displayvaluecount: 9;
-              }
-              dispatch(getSearchProductItems(searchString,DEFAULT_PAGE_NO,displayCount,0,filterSettings.sortIndex, filterSettings.viewName));
-              dispatch({
-                type : 'SEND_TO_QUAD',
-                data : {}
-              });
+          dispatch(getSearchProductItems(searchString,DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,0));
+            dispatch({
+              type : 'SEND_TO_QUAD',
+              data : {}
+            });
+            
+		        document.querySelectorAll('#displayContainerDiv')[0].style.display = 'block';
+            document.querySelectorAll('#assetSelectBtn')[0].style.display = 'inline-block';            
 
-              document.querySelectorAll('#displayContainerDiv')[0].style.display = 'block';
-              document.querySelectorAll('#assetSelectBtn')[0].style.display = 'inline-block';
+				//let selectedTabEle = document.querySelector('#searchfilterAssets .ReactTabs__Tab--selected');
+     //    if(selectedTabEle !== undefined){
+     //      let selectedTab = selectedTabEle.textContent;
+					// if(selectedTab === 'Saved Search'){
+					// 	//document.querySelectorAll('#searchfilterAssets .ReactTabs__Tab')[0].click();
+					// }
+     //    }
 
-              //let selectedTabEle = document.querySelector('#searchfilterAssets .ReactTabs__Tab--selected');
-              //    if(selectedTabEle !== undefined){
-              //      let selectedTab = selectedTabEle.textContent;
-              // if(selectedTab === 'Saved Search'){
-              // 	//document.querySelectorAll('#searchfilterAssets .ReactTabs__Tab')[0].click();
-              // }
-              //    }
-            }).catch(function (err) {
-              console.log('Localforage not exist in SearchLibraryContainer', err)
-              dispatch(getSearchProductItems(searchString, DEFAULT_PAGE_NO, DEFAULT_MAX_RESULTS, 0));
-              dispatch({
-                type: 'SEND_TO_QUAD',
-                data: {}
-              });
-
-              document.querySelectorAll('#displayContainerDiv')[ 0 ].style.display = 'block';
-              document.querySelectorAll('#assetSelectBtn')[ 0 ].style.display = 'inline-block';
-          });
 			});
 
       })

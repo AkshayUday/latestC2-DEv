@@ -23,25 +23,41 @@ class SearchSpec extends Component{
 		if(this.getAssetsWithManifestation){
 			this.getAssetsWithManifestation = props.getAssetsWithManifestation.bind(this);
 		}
+		let  isSortEnabled = false;
+		let  sortLocalTitle='';
+		if(this.props.localForData !== undefined){
+			if(this.props.localForData[this.props.patConfig.pattern] != undefined && this.props.localForData[this.props.patConfig.pattern].columnSort !== undefined){
+				isSortEnabled=this.props.localForData[this.props.patConfig.pattern].columnSort;
+			}
+			if(this.props.localForData[this.props.patConfig.pattern] != undefined && this.props.localForData[this.props.patConfig.pattern].sortColName !== undefined){
+				sortLocalTitle=this.props.localForData[this.props.patConfig.pattern].sortColName;
+			}
+		}
 		this.state={
 			filterStatus : false,
 			config : this.props.componentConfig,
 			pageNo:1,
 			pageLimit:25,
-			columnsort : false,
-			clickedItem : '',
+			columnsort : isSortEnabled,
+			clickedItem : sortLocalTitle,
 			freeText: '',
 			actionTypes: new Map(),
-			sugSaveVal: ''
+			sugSaveVal: '',
+			displayCount :'',
+			isSuccess: false
 		}
 	}
-	onColumnSort(columnName, mdsProperty){ 
+	onColumnSort(mdsProperty){ 
+		if(mdsProperty != 'taxonomicType'){
+			this.setState({clickedItem: mdsProperty});
+			//this.setState({columnsort : !this.state.columnsort});
+			this.state.columnsort = !this.state.columnsort;
+			//let type = this.state.columnsort ? 'GET_SORT_DESC' : 'GET_SORT_ASC';
+			let type = this.state.columnsort ? 'GET_SORT_ASC' : 'GET_SORT_DESC';
+			this.state.actionTypes.set('ZSORT', Util.getActionObj(type, mdsProperty));
+			this.getAssetsWithManifestation();
+		}
 		
-		this.setState({clickedItem: columnName});
-		this.setState({columnsort : !this.state.columnsort});
-		let type = this.state.columnsort ? 'GET_SORT_DESC' : 'GET_SORT_ASC';
-		this.state.actionTypes.set('ZSORT', Util.getActionObj(type, mdsProperty));
-		this.getAssetsWithManifestation();
 	}
 
 	getAssetsWithManifestation(){ 
@@ -55,7 +71,8 @@ class SearchSpec extends Component{
 	handleItemCountChange(event){
 		event.preventDefault();
 		this.setState({pageNo : 1});
-		this.setState({pageLimit: parseInt(event.target.value)});
+		//this.setState({pageLimit: parseInt(event.target.value)});
+		this.state.pageLimit = parseInt(event.target.value);
 		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', 1));
 		this.state.actionTypes.set('PAGING_MAX', Util.getActionObj('GET_PAGE_MAX', parseInt(event.target.value)));
 		this.getAssetsWithManifestation();
@@ -97,7 +114,23 @@ class SearchSpec extends Component{
 		// degugger;
 		this.props.getFilterType();
 	}
-
+	componentWillReceiveProps(newProps) {
+		if(newProps.localForData !== undefined){
+			if(newProps.localForData[this.props.patConfig.pattern] != undefined && newProps.localForData[this.props.patConfig.pattern].columnSort !== undefined){
+				this.state.columnsort = newProps.localForData[this.props.patConfig.pattern].columnSort;
+			}
+			if(newProps.localForData[this.props.patConfig.pattern] != undefined && newProps.localForData[this.props.patConfig.pattern].sortSelection.columnName !== undefined){
+				this.state.clickedItem = newProps.localForData[this.props.patConfig.pattern].sortSelection.columnName;
+			}
+			if(newProps.localForData[this.props.patConfig.pattern] != undefined && newProps.localForData[this.props.patConfig.pattern].displayCount.listMode !== undefined){
+				this.state.pageLimit = parseInt(newProps.localForData[this.props.patConfig.pattern].displayCount.listMode);
+			    this.state.displayCount = this.state.pageLimit; 
+			}
+			if(newProps.localForData.isSuccess != undefined && newProps.localForData.isSuccess != null){		
+				this.state.isSuccess = newProps.localForData.isSuccess;		
+			}
+		}
+	}
 	render(){
 		const{columns, displayOptions, 
 			  sortOptions, saveSearch,
@@ -121,13 +154,15 @@ class SearchSpec extends Component{
 					<FilterModel filterStatus={this.filterFlag.bind(this)} 
 								 displayOptions={displayOptions}
 								 sortOptions={sortOptions}
-								 saveSearch={saveSearch} filters={filters} 
+								 saveSearch={saveSearch} filters={filters}
+								 localForData = {this.props.localForData}
 								 getAssetsWithManifestation = {this.props.getAssetsWithManifestation.bind(this)} 
 								 getValue = {this.getValue.bind(this)}
 								 hostfilename = {this.props.patConfig.patSetup.filename}
 								 savedSearch={this.savedSearch}
 								 onChange={this.handleItemCountChange}
-						     displayCount={this.props.displayCount}
+								 displayCount={this.state.displayCount}
+								 isSuccess={this.state.isSuccess}
 								 />
 					<ListView flag={this.state.filterStatus} 
 							  columns={columns}
@@ -159,7 +194,7 @@ SearchSpec.propTypes = {
 	savedSearch: React.PropTypes.func,
 	srSaveValue: React.PropTypes.string,
 	getAutoData: React.PropTypes.string,
-	displayCount: React.PropTypes.number
+	localForData : React.PropTypes.object
 }
 export default SearchSpec;
 

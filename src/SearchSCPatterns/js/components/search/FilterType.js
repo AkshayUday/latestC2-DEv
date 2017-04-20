@@ -9,7 +9,8 @@ class FilterType extends React.Component {
 
     this.state = {
          filters : [],
-         showFilterType:false
+         showFilterType:false,
+         localForFilterType: []
     }
 
     // console.log(this.props.filterTypeData);
@@ -50,6 +51,18 @@ class FilterType extends React.Component {
 
          this.props.filters[0]['options'] = nextProps.filterTypeData;
          this.setState({filters:this.props.filters,showFilterType:false})
+    }
+
+    if(nextProps.localForData[window.tdc.patConfig.pattern] != undefined ){   
+      if(nextProps.localForData[window.tdc.patConfig.pattern]['filterValues'] != undefined ){   
+        if(this.state.localForFilterType.length == 0){           
+          this.setState({localForFilterType : this.state.localForFilterType.push(nextProps.localForData[window.tdc.patConfig.pattern]['filterValues'].split(','))});           
+          for(let i=0; i<this.state.localForFilterType[0].length; i++){   
+          this.selectedCheckboxes.add(this.state.localForFilterType[0][i]);   
+          }   
+          this.props.setFilterTypeValue([...this.selectedCheckboxes]);    
+        }   
+      }   
     }
     
   }
@@ -185,7 +198,8 @@ FilterType.propTypes = {
   setFilterTypeValue : React.PropTypes.func,
   getAssetsWithManifestation : React.PropTypes.func,
   getValue : React.PropTypes.func,
-  hostfilename: React.PropTypes.string
+  hostfilename: React.PropTypes.string,
+  localForData : React.PropTypes.object
 }
 
 

@@ -91,6 +91,7 @@ class SingleFileUpload extends Component {
        }     
     }
     onClick(event){
+  debugger;
     }
   render() { 
     const {asyncValidating, fields: { file, name}, handleSubmit, isParent} = this.props

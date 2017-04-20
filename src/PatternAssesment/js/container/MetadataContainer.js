@@ -96,6 +96,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
          secs: metadata.secs,
           patConfig:patConfig,
          copyrightInfo: metadata.copyrightInfo,
+         adaptiveFlag:metadata.adaptiveFlag,
           errMsg: errMsg,
           eTag: metadata.eTag
       }
@@ -139,6 +140,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
           secs: metadata.secs,
           patConfig:patConfig,
           copyrightInfo: metadata.copyrightInfo,
+          adaptiveFlag:metadata.adaptiveFlag,
           'initialValues': initialValue
     }
   //}

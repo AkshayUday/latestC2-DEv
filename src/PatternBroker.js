@@ -138,6 +138,7 @@ function _factory(pattern, component) {
          * @function run
          */
         run : function (patConfig) {
+           debugger;
             let patternComp = React.createElement(this.component, {libConfig: libConfig, patConfig: patConfig});
             let hotPatternComp = React.createElement(AppContainer, {}, patternComp);
 		        this.renderedComponent = render(hotPatternComp, document.querySelector(this.patSetup.selector));

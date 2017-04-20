@@ -304,13 +304,15 @@ export function  setErrMsg(errMsg){
   }
 }
 
-export function  updateTags(tags,src){ 
+export function  updateTags(tags,src){ debugger;
   return (dispatch,getState) => {
     let _formState = getState().form;
     if(tags === 'keywords'){
       _formState.mvm.keywords.value = src;  
     }else if(tags === 'goalKeywords'){
       _formState.mvm.goalKeywords.value = src;  
+    }else if(tags === 'adaptiveFlag'){
+      _formState.mvm.adaptiveFlag.value = src;
     }
     
 

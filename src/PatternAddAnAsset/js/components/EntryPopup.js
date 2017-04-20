@@ -10,9 +10,6 @@ import AddAnAsset from './AddAnAsset'
 import { Link, browserHistory, hashHistory } from 'react-router';
 import PL_Layout from '../../../PatternLayouts/PL_Layout'
 import PopupStyles from './Styles/EntryPopupStyles.css'
-import store from './../store'
-import localForage from 'localforage';
-
 class EntryPopup extends React.Component{
 	constructor(props){
 		super(props);
@@ -27,7 +24,6 @@ class EntryPopup extends React.Component{
 	closeOnSelect() {
 		this.setState({open:false});
 		document.querySelector('body').style.overflow='auto';
-		localForage.setItem('persistFilterSettings',store.getState().userFilterReducer)
 	}
 
 	render(){ 
@@ -35,8 +31,8 @@ class EntryPopup extends React.Component{
 		return(
 			<PL_Layout open={open} modalTitle='Add An Asset' 
 				modalClass={PopupStyles.addAnAssetLayout}
-				modalClose={this.closeOnSelect}>
-				
+				modalClose={this.closeOnSelect}
+				overlayClass={PopupStyles.addAnAssetContainer}>
 				<div className={PopupStyles.modalBodyDiv}>
 	          		<AddAnAsset children={this.props.children} clearModal={this.clearModal} 
 	          		 closeModal={this.closeOnSelect} />

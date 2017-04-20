@@ -66,7 +66,7 @@ class BrowseAssets extends Component {
         let isBoolean = true;
   if(this.props.showTabs){
   if(pageDetails.numberFound!==undefined){
-    paginationCont = (<div className={BrowseAsset.paginationContainer}><Pagination handlePageChange={this.props.handlePageChange}/></div>)
+    paginationCont = (<div className={BrowseAsset.paginationContainer}><Pagination/></div>)
   } 
 }
                  if(this.state.toggleFolder){

@@ -13,8 +13,19 @@ class FilterModel extends Component{
 	constructor(props){
 		super(props);
 
+
 	}
+	
 	render(){
+		if(this.props.isSuccess){
+			debugger;
+			//$('#successIcon').show().delay(5000).fadeOut();
+			document.getElementById('successIcon').style.display='bllock';
+			setTimeout(function () {
+        		document.getElementById('successIcon').style.display='none';
+    		}, 5000);
+    	}
+    	let style1={display:'none'}
 		let saveSearch = this.props.saveSearch ? <HyperLink onClick={this.props.savedSearch} name='save search'/> : ''
 		let filterModel = (
 		<div className={SearchModal.filterDisplayWrapper}>
@@ -24,6 +35,7 @@ class FilterModel extends Component{
           </div>
           	<div className={SearchModal.DisplayItemCount}>
 	          <SelectBox id='interactiveSelectBox'
+	          value={this.props.displayCount}
 	          onChange={this.props.onChange} 
 	          options={this.props.displayOptions}/>
         	</div>
@@ -31,12 +43,18 @@ class FilterModel extends Component{
        			<Label for='results' text='results'/>
            </div>
         	<div className={SearchModal.saveSearch}>
+        	<div id="successIcon" style={style1}>
+        	<img src='/images/accept.png'/>
+        	</div>
         		{saveSearch}
         	</div>
         </div>
         <div className={SearchModal.filterSecond}>
         	<div className={SearchModal.filterInteractive}>
-        		<FilterType filterStatus={this.props.filterStatus} filters={this.props.filters} getAssetsWithManifestation = {this.props.getAssetsWithManifestation} getValue = {this.props.getValue} hostfilename = {this.props.hostfilename}/>
+        		<FilterType filterStatus={this.props.filterStatus} filters={this.props.filters}
+        		localForData = {this.props.localForData} 
+        		getAssetsWithManifestation = {this.props.getAssetsWithManifestation} 
+        		getValue = {this.props.getValue} hostfilename = {this.props.hostfilename}/>
         	</div>
         </div>
         </div>
@@ -60,6 +78,9 @@ FilterModel.propTypes={
 	saveType: React.PropTypes.string,
 	savedSearch: React.PropTypes.func,
 	onChange: React.PropTypes.func,
-	selectedCount: React.PropTypes.number
+	selectedCount: React.PropTypes.number,
+	localForData : React.PropTypes.object,		
+	displayCount : React.PropTypes.string,
+	isSuccess:React.PropTypes.bool
 }
 export default FilterModel;

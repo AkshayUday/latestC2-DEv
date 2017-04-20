@@ -79,9 +79,7 @@ class MVMComponent extends React.Component{
 */
 constructor(props) {
    super(props);
-    this.state = {
-      isChecked: true,
-    };
+   
 /**
  * The displayName MVMComponent.
  * @type {string}
@@ -107,6 +105,7 @@ constructor(props) {
       //goalSuggest: [],
       languages: [],
       value: '',
+      isChecked: false,
       suggestions: this.getSuggestions('')
     }
 }
@@ -124,14 +123,16 @@ componentDidMount(){
    //hiddenDiv.addClass('hiddendiv');
    //jquery('body').prepend(hiddenDiv);*/
 }
-toggleChange = () => {
-    this.setState({
-      isChecked: !this.state.isChecked,
-    });
-  }
 
-handleChange(tags,src){ 
+handleChange(tags,src){
+ 
+  if(tags === 'adaptiveFlag'){
+    this.state.isChecked = !this.state.isChecked;
+     this.props.handleChange(tags,this.state.isChecked);
+  }else{
     this.props.handleChange(tags,src);
+  }
+  
   }
 componentWillReceiveProps(nextProps) {
     //bean.fire(this.props.patConfig, this.props.patConfig.resultsEventId,nextProps);
@@ -371,7 +372,8 @@ render() {
                 </div>
                 <div className={styles.assessmentCheckbox}>
                       <label> Adaptive Flag </label>
-                       <input type="checkbox" checked={this.state.isChecked} onChange={this.toggleChange.bind(this)}/>
+                      <input type="checkbox" checked={this.state.isChecked} onChange={this.handleChange.bind(this,'adaptiveFlag')}/>
+                      
                  </div>
                </div>
             </section>

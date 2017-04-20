@@ -34,7 +34,7 @@ export const fields = ['uuid','filename', 'name', 'urn', 'isbn','modNo','chapNo'
                        'difficultyLevel','knowledgeLevel','publisher','discipline',
                         'goalAlignment','objAlign',
                        'timeReq','desc','keywords','prodKeywords','goalKeywords',
-                       'hours','mins','secs','copyrightInfo','eTag'];
+                       'hours','mins','secs','adaptiveFlag','copyrightInfo','eTag'];
 /*
 // Product Name
                 <div className="pe-input pe-input--horizontal" >
@@ -107,6 +107,7 @@ let validations = {
      'hours':false,
      'mins':false,
      'secs':false,
+     'adaptiveFlag':false,
      'copyrightInfo': false,
      'eTag': false
 };
@@ -126,6 +127,7 @@ class MVMComponent extends React.Component{
 */
 constructor(props) {
     super(props);
+    
 /**
  * The displayName MVMComponent.
  * @type {string}
@@ -160,8 +162,15 @@ componentDidMount(){
           //ReactDOM.findDOMNode(this.refs.nameInput).focus();
 }
 
-handleChange(tags,src){ 
+handleChange(tags,src){
+ 
+  if(tags === 'adaptiveFlag'){
+    this.state.isChecked = !this.state.isChecked;
+     this.props.handleChange(tags,this.state.isChecked);
+  }else{
     this.props.handleChange(tags,src);
+  }
+  
   }
 
 componentWillReceiveProps(nextProps) {
@@ -349,7 +358,7 @@ render() {
     fields : {uuid, filename,name,urn,contentType,audience,modNo,
               author,planId,chapNo,difficultyLevel,knowledgeLevel,discipline,
               publisher,isbn,goalAlignment,objAlign,timeReq,desc,keywords,
-              prodKeywords,goalKeywords,hours,mins,secs,copyrightInfo,eTag},handleSubmit
+              prodKeywords,goalKeywords,hours,mins,secs,adaptiveFlag,copyrightInfo,eTag},handleSubmit
         }= this.props;
 
     return (
@@ -434,7 +443,7 @@ render() {
                 </div>
                 <div className={styles.assessmentCheckbox}>
                       <label> Adaptive Flag </label>
-                       <input type="checkbox" id="chk1" />
+                      <input type="checkbox" checked={this.state.isChecked} onChange={this.handleChange.bind(this,'adaptiveFlag')}/>
                  </div> 
               </div>
             </section>
@@ -471,7 +480,7 @@ MVMComponent = reduxForm({
      fields: ['uuid', 'filename','name','urn','isbn','planId','modNo','chapNo','author',
               'contentType','audience','difficultyLevel','knowledgeLevel','publisher',
               'discipline','goalAlignment','objAlign','timeReq','desc','keywords',
-              'prodKeywords','goalKeywords','hours','mins','secs','copyRight','eTag'],
+              'prodKeywords','goalKeywords','hours','mins','secs','adaptiveFlag','copyRight','eTag'],
      ...generateValidation(validations)
   })(MVMComponent);
 

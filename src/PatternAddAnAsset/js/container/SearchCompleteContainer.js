@@ -109,6 +109,7 @@ const mapDispatchToProps = (dispatch) => {
             searchdata =  takeRight(uniqBy(lastthree,'term'),3);
             
               allAsset = dispatch((() => { return (dispatch,getState) => {
+			  //debugger;
 			  //console.log(getState().autoComplete);
 			  return chain(getState().autoComplete).last().pick('data').value();
 
@@ -139,6 +140,7 @@ const mapDispatchToProps = (dispatch) => {
     componentDidUpdate(){
 
     	/*dispatch((() => { return (dispatch,getState) => {
+    		//debugger;
      	    //console.log(getState().autoComplete);							
 	 	 }
 	 	}
@@ -263,7 +265,7 @@ const mapDispatchToProps = (dispatch) => {
 
             searchdata =  takeRight(uniqBy(lastthree,'term'),3);
             if(value != ''){
-               dispatch(populateAutoComplete(value,sarr,searchdata));	
+               dispatch(populateAutoComplete(value.trim(),sarr,searchdata));	
             }else{ 
             //dispatch(updateAllAsset(allAsset['allAsset'],sarr,searchdata));	
             dispatch(updateAllAsset([],sarr,searchdata));	

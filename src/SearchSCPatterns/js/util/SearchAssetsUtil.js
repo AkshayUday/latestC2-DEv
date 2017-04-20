@@ -1,7 +1,9 @@
-import {getModifiedOn} from '../../../common/components/browseAssetUtil'
+import {getModifiedOn} from '../../../common/components/browseAssetUtil';
+import {find as lfind, toLower as ltoLower} from  'lodash';
+
 export default{
 
-	getRequiredParameter(results){ 
+	getRequiredParameter(results,filterTypeData){ 
 		let searchResults = [];
 		for(let searchObj of results){
 			
@@ -11,7 +13,8 @@ export default{
 				if(searchObj.name){
 					resultObj.title = searchObj.name.en || '';
 				}
-				resultObj.type = this.getTaxonomicType(searchObj.taxonomicType);
+				 // resultObj.type = this.getTaxonomicType(searchObj.taxonomicType);
+				 resultObj.type = this.getTaxonomicTypeLabel(searchObj.taxonomicType,filterTypeData);
 				resultObj.dateModified = searchObj.dateModified ? getModifiedOn(searchObj.dateModified) : '';
 				resultObj.id = searchObj.id || '';
 				resultObj.workExample = searchObj.workExample || '';
@@ -31,6 +34,16 @@ export default{
 		}
 
 		return type;
+	},
+
+	getTaxonomicTypeLabel(taxonomicType,filterTypeData){
+     let taxLPreLabel = '';
+     console.log(taxonomicType[0]);
+     taxLPreLabel = lfind(filterTypeData,{'property':ltoLower(taxonomicType[0])});
+     console.log(taxLPreLabel['display']);
+
+     return taxLPreLabel['display'];
+
 	},
 
 	getActionObj(type, value){

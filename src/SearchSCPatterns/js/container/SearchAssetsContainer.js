@@ -35,8 +35,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			dispatch(getFilterType(ownProps.libConfig));
 		},
 		savedSearch: function (){		
-			let inputData = {};		
-			//inputData.saveValue = this.state.sugSaveVal;		
+			let inputData = {};				
 			inputData.userId = ownProps.libConfig.userId;
 			inputData.patternName = ownProps.patConfig.pattern;
 			//inputData.patternName = 'addAnAsset';	
@@ -46,6 +45,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			inputData.viewMode = 'listView';
 			inputData.isThreeSave = true;
 			inputData.saveValue = this.state.sugSaveVal;
+			inputData.isSaveLinkClicked=true;
+			inputData.columnSort = this.state.columnsort;
+			if(this.props.filterTypeValue.length>0){
+				inputData.filterTypeValue = this.props.filterTypeValue.toString();
+			}
 			if(this.state.actionTypes !== '' && this.state.actionTypes !== undefined){		
 				let uiMaps = this.state.actionTypes;		
 				for(let valueObj of uiMaps.values()){	
@@ -53,7 +57,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 						inputData.order = valueObj.type;		
 						inputData.sortColName = valueObj.value;		
 					}		
-					if(valueObj.type==='GET_PAGE_MAX'){		
+					if(valueObj.type==='GET_PAGE_MAX'){	
 						inputData.listMode = valueObj.value;		
 					}		
 				}		

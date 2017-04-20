@@ -25,7 +25,6 @@ const getSelectedValues = (dataArray) => {
   }
   return [];
 }
-const localforage = require('localforage');
 /**
 * @function mapStateToProps If specified, the component will subscribe to 
 * Redux store updates. Any time it updates, mapStateToProps will be called. 
@@ -75,36 +74,23 @@ const mapDispatchToProps = (dispatch) => {
              type : 'SEND_TO_QUAD',
              data : {}
            })
-      }
-      window.tdc.patConfig.maxItemsFlag = false;
-      window.tdc.patConfig.assetsTotalCount = 0;
+      }      
+
+      let viewName;
+      if(document.querySelectorAll('.dropdown-display').length > 0){
+        let getviewName = document.querySelectorAll('.dropdown-display')[0]['children'][0]['children'][0].getAttribute('CLASS');
+      
+        if(getviewName == 'fa fa-th'){
+          viewName = 'grid-view';
+        }else{
+          viewName = 'list-view';
+        }
+      }    
        dispatch({
            type : 'RESET_BROWSE_TABS',
            data : false
         });
-       localforage.getItem('persistFilterSettings')
-         .then((filterSettings) => {
-           let displayCount;
-           if (filterSettings.viewName === 'list-view') {
-             displayCount = filterSettings.displayValueCountForList ? filterSettings.displayValueCountForList: 25;
-           } else {
-             displayCount = filterSettings.displayvaluecount ? filterSettings.displayvaluecount: 9;
-           }
-           dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO, displayCount, 0, filterSettings.sortIndex, filterSettings.viewName));
-         }).catch(function (err) {
-             console.log('Localforage not exist in TreePaneContainer', err)
-             let viewName;
-             if(document.querySelectorAll('.dropdown-display').length > 0){
-               let getviewName = document.querySelectorAll('.dropdown-display')[0]['children'][0]['children'][0].getAttribute('CLASS');
-
-               if(getviewName == 'fa fa-th'){
-                 viewName = 'grid-view';
-               }else{
-                 viewName = 'list-view';
-               }
-             }
-             dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,0,undefined,viewName));
-       });
+        dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,0,undefined,viewName));
       }, 
       getSubFolders:function (foldername,child, nodeRef) { 
       	dispatch(getSubFolders('browseasset',foldername,child, nodeRef));

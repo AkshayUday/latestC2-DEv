@@ -383,6 +383,8 @@ export function  updateTags(tags,src){
       _formState.mvm.keywords.value = src;  
     }else if(tags === 'goalKeywords'){
       _formState.mvm.goalKeywords.value = src;  
+    }else if(tags === 'adaptiveFlag'){
+      _formState.mvm.adaptiveFlag.value = src;
     }
     
 

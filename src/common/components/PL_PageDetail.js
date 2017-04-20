@@ -6,8 +6,8 @@ import React, { Component, PropTypes } from 'react';
 const PL_PageDetail = (props) => {
        let pageDetails = props.pageDetails;
        let Content = 'Showing '+(pageDetails.index+1)+'-'+(pageDetails.index+pageDetails.totalRecords);
-       if(pageDetails.searchText){
-        Content = Content+'results in product library: '+pageDetails.searchText;
+       if(pageDetails.siteName){
+        Content = Content+' results in product library: '+pageDetails.siteName;
        }
         return (
             <div className={PaginStyles.pagingText}>

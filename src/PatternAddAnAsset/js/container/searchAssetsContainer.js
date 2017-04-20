@@ -4,8 +4,8 @@
  *
  *
  * @module MediaAssets
- * @file SearchAssetsContainer - This container does data fetching
- and then renders its corresponding sub-component.
+ * @file SearchAssetsContainer - This container does data fetching 
+   and then renders its corresponding sub-component.
  * @author TDC
  */
 
@@ -16,15 +16,13 @@ import { bindActionCreators } from 'redux';
 import {getSearchProductItems,saveSearchValues,updateDifficultyLevel} from '../action/SearchLibraryAction';
 import assetsGenerator from '../components/browse/assetsGenerator';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
-import store from './../store'
-const localforage = require('localforage');
 
 /**@function getSelectedValues -
  * This method is used to get the selected values by user.
  * @param {object} dataArray - Array containing values selected by user
  * @returns {string} - If array length is greater than 0 , it will return last element of that array
  * @returns {object} array - else it will return empty array object
- */
+*/
 const getSelectedValues = (dataArray) => {
   if (dataArray.size > 1) {
     let latestItem = dataArray.size-1;
@@ -43,19 +41,19 @@ const getDataValues = (dataArray) => {
 }
 
 function findFileTypeIndex(idValue){
-  let fileTypeIndex = 0;
+let fileTypeIndex = 0;
   if(document.querySelector(idValue+' [aria-selected="true"]')){
-    let tabValue = document.querySelector(idValue+' [aria-selected="true"]').innerText;
-    if(tabValue==='Image'){
-      fileTypeIndex = 0;
-    }else if(tabValue==='Video'){
-      fileTypeIndex = 1;
-    }else if(tabValue==='Audio'){
-      fileTypeIndex = 2;
-    }else{
-      fileTypeIndex = 3;
-    }
+  let tabValue = document.querySelector(idValue+' [aria-selected="true"]').innerText;
+  if(tabValue==='Image'){
+     fileTypeIndex = 0;
+  }else if(tabValue==='Video'){
+    fileTypeIndex = 1;
+  }else if(tabValue==='Audio'){
+    fileTypeIndex = 2;
+  }else{
+    fileTypeIndex = 3;
   }
+}
   return fileTypeIndex;
 }
 
@@ -67,7 +65,7 @@ function findFileTypeIndex(idValue){
  * props you want to pass to a presentational component
  * @param {object} state
  * @returns {object} Object
- */
+*/
 const mapStateToProps = (state) => {
   let data = getSelectedValues(state.searchAssets);
   let userSelectedRecord = getSelectedValues(state.quad);
@@ -78,21 +76,18 @@ const mapStateToProps = (state) => {
     temp = JSON.parse(JSON.stringify(data.items));
   }
   let searchValue = '';
-  if(state.autoComplete.length > 0){
-    searchValue = state.autoComplete[state.autoComplete.length-1].text;
-  }
-  const { sortIndex } = state.userFilterReducer;
-  const { viewName } = state.userFilterReducer;
+   if(state.autoComplete.length > 0){
+        searchValue = state.autoComplete[state.autoComplete.length-1].text;
+     }
   return {
-    assetsData: temp,
-    pageDetails: Array.isArray(data)? {}: data,
-    selectedRecord: Array.isArray(userSelectedRecord)? {}: userSelectedRecord,
-    productName: siteData.productName,
-    isSearchLibrary: true,
-    difficultLevelData: [],
-    searchValue:searchValue,
-    sortIndex,
-    viewName
+   assetsData: temp,
+   pageDetails: Array.isArray(data)? {}: data,
+   selectedRecord: Array.isArray(userSelectedRecord)? {}: userSelectedRecord,
+   productName: siteData.productName,
+   sortValue: data.sortIndex,
+   isSearchLibrary: true,
+   difficultLevelData: [],
+   searchValue:searchValue
   }
 }
 /**@function mapDispatchToProps
@@ -101,72 +96,86 @@ const mapStateToProps = (state) => {
  * injected into the presentational component
  * @param {function} dispatch
  * @returns {object} callback props
- */
+*/
 const mapDispatchToProps = (dispatch) => {
   return {
-    // handlePageChange: function (page, event,sortIndex) {
-    //  event.preventDefault();
-    //  let fileTypeIndex = findFileTypeIndex();
-    //  let viewName;
-    //  if(document.querySelector('.dropdown-display span i').className==='fa fa-list'){
-    //    viewName = 'list-view';
-    //  }else{
-    //    viewName = 'grid-view';
-    //  }
-    //  let searchValue = document.querySelector('#searchAutoSuggest input').value;
-    //  let maxItems = parseInt(document.querySelector('#itemPerPageSelectBox').value);
-    //  dispatch(getSearchProductItems(searchValue,page,maxItems,fileTypeIndex,sortIndex,viewName));
-    //  },
+     // handlePageChange: function (page, event,sortIndex) {
+     //  event.preventDefault();
+     //  let fileTypeIndex = findFileTypeIndex();
+     //  let viewName;
+     //  if(document.querySelector('.dropdown-display span i').className==='fa fa-list'){
+     //    viewName = 'list-view';
+     //  }else{
+     //    viewName = 'grid-view';
+     //  }
+     //  let searchValue = document.querySelector('#searchAutoSuggest input').value;
+     //  let maxItems = parseInt(document.querySelector('#itemPerPageSelectBox').value);
+     //  dispatch(getSearchProductItems(searchValue,page,maxItems,fileTypeIndex,sortIndex,viewName));
+     //  },
 
-    onChange:function (event,sortIndex){
+      onChange:function (event,sortIndex){
       event.preventDefault();
+       let viewName;
       let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
-      let searchValue = document.querySelector('#searchAutoSuggest input').value;
-      dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,parseInt(event.target.value),fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
-    },
+      if(document.querySelector('#viewDropDownContainer span i').className==='fa fa-list'){
+        viewName = 'list-view';
+      }else{
+        viewName = 'grid-view';
+      }
 
-    setSelectedItem: function (record) {
-      dispatch(selectedRecord(record));
-    },
+      let filterData={displayValueCount:parseInt(event.target.value),sortIndex:parseInt(sortIndex)}
+
+      dispatch({
+            type : 'UPDATE_FILTER',
+            data : filterData
+          });
+
+        let searchValue = document.querySelector('#searchAutoSuggest input').value;
+        dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,parseInt(event.target.value),fileTypeIndex,sortIndex,viewName));
+      },
+
+
+      setSelectedItem: function (record) {
+        dispatch(selectedRecord(record));
+      },
 
     // handleDelete:function (deleteData){
     // let deleteTagId = deleteData.id;
     // dispatch(updateDifficultyLevel(parseInt(deleteTagId)));
     // },
 
-    saveSearch:function (event){
-      event.preventDefault();
-      if(document.querySelector('#searchAutoSuggest input').value){
-        let SearchValue = document.querySelector('#searchAutoSuggest input').value;
-        dispatch(saveSearchValues(SearchValue));
-      }
-    },
+      saveSearch:function (event){
+        event.preventDefault();
+        if(document.querySelector('#searchAutoSuggest input').value){
+          let SearchValue = document.querySelector('#searchAutoSuggest input').value;
+          dispatch(saveSearchValues(SearchValue));
+        }
+      },
 
-    onSort: function (sortIndex, viewName){
-      let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
-      let searchValue = document.querySelector('#searchAutoSuggest input').value;
-      let maxItems = parseInt(document.querySelector('#itemPerPageSelectBox').value);
-      dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,store.getState().userFilterReducer.viewName));
-    },
+      onSort: function (sortIndex, viewName){
+        let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
+        let searchValue = document.querySelector('#searchAutoSuggest input').value;
+        let maxItems = parseInt(document.querySelector('#itemPerPageSelectBox').value);
+      let filterData={displayValueCount:maxItems,sortIndex:parseInt(sortIndex)}
 
-    changeView:function (viewName,sortIndex){
-      let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
-      let searchValue = document.querySelector('#searchAutoSuggest input').value;
-      let maxItems;
-      if(viewName === 'list-view'){
-        localforage.getItem('persistFilterSettings')
-          .then((filterSettings) => {
-            maxItems = filterSettings.displayValueCountForList > 25 ? filterSettings.displayValueCountForList : store.getState().userFilterReducer.displayValueCountForList;
-            dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
-          })
-      }else{
-        localforage.getItem('persistFilterSettings')
-          .then((filterSettings) => {
-            maxItems = filterSettings.displayvaluecount > 9 ? filterSettings.displayvaluecount : store.getState().userFilterReducer.displayvaluecount;
-            dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
-          })
+      dispatch({
+            type : 'UPDATE_FILTER',
+            data : filterData
+          });
+        dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
+      },
+
+      changeView:function (viewName,sortIndex){
+        let fileTypeIndex = findFileTypeIndex('#searchTabsContainer');
+        let maxItems;
+        if(viewName === 'list-view'){
+          maxItems = 25;
+        }else{
+          maxItems = 9;
+        }
+        let searchValue = document.querySelector('#searchAutoSuggest input').value;
+        dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
       }
-    }
   }
 }
 

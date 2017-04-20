@@ -15,7 +15,7 @@ import { Link, browserHistory, hashHistory } from 'react-router'
 import bean from 'bean';
 import {fetchingAssets} from '../action/assets';
 import {getCurrentValues} from '../utils/util';
-import Paginate from '../../../common/components/PL_Pagination/paging';
+import paging from '../components/Pagination';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
 import {getSearchProductItems} from '../action/SearchLibraryAction';
 
@@ -75,11 +75,19 @@ const mapStateToProps = (state) => {
       data = getCurrentValues(state.searchAssets);
     }
   }
+  let pageDetails = {
+        totalRecords: data.totalRecords,
+        pageNo: data.pageNo,
+        pageLimit: data.limit,
+        lastPage: !data.lastPage,
+        index: data.index
+  }
+  //if()
     let folderData = getDataValues(state.TreePaneReducers);
     currentFolder = folderData.currentFolder;
     let siteData = getDataValues(state.siteDataReducer);
     return {
-      pageDetails: Array.isArray(data)? {}: data,
+      pageDetails: pageDetails,
       currentFolder : currentFolder,
       productName: siteData.productName
     };
@@ -134,6 +142,6 @@ const mapDispatchToProps = (dispatch) => {
 const paginationContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Paginate)
+)(paging)
 
 export default paginationContainer;

@@ -43,6 +43,7 @@ const initilizeValues = [{
   secs: '',
   eTag:'',
   copyrightInfo: '',
+  adaptiveFlag: false,
   metadataType: '',
   onloadValue:{}
 }]

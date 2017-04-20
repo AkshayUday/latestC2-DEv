@@ -81,27 +81,31 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
         dispatch({
           type: 'ACTIVATE'
         })
-        if(srValue){
+        //if(srValue){
         	let saveSrData = {};
 	    	saveSrData.userId=libConfig.userId;
 	    	saveSrData.patternName=libConfig.patternName;
-	    	//saveSrData.patternName='addAnAsset';
 	    	saveSrData.type=SearchConstants.LOCAL_INSTANCE;		
 	    	saveSrData.saveType=SearchConstants.RECENT_SEARCH;
 	    	saveSrData.saveValue=srValue;
-	    	saveSrData.filterTypeValue=_getfilterType.toString();
+	    	if(_getfilterType.toString()){
+	    		saveSrData.filterTypeValue=_getfilterType.toString();
+	    	}
 	    	saveSrData.gridMode = 9;		
-			saveSrData.listMode = sortObj.displayCount;		
-			saveSrData.sortColName = sortObj.sortColumn;;		
+			saveSrData.listMode = sortObj.displayCount;	
+			if(sortObj.sortColumn)		
+			saveSrData.sortColName = sortObj.sortColumn;
+			if(sortObj.sortType)	
 			saveSrData.order = sortObj.sortType;
 			saveSrData.viewMode = 'listView';		
 			saveSrData.isThreeSave = true;
 	    	dispatch(saveLocalForageData(saveSrData));
-        }
+       // }
 
 		const promise = getSearchResults(queryObject,libConfig);
 		promise.then(function (replyGet){
-    	let results = Util.getRequiredParameter(replyGet);
+    	let results = Util.getRequiredParameter(replyGet,filterTypeData);
+    	// console.log(filterTypeData);
     	// let searchResults = {'listResults' : results};
     		dispatch({
     			type: 'GET_SEARCH_RESULT',
@@ -114,7 +118,6 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
 
 
         }.bind(this), function (error){
-            console.log(error);
              if(error.message == 'timeout'){
 				dispatch({
 				type: 'ERROR',
@@ -128,7 +131,6 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
 
 
         }).catch(e => {
-            console.log(e);
             dispatch({
           type: 'DEACTIVATE'
         })
@@ -189,8 +191,6 @@ export function getOnLoadLocalForageData(inputData){
 					}
 					if(autoSuggest.recentArr.length > 0 || autoSuggest.savedSrArr.length > 0){
 						saveArr = SavedSearchUtil.formatAutoSuggestionData(autoSuggest);
-		    			console.log('saveArr');
-		    			console.log(saveArr);
 		    			dispatch({
 		    				type: 'GET_SUG_DATA',
 				    		value: saveArr
@@ -201,6 +201,10 @@ export function getOnLoadLocalForageData(inputData){
 				    		value: {errMsg: 'No Suggestion to display'}
 	    				});
 					}
+					if(inputData.isSaveLinkClicked !== undefined){
+							replyGet.isSuccess = true;
+					}
+					
 					dispatch({		
 						type: 'GET_LOCAL_FORAGE_DATA',		
 						value: replyGet		
@@ -260,13 +264,14 @@ export function getFilterType(libConfig){
 			type: 'FILTER_TYPE_DATA',
 			value: results
 		});
-		 dispatch({
-          type: 'DEACTIVATE'
-        })
+
+		 // dispatch({
+   //        type: 'DEACTIVATE'
+   //      })
 
         }.bind(this), function (error){
-            console.log(error);
-           if(error.message == 'timeout'){
+        	// console.log(error);
+           if(error.message == 'timeout' || error == ''){
 				dispatch({
 				type: 'ERROR',
 				value: 'Network issue please try again.'
@@ -278,7 +283,8 @@ export function getFilterType(libConfig){
         })
 
         }).catch(e => {
-        console.log(e);
+        	// console.log(e);
+
 		dispatch({
 			type: 'DEACTIVATE'
 		})

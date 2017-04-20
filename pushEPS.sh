@@ -1,10 +1,8 @@
 #!/bin/bash
+
 #
 # Input parameters: $BRANCH_NAME $CHANGE_ID $BUILD_DISPLAY_NAME
 # 
-
-
-
 
 #Following are already available from shell environment
 #BRANCH_NAME=$1
@@ -22,14 +20,18 @@ COMMIT=$GIT_COMMIT
 BUILD=$BUILD_DISPLAY_NAME
 
 # Constants
-# The collectionUUID is specific to C2 Patterns Library named : Basic Items
+# The COLLECTION_UUID is specific to C2 Patterns Library named : Basic Items
 # See JIRA EPS-938
-collectionUUID=b28f1ffe-2008-4f5e-d559-83c8acd79316
-# Resource managed by EPS/AKAMAI
-file=PatternsLib.js
+COLLECTION_UUID=b28f1ffe-2008-4f5e-d559-83c8acd79316
+
 # The pushEPS is run by Jenkins in the git project.
-filePath=./lib
-epsItemName=PatternsLib.js
+FILE_PATH=./lib
+
+
+# Common upload function
+function epsupload {
+  file=$1
+  epsItemName=$1
 
 case $BRANCH in
     'dev')
@@ -69,7 +71,7 @@ case $BRANCH in
 esac
 
       desc="Build from branch : $BRANCH, commit : $COMMIT, build : $BUILD"
-      body='{"collection":{"uuid":"'${collectionUUID}'"}, "metadata": "<xml><item><name>'${epsItemName}'</name><description>'${desc}'</description></item></xml>" }'
+      body='{"collection":{"uuid":"'${COLLECTION_UUID}'"}, "metadata": "<xml><item><name>'${epsItemName}'</name><description>'${desc}'</description></item></xml>" }'
       #
       # Step 1
       #
@@ -99,7 +101,6 @@ esac
       #
       # Step 2
       #
-      cd ${filePath}
       outUpload=`curl -s -i -H "Authorization:Bearer ${token}" "${instUrl}api/staging/${xEpsStagingid}/${file}" -T ${file}`
       rcUpload=$?
       #response = HTTP 200
@@ -157,3 +158,18 @@ script=$scriptOpen$akamaiUrl$scriptClose
 epsMsg="Branch : ${BRANCH} *** Commit : ${COMMIT} *** Build : ${BUILD} *** EPS Access URL : ${accessUrl} *** Akamai URL : ${akamaiUrl} *** Akamai URL script tag : ${script}"
 curl -H "Content-type: application/json" -H "Authorization: Bearer ${hipChatApiToken}" -X POST -d "{ \"color\" : \"yellow\", \"notify\" : true, \"message\" : \"${epsMsg}\" }" https://pearson.hipchat.com/v2/room/3236763/notification
 
+}  
+
+cd ${FILE_PATH}
+
+# upload resource managed by EPS/AKAMAI
+# epsupload PatternsLib.js
+epsupload PatternAddAnAsset.js
+epsupload PatternAssessment.js
+epsupload PatternBank.js
+epsupload PatternBroker.js
+epsupload PatternProductLink.js
+epsupload PatternQuestion.js
+epsupload Patternvendor.js
+epsupload SearchSCPatterns.js
+epsupload PatternSearchSelect.js
