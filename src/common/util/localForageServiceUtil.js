@@ -20,6 +20,11 @@ export default {
       }else if(replyGetData !== null && replyGetData.displayCount.viewMode !== undefined){
         saveInputObj[inputData.patternName].displayCount.viewMode = replyGetData[inputData.patternName].displayCount.viewMode;
       }
+      if(inputData.sortIndex !== undefined){
+        saveInputObj[inputData.patternName].displayCount.sortIndex = inputData.sortIndex;
+      }else if(replyGetData !== null && replyGetData[inputData.patternName].displayCount.sortIndex !== undefined){
+        saveInputObj[inputData.patternName].displayCount.sortIndex = replyGetData[inputData.patternName].displayCount.sortIndex;
+      }
       saveInputObj[inputData.patternName].recentSearch = inputData.saveInputtObj[0];
       saveInputObj[inputData.patternName].saveSearch = inputData.saveInputtObj[1];
       saveInputObj[inputData.patternName].sortSelection={};

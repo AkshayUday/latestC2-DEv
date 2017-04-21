@@ -187,6 +187,7 @@ const saveToLocalForageService = () => {
   inputData.viewMode = viewName;
   inputData.listMode = displayValueCountForList;
   inputData.sortIndex = sortIndex;
+  inputData.saveValue = displayValueCountForList;
   localForageService.saveLocalForageData(inputData);
 }
 

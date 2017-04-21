@@ -2,7 +2,7 @@
  * Copyright (c) Pearson, Inc.
  * All rights reserved.
  * @class DropDown used to create Dropdown component which will display
- * grid and list view component 
+ * grid and list view component
  * @author TDC
  **/
 import React, { Component, PropTypes } from 'react';
@@ -11,15 +11,15 @@ import DropdownStyles from './styles/DropDownStyles.css'
 class DropDown extends Component{
 
     /**
-    * @contructor will be used to initialize Dropdown 
-    * objects and it will bind few method in it
-    * @param {function} show
-    * @param {function} hide
-    * @param {function} select
-    */
+     * @contructor will be used to initialize Dropdown
+     * objects and it will bind few method in it
+     * @param {function} show
+     * @param {function} hide
+     * @param {function} select
+     */
     constructor(props){
         super(props);
-         this.state={
+        this.state={
             listVisible: false,
             lists : this.props.selected
         };
@@ -27,11 +27,20 @@ class DropDown extends Component{
         this.hide = this.hide.bind(this);
         this.select = this.select.bind(this);
     }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.selected) {
+            this.setState({
+                lists: nextProps.selected
+            });
+        }
+    }
+
     /**
-    * @function select is used for change the state of the Dropdown component
-    * and calls the parent class
-    * @param {object} item
-    */
+     * @function select is used for change the state of the Dropdown component
+     * and calls the parent class
+     * @param {object} item
+     */
     select(item) {
         //console.log(item.value);
         this.setState({lists:item});
@@ -39,24 +48,24 @@ class DropDown extends Component{
     }
 
     /**
-    * @function show method is used for show the dropdown list
-    */
+     * @function show method is used for show the dropdown list
+     */
     show() {
         this.setState({ listVisible: true });
         document.addEventListener('click', this.hide);
     }
     /**
-    * @function hide method is used for hide the dropdown list
-    */
+     * @function hide method is used for hide the dropdown list
+     */
     hide() {
         this.setState({ listVisible: false });
         document.removeEventListener('click', this.hide);
     }
 
     /**
-    * @function renderListItems method is used for render the drop down list
-    * @param {string} selectedName - used to find the selected name
-    */
+     * @function renderListItems method is used for render the drop down list
+     * @param {string} selectedName - used to find the selected name
+     */
     renderListItems(selectedName) {
         let items = [];
         let item;
@@ -70,19 +79,19 @@ class DropDown extends Component{
         }
         return items;
     }
-    
+
     /**
-    * @default render method is used for returning the DOM
-    */
+     * @default render method is used for returning the DOM
+     */
     render() {
         return (<div id='viewDropDownContainer' className={DropdownStyles.dropdownContainer}>
             <div className={DropdownStyles.dropdownDisplay}
-            onClick={this.show.bind(this)}>
+                 onClick={this.show.bind(this)}>
                 <span><i className={this.state.lists.name}></i></span>
                 <span className={DropdownStyles.viewIconStyle}><i className="fa fa-chevron-down"></i></span>
             </div>
             <div className={(this.state.listVisible ? DropdownStyles.show: DropdownStyles.hide)}>
-                    {this.renderListItems(this.state.lists.name)}
+                {this.renderListItems(this.state.lists.name)}
             </div>
         </div>)
     }
