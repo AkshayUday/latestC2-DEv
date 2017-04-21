@@ -1,87 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a77cd5c-ffb1-4e8c-a2cc-53c3c7e5ec75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/ImagePreviewEntry.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/Pagination.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/Styles/Pagination.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/TestImageGallery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/reducers/userPreferenceReducer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/common/components/ImagePreview.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/SearchSCPatterns/FilterType.test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/indexpage.js" afterPath="$PROJECT_DIR$/indexpage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/karma.conf.js" afterPath="$PROJECT_DIR$/karma.conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternAddAnAsset.js" afterPath="$PROJECT_DIR$/lib/PatternAddAnAsset.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternAssessment.js" afterPath="$PROJECT_DIR$/lib/PatternAssessment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternBank.js" afterPath="$PROJECT_DIR$/lib/PatternBank.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternBroker.js" afterPath="$PROJECT_DIR$/lib/PatternBroker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternProductLink.js" afterPath="$PROJECT_DIR$/lib/PatternProductLink.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternQuestion.js" afterPath="$PROJECT_DIR$/lib/PatternQuestion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/Patternvendor.js" afterPath="$PROJECT_DIR$/lib/Patternvendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/SearchSCPatterns.js" afterPath="$PROJECT_DIR$/lib/SearchSCPatterns.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pushEPS.sh" afterPath="$PROJECT_DIR$/pushEPS.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/savedSearchAction.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/savedSearchAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/BrowseAssets.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/BrowseAssets.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/EntryPopup.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/EntryPopup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/SearchLibrary.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/SearchLibrary.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/SingleFileUpload.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/SingleFileUpload.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/Styles/BrowseStyles.css" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/Styles/BrowseStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/Validate.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/Validate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assetsGenerator.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assetsGenerator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/styles/AssetGeneratorStyles.css" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/styles/AssetGeneratorStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/styles/AssetsStyles.css" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/styles/AssetsStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/toolBar.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/toolBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/checkJobStatus/table.css" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/checkJobStatus/table.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/savedSearch/SavedSearchComponent.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/savedSearch/SavedSearchComponent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/singlefileupload.css" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/singlefileupload.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/uploadInProgress.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/uploadInProgress.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/AssetFiltersContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/AssetFiltersContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchAssetFiltersContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchAssetFiltersContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchCompleteContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchCompleteContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchLibraryContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchLibraryContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/TreePaneContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/TreePaneContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/assetsContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/assetsContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/paginationContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/paginationContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/searchAssetsContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/searchAssetsContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/reducers/index.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/reducers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAssesment/js/action/MetadataAction.js" afterPath="$PROJECT_DIR$/src/PatternAssesment/js/action/MetadataAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAssesment/js/components/MVM/MVM.js" afterPath="$PROJECT_DIR$/src/PatternAssesment/js/components/MVM/MVM.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAssesment/js/container/MetadataContainer.js" afterPath="$PROJECT_DIR$/src/PatternAssesment/js/container/MetadataContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAssesment/js/reducers/Metadatareducers.js" afterPath="$PROJECT_DIR$/src/PatternAssesment/js/reducers/Metadatareducers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternBroker.js" afterPath="$PROJECT_DIR$/src/PatternBroker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternQuestion/js/action/MetadataAction.js" afterPath="$PROJECT_DIR$/src/PatternQuestion/js/action/MetadataAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternQuestion/js/components/MVM/MVM.js" afterPath="$PROJECT_DIR$/src/PatternQuestion/js/components/MVM/MVM.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternQuestion/js/container/MetadataContainer.js" afterPath="$PROJECT_DIR$/src/PatternQuestion/js/container/MetadataContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternQuestion/js/reducers/Metadatareducers.js" afterPath="$PROJECT_DIR$/src/PatternQuestion/js/reducers/Metadatareducers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/actions/SearchAssetsAction.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/actions/SearchAssetsAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/FilterModel.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/FilterModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/FilterType.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/FilterType.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/SearchModel.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/SearchModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/SearchSpec.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/SearchSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/listview/ListColumns.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/listview/ListColumns.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/listview/ListRows.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/components/search/listview/ListRows.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/config/Config.json" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/config/Config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/container/SearchAssetsContainer.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/container/SearchAssetsContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SearchSCPatterns/js/util/SearchAssetsUtil.js" afterPath="$PROJECT_DIR$/src/SearchSCPatterns/js/util/SearchAssetsUtil.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/AutoSuggest.js" afterPath="$PROJECT_DIR$/src/common/components/AutoSuggest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/Dropdown.js" afterPath="$PROJECT_DIR$/src/common/components/Dropdown.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/PL_PageDetail.js" afterPath="$PROJECT_DIR$/src/common/components/PL_PageDetail.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/SortAssets.js" afterPath="$PROJECT_DIR$/src/common/components/SortAssets.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/HourStyles.css" afterPath="$PROJECT_DIR$/src/common/components/styles/HourStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/MinutesStyles.css" afterPath="$PROJECT_DIR$/src/common/components/styles/MinutesStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/PL_ItemsPerPage.css" afterPath="$PROJECT_DIR$/src/common/components/styles/PL_ItemsPerPage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/SecondsStyles.css" afterPath="$PROJECT_DIR$/src/common/components/styles/SecondsStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/autosuggestTheme.css" afterPath="$PROJECT_DIR$/src/common/components/styles/autosuggestTheme.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util/localForageService.js" afterPath="$PROJECT_DIR$/src/common/util/localForageService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util/localForageServiceUtil.js" afterPath="$PROJECT_DIR$/src/common/util/localForageServiceUtil.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util/scapiServices.js" afterPath="$PROJECT_DIR$/src/common/util/scapiServices.js" />
-    </list>
+    <list default="true" id="7a77cd5c-ffb1-4e8c-a2cc-53c3c7e5ec75" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -127,7 +47,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="617" />
     <option name="width" value="667" />
-    <option name="height" value="744" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -286,7 +206,7 @@
       <workItem from="1491881072163" duration="1063000" />
       <workItem from="1491936695418" duration="7566000" />
       <workItem from="1492448217641" duration="5614000" />
-      <workItem from="1492704930749" duration="342000" />
+      <workItem from="1492704930749" duration="5887000" />
     </task>
     <task id="LOCAL-00001" summary="latest code">
       <created>1491849556377</created>
@@ -327,7 +247,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56784000" />
+    <option name="totallyTimeSpent" value="62329000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -339,16 +259,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="617" y="0" width="667" height="744" extended-state="0" />
+    <frame x="617" y="0" width="667" height="728" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.84150326" sideWeight="0.11383928" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.84150326" sideWeight="0.88616073" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1728188" sideWeight="0.88616073" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.374183" sideWeight="0.48363096" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4869281" sideWeight="0.48363096" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
