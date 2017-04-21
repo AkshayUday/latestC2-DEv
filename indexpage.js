@@ -318,7 +318,11 @@ var SaveCallBack = function (data) {
         var property = '<p><span class="uppercase">'+key+'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>'+data[key]+'</span></p>';
         if(typeof(data[key]) === 'string'){
           content =  content+property;
-        }else if(typeof(data[key]) === 'object'){
+        }
+        if(typeof(data[key]) === 'boolean'&& key === 'adaptiveFlag'){
+          content =  content+property;
+        }
+        else if(typeof(data[key]) === 'object'){
           if(key === 'keywords' || key === 'goalKeywords'){
             var keyArr = [];
             for(i=0;i<data[key].length;i++){
@@ -639,6 +643,9 @@ var SaveCallBack1 = function (data) {
       if (data.hasOwnProperty(key)) {
         var property = '<p><span class="uppercase">'+key+'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>'+data[key]+'</span></p>';
         if(typeof(data[key]) === 'string'){
+          content =  content+property;
+        }
+        if(typeof(data[key]) === 'boolean'&& key === 'adaptiveFlag'){
           content =  content+property;
         }else if(typeof(data[key]) === 'object'){
           if(key === 'keywords' || key === 'goalKeywords'){

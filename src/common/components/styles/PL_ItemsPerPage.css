@@ -7,9 +7,7 @@
          -o-appearance: none;
             appearance: none;
     /*background: url("../images/dropdown_arrow.png");*/
-    background-image: url('b64---./images/dropdown_arrow.png---');
-    background-repeat:no-repeat;
-    background-position: 99% center;
+    background: #fafafa url("b64---./images/dropdown_arrow.png---") no-repeat 90% 50%;
     display: inline-block;
     border: solid 1px $HairlineGray;
     border-radius: 3px;

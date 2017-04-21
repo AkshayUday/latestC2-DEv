@@ -41,6 +41,7 @@ const initilizeValues = [{
   keywords: [],
   prodKeywords: [],
   goalKeywords: [],
+  adaptiveFlag: false,
   //product:'',
   eTag:'',
   errMsg:'',

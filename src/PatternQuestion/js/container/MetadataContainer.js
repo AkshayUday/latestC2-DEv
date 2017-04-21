@@ -122,6 +122,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
         patConfig:patConfig,
         //product: product,
         copyrightInfo: metadata.copyrightInfo,
+        adaptiveFlag:metadata.adaptiveFlag,
         errMsg: errMsg,
         eTag: metadata.eTag
       }
@@ -166,6 +167,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
         patConfig:patConfig,
         //product: product,
         copyrightInfo: metadata.copyrightInfo,
+        adaptiveFlag:metadata.adaptiveFlag,
         errMsg: errMsg,
         eTag: metadata.eTag,
         'initialValues': initialValue

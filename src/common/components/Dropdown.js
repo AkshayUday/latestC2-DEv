@@ -27,15 +27,6 @@ class DropDown extends Component{
         this.hide = this.hide.bind(this);
         this.select = this.select.bind(this);
     }
-
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.selected) {
-            this.setState({
-                lists: nextProps.selected
-            });
-        }
-    }
-
     /**
     * @function select is used for change the state of the Dropdown component
     * and calls the parent class
