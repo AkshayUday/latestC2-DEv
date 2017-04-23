@@ -167,7 +167,8 @@ const mapDispatchToProps = (dispatch) => {
       let fileTypeIndex = findFileTypeIndex('#browseTabsContainer');
       let nodeRef = this.currentFolder;
       let inputData = {};
-      inputData.userId = window.tdc.libConfig.alfuname;
+      const userID = window.tdc.libConfig.alfuname;
+      inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
       inputData.patternName = window.tdc.patConfig.pattern;
       inputData.type = SearchConstants.LOCAL_INSTANCE;
       if(viewName === 'list-view'){

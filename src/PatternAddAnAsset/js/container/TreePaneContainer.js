@@ -84,7 +84,8 @@ const mapDispatchToProps = (dispatch) => {
            data : false
         });
        let inputData = {};
-       inputData.userId = window.tdc.libConfig.alfuname;
+       const userID = window.tdc.libConfig.alfuname;
+       inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
        inputData.patternName = window.tdc.patConfig.pattern;
        inputData.type = SearchConstants.LOCAL_INSTANCE;
        let getResPromise = localForageService.getLocalForageData(inputData);

@@ -131,7 +131,8 @@ const mapDispatchToProps = (dispatch) => {
           localforage.setItem('last_three_search', lastvalue, function (err, val) {
             let searchString = document.querySelector('#searchAutoSuggest input').value.trim();
             let inputData = {};
-            inputData.userId = window.tdc.libConfig.alfuname;
+            const userID = window.tdc.libConfig.alfuname;
+            inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
             inputData.patternName = window.tdc.patConfig.pattern;
             inputData.type = SearchConstants.LOCAL_INSTANCE;
             let getResPromise = localForageService.getLocalForageData(inputData);
