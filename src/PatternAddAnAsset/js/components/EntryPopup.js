@@ -40,6 +40,7 @@ class EntryPopup extends React.Component{
         inputData.listMode = displayValueCountForList;
         inputData.sortIndex = sortIndex;
         localForageService.saveLocalForageData(inputData);
+        this.props.clearModal();
     }
 
     render(){

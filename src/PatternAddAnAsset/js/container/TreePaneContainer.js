@@ -77,8 +77,6 @@ const mapDispatchToProps = (dispatch) => {
                     data : {}
                 })
             }
-            window.tdc.patConfig.maxItemsFlag = false;
-            window.tdc.patConfig.assetsTotalCount = 0;
             dispatch({
                 type : 'RESET_BROWSE_TABS',
                 data : false

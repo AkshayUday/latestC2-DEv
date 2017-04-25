@@ -86,8 +86,6 @@ const mapDispatchToProps = (dispatch) => {
             // if(document.querySelector('.filter-container .tree-node-selected')){
             // let nodeRef = document.querySelector('.filter-container .tree-node-selected');
             let nodeRef = this.currentFolder;
-            window.tdc.patConfig.maxItemsFlag = false;
-            window.tdc.patConfig.assetsTotalCount = 0;
             if (nodeRef) {
                 // let id = nodeRef.id;
                 const displayCount = store.getState().userFilterReducer.viewName === 'list-view' ? store.getState().userFilterReducer.displayValueCountForList : store.getState().userFilterReducer.displayvaluecount;

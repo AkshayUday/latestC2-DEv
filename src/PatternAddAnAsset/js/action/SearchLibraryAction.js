@@ -23,7 +23,8 @@ import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,DEFAULT_SAVED_SEARCH_MAX_RESULTS} fr
 import {AUTO_COMPLETE} from '../constants/searchLibraryConstants';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 import bean from 'bean';
-import store from '../../js/store'
+import store from '../../js/store';
+import localforage from 'localforage'; // Added back since the old saved search functionality is broken. This direct reference will be removed while working on ATIC-289
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
 

@@ -134,35 +134,48 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             2:'ORDER BY cmis:name desc',
             3:'ORDER BY cmis:name'
         };
-        if(window.tdc.patConfig.maxItemsFlag){
-        assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],index,limit)
-            .then(function (res){
-                let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
-                dispatch({
-                    type : DISPLAY_ASSETS,
-                    data : assetData
-                });
-                    persistDisplayCount(dispatch, sortIndex, viewName, maxItems)
-            },function (error){
-                console.log('fetching assets data:' + error);
-            })
-        }else{
-            assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex])
-                .then(function (res){
-                    window.tdc.patConfig.maxItemsFlag = true;
-                    window.tdc.patConfig.assetsTotalCount = res.body.numItems;
-                    let filteredResults =  res.body.results.slice(0,maxItems);
-                    res.body.results = filteredResults;
-                    let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
-                    dispatch({
-                        type : DISPLAY_ASSETS,
-                        data : assetData
-                    });
-                    persistDisplayCount(dispatch, sortIndex, viewName, maxItems)
-                },function (error){
-                    console.log('fetching assets data:' + error);
-                })
-        }
+
+    assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],index,limit)
+      .then(function (res){
+      let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
+          dispatch({
+            type : DISPLAY_ASSETS,
+            data : assetData
+          });
+          persistDisplayCount(dispatch, sortIndex, viewName, maxItems)
+      },function (error){
+       console.log('fetching assets data:' + error);
+      });
+
+        // if(window.tdc.patConfig.maxItemsFlag){
+        // assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],index,limit)
+        //     .then(function (res){
+        //         let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
+        //         dispatch({
+        //             type : DISPLAY_ASSETS,
+        //             data : assetData
+        //         });
+        //             persistDisplayCount(dispatch, sortIndex, viewName, maxItems)
+        //     },function (error){
+        //         console.log('fetching assets data:' + error);
+        //     })
+        // }else{
+        //     assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex])
+        //         .then(function (res){
+        //             window.tdc.patConfig.maxItemsFlag = true;
+        //             window.tdc.patConfig.assetsTotalCount = res.body.numItems;
+        //             let filteredResults =  res.body.results.slice(0,maxItems);
+        //             res.body.results = filteredResults;
+        //             let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
+        //             dispatch({
+        //                 type : DISPLAY_ASSETS,
+        //                 data : assetData
+        //             });
+        //             persistDisplayCount(dispatch, sortIndex, viewName, maxItems)
+        //         },function (error){
+        //             console.log('fetching assets data:' + error);
+        //         })
+        // }
     }
 }
 
