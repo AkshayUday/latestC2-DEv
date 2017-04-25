@@ -1,0 +1,245 @@
+@import "../../../../../styles/variables.css";
+/**
+    File Name : AssetStyles.css;
+    Author : Udhayakumar Gururaj
+    Date : 2/21/2017;
+**/
+@lost flexbox flex;
+.assetRadioBtn{
+    display: flex;
+}
+.assetImage{
+    composes: assetRadioBtn;
+}
+
+.ellipsis_inline{
+    composes: assetRadioBtn;
+}
+
+.search-result-box{
+   lost-flex-container: column;
+}
+
+.search-result-box img{
+    width: 170px;
+    height: 135px;
+    margin: 10px;
+    display: block;
+    border: 0px solid $HairlineGray;
+    box-sizing: border-box;
+}
+.assetRadio{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.assetRadio{
+    margin-bottom: 10px;
+}
+
+.card-body{
+    border: none;
+}
+
+.name-icon{
+    position: relative;
+}
+
+.browse-tooltip{
+    color: $Mischka;
+    font-size: 20px;
+    padding-right: 13px;
+}
+
+:global .assetNameToolTip .pe-tooltip{
+    width: 150px!important;
+    right: -50px!important;
+}
+
+:global .assetNameToolTip .pe-tooltip{
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    font-size: 12px;
+    background: $White;
+    border: 1px solid $HairlineGray;
+    padding: 0px 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    color:#000000;
+}
+
+:global .assetDetailToolTip .pe-tooltip{
+    width: 150px!important;
+    right: -50px!important;
+}
+
+:global .assetDetailToolTip .pe-tooltip{
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    font-size: 12px;
+    background: $White;
+    border: 1px solid $HairlineGray;
+    padding: 0px 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    color:#000000;
+}
+
+:global .fileTypesToolTip .pe-tooltip{
+    width: 200px!important;
+    right: -100px!important;
+}
+
+:global .fileTypesToolTip .pe-tooltip{
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    font-size: 12px;
+    background: $White;
+    border: 1px solid $HairlineGray;
+    padding: 0px 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    color:#000000;
+}
+
+:global .pe-tooltip--arrow{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid #d0d0d0;
+}
+
+:global .pe-tooltip--arrow:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid #fff;
+}
+:global .pe-tooltip--arrow{
+    top: 50%;
+    left: -20px;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    margin-top: -10px;
+}
+
+:global .pe-tooltip--arrow:after {
+    top: -10px;
+    left: -8px;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
+}
+
+:global .assetNameToolTip .pe-tooltip--show {
+    visibility: visible;
+}
+
+:global .assetDetailToolTip .pe-tooltip--show {
+    visibility: visible;
+}
+
+:global .fileTypesToolTip .pe-tooltip--show {
+    visibility: visible;
+}
+
+.assetFooter{
+    display:  flex;
+    flex-flow: column wrap;
+    margin-left: 10px;
+}
+.ellipsisInline{
+    display: flex;
+    width: 168px;
+    height: 60px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: default;
+    color: $Cerulean;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+.footer-icon{
+    display: flex;
+    color: $Mischka;
+    font-size: 20px;
+    position:relative;
+}
+/** list view **/
+.browListViewWidth{
+    display: flex;
+    flex-flow: row wrap;
+    border-bottom: 1px solid $HairlineGray;
+    margin: 10px;
+    color: #8B8686;
+    width: 620px;
+}
+.list-width{
+    display: flex;
+    width: 785px;
+    margin: 10px;
+    color: #8B8686;
+    border-bottom: 1px solid $HairlineGray;
+}
+.list-view{
+    display: flex;
+    width: 41.66%;
+    float: left;
+}   
+
+.listImageSize{
+/*    width: 53px !important;
+    height: 40px !important;*/
+    margin-bottom: 8px;
+}
+
+.listViewNameStyle{
+    word-wrap: break-word;
+    padding-left: 20px;
+    position: relative;
+    text-overflow: ellipsis;
+    width: 66.66%;
+    float: left;
+}
+
+input[type="radio"].PlRadio{
+    height: 13px;
+    position: static;
+    width: 13px;
+    margin: 3px;
+}
+
+.resource-type{
+    display: flex;
+    position: relative;
+    width: 16.66%;
+    float: left;
+}
+
+.added-by{
+    display: flex;
+    position: relative;
+    width: 16.66%;
+    float: left;
+}
+
+.date-modified{
+    display: flex;
+    position: relative;
+    width: 25%;
+    float: left;
+}
+
+.fileNameStyle{
+    min-height: 40px;
+    max-width: 150px;
+    word-break: break-all;
+}

@@ -34,7 +34,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		getFilterType: function (){
 			dispatch(getFilterType(ownProps.libConfig));
 		},
-		savedSearch: function (){		
+		savedSearch: function (event){	
+			event.preventDefault();	
 			let inputData = {};				
 			inputData.userId = ownProps.libConfig.userId;
 			inputData.patternName = ownProps.patConfig.pattern;

@@ -50,6 +50,7 @@
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
+    margin-left: 6px;
 }
 
 .searchPanelWrapper{
@@ -114,4 +115,9 @@
 
 .btnDelete{
   composes: pe-btn from '../../../../styles/patterns.css';
+}
+
+.btnRun:disabled,
+.btnDelete:disabled{
+  cursor:default;
 }
