@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 import TableComponent from './tableComponent';
-import Paginate from '../../../../common/components/PL_Pagination/paging';
+import Paginate from '../../../../common/components/PL_pagination';
+//import Paginate from '../../../../common/components/PL_Pagination/paging';
 
 import savedSearchStyles from './styles/savedSearchStyles.css';
 
@@ -21,6 +22,7 @@ class SavedSearchComponent extends Component {
    let columns = ['Search Term'];
    let self = this;
    let CheckedValues = this.props.CheckedValues;
+   let pageDetails = this.props.pageDetails;
    let rows = this.props.rows;
    let isShowDetail = true;
    if(CheckedValues.length>0){
@@ -36,7 +38,7 @@ class SavedSearchComponent extends Component {
   <div className={savedSearchStyles.container}>
       <TableComponent className={savedSearchStyles.savedSearchTable}
         columns={columns} rows={rows} checkboxOnchange={this.props.handleChange}/>
-     <Paginate pageDetails={this.props.pageDetails} showDetail = {isShowDetail}  handlePageChange={this.props.handlePageChange} />
+      <Paginate pageNumber={pageDetails.pageNo} lastPage={pageDetails.lastPage} onChange={this.props.handlePageChange} />
   </div>
 )
 let empty = < div className = {savedSearchStyles.alertMsg} > No results found < /div>;

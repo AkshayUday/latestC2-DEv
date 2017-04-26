@@ -9,7 +9,7 @@ const ListColumns = (props) => {
  		for(let i=0;i<columnProp.length;i++){
  			// clicked item and not clicked item, condition determines ASC/DES
  			if(columnProp[i].sort){
-	 			if(props.clickedItem === columnProp[i].property){
+	 			if(props.clickedItem === columnProp[i].property){ 
 	 				if(props.columnsort){ 
 	 				sortImage = <i className='fa fa-sort-asc' aria-hidden='true'></i>
 	 				}else{

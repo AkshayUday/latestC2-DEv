@@ -127,7 +127,7 @@ class MVMComponent extends React.Component{
 */
 constructor(props) {
     super(props);
-
+    
 /**
  * The displayName MVMComponent.
  * @type {string}
@@ -163,14 +163,14 @@ componentDidMount(){
 }
 
 handleChange(tags,src){
-
+ 
   if(tags === 'adaptiveFlag'){
     this.state.isChecked = !this.state.isChecked;
      this.props.handleChange(tags,this.state.isChecked);
   }else{
     this.props.handleChange(tags,src);
   }
-
+  
   }
 
 componentWillReceiveProps(nextProps) {

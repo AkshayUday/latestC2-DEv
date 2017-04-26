@@ -71,7 +71,7 @@ class Search extends Component {
   shouldRenderSuggestions(value){
     return true;
   }
-
+  
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value)

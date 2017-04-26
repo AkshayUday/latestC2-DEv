@@ -3,7 +3,7 @@ module.exports = {
 
   validateuploadForm(values){ 
 
-    const MaxFileSize = 1024 * 1024 * 10;
+    const MaxFileSize = 1024 * 1024 * 50;
     const AllowFileFormats = ['jpg','jpeg','png','tiff','mp4',
                                 'mp3','doc','gif','docx','xls','xlsx',
                                 'ppt','pptx','txt','pdf','csv','odg',
@@ -27,7 +27,7 @@ module.exports = {
           errors.file = 'Error: wrong file type'
         }
         else if(values.file[0].size>MaxFileSize){
-          errors.file = 'Error: Filesize should be less than 10 MB'
+          errors.file = 'Error: Filesize should be less than 50 MB'
         }
       }
       return errors

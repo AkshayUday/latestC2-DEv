@@ -27,12 +27,12 @@ import store from './../store'
  * @returns {object} array - else it will return empty array object
  */
 const getSelectedValues = (dataArray) => {
-  if (dataArray.size > 1) {
-    let latestItem = dataArray.size-1;
-    return dataArray.get(latestItem);
-  }
+    if (dataArray.size > 1) {
+        let latestItem = dataArray.size-1;
+        return dataArray.get(latestItem);
+    }
 
-  return [];
+    return [];
 }
 
 /**@function mapStateToProps -
@@ -44,24 +44,24 @@ const getSelectedValues = (dataArray) => {
  * @returns {object} Object
  */
 const mapStateToProps = (state) => {
-  let data = getSelectedValues(state.searchAssets);
-  let tabVisibility = {};
-  let selectedIndex = 0;
-  let showTabs = false;
-  if(data.selectedIndex){
-    selectedIndex = data.selectedIndex;
-  }
-  if(data.tabVisibility){
-    tabVisibility = JSON.parse(data.tabVisibility);
-  }
-  if(data.showTabs){
-    showTabs = true;
-  }
-  return {
-    selectedIndex:selectedIndex,
-    tabVisibility:tabVisibility,
-    showTabs: showTabs
-  };
+    let data = getSelectedValues(state.searchAssets);
+    let tabVisibility = {};
+    let selectedIndex = 0;
+    let showTabs = false;
+    if(data.selectedIndex){
+        selectedIndex = data.selectedIndex;
+    }
+    if(data.tabVisibility){
+        tabVisibility = JSON.parse(data.tabVisibility);
+    }
+    if(data.showTabs){
+        showTabs = true;
+    }
+    return {
+        selectedIndex:selectedIndex,
+        tabVisibility:tabVisibility,
+        showTabs: showTabs
+    };
 }
 /**@function mapDispatchToProps
  * Connects a React component to a Redux store.
@@ -71,53 +71,53 @@ const mapStateToProps = (state) => {
  * @returns {object} callback props
  */
 const mapDispatchToProps = (dispatch) => {
-  return {
-    tabHandleSelect: function (index, last) {
-      sessionStorage.AssetTabIndex = index;
-      let state = dispatch((() => { return (dispatch,getState) => {
-          return  getState();
+    return {
+        tabHandleSelect: function (index, last) {
+            sessionStorage.AssetTabIndex = index;
+            let state = dispatch((() => { return (dispatch,getState) => {
+                    return  getState();
         }
         }
-      )());
+            )());
 
 
-      let savedSearchData = state.savedSearchReducers[0].savedData;
-      savedSearchData.map(function (item){
-        if(item.checked===true){
-          dispatch ({
-            type : 'UPDATE_SAVED_SEARCH_CHECKBOX_VALUE',
-            data : item
-          });
-        }
-      });
+            let savedSearchData = state.savedSearchReducers[0].savedData;
+            savedSearchData.map(function (item){
+                if(item.checked===true){
+                    dispatch ({
+                        type : 'UPDATE_SAVED_SEARCH_CHECKBOX_VALUE',
+                        data : item
+                    });
+                }
+            });
 
-      if(index===4){
-        dispatch({
-          type : UPDATE_ASSET_TAB_INDEX,
-          data : index
-        });
-      }
-      if(index!==4){
-        if(document.querySelector('#searchAutoSuggest input')){
-          const searchValue = document.querySelector('#searchAutoSuggest input').value;
-          const displayCount = store.getState().userFilterReducer.viewName === 'list-view' ? store.getState().userFilterReducer.displayValueCountForList : store.getState().userFilterReducer.displayvaluecount
-          dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,displayCount,index, store.getState().userFilterReducer.sortIndex, store.getState().userFilterReducer.viewName));
+            if(index===4){
+                dispatch({
+                    type : UPDATE_ASSET_TAB_INDEX,
+                    data : index
+                });
+            }
+            if(index!==4){
+                if(document.querySelector('#searchAutoSuggest input')){
+                    const searchValue = document.querySelector('#searchAutoSuggest input').value;
+                    const displayCount = store.getState().userFilterReducer.viewName === 'list-view' ? store.getState().userFilterReducer.displayValueCountForList : store.getState().userFilterReducer.displayvaluecount
+                    dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,displayCount,index, store.getState().userFilterReducer.sortIndex, store.getState().userFilterReducer.viewName));
+                }
+            }else{
+                dispatch(fetchSavedSearchData(DEFAULT_PAGE_NO,DEFAULT_SAVED_SEARCH_MAX_RESULTS));
+            }
+            if(index === 4){
+                dispatch(searchLibButtonVisibility(true));
+            }else{
+                dispatch(searchLibButtonVisibility(false));
+            }
         }
-      }else{
-        dispatch(fetchSavedSearchData(DEFAULT_PAGE_NO,DEFAULT_SAVED_SEARCH_MAX_RESULTS));
-      }
-      if(index === 4){
-        dispatch(searchLibButtonVisibility(true));
-      }else{
-        dispatch(searchLibButtonVisibility(false));
-      }
     }
-  }
 }
 
 const SearchAssetFiltersContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(searchAssetsFilter)
 
 export default SearchAssetFiltersContainer;

@@ -26,7 +26,7 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-
+    
       './src/test/SearchSCPatterns/*.test.js' :  [ 'webpack' ],
       './src/test/ProductLink/*.test.js': ['webpack']
 
@@ -34,12 +34,12 @@ module.exports = function (config) {
     },
     //reporters: [ 'dots','mocha','coverage','progress' ], //report results in this format
     reporters: ['mocha','coverage'],
-    webpack: {
+    webpack: {  
            entry :'./src/PatternBroker.js',
            devtool: 'inline-source-map',
            plugins: plugins,
       module:  {
-
+       
         rules: [{
             test: /\.jsx$|\.js$/,
             enforce: "pre",
@@ -61,12 +61,12 @@ module.exports = function (config) {
                         options: {                                                   // Options to configure babel with
                             plugins: ['react-hot-loader/babel', 'transform-runtime']
                         }
-                    }
+                    } 
                          ],
                     include: path.join(__dirname, 'src')
                 },
                 {
-                    test: /\.css$/,
+                    test: /\.css$/, 
                     use : [{
                         loader: 'style-loader'
                     },
@@ -89,7 +89,7 @@ module.exports = function (config) {
              noInfo: true,
             // and use stats to turn off verbose output
             stats: {
-                // options i.e.
+                // options i.e. 
                 chunks: false
             }
         },

@@ -25,7 +25,7 @@
 	width: 800px;
 }
 .unCollapseAsset{
-	lost-flex-container: row;
+	lost-flex-container:column;
 	width: 600px;
 }
 .pe-sortbox{

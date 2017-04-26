@@ -158,7 +158,7 @@ script=$scriptOpen$akamaiUrl$scriptClose
 epsMsg="Branch : ${BRANCH} *** Commit : ${COMMIT} *** Build : ${BUILD} *** EPS Access URL : ${accessUrl} *** Akamai URL : ${akamaiUrl} *** Akamai URL script tag : ${script}"
 curl -H "Content-type: application/json" -H "Authorization: Bearer ${hipChatApiToken}" -X POST -d "{ \"color\" : \"yellow\", \"notify\" : true, \"message\" : \"${epsMsg}\" }" https://pearson.hipchat.com/v2/room/3236763/notification
 
-}
+}  
 
 cd ${FILE_PATH}
 

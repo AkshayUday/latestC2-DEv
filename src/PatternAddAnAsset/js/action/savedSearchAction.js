@@ -24,7 +24,7 @@ import { CHECKED_SAVED_SEARCH_VALUE} from '../constants/searchLibraryConstants';
       let index = (pageNo*maxItems)-maxItems;
      let limit = index+maxItems;
     return dispatch => {
-      SavedSearchApi.get_Saved_Search_Data(index,limit).then(function (data){
+      SavedSearchApi.get_Saved_Search_Data().then(function (data){
         let FilteredData = data;
         let paginationData = [];
         // for(let i=0;i<data.length;i++){
@@ -34,21 +34,19 @@ import { CHECKED_SAVED_SEARCH_VALUE} from '../constants/searchLibraryConstants';
         // }
         for(let i=index;i<limit;i++){
           if(FilteredData[i]){
-          paginationData.push(FilteredData[i]);
+            paginationData.push(FilteredData[i]);
           }
         }
+        let lastPage = false;
+        if(paginationData.length==0 || paginationData.length<limit || FilteredData.length==limit){
+          lastPage = true;
+        }
        // if(FilteredData.length>0){
-        paginationData.numberFound = FilteredData.length;
         let savedSearchData = {
           'data':paginationData,
           'pageDetails':{
             'pageNo':pageNo,
-            'index':index,
-            'limit':limit,
-            'pageLimit':maxItems,
-            'numberFound':FilteredData.length,
-            'totalRecords':paginationData.length,
-            'isSavedSearch':true
+            'lastPage': lastPage
           }
         }
         dispatch({

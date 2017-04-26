@@ -2,7 +2,7 @@
  * Copyright (c) Pearson, Inc.
  * All rights reserved.
  * @class DropDown used to create Dropdown component which will display
- * grid and list view component
+ * grid and list view component 
  * @author TDC
  **/
 import React, { Component, PropTypes } from 'react';

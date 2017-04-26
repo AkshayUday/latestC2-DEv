@@ -111,7 +111,7 @@ let savedSearchActions;
 if(!this.state.isSavedSearch){
   if(this.props.showTabs){
     if(pageDetails.numberFound!==undefined){
-      paginationCont = (<div className={styles.paginationContainer}><Pagination handlePageChange={this.props.handlePageChange}/></div>)
+      paginationCont = (<div className={styles.paginationContainer}><Pagination/></div>)
     } 
   }
 }else{
@@ -140,6 +140,7 @@ return(
       <PL_SiteDetail siteLabel='Searching in : ' siteTitle={SearchValue}/>
     </div>
     <div className={styles.searchAutoSuggestContainer}>
+      <form>
       <div id='searchAutoSuggest' className={styles.searchAutoSuggestDiv}>
         <SearchCompleteContainer value={productName} />
       </div>
@@ -147,6 +148,7 @@ return(
         <button id='searchButton' onClick={handleSubmit(this.getSearchProduct)}>
         </button>
       </div>
+      </form>
     </div>
      <PL_Scroll classname={styles.searchPanelScroll}>
       <div id='displayContainerDiv' style={displayContainerDiv}>

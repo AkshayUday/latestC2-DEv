@@ -22,8 +22,8 @@ class uploadInProgress extends Component {
       let content = '';
 
       let spanStyle = {
-		color: 'red'
-		};
+		    color: 'red'
+		  };
 
       if(error){
       	      return (<div className="pe-status">
@@ -33,8 +33,8 @@ class uploadInProgress extends Component {
               <div className="pe-jobstatus-link"><span>Check <Link to="/CheckJobStatus">
               Job Status Page</Link> for upload status</span></div>
               <div>
-<i className="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;
-Error: upload failed.&nbsp;<span><Link to="/">Please try again</Link>.</span></div>
+              <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;
+                Error: upload failed.&nbsp;<span><Link to="/">Please try again</Link>.</span></div>
               </div>
             </div>)
 

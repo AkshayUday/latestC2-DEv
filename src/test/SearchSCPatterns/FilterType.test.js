@@ -24,16 +24,16 @@ import expect from 'expect';
 // })
 
 // it('should render Provider',() =>{
-// 	expect(result.props.children.type.name).toEqual('Provider');
+// 	expect(result.props.children.type.name).toEqual('Provider');	
 // })
 
-// it('should render ProductLinkModal',() =>{
-// 	// expect(result.props.children.props.children.props.isOpen).toEqual(true);
+// it('should render ProductLinkModal',() =>{	
+// 	// expect(result.props.children.props.children.props.isOpen).toEqual(true);	
 // })
 
-// it('should called onClick',() =>{
+// it('should called onClick',() =>{	
 //     // onClick();
-//     // spyonClick();
+//     // spyonClick();				
 // 	// expect(spyonClick.calls.length).toEqual(1);
 //     // spyonClick.restore();
 // })
@@ -56,71 +56,71 @@ describe('SearchSCPtterns FilterTypeComponent', () => {
 
   before(() => {
 
-    window.tdc = { 'patConfig'  : {
-      'patSetup' : { 'filterType' :['Test'] }
-    }
-    };
+  	window.tdc = { 'patConfig'  : { 
+    	           'patSetup' : { 'filterType' :['Test'] } 
+    	          }
+				 };
 
 
     let setFilterTypeValue = sinon.stub();
-
+   
 
     renderer = ReactTestUtils.createRenderer();
-
+    
     renderer.render(<FilterType setFilterTypeValue = {setFilterTypeValue} filterStatus= {sinon.stub()}/>);
-    // willMount = sinon.stub(renderer._instance._instance,'onClick');
+     // willMount = sinon.stub(renderer._instance._instance,'onClick');	
     result = renderer.getRenderOutput();
     console.log(renderer._instance._instance);
-
+    
     // let  ev = sinon.spy('ev','preventDefault');
-
-
+    
+    
     console.log(renderer._instance._instance);
     renderer._instance._instance.state.filters =[{options:['Test'],multiSelect:true}];
     // renderer._instance._instance.props.filterStatus.
 
 
-    // renderer._instance._instance.onClick(ev);
+     // renderer._instance._instance.onClick(ev);
     // renderer._instance._instance.componentWillReceiveProps();
     renderer._instance._instance.componentDidUpdate();
     renderer._instance._instance.componentWillUpdate();
     // renderer._instance._instance.handleDocumentClick();
+  
 
-
-    renderer._instance._instance.componentDidMount();
-    renderer._instance._instance.componentWillUnmount();
+   renderer._instance._instance.componentDidMount();
+   renderer._instance._instance.componentWillUnmount();
 
 
   });
-
+ 
   it('renders a component', function () {
-    // console.log(expect(result.props.children));
-    //  expect(result.props.children);
+	// console.log(expect(result.props.children));
+	//  expect(result.props.children);
 
     expect(result.props.children[0].type).toEqual('div');
-
+    
   });
-
+  
   it('renders a filterType', function () {
-
+  
     expect(result.props.children[0].props.id).toEqual('filterType');
 
   });
 
   it('handle onClick', function () {
 
-    let ev = {preventDefault:sinon.stub()}
-    // sinon.stub(renderer._instance._instance,'onClick').returns('test');
-    //expect(renderer._instance._instance.onClick(ev)).to.called
-    expect(renderer._instance._instance.onClick(ev)).called;
+     let ev = {preventDefault:sinon.stub()}
+     // sinon.stub(renderer._instance._instance,'onClick').returns('test');
+     //expect(renderer._instance._instance.onClick(ev)).to.called
+     expect(renderer._instance._instance.onClick(ev)).called;
 
   });
-
+  
   it('handle handleDocumentClick', function () {
 
-    // let ev = {target:sinon.stub()}
-    // console.log(renderer._instance._instance.refs);
-    // expect(renderer._instance._instance.handleDocumentClick(ev)).called;
+     // let ev = {target:sinon.stub()}
+     // console.log(renderer._instance._instance.refs);
+     // expect(renderer._instance._instance.handleDocumentClick(ev)).called;
 
   });
 

@@ -544,6 +544,7 @@ button.pe-btn .pe-cancel-btn{
 			background-clip: padding-box;
 			border: 1px solid rgba(0,0,0,.15);
 			border-radius: .25rem;
+            height:27px;
 		}
 
 		input[type="text"]:focus{

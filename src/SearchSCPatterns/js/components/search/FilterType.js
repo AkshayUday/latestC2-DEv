@@ -53,18 +53,18 @@ class FilterType extends React.Component {
          this.setState({filters:this.props.filters,showFilterType:false})
     }
 
-    if(nextProps.localForData[window.tdc.patConfig.pattern] != undefined ){
-      if(nextProps.localForData[window.tdc.patConfig.pattern]['filterValues'] != undefined ){
-        if(this.state.localForFilterType.length == 0){
-          this.setState({localForFilterType : this.state.localForFilterType.push(nextProps.localForData[window.tdc.patConfig.pattern]['filterValues'].split(','))});
-          for(let i=0; i<this.state.localForFilterType[0].length; i++){
-          this.selectedCheckboxes.add(this.state.localForFilterType[0][i]);
-          }
-          this.props.setFilterTypeValue([...this.selectedCheckboxes]);
-        }
-      }
+    if(nextProps.localForData[window.tdc.patConfig.pattern] != undefined ){   
+      if(nextProps.localForData[window.tdc.patConfig.pattern]['filterValues'] != undefined ){   
+        if(this.state.localForFilterType.length == 0){           
+          this.setState({localForFilterType : this.state.localForFilterType.push(nextProps.localForData[window.tdc.patConfig.pattern]['filterValues'].split(','))});           
+          for(let i=0; i<this.state.localForFilterType[0].length; i++){   
+          this.selectedCheckboxes.add(this.state.localForFilterType[0][i]);   
+          }   
+          this.props.setFilterTypeValue([...this.selectedCheckboxes]);    
+        }   
+      }   
     }
-
+    
   }
 
   componentDidUpdate(){

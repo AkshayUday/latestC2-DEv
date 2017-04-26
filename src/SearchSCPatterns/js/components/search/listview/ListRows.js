@@ -8,7 +8,7 @@ class ListRows extends Component{
 		super(props);
 		this.setSelectedItem = this.setSelectedItem.bind(this);
 		this.state = { setSelectedItemId: ''};
-
+		
 	}
 	setSelectedItem(selectedItem){ 
 
@@ -27,17 +27,17 @@ class ListRows extends Component{
    }
 
 
-	render(){
+	render(){ 
 		let self = this;
 		let isZibra = this.props.zibraRows ? ListStyles.zibrarows : ListStyles.noZibraRows;
 		let rowContent = 'No Results Found';
 		if(this.props.rows.length > 0){
 			rowContent = this.props.rows.map(function (row){
             let checked = false;
-
+		    
 		    if(self.state.setSelectedItemId == row.id && self.state.setSelectedItemId != ''){
               checked = true;
-		    }
+		    } 
 
 
 
