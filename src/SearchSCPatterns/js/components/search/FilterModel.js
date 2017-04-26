@@ -18,9 +18,8 @@ class FilterModel extends Component{
 	
 	render(){
 		if(this.props.isSuccess){
-			debugger;
-			//$('#successIcon').show().delay(5000).fadeOut();
-			document.getElementById('successIcon').style.display='bllock';
+			
+			document.getElementById('successIcon').style.display='block';
 			setTimeout(function () {
         		document.getElementById('successIcon').style.display='none';
     		}, 5000);

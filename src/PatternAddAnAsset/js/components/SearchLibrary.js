@@ -136,11 +136,11 @@ savedSearchActions=(<div className= {styles.btnBar}>
 return(
   <div>
   <div className={styles.searchPanelWrapper}>
-  <form>
     <div className={styles.searchHeadDiv}>
       <PL_SiteDetail siteLabel='Searching in : ' siteTitle={SearchValue}/>
     </div>
     <div className={styles.searchAutoSuggestContainer}>
+      <form>
       <div id='searchAutoSuggest' className={styles.searchAutoSuggestDiv}>
         <SearchCompleteContainer value={productName} />
       </div>
@@ -148,6 +148,7 @@ return(
         <button id='searchButton' onClick={handleSubmit(this.getSearchProduct)}>
         </button>
       </div>
+      </form>
     </div>
      <PL_Scroll classname={styles.searchPanelScroll}>
       <div id='displayContainerDiv' style={displayContainerDiv}>
@@ -157,7 +158,6 @@ return(
     </div>
    {paginationCont}
     </PL_Scroll>
-  </form>
   </div>
   {canSelBtn}
   {savedSearchActions}

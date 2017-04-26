@@ -15,7 +15,7 @@
  * unrecognized action.
  * @author TDC
  *
-*/
+ */
 
 import { combineReducers } from 'redux'
 import fileUpload from './fileUpload'
@@ -34,37 +34,37 @@ import SingleFileFolderReducer from './SingleFileFolderReducer';
 import difficultyLevelReducer from './difficultyLevelReducer';
 import ReviewAssetReducers from '../../../PatternReviewAsset/js/reducers/ReviewAssetReducer';
 import SpinnerReducer from '../../../common/components/spinner/SpinnerReducer';
-import userPreferenceReducer from './userPreferenceReducer';
+import userFilterReducer  from './userFilterReducer';
 
 const appMetaData = combineReducers({
-	form: formReducer,
-	routing: routerReducer,
-	CheckJobStatusReducers,
+    form: formReducer,
+    routing: routerReducer,
+    CheckJobStatusReducers,
     assets,
     searchAssets,
     quad,
-	fileUpload,
-	TreePaneReducers,
-	SingleFileFolderReducer,
-	autoComplete:autoCompleteReducer,
-	searchLibraryReducer,
-	savedSearchReducers,
-	difficultyLevelReducer,
-	ReviewAssetReducers,
-	siteDataReducer,
-	SpinnerReducer,
-	userPreferenceReducer
+    fileUpload,
+    TreePaneReducers,
+    SingleFileFolderReducer,
+    autoComplete:autoCompleteReducer,
+    searchLibraryReducer,
+    savedSearchReducers,
+    difficultyLevelReducer,
+    ReviewAssetReducers,
+    siteDataReducer,
+    SpinnerReducer,
+    userFilterReducer
 });
 
 /**
-* This method is used to assign a initial state to all reducers
-* state is not mutate instead we just assign reference to it	
-**/
+ * This method is used to assign a initial state to all reducers
+ * state is not mutate instead we just assign reference to it
+ **/
 const rootMetaData = (state,action) => {
-	if(action.type === 'INIT_APP'){
-		state = undefined;
-	}
-	return appMetaData(state,action);
+    if(action.type === 'INIT_APP'){
+        state = undefined;
+    }
+    return appMetaData(state,action);
 }
 
 

@@ -120,7 +120,7 @@ class AddAnAsset extends Component {
     this.props.clearModal();
   }else{
     tabToVisible = 2;
-    this.props.clearModal();
+    // this.props.clearModal();
   }
 
 

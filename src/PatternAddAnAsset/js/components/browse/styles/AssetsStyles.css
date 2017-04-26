@@ -210,13 +210,6 @@
     float: left;
 }
 
-input[type="radio"].PlRadio{
-    height: 13px;
-    position: static;
-    width: 13px;
-    margin: 3px;
-}
-
 .resource-type{
     display: flex;
     position: relative;

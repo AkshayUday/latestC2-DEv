@@ -26,8 +26,6 @@ import {validateuploadForm}  from './Validate';
 
 import Styles from './singlefileupload.css';
 
-console.log(Styles);
-
 class SingleFileUpload extends Component {
 
   constructor(props) {
@@ -139,7 +137,7 @@ class SingleFileUpload extends Component {
                    </div>
                     <div className={Styles.colFull}>
                       <PE_tooltip className='fileTypesToolTip' position="right" 
-                      content="jpg, jpeg, gif, png, tiff, mp4,mp3, doc, docx, xls, xlsx, ppt, pptx, txt, pdf, csv, odg, odp, odt,ods, ebk, wdgt">
+                      content="jpg, jpeg, gif, png, tiff, mp4, mp3, doc, docx, xls, xlsx, ppt, pptx, txt, pdf, csv, odg, odp, odt, ods, ebk, wdgt">
                       <a href="#" onClick={this._tooltipClick.bind(this)}>file formats</a>
                       </PE_tooltip>
                     </div>
