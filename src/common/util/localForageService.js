@@ -98,5 +98,17 @@ export default{
   			});
   		});
   		return promise
+  	},
+
+  	updateLocalForageData(inputData){
+  		const promise = new Promise(function (fulfill, reject) {
+  				 const savePromise = localForage.saveLocalForageData(inputData);
+			    savePromise.then(function (success){
+			      fulfill(success);
+			    }).catch(function (error) {
+			    	reject(error);
+			    });
+  		});
+  		return promise;
   	}
 }

@@ -23,7 +23,6 @@
 
 .resultText{
     font-weight: bold;
-    text-transform: capitalize;
 }
 .itemPerPageSelectBox{
     height: 34px;

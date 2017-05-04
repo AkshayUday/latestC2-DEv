@@ -1,17 +1,16 @@
 .react-numeric-input{
-   padding-right: 1ex!important;
-    box-sizing: border-box!important;
-    border: 1px solid rgb(204, 204, 204)!important;
-    border-radius: 2px!important;
-    padding-left: 4px!important;
-    display: block!important;
-    -webkit-appearance: none!important;
-    line-height: normal!important;
-    margin: 5px!important;
+    padding-right: 3ex;
+    box-sizing: border-box;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 2px;
+    padding-left: 4px;
+    display: block;
+    -webkit-appearance: none;
+    line-height: normal;
+    margin: 5px;
 
 }
 .assessmentMinutes span b{
-
 border:none !important;
 background:none !important;
 box-shadow:none !important;
@@ -29,20 +28,19 @@ bottom: 10px !important;
 } 
 
 .assessmentMinutes {
-    float: left !important;
-    width: 11% !important;
+    float: left;
+    width: 11%;
 }
 .assessmentMinutes {
- margin: 2px 92px !important;
+ margin: 2px 92px;
 }
 .assessmentMinutes label {
-    /* float: left; */
-    width: auto !important;
+    width: auto;
     display: inline-block !important;
-    text-align: left !important;
-    min-width: 0px !important;
-    padding-right: 10px!important;
-    color: #8c8c8c !important;
-    font-size: 0.875rem !important;
-    padding-top: 30px !important;
+    text-align: left;
+    min-width: 0px;
+    padding-right: 10px;
+    color: #8c8c8c;
+    font-size: 0.875rem;
+    padding-top: 30px;
 }

@@ -227,6 +227,9 @@ export function  saveMetaData(values){
           if(values.keywords){
               values.keywords = MetadataUtils.convert_to_ObjArray(values.keywords);
           }
+          if(values.goalKeywords !== undefined && values.goalKeywords.length > 0){
+            values.goalKeywords = MetadataUtils.convert_to_ObjArray(values.goalKeywords);
+          }
           values.eTag = replyCreate.eTag;
           values.errMsg ='Save Success';
           dispatch({
@@ -270,6 +273,9 @@ export function  saveMetaData(values){
           if(replyCreate.keyword){
               values.keywords = MetadataUtils.convert_to_ObjArray(replyCreate.keyword);
           }
+          if(values.goalKeywords !== undefined && values.goalKeywords.length > 0){
+            values.goalKeywords = MetadataUtils.convert_to_ObjArray(values.goalKeywords);
+          }
           values.errMsg ='Save Success';
           dispatch({
                 type: 'SET_ON_LOAD_VALUE',
@@ -304,7 +310,7 @@ export function  setErrMsg(errMsg){
   }
 }
 
-export function  updateTags(tags,src){ debugger;
+export function  updateTags(tags,src){ 
   return (dispatch,getState) => {
     let _formState = getState().form;
     if(tags === 'keywords'){

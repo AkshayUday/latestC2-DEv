@@ -8,7 +8,6 @@ class ButtonComponent extends React.Component{
  	}
 
  	render() {
- 		debugger;
  		return(
 		<div className="buttonComponent">
  			<button onClick={this.props.onClick} 

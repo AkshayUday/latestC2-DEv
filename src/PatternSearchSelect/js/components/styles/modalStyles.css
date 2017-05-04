@@ -1,0 +1,46 @@
+
+.modalLayout{
+	
+	display: flex;
+	width: 900px;
+	flex-flow: column;
+	padding: 0px!important;
+	composes: c2FontFamily from "../../../../styles/patterns.css";
+	min-height: 545px;
+	all:initial;
+}
+.modalBodyDiv{
+	padding: 0px;
+	margin: 10px 10px 0px 10px;
+}
+.interactiveContent{
+	display: flex;
+	flex-flow: column wrap;
+	min-height:465px;
+}
+
+.btn-bar{
+	composes: pe-btn-bar from '../../../../styles/patterns.css';
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+}
+
+.btnCancel{
+	composes: pe-btn from '../../../../styles/patterns.css';
+}
+
+.btnSelect{
+	composes: pe-btn from '../../../../styles/patterns.css';
+	composes: pe-btn--primary from '../../../../styles/patterns.css';
+	width: 93px;
+}
+.btnSelectdisabled{
+	composes: btnSelect;
+	cursor: not-allowed;
+    border: 0;
+    color: #ffffff;
+    background: #9dc0db;
+    box-shadow: none;
+    text-decoration: none;
+}

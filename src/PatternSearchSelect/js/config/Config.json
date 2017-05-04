@@ -1,0 +1,53 @@
+{
+  "defaultCntType": ["A", "B"],
+  "searchQuery": "AssesmentInstrument",
+  "searchTerm": "SomeText",
+  "searchSpace": ["keyword", "description", "title/name", "filename" ],
+  "displayOptions": [{"value" : 25, "text": 25},{"value" : 50, "text": 50},{"value" : 75, "text": 75}],
+  "columns": [{
+      "display": "Title",
+      "property": "name",
+      "sort": true,
+      "align": "left"
+    }, {
+      "display": "Type",
+      "property": "taxonomicType",
+      "sort": false,
+      "align": "center"
+    },{
+      "display": "Date Modified",
+      "property": "dateModified",
+      "sort": true,
+      "align": "right"
+    }
+
+  ],
+  "filters": [{
+    "display": "Type",
+    "multiSelect": true,
+    "options": []
+  }, {
+    "display": "Category",
+    "multiSelect": false,
+    "options": [{
+      "display": "Category #1",
+      "property": "cat-type-1"
+    }, {
+      "display": "Category #2",
+      "property": "cat-type-2"
+    }]
+  }],
+
+  "sortOptions" : ["date uploaded (descending)",
+                    "date uploaded (ascending)",
+                    "title descending Z-A",
+                    "title ascending A-Z"],
+  "saveSearch": true,
+  "multiSelect": false,
+  "zibraRows": false,
+  "Title": "Search Library",
+  "cancelLabel": "Cancel",
+  "acceptLabel": "Select",
+  "patternTitle":"Enter Search Term"
+}
+

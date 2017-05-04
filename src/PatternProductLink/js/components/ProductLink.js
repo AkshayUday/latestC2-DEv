@@ -90,6 +90,14 @@ const  mapDispatchToProps = (dispatch) => {
   return {
     onChange(event, { newValue }) {
       //console.log(newValue);
+       if(newValue ==''){
+        
+        this.setState({lbtndisabled:newValue})
+
+      }else{
+         this.setState({lbtndisabled:newValue})
+      }
+
       this.setState({
         value: newValue
       });
@@ -104,7 +112,7 @@ const  mapDispatchToProps = (dispatch) => {
 	  console.log(method);*/
 	  
 	  this.setState({selectedVal:suggestion});
-
+    this.setState({lbtndisabled:suggestion})
     },
     onSuggestionsUpdateRequested({value,reason}){
         /*console.log(value)*/
@@ -180,7 +188,7 @@ const  mapDispatchToProps = (dispatch) => {
          allProducts = flatten(allProducts);
             let dupSite =  filter(
                 map(allProducts, function (value, index, iteratee) {
-                    iteratee[index].name;
+                    return iteratee[index].name;
                 }),
                 function (value, index, iteratee) {
                     return includes(iteratee, value, index + 1);
@@ -231,7 +239,8 @@ class ProductLinkComponent extends React.Component {
     this.componentWillMount = this.props.componentWillMount.bind(this);
   	this.state = {
   		selectedVal:'',
-      value:''
+      value:'',
+      lbtndisabled:''
   	}
     
   }
@@ -354,7 +363,7 @@ class ProductLinkComponent extends React.Component {
           onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested} />
       </div>
 		  <div className={styles.plAutoSuggestBtnDiv}>
-          <button className={styles.plLinkButton} onClick={() => { this.onLinkClick()}} type="button">{formatMessage(messages.LINK)}</button>
+          <button disabled={!this.state.lbtndisabled} className={styles.plLinkButton} onClick={() => {this.onLinkClick()}} type="button">{formatMessage(messages.LINK)}</button>
 		  </div>
       </div>
 

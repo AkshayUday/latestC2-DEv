@@ -5,7 +5,7 @@ var patternQuestion = this.PatternQuestion.default;
 
 var patternProductLink = this.PatternProductLink.default;
 var patternAddAnAsset = this.PatternAddAnAsset.default;
-var SearchSCPatterns =this.SearchSCPatterns.default;
+var PatternSearchSelect =this.PatternSearchSelect.default;
 
 // ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
 
@@ -1109,7 +1109,7 @@ _interactivePatternConfig.filename = document.getElementById('c5filename').value
 _interactivePatternConfig.filterType = vals;
 
 
-_interactivePattern = patternBroker.create('interactivePattern',SearchSCPatterns);
+_interactivePattern = patternBroker.create('interactivePattern',PatternSearchSelect);
 libConfig.alfuname = document.getElementById('alfuname').value;
 libConfig.alfpwd = document.getElementById('alfpwd').value;
 libConfig.headers['X-PearsonSSOSession'] = document.getElementById('sessionKeyId').value;

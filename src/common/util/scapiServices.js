@@ -14,7 +14,7 @@ function _createContext() {
 };
 
 
-function _createConfig(buffer) { debugger;
+function _createConfig(buffer) { 
     let method;
     let url;
     let configObj = {};
@@ -39,7 +39,7 @@ export default {
 	_sendJSONLD : function (buffer){
       return _createConfig(buffer);
 	},
-    send : function (buffer) { debugger;
+    send : function (buffer) { 
         const promise = new Promise(function (fulfill, reject) {
             const config = _createConfig(buffer);
             const restPromise = rest.send(config)
