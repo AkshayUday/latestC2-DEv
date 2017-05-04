@@ -1,0 +1,7 @@
+.saveSearchfail{
+	display:none;
+}
+
+.saveSearchSuccess{
+	display: block;
+}

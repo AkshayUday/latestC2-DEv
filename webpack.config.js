@@ -40,7 +40,7 @@ entryPoints['PatternBank'] = './src/PatternBank/js/components/App.js';
 entryPoints['PatternQuestion'] = './src/PatternQuestion/js/components/App.js';
 entryPoints['PatternAddAnAsset'] = './src/PatternAddAnAsset/js/components/App.js';
 entryPoints['PatternProductLink'] = './src/PatternProductLink/js/components/App.js';
-entryPoints['SearchSCPatterns'] = './src/SearchSCPatterns/js/components/App.js';
+entryPoints['PatternSearchSelect'] = './src/PatternSearchSelect/js/components/App.js';
 
 //The CommonsChunkPlugin above detects additional vendor packages and adds them to following list 
 entryPoints['vendor'] = ['react', 'redux', 'react-redux', 'react-router', 'react-dom', 'react-intl', 'lodash', 'bean', 'localforage'];

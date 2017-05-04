@@ -75,7 +75,8 @@ constructor(props) {
     divProps = removeUnkownProps(divProps);
       return (
          <div className={styles.assessmentMinutes}>
-            <label>Minutes</label><NumericInput className={styles.reactNumericInput} min={-1} max={60} size={1}
+            <label>Minutes</label>
+            <NumericInput  min={-1} max={60} size={1}
              format={this.myFormat} name="mm" value={this.state.mins}{...divProps}/>
          </div>
       );

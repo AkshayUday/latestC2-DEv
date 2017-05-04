@@ -77,7 +77,8 @@ constructor(props) {
 
       return (
          <div className={styles.assessmentHours}>
-            <label>Hours</label><NumericInput className={styles.reactNumericInput} min={-1} max={24} size={1}
+            <label>Hours</label>
+            <NumericInput min={-1} max={24} size={1}
             format={this.myFormat} name="hh" value={this.state.hours} {...divProps} />
          </div>
       );

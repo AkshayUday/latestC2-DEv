@@ -2,20 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import Autosuggest from 'react-autosuggest';
 import theme from './styles/autosuggestTheme.css';
 
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-function escapeRegexCharacters(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+const suggestions = [];
+
+// // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
+// function escapeRegexCharacters(str) {
+//   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// }
 
 function getSuggestions(value) {
-  const escapedValue = escapeRegexCharacters(value.trim());
-  
-  if (escapedValue === '') {
-    return [];
-  }
-
-  const regex = new RegExp('^' + escapedValue, 'i');
-
   return suggestions
     .map(section => {
       console.log(section);
@@ -74,13 +68,13 @@ class Search extends Component {
   
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(value)
+      suggestions: getSuggestions(value, this.state.suggestions)
     });
   };
 
   onSuggestionsUpdateRequested = ({value,reason}) => {
     this.setState({
-      suggestions: getSuggestions(value)
+      suggestions: getSuggestions(value, this.state.suggestions)
     });
   };
 
@@ -104,6 +98,7 @@ class Search extends Component {
     event.preventDefault();
     this.props.onSearchIconClick();
   }
+
 
   componentWillReceiveProps(nextProps) {
    console.log('nextProps');

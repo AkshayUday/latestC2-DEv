@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import RadioStyles from './styles/RadioStyles.css';
 
 class Radio extends Component{
 
@@ -35,7 +36,8 @@ static defaultProps ={
       required:false,
       maxLength:'30',
       autofocus:false,
-      record: {}
+      record: {},
+      className: RadioStyles.PlRadio
 }
 
 

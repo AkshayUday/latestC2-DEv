@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterType from '../../SearchSCPatterns/js/components/search/FilterType';
+import FilterType from '../../PatternSearchSelect/js/components/search/FilterType';
 import ReactTestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 

@@ -1,0 +1,73 @@
+/**
+ * Copyright (c) Pearson, Inc.
+ * All rights reserved.
+ * @author Udhayakumar
+ * @Filename PL_Table.css
+ * @Date 03/07/2017
+ */
+.columnHeader{
+	display: flex;
+	border-bottom: 1px solid lightgrey;
+}
+.area{
+    height: 280px;
+    /*padding-top: 2%;*/
+}
+.filterArea{
+	height: 160px;
+	/*padding-top: 2%;*/
+}
+.columnHeader div{
+	flex: 1;
+	cursor: pointer;
+}
+.columnHeader div:nth-child(1){
+	flex: 1;
+}
+.spaceBetween{
+	padding-left: 2%;
+}
+.rowContent{
+	display: flex;
+	border-bottom: 1px solid lightgrey;
+    color: grey;
+    align-items: center;
+    min-height: 37px;
+}
+
+.rowContent div{
+	flex:1;
+	
+}
+
+.rowContent div:nth-child(1){
+	flex:1;
+}
+
+.zibrarows .rowContent:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+.zibrarows .rowContent:nth-child(odd){
+	background-color: white;
+}
+
+.rowTitleWrapper{
+	display: flex;
+}
+
+.rowRadioBtn{
+	flex: 0.1 !important;
+}
+.listViewTable{
+	display: flex;
+    flex-flow: column;
+    flex: 1;
+    height: 280px;
+}
+.noZibraRows{
+	display: flex;
+	flex:1;
+	flex-flow: column wrap;
+	padding:8px;
+}
