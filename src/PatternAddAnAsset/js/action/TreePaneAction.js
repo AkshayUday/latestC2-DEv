@@ -84,7 +84,7 @@ let nodeRef;
 * @function getSubFolders method is used for get the all the folder from
 * alfresco and dispatch to the reducers
 */
-  export function  getSubFolders(arg='browseasset',folderName,child, nodeRef){ 
+  export function  getSubFolders(arg='browseasset',folderName,child, nodeRef){
     return (dispatch,getState) => { 
 
       let _getState = getState().TreePaneReducers;

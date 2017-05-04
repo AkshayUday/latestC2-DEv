@@ -11,6 +11,48 @@
 */
 import SavedSearchApi from '../api/savedSearchApi'
 import { CHECKED_SAVED_SEARCH_VALUE} from '../constants/searchLibraryConstants';
+import SearchConstants from '../constants/SavedSearchConstant';
+import {AUTO_COMPLETE} from '../constants/searchLibraryConstants';
+import {getSearchProductItems } from '../action/SearchLibraryAction';
+import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,DEFAULT_SAVED_SEARCH_MAX_RESULTS} from '../constants/paginationConstants';
+
+/** @function saveSearchValues -
+ * This method is for saving a search value
+ * @param {string} value - The search value to be saved
+ */
+export function saveSearchValues(value){
+    return (dispatch, getState) => {
+        let inputData = {};
+          const userID = window.tdc.libConfig.alfuname;
+            inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+            inputData.patternName = window.tdc.patConfig.pattern;
+                inputData.type = SearchConstants.LOCAL_INSTANCE;
+                let getResPromise = SavedSearchApi.getSavedSearchData(inputData);
+                getResPromise.then(function (responseData){
+                    if(responseData.AddAnAsset){
+                        let randomId = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+                        let saveObj = {'term': value,'id':randomId,'isChecked':false};
+                        let savedData = responseData.AddAnAsset;
+                        let inputData = {
+                            'userId': responseData.userId,
+                            'patternName': window.tdc.patConfig.pattern,
+                            'type' : responseData.type,
+                            'isThreeSave': false,
+                            'saveType' : SearchConstants.SAVE_SEARCH,
+                            'gridMode' : savedData.displayCount.gridMode,
+                            'viewMode' : savedData.displayCount.viewMode,
+                            'listMode' : savedData.displayCount.listMode,
+                            'saveValue' : saveObj,
+                            'sortIndex' : savedData.displayCount.sortIndex
+                        }
+                    SavedSearchApi.saveSearchValue(inputData).then(function (res){
+                      alert('Search value saved successfully')
+                    });
+                }
+
+                });
+    }
+}
 
  /** @function fetchSavedSearchData -
  * This method is used for fetching relevant assets data on selecting particular folder.
@@ -23,22 +65,24 @@ import { CHECKED_SAVED_SEARCH_VALUE} from '../constants/searchLibraryConstants';
   export function  fetchSavedSearchData(pageNo,maxItems){
       let index = (pageNo*maxItems)-maxItems;
      let limit = index+maxItems;
+     let paginationData = [];
     return dispatch => {
-      SavedSearchApi.get_Saved_Search_Data().then(function (data){
-        let FilteredData = data;
-        let paginationData = [];
-        // for(let i=0;i<data.length;i++){
-        //   if(data[i].uName==window.tdc.libConfig.alfuname&&data[i].nodeRef==window.tdc.libConfig.nodeRef){
-        //       FilteredData.push(data[i]);
-        //     }
-        // }
+      let inputData = {};
+       const userID = window.tdc.libConfig.alfuname;
+            inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+            inputData.patternName = window.tdc.patConfig.pattern;
+                inputData.type = SearchConstants.LOCAL_INSTANCE;
+                let getResPromise = SavedSearchApi.getSavedSearchData(inputData);
+                getResPromise.then(function (responseData){
+        let FilteredData = responseData.AddAnAsset.saveSearch.reverse();
+
         for(let i=index;i<limit;i++){
           if(FilteredData[i]){
             paginationData.push(FilteredData[i]);
           }
         }
         let lastPage = false;
-        if(paginationData.length==0 || paginationData.length<limit || FilteredData.length==limit){
+        if(paginationData.length==0 || paginationData.length<maxItems || FilteredData.length==limit){
           lastPage = true;
         }
        // if(FilteredData.length>0){
@@ -57,13 +101,20 @@ import { CHECKED_SAVED_SEARCH_VALUE} from '../constants/searchLibraryConstants';
         })
       //}
       }).catch(e => {
-
-        console.log('error: '+ e) ;
+         let savedSearchData = {
+          'data':paginationData,
+          'pageDetails':{
+            'pageNo':pageNo,
+            'lastPage': false
+          }
+        }
         dispatch({
-          type: 'METADATA_GET_ERROR',
-          QMD_Data_Err : e.message,
-          success: false
+          type: 'SAVED_SEARCH_GET',
+          Search_Data : savedSearchData,
+          success: true,
+          isSavedSearch:true
         })
+        
     })
   }
 
@@ -111,5 +162,88 @@ export function saveCheckedvalue(obj){
   return {
         type : 'CHECKED_SAVED_SEARCH_VALUE',
         data : obj
+    }
+}
+
+/* Run Search again */
+export function runSearch(){
+    return (dispatch, getState) => {
+        let state = getState();
+        let savedSearchData = state.savedSearchReducers[0].savedData;
+        savedSearchData.map(function (item){
+            if(item.checked===true){
+                document.querySelector('#searchAutoSuggest input').value = item.name;
+                let prevValue = state.autoComplete[state.autoComplete.length-1];
+                dispatch({
+                    type: AUTO_COMPLETE,
+                    data: prevValue.data,
+                    text: item.name,
+                    savedSearch: prevValue.savedSearch,
+                    lastThreeSearch: prevValue.lastThreeSearch
+                });
+
+                dispatch({
+                    type : 'RESET_SEARCH_TABS',
+                    data : false
+                });
+
+                dispatch(getSearchProductItems(item.name,DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,0));
+                dispatch ({
+                    type : 'UPDATE_SAVED_SEARCH_CHECKBOX_VALUE',
+                    data : item
+                });
+
+                dispatch ({
+                    type : 'SEND_TO_QUAD',
+                    data : {}
+                });
+
+            }
+        });
+    }
+}
+
+/** @function deleteSavedSearch -
+ * This method is to delete a saved search value
+ */
+export function deleteSavedSearch(){
+    return (dispatch, getState) => {
+        let filteredData = [];
+        let deletedData = [];
+        let state = getState();
+        let savedSearchData = state.savedSearchReducers[0].savedData;
+        let inputData = {};
+        const userID = window.tdc.libConfig.alfuname;
+            inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+            inputData.patternName = window.tdc.patConfig.pattern;
+            inputData.type = SearchConstants.LOCAL_INSTANCE;
+            let getResPromise = SavedSearchApi.getSavedSearchData(inputData);
+            getResPromise.then(function (responseData){
+                let res = responseData.AddAnAsset.saveSearch;
+              for(let i=0;i<res.length;i++){
+                for(let j=0;j<savedSearchData.length;j++){
+                    if(res[i].id === savedSearchData[j].id){
+                        if(savedSearchData[j].checked===true){
+                            res[i].isChecked = true;
+                        }
+                    }
+                }
+            }
+            for(let i=0;i<res.length;i++){
+                if(res[i].isChecked===false){
+                    filteredData.push(res[i]);
+                }else{
+                    deletedData.push(res[i]);
+                }
+            }
+          responseData.AddAnAsset.saveSearch = filteredData;
+          SavedSearchApi.deleteSavedSearchData(responseData).then(function (resData){
+            dispatch({
+                type: 'DELETE_CHECKED_SAVED_SEARCH_VALUE',
+                data: deletedData
+            })
+             dispatch(fetchSavedSearchData(DEFAULT_PAGE_NO,DEFAULT_SAVED_SEARCH_MAX_RESULTS));
+          });
+        });
     }
 }

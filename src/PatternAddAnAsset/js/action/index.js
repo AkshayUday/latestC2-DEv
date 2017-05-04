@@ -11,7 +11,8 @@ function checkAndAdd(autoCompleteData,title) {
 
 export function populateAutoComplete(text,savedSearch,lastThreeSearch) {
     return dispatch => {
-    	searchLibraryApi.autoComplete_Data(text).then(function (data){
+      let searchText = text.trim();
+    	searchLibraryApi.autoComplete_Data(searchText).then(function (data){
         let responseData = data.body.results;
         let autoCompleteData = [];
         let _title = [];
@@ -69,7 +70,7 @@ export function populateAutoComplete(text,savedSearch,lastThreeSearch) {
         //console.log('API');
         //console.log(text);
 
-        if(text == ''){
+        if(searchText == ''){
           dispatch({
           type: 'UPDATE_ALL_ASSET',
           data: autoCompleteData,

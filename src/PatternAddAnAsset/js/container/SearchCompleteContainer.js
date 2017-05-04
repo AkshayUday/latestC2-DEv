@@ -4,8 +4,19 @@ import { getSearchProductItems } from '../action/SearchLibraryAction';
 import SearchComplete from '../components/SearchComplete';
 import {isEmpty, forEach, takeRight, chain, find, uniqBy} from 'lodash';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
+import localForageService from '../../../common/util/localForageService';
+import SearchConstants from '../constants/SavedSearchConstant';
 
-const localforage = require('localforage');
+const identifyUserId = () => {
+    let inputData = {};
+    let userID = window.tdc.libConfig.alfuname;
+    inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+    inputData.patternName = window.tdc.patConfig.pattern;
+    return inputData;
+}
+
+
+// const localforage = require('localforage');
 
 const getSelectedValues = (dataArray) => {
     let currentData = '';
@@ -89,24 +100,35 @@ const mapDispatchToProps = (dispatch) => {
                 //console.log(event);
                 //console.log('onFocus');
 
-                localforage.getItem('savedSearch').then(function (searchvalue) {
+                let inputData = identifyUserId();
+                inputData.type = SearchConstants.LOCAL_INSTANCE;
+                let getResPromise = localForageService.getLocalForageData(inputData);
+                getResPromise.then(function (responseData){
+                //localforage.getItem('savedSearch').then(function (searchvalue) {
                     // This code runs once the value has been loaded
                     // from the offline store.
-                    let sarr = [];
-                    if(searchvalue != null){
-                        (searchvalue).forEach(function (data) {
-                            // if(data.nodeRef==window.tdc.libConfig.nodeRef &&
-                            // 	data.uName==window.tdc.libConfig.alfuname){
-                            sarr.push({term:data.searchterm});
-                            //}
+                let savedSearchValues = [];
+                let recentSearchValues = [];
+                if(responseData.AddAnAsset){
 
-                        });
-                    }
+                     savedSearchValues = responseData.AddAnAsset.saveSearch.reverse().slice(0,3);
+                     recentSearchValues = responseData.AddAnAsset.recentSearch.reverse();
+                    //let sarr = [];
+                    // if(searchvalue != null){
+                    //     (searchvalue).forEach(function (data) {
+                    //         // if(data.nodeRef==window.tdc.libConfig.nodeRef &&
+                    //         // 	data.uName==window.tdc.libConfig.alfuname){
+                    //         sarr.push({term:data.searchterm});
+                    //         //}
 
-                    localforage.getItem('last_three_search').then(function (lastthree){
-                        let searchdata = [];
+                    //     });
+                    // }
+
+                }
+                    //localforage.getItem('last_three_search').then(function (lastthree){
+                        //let searchdata = [];
                         let allAsset = [];
-                        searchdata =  takeRight(uniqBy(lastthree,'term'),3);
+                       // searchdata =  takeRight(uniqBy(lastthree,'term'),3);
 
                         allAsset = dispatch((() => { return (dispatch,getState) => {
                                 //console.log(getState().autoComplete);
@@ -116,9 +138,9 @@ const mapDispatchToProps = (dispatch) => {
                     }
                         )())
 
-                        dispatch(updateAllAsset(allAsset['data'],sarr,searchdata));
+                        dispatch(updateAllAsset(allAsset['data'],savedSearchValues,recentSearchValues));
 
-                    });
+                   // });
 
                 }).catch(function (err) {
                     // This code runs if there were any errors
@@ -147,31 +169,42 @@ const mapDispatchToProps = (dispatch) => {
 
             },
             componentWillMount(){
-
-                localforage.getItem('savedSearch').then(function (searchvalue) {
+                let inputData = identifyUserId();
+                inputData.type = SearchConstants.LOCAL_INSTANCE;
+                let getResPromise = localForageService.getLocalForageData(inputData);
+                getResPromise.then(function (responseData){
+                //localforage.getItem('savedSearch').then(function (searchvalue) {
                     // This code runs once the value has been loaded
                     // from the offline store.
-                    let sarr = [];
-                    if(searchvalue != null){
-                        (searchvalue).forEach(function (data) {
-                            // if(data.nodeRef==window.tdc.libConfig.nodeRef &&
-                            // 	data.uName==window.tdc.libConfig.alfuname){
-                            sarr.push({term:data.searchterm});
-                            //}
+                let savedSearchValues = [];
+                let recentSearchValues = [];
+                if(responseData.AddAnAsset){
+                savedSearchValues = responseData.AddAnAsset.saveSearch.reverse().slice(0,3);
+                recentSearchValues = responseData.AddAnAsset.recentSearch.reverse();
 
-                        });
-                    }
+                    //let sarr = [];
+                    // if(searchvalue != null){
+                    //     (searchvalue).forEach(function (data) {
+                    //         // if(data.nodeRef==window.tdc.libConfig.nodeRef &&
+                    //         // 	data.uName==window.tdc.libConfig.alfuname){
+                    //         sarr.push({term:data.searchterm});
+                    //         //}
 
-                    localforage.getItem('last_three_search').then(function (lastthree){
-                        let searchdata = [];
-                        searchdata =  takeRight(uniqBy(lastthree,'term'),3);
+                    //     });
+                    // }
+                }
+
+
+                   // localforage.getItem('last_three_search').then(function (lastthree){
+                        // let searchdata = [];
+                        // searchdata =  takeRight(uniqBy(lastthree,'term'),3);
 
                         //dispatch(populateAutoComplete('',sarr,searchdata));
-                        dispatch(updateAllAsset([],sarr,searchdata));
+                        dispatch(updateAllAsset([],savedSearchValues,recentSearchValues));
 
 
 
-                    });
+                    //});
 
                 }).catch(function (err) {
                     // This code runs if there were any errors
@@ -179,25 +212,28 @@ const mapDispatchToProps = (dispatch) => {
                 });
             },
             onSuggestionSelected: (event, { suggestion, suggestionValue, sectionIndex, method }) => {
-            console.log('onSuggestionSelected');
-    console.log(suggestionValue);
+    //         console.log('onSuggestionSelected');
+    // console.log(suggestionValue);
 
-    localforage.getItem('last_three_search').then(function (lastvalue){
+     let inputData = identifyUserId();
+                inputData.type = SearchConstants.LOCAL_INSTANCE;
+                let getResPromise = localForageService.getLocalForageData(inputData);
+                getResPromise.then(function (responseData){
         //	console.log(lastvalue);
         //	console.log(suggestionValue);
-        if(suggestionValue.trim() != undefined && suggestionValue.trim() != ''){
-            let chkVal = find(lastvalue, { 'term': suggestionValue.trim()});
-            if(chkVal == undefined){
-                let sval = {term:suggestionValue.trim()};
-                console.log(sval);
-                if(lastvalue.length >= 3){
-                    lastvalue.pop(lastvalue.unshift(sval));
-                }else{
-                    lastvalue.unshift(sval);
-                }
-            }
+        // if(suggestionValue.trim() != undefined && suggestionValue.trim() != ''){
+        //     let chkVal = find(lastvalue, { 'term': suggestionValue.trim()});
+        //     if(chkVal == undefined){
+        //         let sval = {term:suggestionValue.trim()};
+        //         console.log(sval);
+        //         if(lastvalue.length >= 3){
+        //             lastvalue.pop(lastvalue.unshift(sval));
+        //         }else{
+        //             lastvalue.unshift(sval);
+        //         }
+        //     }
 
-        }
+        // }
         let viewName = '';
         if(document.querySelector('.dropdown-display span i')){
             if(document.querySelector('.dropdown-display span i').className=='fa fa-list'){
@@ -207,7 +243,7 @@ const mapDispatchToProps = (dispatch) => {
             }
         }
 
-        localforage.setItem('last_three_search', lastvalue, function (err, val) {
+        //localforage.setItem('last_three_search', lastvalue, function (err, val) {
             //console.log(val);
 
             dispatch({
@@ -229,7 +265,7 @@ const mapDispatchToProps = (dispatch) => {
                 document.querySelectorAll('#searchfilterAssets .ReactTabs__Tab')[0].click();
             }
 
-        });
+        //});
 
     })
 
@@ -240,37 +276,48 @@ const mapDispatchToProps = (dispatch) => {
 
         //console.log(value);
 
-        localforage.getItem('savedSearch').then(function (searchvalue) {
+        let inputData = identifyUserId();
+                inputData.type = SearchConstants.LOCAL_INSTANCE;
+                let getResPromise = localForageService.getLocalForageData(inputData);
+                getResPromise.then(function (responseData){
+
+                let savedSearchValues = [];
+                let recentSearchValues = [];
+                if(responseData.AddAnAsset){
+                     savedSearchValues = responseData.AddAnAsset.saveSearch.reverse().slice(0,3);
+                     recentSearchValues = responseData.AddAnAsset.recentSearch.reverse();
+                 }
+
+        //localforage.getItem('savedSearch').then(function (searchvalue) {
             // This code runs once the value has been loaded
             // from the offline store.
-            let sarr = [];
-            if(searchvalue != null){
-                (searchvalue).forEach(function (data) {
-                    // if(data.nodeRef==window.tdc.libConfig.nodeRef &&
-                    // 	data.uName==window.tdc.libConfig.alfuname){
-                    sarr.push({term:data.searchterm});
-                    //}
+            // let sarr = [];
+            // if(searchvalue != null){
+            //     (searchvalue).forEach(function (data) {
+            //         // if(data.nodeRef==window.tdc.libConfig.nodeRef &&
+            //         // 	data.uName==window.tdc.libConfig.alfuname){
+            //         sarr.push({term:data.searchterm});
+            //         //}
 
-                });
-            }
+            //     });
+            // }
 
-            localforage.getItem('last_three_search').then(function (lastthree){
-                let searchdata = [];
+            //localforage.getItem('last_three_search').then(function (lastthree){
+                //let searchdata = [];
                 //let allAsset = [];
 				/*if(lastthree.length >=3){
 				 searchdata =  _.takeRight(lastthree,3);
 				 }*/
 
-                searchdata =  takeRight(uniqBy(lastthree,'term'),3);
+                //searchdata =  takeRight(uniqBy(lastthree,'term'),3);
                 if(value != ''){
-                    dispatch(populateAutoComplete(value,sarr,searchdata));
+                    dispatch(populateAutoComplete(value,savedSearchValues,recentSearchValues));
                 }else{
                     //dispatch(updateAllAsset(allAsset['allAsset'],sarr,searchdata));
-                    dispatch(updateAllAsset([],sarr,searchdata));
-
+                    dispatch(updateAllAsset([],savedSearchValues,recentSearchValues));
                 }
 
-            });
+            //});
 
         }).catch(function (err) {
             // This code runs if there were any errors

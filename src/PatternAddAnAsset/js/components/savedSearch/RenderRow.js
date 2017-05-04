@@ -24,7 +24,7 @@ displayJson(jsonObj,self){
 	if (typeof jsonObj.map === 'function') {
 		jsonObj.map(function (item,index){
 			let id = item.id;
-			let searchTerm = item.searchterm;
+			let searchTerm = item.term;
 			let filter = item.filter;
 			
 			itemArr.push(<div>

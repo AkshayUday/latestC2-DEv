@@ -11,7 +11,7 @@
  * @author TDC
  *
 */
-const localforage = require('localforage');
+//const localforage = require('localforage');
 import MetaDataService from '../../../common/util/metadataService';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 
@@ -105,47 +105,6 @@ export default {
    getProductData(){
     return AlfrescoApiService.getSiteData(window.tdc.libConfig);
    },
-  /** @function saveSearchValue -
- * localforage.getItem is used to existing saved search data.
-    This function adds the new saved search value.
-  */
-  saveSearchValue(text) {
-    let FilterData = '';
-      return localforage.getItem('savedSearch', function (err, readValue) {
-            let savedSearch = readValue;
-            if(readValue === null || readValue.length===0){
-              savedSearch =[];
-            }
-            if(Array.isArray(savedSearch)){
-              if(savedSearch.length){
-              //let i = savedSearch.length + 1;
-              }
-              let AlreadyExists =false;
-              for(let j=0;j<savedSearch.length;j++){
-                let searchVal = text.trim();
-                if(savedSearch[j].searchterm===searchVal){
-                  AlreadyExists = true;
-                }
-              }
-              if(AlreadyExists){
-                alert('Value already exists in Saved Search');
-              }else{
-              let randomId = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-              //savedSearch.unshift({'searchterm': text,'id':randomId, 'filter':FilterData,'isChecked':false});
-              // savedSearch.unshift({'searchterm': text,'uName':window.tdc.libConfig.alfuname,
-              //   'nodeRef':window.tdc.libConfig.nodeRef,'id':randomId,'isChecked':false});
-               savedSearch.unshift({'searchterm': text,'id':randomId,'isChecked':false});
-              localforage.setItem('savedSearch',savedSearch);
-               alert('Search value saved successfully');
-            }
-            }
-          });
-    },
-    getSearchValue(text) {
-       localforage.getItem('savedSearch', function (err, readValue) {
-            console.log('Read value is ', readValue);
-          });
-  },
 
   /* Getting root path path of an asset */
 
