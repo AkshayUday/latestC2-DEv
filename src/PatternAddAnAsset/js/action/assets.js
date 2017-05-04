@@ -222,7 +222,7 @@ const saveToLocalForageService = () => {
     inputData.gridMode = displayvaluecount;
     inputData.viewMode = viewName;
     inputData.listMode = displayValueCountForList;
-    inputData.saveValue = displayValueCountForList;
+    //inputData.saveValue = displayValueCountForList;
     inputData.sortIndex = sortIndex;
     localForageService.saveLocalForageData(inputData);
 }

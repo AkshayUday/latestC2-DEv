@@ -53,10 +53,10 @@ const searchLibraryReducer = (state = initilizeValues, action)=>{
     return [
       ...state,action
     ]
-    case SEARCH_BUTTON_VISIBILITY:
-    return[
-      ...state,action.isSavedSearch
-    ]
+    // case SEARCH_BUTTON_VISIBILITY:
+    // return[
+    //   ...state,action.isSavedSearch
+    // ]
 
     default:
     return state

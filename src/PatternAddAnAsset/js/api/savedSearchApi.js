@@ -10,7 +10,8 @@
  * @author TDC
  *
 */
-const localforage = require('localforage');
+//const localforage = require('localforage');
+import localForageService from '../../../common/util/localForageService';
 
 export default {
 /** @function get_Saved_Search_Data -
@@ -18,10 +19,21 @@ export default {
  * @returns {function}
  * This function returns object.
 */
-  get_Saved_Search_Data: function (){
-    return  localforage.getItem('savedSearch', function (err, readValue){
-            console.log('Read value is ', readValue);
-          });
+  // get_Saved_Search_Data: function (){
+  //   return  localforage.getItem('savedSearch', function (err, readValue){
+  //           console.log('Read value is ', readValue);
+  //         });
+  // },
+  getSavedSearchData: function (inputData){
+  	  return localForageService.getLocalForageData(inputData);
+  },
+
+  saveSearchValue: function (inputData){
+  	return localForageService.saveLocalForageData(inputData);
+  },
+
+  deleteSavedSearchData:function (inputData){
+    return localForageService.updateLocalForageData(inputData);
   }
 
 }

@@ -18,13 +18,9 @@ import fileUploadApi from '../api/fileUploadApi';
 import { SAVED_SEARCH_VALUE,SEARCH_DISPLAY_ASSETS,UPDATE_CHECKBOX_VALUE,SEARCH_BUTTON_VISIBILITY }
     from '../constants/searchLibraryConstants';
 import { fetchSavedSearchData, checkBoxHandler } from '../action/savedSearchAction';
-// const localforage = require('localforage');
-import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,DEFAULT_SAVED_SEARCH_MAX_RESULTS} from '../constants/paginationConstants';
-import {AUTO_COMPLETE} from '../constants/searchLibraryConstants';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 import bean from 'bean';
 import store from '../../js/store';
-import localforage from 'localforage'; // Added back since the old saved search functionality is broken. This direct reference will be removed while working on ATIC-289
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
 
@@ -35,7 +31,6 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
     res.body.pageNo = pageNo;
     res.body.pageLimit = maxItems;
     res.body.SearchValue = value;
-    res.body.showSaveSearch = true;
     res.body.selectedIndex = parseInt(fileTypeIndex);
     res.body.displayItemCount = maxItems;
     res.body.numberFound = res.body.numItems;
@@ -147,6 +142,11 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             3:'ORDER BY cmis:name'
         };
 
+            let saveObj;
+            if(value!==''&&value!==undefined){
+                saveObj = {'term': value};
+            }
+
         //AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
         //let token = JSON.parse(success.text).data.ticket;
         searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex]) .then(function (res) {
@@ -156,7 +156,8 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
                 type : SEARCH_DISPLAY_ASSETS,
                 data : assetData
             });
-            dispatch(searchLibButtonVisibility(false));
+
+           // dispatch(searchLibButtonVisibility(false));
                 const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
                 let inputData = {}
             const userID = window.tdc.libConfig.alfuname;
@@ -176,33 +177,37 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
                             displayCountForList = maxItems;
                         }
                         dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
-                        saveToLocalForageService();
+                        saveToLocalForageService(saveObj);
                     } else {
                         dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
-                        saveToLocalForageService();
+                        saveToLocalForageService(saveObj);
                     }
-                }).catch(function (err) {
+                }).catch(function (err,saveObj) {
                     console.log('serach library action', err);
                     dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
-                    saveToLocalForageService();
+                    saveToLocalForageService(saveObj);
         });
             });
     }
 }
 
-const saveToLocalForageService = () => {
+const saveToLocalForageService = (saveObj) => {
     let inputData = {};
     const {displayvaluecount, sortIndex, viewName, displayValueCountForList} = store.getState().userFilterReducer;
     const userID = window.tdc.libConfig.alfuname;
     inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
     inputData.patternName = window.tdc.patConfig.pattern;
     inputData.type = SearchConstants.LOCAL_INSTANCE;
-    inputData.saveType = SearchConstants.SAVE_SEARCH;
+    inputData.saveType = SearchConstants.RECENT_SEARCH;
     inputData.gridMode = displayvaluecount;
     inputData.viewMode = viewName;
     inputData.listMode = displayValueCountForList;
-    inputData.saveValue = displayValueCountForList;
+    //inputData.saveValue = displayValueCountForList;
     inputData.sortIndex = sortIndex;
+    if(typeof saveObj == 'object'){
+        inputData.saveValue = saveObj;
+        inputData.isThreeSave = true;
+    }
     localForageService.saveLocalForageData(inputData);
 }
 
@@ -235,48 +240,22 @@ export function getDifficultyLevels(){
     }
 }
 
-const getDifficultyLevelValues = (dataArray) => {
-    if (dataArray.length > 0) {
-        return dataArray[dataArray.length-1];
-    }
+// const getDifficultyLevelValues = (dataArray) => {
+//     if (dataArray.length > 0) {
+//         return dataArray[dataArray.length-1];
+//     }
 
-    return [];
-}
+//     return [];
+// }
 
-/** @function saveSearchValues -
- * This method is for saving a search value
- * @param {string} value - The search value to be saved
- */
-export function saveSearchValues(value){
-
-    return (dispatch, getState) => {
-        // searchLibraryApi.fetch_savedSearch_data().then(function (data) {
-        let state = getState();
-        // let difficultLevelData = getDifficultyLevelValues(state.difficultyLevelReducer);
-        // console.log(difficultLevelData.difficultylevel);
-        searchLibraryApi.saveSearchValue(value).then(function (data) {
-            /*dispatch({
-             type: DISPLAY_ASSETS,
-             data: JSON.parse(data.text)
-             })*/
-        })
-    }
-}
-
-/** @function saveSearchValues -
- * This method is to determine whether to show select and cancel buttons
- under search library tab
- * @param {*} isSavedSearch - Boolean value to determine whether to show
- select and cancel buttons under search library tab
- */
-export function searchLibButtonVisibility(isSavedSearch){
-    return (dispatch) => {
-        dispatch({
-            type: SEARCH_BUTTON_VISIBILITY,
-            isSavedSearch:{'isSavedSearch':isSavedSearch}
-        })
-    }
-}
+// export function searchLibButtonVisibility(isSavedSearch){
+//     return (dispatch) => {
+//         dispatch({
+//             type: SEARCH_BUTTON_VISIBILITY,
+//             isSavedSearch:{'isSavedSearch':isSavedSearch}
+//         })
+//     }
+// }
 
 export function updateDifficultyLevel(difficultyLevelId){
     return {
@@ -284,82 +263,7 @@ export function updateDifficultyLevel(difficultyLevelId){
         data : difficultyLevelId
     }
 }
-/** @function deleteSavedSearch -
- * This method is to delete a saved search value
- */
-export function deleteSavedSearch(){
-    return (dispatch, getState) => {
-        localforage.getItem('savedSearch', function (err, res) {
-            let state = getState();
-            let savedSearchData = state.savedSearchReducers[0].savedData
-            let filteredData = [],deletedData=[];
-            for(let i=0;i<res.length;i++){
-                for(let j=0;j<savedSearchData.length;j++){
-                    if(res[i].id === savedSearchData[j].id){
-                        if(savedSearchData[j].checked===true){
-                            res[i].isChecked = true;
-                        }
-                    }
-                }
-            }
-            for(let i=0;i<res.length;i++){
-                if(res[i].isChecked===false){
-                    filteredData.push(res[i]);
-                }else{
-                    deletedData.push(res[i]);
-                }
-            }
-            dispatch({
-                type: 'DELETE_CHECKED_SAVED_SEARCH_VALUE',
-                data: deletedData
-            })
-            if(localforage.setItem('savedSearch',filteredData)){
-                localforage.getItem('savedSearch', function (err, res) {
-                    dispatch(fetchSavedSearchData(DEFAULT_PAGE_NO,DEFAULT_SAVED_SEARCH_MAX_RESULTS));
-                });
-            }
-        });
-    }
-}
 
-
-
-export function runSearch(){
-    return (dispatch, getState) => {
-        let state = getState();
-        let savedSearchData = state.savedSearchReducers[0].savedData;
-        savedSearchData.map(function (item){
-            if(item.checked===true){
-                document.querySelector('#searchAutoSuggest input').value = item.name;
-                let prevValue = state.autoComplete[state.autoComplete.length-1];
-                dispatch({
-                    type: AUTO_COMPLETE,
-                    data: prevValue.data,
-                    text: item.name,
-                    savedSearch: prevValue.savedSearch,
-                    lastThreeSearch: prevValue.lastThreeSearch
-                });
-
-                dispatch({
-                    type : 'RESET_SEARCH_TABS',
-                    data : false
-                });
-
-                dispatch(getSearchProductItems(item.name,DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,0));
-                dispatch ({
-                    type : 'UPDATE_SAVED_SEARCH_CHECKBOX_VALUE',
-                    data : item
-                });
-
-                dispatch ({
-                    type : 'SEND_TO_QUAD',
-                    data : {}
-                });
-
-            }
-        });
-    }
-}
 
 export function sendToQuad(props){
     return (dispatch) => {
