@@ -1,0 +1,129 @@
+.header{
+	display: flex;
+	/*flex-flow: column wrap;*/
+	width: 100%;
+    flex: 1;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 1%;
+}
+
+.labelClass{
+    display: flex;
+    flex: 0.4;
+    align-items: center;
+}
+
+
+.searchTextBox > input{
+	width: 100%;
+}
+
+.searchTextBox{
+	display: flex;
+    flex: 1;
+}
+
+.seachTexBoxWrapper{
+	display: flex;
+	/*padding-top: 2%;*/
+    flex: 2;
+}
+
+.searchBtn{
+	display: flex;
+    flex: 1;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+.searchBtn i{
+	width: 7%;
+    padding-left: 7px;
+    line-height: 29px;
+    /*height: 29px;*/
+    color: #565656;
+    background: #e6e6e6;
+    border: 1px solid #b3b3b3;
+    font-size: 16px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.SearchWrapper{
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+}
+
+/** Filter Model **/
+.filterDisplayWrapper{
+    display: flex;
+    flex-flow: column wrap;
+    /*margin-top: 2%;*/
+    /*border-top: 1px solid lightgrey;*/
+    color: grey;
+    flex: 1;
+    padding-top: 1%;
+}
+.filterRow{
+    display: flex;
+}
+.filterSecond{
+    composes: filterRow;
+    flex: 1;
+    padding-top: 13px;
+}
+.filterSelectBox{
+    /*position: relative;
+    left: calc(1%);*/
+
+}
+.saveSearch{
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    text-decoration: underline;
+    color: blue;
+}
+.filterInteractive{
+    display: flex;
+    flex:1;
+    padding-bottom: 5%;
+}
+.sortWrapper{
+    display: flex;
+    flex: 1;
+}
+.filterSort{
+    display: flex;
+    padding-left: 1%;
+}
+
+.errorDisplay{
+    color: red;
+}
+
+
+/* Select box specific styles */
+
+.DisplayItemCount {
+    border: 1px solid #ccc;
+    width: 50px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("b64---./images/dropdown_arrow.png---") no-repeat 90% 50%;
+    margin:0px 5px;
+}
+
+.DisplayItemCount select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.DisplayItemCount select:focus {
+    outline: none;
+}

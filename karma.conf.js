@@ -17,7 +17,7 @@ module.exports = function (config) {
      browserDisconnectTimeout:'100000',
     singleRun: true, //just run once by default
     frameworks: ['mocha','sinon','chai-sinon'], //use the mocha test framework
-    files: ['./src/test/SearchSCPatterns/*.test.js',
+    files: ['./src/test/PatternSearchSelect/*.test.js',
     './src/test/ProductLink/*.test.js'],
 
     plugins: [ 'karma-chrome-launcher', 'karma-phantomjs-launcher','karma-chai', 'karma-mocha',
@@ -27,7 +27,7 @@ module.exports = function (config) {
 
     preprocessors: {
     
-      './src/test/SearchSCPatterns/*.test.js' :  [ 'webpack' ],
+      './src/test/PatternSearchSelect/*.test.js' :  [ 'webpack' ],
       './src/test/ProductLink/*.test.js': ['webpack']
 
        //preprocess with webpack and our sourcemap loader

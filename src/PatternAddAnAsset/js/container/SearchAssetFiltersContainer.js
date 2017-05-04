@@ -103,14 +103,15 @@ const mapDispatchToProps = (dispatch) => {
                     const displayCount = store.getState().userFilterReducer.viewName === 'list-view' ? store.getState().userFilterReducer.displayValueCountForList : store.getState().userFilterReducer.displayvaluecount
                     dispatch(getSearchProductItems(searchValue,DEFAULT_PAGE_NO,displayCount,index, store.getState().userFilterReducer.sortIndex, store.getState().userFilterReducer.viewName));
                 }
-            }else{
-                dispatch(fetchSavedSearchData(DEFAULT_PAGE_NO,DEFAULT_SAVED_SEARCH_MAX_RESULTS));
             }
-            if(index === 4){
-                dispatch(searchLibButtonVisibility(true));
-            }else{
-                dispatch(searchLibButtonVisibility(false));
-            }
+            // else{
+            //     //dispatch(fetchSavedSearchData(DEFAULT_PAGE_NO,DEFAULT_SAVED_SEARCH_MAX_RESULTS));
+            // }
+            // if(index === 4){
+            //     dispatch(searchLibButtonVisibility(true));
+            // }else{
+            //     dispatch(searchLibButtonVisibility(false));
+            // }
         }
     }
 }

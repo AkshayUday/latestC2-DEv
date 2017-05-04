@@ -12,10 +12,8 @@ import {connect} from 'react-redux';
 import SearchLibrary from '../components/SearchLibrary';
 import {getSearchProductItems,
     getDifficultyLevels,
-    saveSearchValues,
-    deleteSavedSearch,
-    runSearch,
     getProductDetails,sendToQuad } from '../action/SearchLibraryAction';
+import {deleteSavedSearch,runSearch} from '../action/savedSearchAction';
 import { Link, browserHistory, hashHistory } from 'react-router'
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
 import {find} from 'lodash';
@@ -25,7 +23,7 @@ import localForageService from '../../../common/util/localForageService';
 
 import bean from 'bean';
 
-const localforage = require('localforage');
+//const localforage = require('localforage');
 
 /**@function getSelectedValues -
  * This method is used to get the selected values by user.
@@ -39,6 +37,17 @@ const getSelectedValues = (dataArray) => {
     }
 
     return [];
+}
+
+function isSavedSearch(idValue){
+let isSaveSearch = false;
+  if(document.querySelector(idValue+' [aria-selected="true"]')){
+  let tabValue = document.querySelector(idValue+' [aria-selected="true"]').innerText;
+  if(tabValue==='Saved Searches'){
+    isSaveSearch = true;
+  }
+}
+  return isSaveSearch;
 }
 
 /**@function mapStateToProps -
@@ -65,7 +74,7 @@ const mapStateToProps = (state) => {
     }
     return {
         pageDetails: Array.isArray(assetsData)? {}: assetsData,
-        isSavedSearch: data.isSavedSearch,
+        isSavedSearch: isSavedSearch('#searchTabsContainer'),
         record: Array.isArray(selectedData)? {}: selectedData,
         showAssets:false,
         showTabs: showTabs,
@@ -110,25 +119,25 @@ const mapDispatchToProps = (dispatch) => {
 
             let searchValue = document.querySelector('#searchAutoSuggest input').value.trim();
             // debugger;
-            localforage.getItem('last_three_search').then(function (lastvalue){
+            //localforage.getItem('last_three_search').then(function (lastvalue){
                 //  console.log(lastvalue);
                 //  console.log(searchValue);
 
-                if(searchValue !== undefined && searchValue !== ''){
-                    //let chkVal = _.find(lastvalue, { 'term': searchValue.productName});
-                    let chkVal = find(lastvalue, { 'term': searchValue});
-                    if(chkVal === undefined){
-                        let sval = {term:searchValue};
-                        if(lastvalue.length >= 3){
-                            lastvalue.pop(lastvalue.unshift(sval));
-                        }else{
-                            lastvalue.unshift(sval);
-                        }
-                    }
+                // if(searchValue !== undefined && searchValue !== ''){
+                //     //let chkVal = _.find(lastvalue, { 'term': searchValue.productName});
+                //     let chkVal = find(lastvalue, { 'term': searchValue});
+                //     if(chkVal === undefined){
+                //         let sval = {term:searchValue};
+                //         if(lastvalue.length >= 3){
+                //             lastvalue.pop(lastvalue.unshift(sval));
+                //         }else{
+                //             lastvalue.unshift(sval);
+                //         }
+                //     }
 
-                }
+                // }
 
-                localforage.setItem('last_three_search', lastvalue, function (err, val) {
+                //localforage.setItem('last_three_search', lastvalue, function (err, val) {
                     let searchString = document.querySelector('#searchAutoSuggest input').value.trim();
                     let inputData = {};
                     const userID = window.tdc.libConfig.alfuname;
@@ -153,8 +162,8 @@ const mapDispatchToProps = (dispatch) => {
                         console.log('Localforage not exist in SearchLibraryContainer', err)
                         patternExistance(dispatch, searchString)
                     })
-                });
-            })
+                //});
+            //})
         },
         closeSearchLibrary: function (){
             this.props.closePopup();

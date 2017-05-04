@@ -15,9 +15,7 @@
 .assessmentMetaData .assessmentInput input:disabled, .assessmentInput.assessmentInput--disabled input {
     background: #EFEFEF;   
 }
-.assessmentMetaData .assessmentInput input {
-    /*height: 27px;*/
-}
+
 .assessmentMetaData input[placeholder] {
     font-size: 14px;
     width: 50%;
@@ -44,7 +42,7 @@
     border-radius: 3px;
 }
 .assessmentMetaData .assessmentInput label {
-    line-height: 0.875rem;   
+    line-height: 0.875rem;
 }
 .assessmentInput label {
     font-weight: normal;
@@ -118,9 +116,7 @@
 .assessmentMinutes,.assessmentSeconds{
 margin-left:20px;
 }
-.assessmentMetaData .assessmentInput input {
-    /*height: 27px;*/
-}
+
 .assessmentMetaData .assessmentInput .pe-label--bold {
     display: block;
 }
@@ -158,7 +154,7 @@ margin-left:20px;
 .assessmentInput input[type=time] {
     width: 100%;
     padding: 12px;
-    height: 27px;
+    
 }
 .assessmentMetaData select {
     padding: 0px 6px;
@@ -173,7 +169,7 @@ margin-left:20px;
     background-repeat: no-repeat;
     background-position: 99% center;
     display: inline-block;
-    min-height: 27px;
+    
     border: solid 1px #d0d0d0;
     border-radius: 3px;
     font-size: 14px;

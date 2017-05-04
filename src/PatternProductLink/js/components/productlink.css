@@ -28,6 +28,10 @@
 
 }
 
+.plLinkButton:disabled{
+    cursor: default;
+    background: #9dc0db;
+}
 
 .product-linkcls-loader {   
     /* composes:lostColumnOne; */

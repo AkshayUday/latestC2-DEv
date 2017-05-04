@@ -28,7 +28,7 @@ import SingleFileFolderContainer from '../container/SingleFileFolderContainer';
 import ReviewAssetMetadata from 
        '../../../PatternReviewAsset/js/containers/ReviewAssetMetadataContainer'
 
-const localforage = require('localforage');
+//const localforage = require('localforage');
 
 addLocaleData(frLocaleData);
 const translations = {
@@ -43,15 +43,15 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 
 
-localforage.getItem('last_three_search').then(function (data){
-  //console.log('last_three_search');
- // console.log(data);
-  if(data == null){
-      localforage.setItem('last_three_search',[]).then(function (data){
-       console.log(data);
-      })
-  }
-})
+// localforage.getItem('last_three_search').then(function (data){
+//   //console.log('last_three_search');
+//  // console.log(data);
+//   if(data == null){
+//       localforage.setItem('last_three_search',[]).then(function (data){
+//        console.log(data);
+//       })
+//   }
+// })
 
 class App extends Component {
   constructor(props) {

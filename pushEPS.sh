@@ -171,5 +171,5 @@ epsupload PatternBroker.js
 epsupload PatternProductLink.js
 epsupload PatternQuestion.js
 epsupload Patternvendor.js
-epsupload SearchSCPatterns.js
+epsupload PatternSearchSelect.js
 epsupload PatternSearchSelect.js
