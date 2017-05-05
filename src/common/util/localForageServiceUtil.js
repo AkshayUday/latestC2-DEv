@@ -5,6 +5,7 @@ export default {
         saveInputObj.userId = inputData.userId;
         saveInputObj[inputData.patternName] = {};
         saveInputObj[inputData.patternName].displayCount ={};
+        console.log(inputData.patternName, saveInputObj[inputData.patternName])
         if(inputData.gridMode !== undefined){
             saveInputObj[inputData.patternName].displayCount.gridMode = inputData.gridMode;
         }else if(replyGetData !== null && replyGetData.displayCount.gridMode !== undefined){
@@ -30,12 +31,12 @@ export default {
         saveInputObj[inputData.patternName].sortSelection={};
         if(inputData.sortColName!== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnName = inputData.sortColName;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection.columnName !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection !== undefined && replyGetData[inputData.patternName].sortSelection.columnName !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnName = replyGetData[inputData.patternName].sortSelection.columnName;
         }
         if(inputData.order !== undefined){
             saveInputObj[inputData.patternName].sortSelection.order = inputData.order;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection.order !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection !== undefined && replyGetData[inputData.patternName].sortSelection.order !== undefined){
             saveInputObj[inputData.patternName].sortSelection.order = replyGetData[inputData.patternName].sortSelection.order;
         }
         if(inputData.filterTypeValue !== undefined){
@@ -45,7 +46,7 @@ export default {
         }
         if(inputData.columnSort !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnSort = inputData.columnSort;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection.columnSort !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection !== undefined && replyGetData[inputData.patternName].sortSelection.columnSort !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnSort = replyGetData[inputData.patternName].sortSelection.columnSort;
         }
         return saveInputObj;
