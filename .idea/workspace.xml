@@ -2,91 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a77cd5c-ffb1-4e8c-a2cc-53c3c7e5ec75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/PatternSearchSelect.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/actions/SearchAssetsAction.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/api/SearchAssetsApi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/App.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/InteractiveModal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/FilterModel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/FilterType.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/SavedSearch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/SearchModel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/SearchPaging.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/SearchSpec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/listview/ListColumns.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/listview/ListRows.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/listview/ListView.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/listview/ListViewStyles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/styles/FilterModel.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/styles/FilterType.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/styles/SearchPaging.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/search/styles/SearchSpec.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/components/styles/modalStyles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/config/Config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/constants/SavedSearchConstant.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/constants/SearchActionTypes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/container/FilterTypeContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/container/ModalContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/container/SearchAssetsContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/reducers/SearchAssetsReducer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/reducers/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/store/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/util/SavedSearchUtil.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PatternSearchSelect/js/util/SearchAssetsUtil.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/common/components/styles/RadioStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/indexpage.js" afterPath="$PROJECT_DIR$/indexpage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/karma.conf.js" afterPath="$PROJECT_DIR$/karma.conf.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternAddAnAsset.js" afterPath="$PROJECT_DIR$/lib/PatternAddAnAsset.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternAssessment.js" afterPath="$PROJECT_DIR$/lib/PatternAssessment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternBank.js" afterPath="$PROJECT_DIR$/lib/PatternBank.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternBroker.js" afterPath="$PROJECT_DIR$/lib/PatternBroker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternProductLink.js" afterPath="$PROJECT_DIR$/lib/PatternProductLink.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternQuestion.js" afterPath="$PROJECT_DIR$/lib/PatternQuestion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternSearchSelect.js" afterPath="$PROJECT_DIR$/lib/PatternSearchSelect.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/Patternvendor.js" afterPath="$PROJECT_DIR$/lib/Patternvendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pushEPS.sh" afterPath="$PROJECT_DIR$/pushEPS.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/index.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/savedSearchAction.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/savedSearchAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/api/savedSearchApi.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/api/savedSearchApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/AddAnAsset.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/AddAnAsset.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/App.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/SingleFileUpload.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/SingleFileUpload.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/savedSearch/RenderRow.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/savedSearch/RenderRow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchAssetFiltersContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchAssetFiltersContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchCompleteContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchCompleteContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchLibraryContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchLibraryContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/searchAssetsContainer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/searchAssetsContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/reducers/searchLibraryReducer.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/reducers/searchLibraryReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/store/index.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/store/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAssesment/js/action/MetadataAction.js" afterPath="$PROJECT_DIR$/src/PatternAssesment/js/action/MetadataAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAssesment/js/components/MVM/styles/MVMStyles.css" afterPath="$PROJECT_DIR$/src/PatternAssesment/js/components/MVM/styles/MVMStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternBroker.js" afterPath="$PROJECT_DIR$/src/PatternBroker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternProductLink/js/components/ProductLink.js" afterPath="$PROJECT_DIR$/src/PatternProductLink/js/components/ProductLink.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternProductLink/js/components/plautosuggestTheme.css" afterPath="$PROJECT_DIR$/src/PatternProductLink/js/components/plautosuggestTheme.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternProductLink/js/components/productlink.css" afterPath="$PROJECT_DIR$/src/PatternProductLink/js/components/productlink.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/AutoSuggest.js" afterPath="$PROJECT_DIR$/src/common/components/AutoSuggest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/Button.js" afterPath="$PROJECT_DIR$/src/common/components/Button.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/Dropdown.js" afterPath="$PROJECT_DIR$/src/common/components/Dropdown.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/HoursComponent.js" afterPath="$PROJECT_DIR$/src/common/components/HoursComponent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/MinutesComponent.js" afterPath="$PROJECT_DIR$/src/common/components/MinutesComponent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/Radio.js" afterPath="$PROJECT_DIR$/src/common/components/Radio.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/SecondsComponent.js" afterPath="$PROJECT_DIR$/src/common/components/SecondsComponent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/SortAssets.js" afterPath="$PROJECT_DIR$/src/common/components/SortAssets.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/HourStyles.css" afterPath="$PROJECT_DIR$/src/common/components/styles/HourStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/MinutesStyles.css" afterPath="$PROJECT_DIR$/src/common/components/styles/MinutesStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/PL_ItemsPerPage.css" afterPath="$PROJECT_DIR$/src/common/components/styles/PL_ItemsPerPage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/styles/SecondsStyles.css" afterPath="$PROJECT_DIR$/src/common/components/styles/SecondsStyles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util/localForageService.js" afterPath="$PROJECT_DIR$/src/common/util/localForageService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util/localForageServiceUtil.js" afterPath="$PROJECT_DIR$/src/common/util/localForageServiceUtil.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util/scapiServices.js" afterPath="$PROJECT_DIR$/src/common/util/scapiServices.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/SearchSCPatterns/FilterType.test.js" afterPath="$PROJECT_DIR$/src/test/SearchSCPatterns/FilterType.test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -112,7 +34,7 @@
         <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/container/TreePaneContainer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="31" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="35" />
+              <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -120,31 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SingleFileFolderContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SingleFileFolderContainer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="12" selection-start-line="55" selection-start-column="2" selection-end-line="55" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TreePaneAction.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PatternBroker.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PatternBroker.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="164" column="13" selection-start-line="164" selection-start-column="13" selection-end-line="164" selection-end-column="13" />
+            <state vertical-scroll-proportion="-11.925926">
+              <caret line="205" column="7" selection-start-line="205" selection-start-column="7" selection-end-line="205" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -153,18 +55,68 @@
       <file leaf-file-name="SearchLibraryAction.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="197" column="40" selection-start-line="197" selection-start-column="40" selection-end-line="197" selection-end-column="40" />
+            <state vertical-scroll-proportion="-6.6666665">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webpack.config_orig.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config_orig.js">
+      <file leaf-file-name="SavedSearchConstant.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PatternSearchSelect/js/constants/SavedSearchConstant.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localForageService.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/common/util/localForageService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.0434783">
+              <caret line="98" column="8" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="savedSearchApi.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/savedSearchApi.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localForage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/util/localForage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localForageServiceUtil.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/util/localForageServiceUtil.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.3333333">
+              <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="assets.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="226" column="34" selection-start-line="226" selection-start-column="34" selection-end-line="226" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -172,31 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webpack.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="8" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TreePaneApi.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/TreePaneApi.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FolderPane.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/folderpane/FolderPane.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="122" column="44" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
+            <state vertical-scroll-proportion="-5.6296296">
+              <caret line="74" column="22" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <marker date="1493918747000" expanded="true" signature="4846:5235" placeholder="&lt;xml/&gt;" />
@@ -217,6 +149,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/store/index.js" />
+        <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js" />
+        <option value="$PROJECT_DIR$/src/common/util/localForageService.js" />
+        <option value="$PROJECT_DIR$/src/common/util/localForageServiceUtil.js" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
   <component name="JsBuildToolPackageJson" detection-done="true" />
@@ -328,6 +270,58 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="latestC2-DEv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="latestC2-DEv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PatternAddAnAsset" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reducers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="latestC2-DEv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="latestC2-DEv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PatternAddAnAsset" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="action" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -389,6 +383,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -513,21 +518,21 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21564482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.84150326" sideWeight="0.11383928" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.93028843" sideWeight="0.88616073" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34855768" sideWeight="0.48363096" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,80 +571,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="197" column="40" selection-start-line="197" selection-start-column="40" selection-end-line="197" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config_orig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/TreePaneApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/folderpane/FolderPane.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="44" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1493918747000" expanded="true" signature="4846:5235" placeholder="&lt;xml/&gt;" />
-            <marker date="1493918747000" expanded="true" signature="5366:5602" placeholder="&lt;xml/&gt;" />
-            <marker date="1493918747000" expanded="true" signature="5447:5583" placeholder="&lt;xml/&gt;" />
-            <marker date="1493918747000" expanded="true" signature="5647:5721" placeholder="&lt;xml/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/container/TreePaneContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="31" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SingleFileFolderContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="12" selection-start-line="55" selection-start-column="2" selection-end-line="55" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/TreePaneApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -753,6 +684,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -760,6 +692,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -819,13 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/reducers/userFilterReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -851,6 +777,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="1452" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -875,13 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/util/localForageServiceUtil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.46616542">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.625">
@@ -893,6 +813,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.254717">
           <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -908,6 +829,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33207548">
           <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -926,10 +848,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/container/TreePaneContainer.js">
+    <entry file="file://$PROJECT_DIR$/webpack.config_orig.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="31" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="35" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -938,8 +870,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/folderpane/FolderPane.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="44" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
+        <state vertical-scroll-proportion="-5.6296296">
+          <caret line="74" column="22" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <marker date="1493918747000" expanded="true" signature="4846:5235" placeholder="&lt;xml/&gt;" />
@@ -950,44 +882,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js">
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/reducers/TreePaneReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.02918288">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5544747">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternBroker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.270428">
           <caret line="164" column="13" selection-start-line="164" selection-start-column="13" selection-end-line="164" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/constants/TreePaneConstant.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="197" column="40" selection-start-line="197" selection-start-column="40" selection-end-line="197" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.2626459">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config_orig.js">
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/container/TreePaneContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6666665">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/constants/SavedSearchConstant.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="8" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="8" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/savedSearchApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="226" column="34" selection-start-line="226" selection-start-column="34" selection-end-line="226" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/util/localForage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.925926">
+          <caret line="205" column="7" selection-start-line="205" selection-start-column="7" selection-end-line="205" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternSearchSelect/js/constants/SavedSearchConstant.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/util/localForageServiceUtil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3333333">
+          <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/util/localForageService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0434783">
+          <caret line="98" column="8" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="8" />
           <folding />
         </state>
       </provider>

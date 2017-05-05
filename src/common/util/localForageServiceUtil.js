@@ -206,6 +206,20 @@ export default {
             }
         }
         return tempArr
+    },
+
+    constructFolderStructureObj(inputData,replyGetData) {
+        let saveInputObj = {};
+        saveInputObj.userId = inputData.userId;
+        saveInputObj[inputData.patternName] = {};
+        if(inputData.currentFolder !== undefined){
+            console.log(saveInputObj[inputData.patternName][inputData[0].nodeRef])
+            saveInputObj[inputData.patternName][inputData[0].nodeRef] = inputData;
+        }
+        //else if(replyGetData !== null && replyGetData.nodeRef !== undefined){
+        //    saveInputObj[inputData.patternName].nodeRef = replyGetData[inputData.patternName].nodeRef;
+        //}
+        return saveInputObj;
     }
 
 }

@@ -18,6 +18,9 @@ import {getNodeRef,
 import JsonData from '../components/folderpane/TreeNodeUtil';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
+import localForageService from '../../../common/util/localForageService';
+import SearchConstants from '../constants/SavedSearchConstant';
+
 
 let nodeRef;
 /**
@@ -191,10 +194,16 @@ export function updateCurrentFolder(nodeRef){
     let _getState = getState().TreePaneReducers;
     let model = _getState[_getState.length-1];
     model.currentFolder = nodeRef;
+    console.log('updateCurrentFolder', JSON.stringify(model))
     dispatch({
       type : GET_FOLDER,
       data : model
     })
+    const userID = window.tdc.libConfig.alfuname;
+    model.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+    model.patternName = 'folderStructure';
+    model.type = SearchConstants.LOCAL_INSTANCE;
+    localForageService.saveFolderStructure(model);
   }
 }
 /**

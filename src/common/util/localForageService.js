@@ -110,5 +110,33 @@ export default{
 			    });
   		});
   		return promise;
-  	}
+  	},
+
+	  saveFolderStructure(inputData) {
+			const promise = new Promise(function (fulfill, reject) {
+				const getPromise = localForage.getLocalForageData(inputData);
+				getPromise.then(function (replyGetData){
+					let modSaveObj = serviceUtil.constructFolderStructureObj(inputData,replyGetData);
+					modSaveObj.type = inputData.type;
+					if(replyGetData === null){
+						replyGetData = modSaveObj;
+					}else{
+						replyGetData[inputData.patternName] = modSaveObj[inputData.patternName];
+					}
+					const savePromise = localForage.saveLocalForageData(replyGetData);
+					savePromise.then(function (sucess){
+						if(sucess[inputData.patternName] !== undefined){
+							fulfill(sucess);
+						}else{
+							fulfill({errMsg: 'Failure'});
+						}
+					}).catch(function (error) {
+						reject(error);
+					});
+				}).catch(function (error){
+					reject(error);
+				});
+			});
+			return promise
+		}
 }
