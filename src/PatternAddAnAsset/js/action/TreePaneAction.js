@@ -194,7 +194,6 @@ export function updateCurrentFolder(nodeRef){
     let _getState = getState().TreePaneReducers;
     let model = _getState[_getState.length-1];
     model.currentFolder = nodeRef;
-    console.log('updateCurrentFolder', JSON.stringify(model))
     dispatch({
       type : GET_FOLDER,
       data : model

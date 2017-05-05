@@ -5,7 +5,6 @@ export default {
         saveInputObj.userId = inputData.userId;
         saveInputObj[inputData.patternName] = {};
         saveInputObj[inputData.patternName].displayCount ={};
-        console.log(inputData.patternName, saveInputObj[inputData.patternName])
         if(inputData.gridMode !== undefined){
             saveInputObj[inputData.patternName].displayCount.gridMode = inputData.gridMode;
         }else if(replyGetData !== null && replyGetData.displayCount.gridMode !== undefined){
@@ -31,22 +30,22 @@ export default {
         saveInputObj[inputData.patternName].sortSelection={};
         if(inputData.sortColName!== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnName = inputData.sortColName;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection !== undefined && replyGetData[inputData.patternName].sortSelection.columnName !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName] !== undefined && replyGetData[inputData.patternName].sortSelection.columnName !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnName = replyGetData[inputData.patternName].sortSelection.columnName;
         }
         if(inputData.order !== undefined){
             saveInputObj[inputData.patternName].sortSelection.order = inputData.order;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection !== undefined && replyGetData[inputData.patternName].sortSelection.order !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName] !== undefined && replyGetData[inputData.patternName].sortSelection.order !== undefined){
             saveInputObj[inputData.patternName].sortSelection.order = replyGetData[inputData.patternName].sortSelection.order;
         }
         if(inputData.filterTypeValue !== undefined){
             saveInputObj[inputData.patternName].filterValues = inputData.filterTypeValue;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].filterValues !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName] !== undefined && replyGetData[inputData.patternName].filterValues !== undefined){
             saveInputObj[inputData.patternName].filterValues = replyGetData[inputData.patternName].filterValues;
         }
         if(inputData.columnSort !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnSort = inputData.columnSort;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection !== undefined && replyGetData[inputData.patternName].sortSelection.columnSort !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName] !== undefined && replyGetData[inputData.patternName].sortSelection.columnSort !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnSort = replyGetData[inputData.patternName].sortSelection.columnSort;
         }
         return saveInputObj;
@@ -214,12 +213,11 @@ export default {
         saveInputObj.userId = inputData.userId;
         saveInputObj[inputData.patternName] = {};
         if(inputData.currentFolder !== undefined){
-            console.log(saveInputObj[inputData.patternName][inputData[0].nodeRef])
-            saveInputObj[inputData.patternName][inputData[0].nodeRef] = inputData;
+            saveInputObj[inputData.patternName ].currentFolder = inputData.currentFolder;
         }
-        //else if(replyGetData !== null && replyGetData.nodeRef !== undefined){
-        //    saveInputObj[inputData.patternName].nodeRef = replyGetData[inputData.patternName].nodeRef;
-        //}
+        if(inputData[0] !== undefined){
+            saveInputObj[inputData.patternName].nodeRef = inputData[0];
+        }
         return saveInputObj;
     }
 
