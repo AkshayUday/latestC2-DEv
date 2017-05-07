@@ -37,7 +37,6 @@ let nodeRef;
            if(treeFolder !== undefined && treeFolder.length > 0){
               treeFolder.show = false;
              treeFolder = flagRootFolders(treeFolder);
-             console.log(treeFolder);
              // highlightChildren(treeFolder, getFirstName(treeFolder));
              dispatch({
                type : GET_FOLDER,
@@ -91,8 +90,7 @@ let nodeRef;
     return (dispatch,getState) => { 
 
       let _getState = getState().TreePaneReducers;
-           assetsApi.getSubFolders(nodeRef).then(function (res){ 
-		         console.log(res);
+           assetsApi.getSubFolders(nodeRef).then(function (res){
              if(res !== undefined && res.body !== undefined){
 
                 let resultLen = res.body.results.length;
@@ -197,11 +195,12 @@ export function updateCurrentFolder(nodeRef){
     dispatch({
       type : GET_FOLDER,
       data : model
-    })
+    });
     const userID = window.tdc.libConfig.alfuname;
     model.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
-    model.patternName = 'folderStructure';
+    model.patternName = SearchConstants.FOLDER_STRUCTURE;
     model.type = SearchConstants.LOCAL_INSTANCE;
+    model.parentNodeRef = window.tdc.libConfig.nodeRef;
     localForageService.saveFolderStructure(model);
   }
 }

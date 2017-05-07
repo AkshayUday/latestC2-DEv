@@ -10,9 +10,6 @@ import AddAnAsset from './AddAnAsset'
 import { Link, browserHistory, hashHistory } from 'react-router';
 import PL_Layout from '../../../PatternLayouts/PL_Layout'
 import PopupStyles from './Styles/EntryPopupStyles.css'
-import store from './../store'
-import localForageService from '../../../common/util/localForageService';
-import SearchConstants from '../constants/SavedSearchConstant';
 
 class EntryPopup extends React.Component{
     constructor(props){
@@ -28,18 +25,6 @@ class EntryPopup extends React.Component{
     closeOnSelect() {
         this.setState({open:false});
         document.querySelector('body').style.overflow='auto';
-        const {displayvaluecount, sortIndex, viewName, displayValueCountForList} = store.getState().userFilterReducer;
-        let inputData = {};
-        const userID = window.tdc.libConfig.alfuname;
-        inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
-        inputData.patternName = window.tdc.patConfig.pattern;
-        inputData.type = SearchConstants.LOCAL_INSTANCE;
-        inputData.saveType = SearchConstants.SAVE_SEARCH;
-        inputData.gridMode = displayvaluecount;
-        inputData.viewMode = viewName;
-        inputData.listMode = displayValueCountForList;
-        inputData.sortIndex = sortIndex;
-        localForageService.saveLocalForageData(inputData);
         this.props.clearModal();
     }
 

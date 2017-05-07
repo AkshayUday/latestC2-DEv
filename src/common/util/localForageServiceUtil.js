@@ -209,16 +209,22 @@ export default {
     },
 
     constructFolderStructureObj(inputData,replyGetData) {
-        let saveInputObj = {};
-        saveInputObj.userId = inputData.userId;
-        saveInputObj[inputData.patternName] = {};
-        if(inputData.currentFolder !== undefined){
-            saveInputObj[inputData.patternName ].currentFolder = inputData.currentFolder;
-        }
-        if(inputData[0] !== undefined){
-            saveInputObj[inputData.patternName].nodeRef = inputData[0];
-        }
-        return saveInputObj;
+      let saveInputObj = {};
+      saveInputObj.userId = inputData.userId;
+      saveInputObj[ inputData.patternName ] = {};
+      saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = [];
+      if (inputData[ 0 ] !== undefined) {
+        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
+      }
+      if (inputData.currentFolder !== undefined) {
+        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ].currentFolder = inputData.currentFolder;
+      }
+      if (replyGetData === null) {
+        replyGetData = saveInputObj;
+      } else {
+        replyGetData[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
+      }
+      return replyGetData;
     }
 
 }
