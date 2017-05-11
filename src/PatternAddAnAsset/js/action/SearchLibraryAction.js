@@ -157,7 +157,7 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
                 data : assetData
             });
 
-            dispatch(searchLibButtonVisibility(false));
+           // dispatch(searchLibButtonVisibility(false));
                 const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
                 let inputData = {}
             const userID = window.tdc.libConfig.alfuname;

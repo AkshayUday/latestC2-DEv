@@ -332,6 +332,7 @@ onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
 
     libConfig.alfuname = document.getElementById('alfuname').value;
     libConfig.alfpwd = document.getElementById('alfpwd').value;
+    libConfig.nodeRef = document.getElementById('nodeRef').value;
     libConfig.headers['X-PearsonSSOSession'] = document.getElementById('sessionKeyId').value;
     libConfig.headers['x-apikey'] = document.getElementById('apiKeyId').value;
     libConfig.repoName = document.getElementById('repoName').value;
@@ -848,8 +849,10 @@ if(_productLink && _productLink.unmount){
 
     _productLink = patternBroker.create('ProductLink', patternProductLink);
 
+    //libConfig.alfToken = document.getElementById('alfToken').value;
     libConfig.alfuname = document.getElementById('alfuname').value;
     libConfig.alfpwd = document.getElementById('alfpwd').value;
+    libConfig.nodeRef = document.getElementById('nodeRef').value;
     libConfig.headers['X-PearsonSSOSession'] = document.getElementById('sessionKeyId').value;
     libConfig.headers['x-apikey'] = document.getElementById('apiKeyId').value;
     patternBroker.setup(libConfig);
