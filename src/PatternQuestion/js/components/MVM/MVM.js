@@ -165,8 +165,8 @@ componentDidMount(){
 handleChange(tags,src){
  
   if(tags === 'adaptiveFlag'){
-    this.state.isChecked = !this.state.isChecked;
-     this.props.handleChange(tags,this.state.isChecked);
+    this.setState({isChecked: !this.state.isChecked});
+    this.props.handleChange(tags,!this.state.isChecked);
   }else{
     this.props.handleChange(tags,src);
   }
@@ -212,6 +212,7 @@ componentWillReceiveProps(nextProps) {
     /*if(nextProps.goalSuggestions){
       this.state.goalSuggest = nextProps.goalSuggestions;
     }*/
+    this.state.isChecked = nextProps.adaptiveFlag;
 }
 /** An event. Its name is module:QuestionMetaData.event:onBlur.
 * @event module:QuestionMetaData.event:onBlur
@@ -363,7 +364,7 @@ render() {
 
     return (
             <form>
-            <div className={styles.containerMetaData}>
+            <div id='ext_QuestionMetaData' className={styles.containerMetaData+' ext_QuestionMetaData'}>
             <section>
               <h2>{formatMessage(messages.MVM_Data)}</h2>
               <div  className={styles.assessmentMetaData}>

@@ -33,7 +33,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
     res.body.selectedIndex = parseInt(fileTypeIndex);
     res.body.numberFound = res.body.numItems,window.tdc.patConfig.assetsTotalCount;
     res.body.totalRecords = res.body.results.length;
-    res.body.tabVisibility = window.tdc.libConfig.tabVisibility;
+    res.body.tabVisibility = window.tdc.patConfig.tabVisibility;
     res.body.lastPage = res.body.hasMoreItems;
     if(viewName){
         res.body.viewName = viewName;
@@ -58,7 +58,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
             let nodeRefText = res.body.results[i].properties['d.alfcmis:nodeRef'].value;
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
-            let thumbnailUrl = window.tdc.libConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
+            let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
 
             _resData = {'nodeRef':res.body.results[i].properties['d.alfcmis:nodeRef'].value,
                 'mimetype':res.body.results[i].properties['d.cmis:contentStreamMimeType'].value,
@@ -76,7 +76,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
                 'type':'document'
             }
 
-            if(JSON.parse(window.tdc.libConfig['cmis'])['wURN'] == true){
+            if(JSON.parse(window.tdc.patConfig['cmis'])['wURN'] == true){
                 _resData = Object.assign(_resData, {'wURN': res.body.results[i].properties['r.cp:workURN']['value'],
                     'mURN': res.body.results[i].properties['d.cmis:objectId']['value']});
             }
@@ -114,7 +114,7 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             3:'/*',
         };
 
-        let tabVisibility = JSON.parse(window.tdc.libConfig.tabVisibility);
+        let tabVisibility = JSON.parse(window.tdc.patConfig.tabVisibility);
         if(tabVisibility.image==false){
             if(fileTypeIndex==0){
                 fileTypeIndex=1;

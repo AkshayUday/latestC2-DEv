@@ -4,7 +4,8 @@ const SavedSrConstants = {
     RECENT_SEARCH_TITLE : 'Recent Search',
     SAVE_SEARCH_TITLE : 'Save Search',
     LOCAL_INSTANCE : 'C2PatternStore',
-    UNKNOWN_ID: 'unknown_id'
+    UNKNOWN_ID: 'unknown_id',
+    FOLDER_STRUCTURE: 'folderStructure'
 }
 
 module.exports = SavedSrConstants;

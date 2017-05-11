@@ -4,5 +4,6 @@
 	composes: pe-select from "../../../styles/patterns.css";
 	width: 200px;
     border: none;
+    cursor:pointer;
     color: $Cerulean;
 }

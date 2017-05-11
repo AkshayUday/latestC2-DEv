@@ -15,7 +15,7 @@ class ButtonComponent extends React.Component{
  			type={this.props.buttonType}
  			disabled={this.props.disabled}>
  			{this.props.buttonText}
- 			</button>
+			</button>
 		</div>
  		)
  	}

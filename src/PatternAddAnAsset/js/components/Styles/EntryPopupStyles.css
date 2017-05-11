@@ -2,9 +2,16 @@
 	all: initial;
 }
 
+/* Written inorder to overcome QUAD issues */
+.addAnAssetLayout :not(button) {
+	   -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
 
 
 .addAnAssetLayout{
+	all: initial;
 	display: flex;
 	width: 900px;
 	flex-flow: column;

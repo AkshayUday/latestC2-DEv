@@ -79,7 +79,6 @@ class MVMComponent extends React.Component{
 */
 constructor(props) {
    super(props);
-   
 /**
  * The displayName MVMComponent.
  * @type {string}
@@ -125,15 +124,15 @@ componentDidMount(){
 }
 
 handleChange(tags,src){
- 
   if(tags === 'adaptiveFlag'){
-    this.state.isChecked = !this.state.isChecked;
-     this.props.handleChange(tags,this.state.isChecked);
+    this.setState({isChecked: !this.state.isChecked});
+    this.props.handleChange(tags,!this.state.isChecked);
   }else{
     this.props.handleChange(tags,src);
   }
   
   }
+
 componentWillReceiveProps(nextProps) {
     //bean.fire(this.props.patConfig, this.props.patConfig.resultsEventId,nextProps);
     if(nextProps.errMsg==='Save Success'){
@@ -170,9 +169,9 @@ componentWillReceiveProps(nextProps) {
     if(nextProps.prodSuggestions){
       this.state.prodSuggest = nextProps.prodSuggestions;
     }
-  /*  if(nextProps.goalSuggestions){
-      this.state.goalSuggest = nextProps.goalSuggestions;
-    }*/
+    //if(nextProps.adaptiveFlag){
+      this.state.isChecked = nextProps.adaptiveFlag;
+    //}
 }
 /** An event. Its name is module:AssessmentMetadata.event:onBlur.
  * @event module:AssessmentMetadata.event:onBlur
@@ -299,7 +298,7 @@ render() {
   }= this.props;
     return (
             <form>
-            <div className={styles.containerMetaData}>
+            <div id='ext_AssessmentMetaData' className={styles.containerMetaData+' ext_AssessmentMetaData'}>
             <section>
               <h2>{title}</h2>
               <div  className={styles.assessmentMetaData}>
@@ -395,6 +394,7 @@ MVMComponent.propTypes = {
         discipline: React.PropTypes.string,
         goalAlignment: React.PropTypes.string,
         difficultyLevel: React.PropTypes.string,
+        adaptiveFlag: React.PropTypes.bool,
         audience: React.PropTypes.string,
         knowledgeLevel: React.PropTypes.string,
         fields: React.PropTypes.object,
@@ -402,7 +402,7 @@ MVMComponent.propTypes = {
         patConfig:React.PropTypes.object,
         onSubmit: React.PropTypes.func,
         setErrMsg: React.PropTypes.func,
-        handleChange: React.PropTypes.func
+        handleChange: React.PropTypes.func,
 }
 
 MVMComponent = reduxForm({

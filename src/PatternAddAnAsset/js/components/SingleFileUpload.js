@@ -55,24 +55,26 @@ class SingleFileUpload extends Component {
     this.setState({fileName:files[0].name});
     this.setState({file:files});
     this.setState({errDisplay : ''});
+    //this.setState({show:true})
+
   }
    _tooltipClick(e){
         e.preventDefault()
     }
     onSave(values){
-        values.file = this.state.file;
+       values.file = this.state.file;
        let vStatus = validateuploadForm(values);
-       /*if(this.props.isParent){
+       if(this.props.isParent){
         this.setState({errDisplay : 'Please Select a Subfolder to Upload'})
-       } else */
+       } else 
        
-       // if(vStatus.name || vStatus.file){
-
+      
        if(vStatus.file){       
           let msg = this.getErrMsg(vStatus.name)+' '+this.getErrMsg(vStatus.file);
           this.setState({errDisplay : msg});
        }else{
-         this.props.onSave(values);
+         this.props.onSave(values)
+        
        }
 
     }
@@ -88,6 +90,7 @@ class SingleFileUpload extends Component {
         this.setState({enable: 'true'})
        }     
     }
+    
     onClick(event){
   
     }
@@ -131,7 +134,7 @@ class SingleFileUpload extends Component {
              <div className={Styles.peSingleuploadWrapper}>
                    <div className={Styles.peInput}>
                     <div className='errDisplay'>{message}</div>
-                   <ChooseFile choosefileclass= {Styles.peChooseFile}
+                   <ChooseFile choosefileclass= {Styles.peChooseFile} 
                     selectedFile={this.handleFile} name="filedata" id='filedata' value={file}/> 
                     <div className={Styles.fileNameDisp}>{this.state.fileName}</div>
                    </div>
@@ -151,7 +154,7 @@ class SingleFileUpload extends Component {
                         <div className={Styles.pePullRight}>
 
                           <ButtonComponent className={Styles.peBtn + ' ' + Styles.peBtnLarge + ' ' + Styles.peBtnPrimary} 
-                           buttonText={formatMessage(messages.Save_Upload)} buttonType="submit" />
+                           buttonText={formatMessage(messages.Save_Upload)} buttonType="submit" disabled={!this.state.file} />
 
                            
                         </div>
@@ -173,13 +176,14 @@ SingleFileUpload.propTypes = {
   asyncValidating: PropTypes.bool,
   intl: PropTypes.object,
   isParent : PropTypes.bool,
+  
   productName:PropTypes.string,
   clearModal : PropTypes.func,
   componentWillMount : PropTypes.func,
   mJobStatus: PropTypes.func,
   onClick: PropTypes.func,
   buttonText:PropTypes.string,
-  buttonType:PropTypes.string
+  buttonType:PropTypes.string,
 }
 
 module.exports= injectIntl(reduxForm({

@@ -64,7 +64,7 @@ render(){
 	}
 
 	return(
-		<div>
+		<div className={savedSearchStyles.searchValues}>
 			{test}
 		</div>
 		)

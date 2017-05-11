@@ -41,6 +41,6 @@ export default {
 
         }
 
-    return AlfrescoApiService.getAssetsByFolder(window.tdc.libConfig,nodeRef,SearchTextCond,fileTypeCond,sortValue,index,limit);
+    return AlfrescoApiService.getAssetsByFolder(window.tdc.patConfig,nodeRef,SearchTextCond,fileTypeCond,sortValue,index,limit);
   }
 }

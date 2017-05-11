@@ -30,22 +30,22 @@ export default {
         saveInputObj[inputData.patternName].sortSelection={};
         if(inputData.sortColName!== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnName = inputData.sortColName;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection.columnName !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName] !== undefined && replyGetData[inputData.patternName].sortSelection.columnName !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnName = replyGetData[inputData.patternName].sortSelection.columnName;
         }
         if(inputData.order !== undefined){
             saveInputObj[inputData.patternName].sortSelection.order = inputData.order;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection.order !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName] !== undefined && replyGetData[inputData.patternName].sortSelection.order !== undefined){
             saveInputObj[inputData.patternName].sortSelection.order = replyGetData[inputData.patternName].sortSelection.order;
         }
         if(inputData.filterTypeValue !== undefined){
             saveInputObj[inputData.patternName].filterValues = inputData.filterTypeValue;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].filterValues !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName] !== undefined && replyGetData[inputData.patternName].filterValues !== undefined){
             saveInputObj[inputData.patternName].filterValues = replyGetData[inputData.patternName].filterValues;
         }
         if(inputData.columnSort !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnSort = inputData.columnSort;
-        }else if(replyGetData !== null && replyGetData[inputData.patternName].sortSelection.columnSort !== undefined){
+        }else if(replyGetData !== null && replyGetData[inputData.patternName] !== undefined && replyGetData[inputData.patternName].sortSelection.columnSort !== undefined){
             saveInputObj[inputData.patternName].sortSelection.columnSort = replyGetData[inputData.patternName].sortSelection.columnSort;
         }
         return saveInputObj;
@@ -63,13 +63,13 @@ export default {
                     }
                 }
             }else{
-            for(let i=0;i<rawArr.length;i++){
-                if(rawArr[i]!==inputData.saveValue){
-                    tempArr.push(rawArr[i]);
+                for(let i=0;i<rawArr.length;i++){
+                    if(rawArr[i]!==inputData.saveValue){
+                        tempArr.push(rawArr[i]);
+                    }
                 }
             }
         }
-    }
         return this.saveThreeValues(tempArr,inputData);
     },
 
@@ -206,6 +206,25 @@ export default {
             }
         }
         return tempArr
+    },
+
+    constructFolderStructureObj(inputData,replyGetData) {
+        let saveInputObj = {};
+        saveInputObj.userId = inputData.userId;
+        saveInputObj[ inputData.patternName ] = {};
+        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = [];
+        if (inputData[ 0 ] !== undefined) {
+            saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
+        }
+        if (inputData.currentFolder !== undefined) {
+            saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ].currentFolder = inputData.currentFolder;
+        }
+        if (replyGetData === null) {
+            replyGetData = saveInputObj;
+        } else {
+            replyGetData[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
+        }
+        return replyGetData;
     }
 
 }

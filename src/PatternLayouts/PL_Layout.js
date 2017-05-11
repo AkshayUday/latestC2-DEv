@@ -10,12 +10,14 @@ const PL_Layout = (props) => {
 		let layout =(
 			<PL_Modal modalClassName={props.modalClass} open={props.open}
 				modalClose={props.modalClose}>
+				<div className={props.containerClassName} id={props.containerId}>
 				<PL_Header title={props.modalTitle}/>
 			    <Spinner>
 				<PL_Body>
 					{props.children}
 				</PL_Body>
 				</Spinner>
+			</div>
 			</PL_Modal>
 			)
 

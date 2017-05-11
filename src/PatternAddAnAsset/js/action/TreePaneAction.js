@@ -18,6 +18,8 @@ import {getNodeRef,
 import JsonData from '../components/folderpane/TreeNodeUtil';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
+import localForageService from '../../../common/util/localForageService';
+import SearchConstants from '../constants/SavedSearchConstant';
 
 let nodeRef;
 /**
@@ -27,7 +29,7 @@ let nodeRef;
   export function  getFolders(arg='browseasset'){
     return dispatch => {
 
-      assetsApi.getSubFolders(window.tdc.libConfig.nodeRef).then(function (res){ 
+      assetsApi.getSubFolders(window.tdc.patConfig.nodeRef).then(function (res){ 
 
         if(res.body !== undefined && res.body.results.length > 0){
            let treeFolder = JsonData.getCustomFolder(res.body);
@@ -35,6 +37,7 @@ let nodeRef;
               treeFolder.show = false;
              treeFolder = flagRootFolders(treeFolder);
              console.log(treeFolder);
+
              // highlightChildren(treeFolder, getFirstName(treeFolder));
              dispatch({
                type : GET_FOLDER,
@@ -84,8 +87,9 @@ let nodeRef;
 * @function getSubFolders method is used for get the all the folder from
 * alfresco and dispatch to the reducers
 */
-  export function  getSubFolders(arg='browseasset',folderName,child, nodeRef){
+  export function  getSubFolders(arg='browseasset',folderName,child, nodeRef){ 
     return (dispatch,getState) => { 
+
 
       let _getState = getState().TreePaneReducers;
            assetsApi.getSubFolders(nodeRef).then(function (res){ 
@@ -194,8 +198,14 @@ export function updateCurrentFolder(nodeRef){
     dispatch({
       type : GET_FOLDER,
       data : model
-    })
-  }
+    });
+        const userID = window.tdc.libConfig.alfuname;
+        model.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+        model.patternName = SearchConstants.FOLDER_STRUCTURE;
+        model.type = SearchConstants.LOCAL_INSTANCE;
+        model.parentNodeRef = window.tdc.libConfig.nodeRef;
+        localForageService.saveFolderStructure(model);
+    }
 }
 /**
 * @function setReference method is used for settting reference to the component

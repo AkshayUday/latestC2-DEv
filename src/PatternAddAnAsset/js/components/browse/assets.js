@@ -122,6 +122,7 @@ class assets extends Component {
             
          }else{
             let fileNameStyle = '';
+           const radioButtonStyle = `col-md-1 radio-box ${AssetStyles.radioButtonStyle}`;
             if(listView === 'browListViewWidth'){
               fileNameStyle = 'fileNameStyle';
               listView = AssetStyles.browListViewWidth;
@@ -135,7 +136,7 @@ class assets extends Component {
               pageRender = (<div
                 onClick={self.changeRadioButton.bind(self)} className={listView}>
              <div className={AssetStyles.listView}>
-                <div className='col-md-1 radio-box'>{radioBtn}</div>
+                  <div className={radioButtonStyle}>{radioBtn}</div>
                 <div className={AssetStyles.listImageSize}>{imgTag}</div>
                 <div className={AssetStyles.listViewNameStyle}>
                 <PE_tooltip className='assetNameToolTip' position='right' content={modFileName}>
