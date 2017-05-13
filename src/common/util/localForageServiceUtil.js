@@ -63,13 +63,13 @@ export default {
                     }
                 }
             }else{
-            for(let i=0;i<rawArr.length;i++){
-                if(rawArr[i]!==inputData.saveValue){
-                    tempArr.push(rawArr[i]);
+                for(let i=0;i<rawArr.length;i++){
+                    if(rawArr[i]!==inputData.saveValue){
+                        tempArr.push(rawArr[i]);
+                    }
                 }
             }
         }
-    }
         return this.saveThreeValues(tempArr,inputData);
     },
 
@@ -209,22 +209,22 @@ export default {
     },
 
     constructFolderStructureObj(inputData,replyGetData) {
-      let saveInputObj = {};
-      saveInputObj.userId = inputData.userId;
-      saveInputObj[ inputData.patternName ] = {};
-      saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = [];
-      if (inputData[ 0 ] !== undefined) {
-        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
-      }
-      if (inputData.currentFolder !== undefined) {
-        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ].currentFolder = inputData.currentFolder;
-      }
-      if (replyGetData === null) {
-        replyGetData = saveInputObj;
-      } else {
-        replyGetData[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
-      }
-      return replyGetData;
+        let saveInputObj = {};
+        saveInputObj.userId = inputData.userId;
+        saveInputObj[ inputData.patternName ] = {};
+        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = [];
+        if (inputData[ 0 ] !== undefined) {
+            saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
+        }
+        if (inputData.currentFolder !== undefined) {
+            saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ].currentFolder = inputData.currentFolder;
+        }
+        if (replyGetData === null) {
+            replyGetData = saveInputObj;
+        } else {
+            replyGetData[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
+        }
+        return replyGetData;
     }
 
 }

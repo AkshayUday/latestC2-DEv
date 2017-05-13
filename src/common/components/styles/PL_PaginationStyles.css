@@ -1,19 +1,14 @@
 @import "../../../styles/variables.css";
 
 .paginationContainer{
-  /*width:100%;
-  text-align: right;*/
-  flex: 1;
+flex: 1;
 }
+
 .pagination {
-/*  display: flex;
-*//*  padding-left: 0;
-  margin: 0px;*/
-  display: flex;
+display: flex;
   border-radius: 4px;
   justify-content: flex-end;
-  /*position: relative;*/
-  /*left: calc(99.9% * 1/2 - (30px - 30px * 13) + 30px);*/
+
 }
 
 .pagination > li {

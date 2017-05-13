@@ -134,15 +134,15 @@ const  mapDispatchToProps = (dispatch) => {
     },
     componentWillMount(){
      dispatch(loadAllProductBegin());
-          if (this.props.libConfig.allProducts && this.props.libConfig.allProducts.length > 0 ) {
+          if (this.props.patConfig.patSetup.allProducts && this.props.patConfig.patSetup.allProducts.length > 0 ) {
       // Check cached results to bypass refetching all products
-       dispatch(updateAllProduct(this.props.libConfig.allProducts));
+       dispatch(updateAllProduct(this.props.patConfig.patSetup.allProducts));
       } else{
         // dispatch({type:'ACTIVATE'});
         let repoPList = [];
         let repos = [];
         for (let i = 0; i < this.props.patConfig.patSetup.repoList.length; ++i) {
-            repos.push( ProductLinkApi.getProduct(this.props.patConfig.patSetup.repoList[i].repo,this.props.patConfig.patSetup.repoList[i].repoName,this.props.libConfig) );
+            repos.push( ProductLinkApi.getProduct(this.props.patConfig.patSetup.repoList[i].repo,this.props.patConfig.patSetup.repoList[i].repoName,this.props.libConfig,this.props.patConfig) );
         }
         let allProducts = [];
 
@@ -201,7 +201,7 @@ const  mapDispatchToProps = (dispatch) => {
             return data;
           })
           allProducts = res;
-          this.props.libConfig.allProducts = allProducts;
+          this.props.patConfig.patSetup.allProducts = allProducts;
           dispatch(updateAllProduct(allProducts));
           // dispatch({type:'DEACTIVATE'});
 

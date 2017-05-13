@@ -21,7 +21,6 @@ import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
 
-
 let nodeRef;
 /**
 * @function getFolders method is used for get the all the folder from
@@ -30,13 +29,15 @@ let nodeRef;
   export function  getFolders(arg='browseasset'){
     return dispatch => {
 
-      assetsApi.getSubFolders(window.tdc.libConfig.nodeRef).then(function (res){ 
+      assetsApi.getSubFolders(window.tdc.patConfig.nodeRef).then(function (res){ 
 
         if(res.body !== undefined && res.body.results.length > 0){
            let treeFolder = JsonData.getCustomFolder(res.body);
            if(treeFolder !== undefined && treeFolder.length > 0){
               treeFolder.show = false;
              treeFolder = flagRootFolders(treeFolder);
+             console.log(treeFolder);
+
              // highlightChildren(treeFolder, getFirstName(treeFolder));
              dispatch({
                type : GET_FOLDER,
@@ -86,11 +87,13 @@ let nodeRef;
 * @function getSubFolders method is used for get the all the folder from
 * alfresco and dispatch to the reducers
 */
-  export function  getSubFolders(arg='browseasset',folderName,child, nodeRef){
+  export function  getSubFolders(arg='browseasset',folderName,child, nodeRef){ 
     return (dispatch,getState) => { 
 
+
       let _getState = getState().TreePaneReducers;
-           assetsApi.getSubFolders(nodeRef).then(function (res){
+           assetsApi.getSubFolders(nodeRef).then(function (res){ 
+		         console.log(res);
              if(res !== undefined && res.body !== undefined){
 
                 let resultLen = res.body.results.length;
@@ -196,13 +199,13 @@ export function updateCurrentFolder(nodeRef){
       type : GET_FOLDER,
       data : model
     });
-    const userID = window.tdc.libConfig.alfuname;
-    model.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
-    model.patternName = SearchConstants.FOLDER_STRUCTURE;
-    model.type = SearchConstants.LOCAL_INSTANCE;
-    model.parentNodeRef = window.tdc.libConfig.nodeRef;
-    localForageService.saveFolderStructure(model);
-  }
+        const userID = window.tdc.libConfig.alfuname;
+        model.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+        model.patternName = SearchConstants.FOLDER_STRUCTURE;
+        model.type = SearchConstants.LOCAL_INSTANCE;
+        model.parentNodeRef = window.tdc.libConfig.nodeRef;
+        localForageService.saveFolderStructure(model);
+    }
 }
 /**
 * @function setReference method is used for settting reference to the component

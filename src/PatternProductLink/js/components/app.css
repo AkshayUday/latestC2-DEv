@@ -6,6 +6,12 @@
 	all: initial;
 }
 
+.plContainer :not(button) {
+      -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
 
 .plProductLinkModal{
     max-width: 500px!important;

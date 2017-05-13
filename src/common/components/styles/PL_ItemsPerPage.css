@@ -13,6 +13,7 @@
     border-radius: 3px;
     font-size: 14px;
     padding: 5px 15px;
+    cursor:pointer;
 }
 .displayStyle{
   color: $HeavyMetal;
@@ -39,4 +40,5 @@
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
 }

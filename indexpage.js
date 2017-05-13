@@ -2,76 +2,49 @@ var patternBroker = this.PatternBroker.default;
 var patternAssessment = this.PatternAssessment.default;
 var patternBank = this.PatternBank.default;
 var patternQuestion = this.PatternQuestion.default;
-
 var patternProductLink = this.PatternProductLink.default;
 var patternAddAnAsset = this.PatternAddAnAsset.default;
 var PatternSearchSelect =this.PatternSearchSelect.default;
 
-// ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
+var libConfig = {
+    'locale': 'en_US',
 
-// Initial (one time) library configuration
+    'headers': {
+        'Content-Type': 'application/json',
+        'Accept': 'application/ld+json',
+        'Prefer': 'annotation=true'
+    },
+    'database': '?db=qa2',
+    'server': 'https://staging.data.pearson.com',
+    'taxonomyserver': 'https://staging.schema.pearson.com',
+    'port': '80',
+};
 
-// Headers which C1 expects: Access-Control-Allow-Headers:origin, content-type, accept, authorization
-/*
-  'headers' : {'Accept-Encoding': 'gzip,deflate',
-  'X-Roles'        : 'roleX,roleY,roleC',
-  'Authorization'  : 'Basic c3RyYXdiZXJyeToqbnJSUEc0akA1b1JCUnVDMkckITh4IzVqSFA=',
-  'Content-Type'   : 'application/json',
-  'Accept'         : 'application/ld+json',
-  'Access-Control-Allow-Credentials' : true
-  },
-*/
-
-var libConfig = {'locale': 'en_US',
-                   
-                   'headers' : {
-                                'Content-Type'   : 'application/json',
-                                'Accept'         : 'application/ld+json',
-                                // 'X-Roles-Test'        : 'ContentMetadataEditor',
-                                //'Authorization'  : 'Basic Ymx1ZWJlcnJ5OmVAQkhSTUF2M2V5S2xiT1VjS0tAWl56Q0ZhMDRtYw==',
-                                'Prefer' : 'annotation=true'
-        //'x-apikey' :  '5x8gLqCCfkOfgPkFd9YNotcAykeldvVd',
-                               //'X-PearsonSSOSession' : 'AQIC5wM2LY4SfczJwDEKiLveBuH9DtGGXLkfvRlveimpxgQ.*AAJTSQACMDIAAlNLABM0NjAwMDQ4NTYxOTkyNTk3NTU1AAJTMQACMDE.*'
-                               },
-                   'database'       : '?db=qa2',
-                   'server'         : 'https://staging.data.pearson.com',
-                  'taxonomyserver' : 'https://staging.schema.pearson.com',
-                   'port'           : '80',
-                   //'alfserver'      :'https://ukppewip.pearsoncms.com'
-                   //'alfserver'        :'https://staging.api.pearson.com/content/cmis/ukwip',
-                    'epsserver':     'https://us-school-stg.pearsoned.com/school'
-                  };
-
-
-
-
-var c5filterTypeData = function () {
-   // debugger;
-   var _token = document.getElementById('sessionKeyId').value;
-   var _api = document.getElementById('apiKeyId').value;
-   var xmlhttp = new XMLHttpRequest();
-   var taxurl = libConfig['taxonomyserver']+'/ns/taxonomictype/interactives';
+var c5filterTypeData = function() {
+    var _token = document.getElementById('sessionKeyId').value;
+    var _api = document.getElementById('apiKeyId').value;
+    var xmlhttp = new XMLHttpRequest();
+    var taxurl = libConfig['taxonomyserver'] + '/ns/taxonomictype/interactives';
 
     xmlhttp.onreadystatechange = function() {
 
       console.log(xmlhttp);
 
-      if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-          document.getElementById('c5filterType').innerHTML= '';
-        var response = JSON.parse(xmlhttp.response);  
-        console.log(response);
-        
-        var results = response.narrower.map((data, key, list) => { 
-              
-              if(list[key]['prefLabel'] != undefined) {
-                return {
-                  display: list[key]['prefLabel']['en'],
-                  property : list[key]['id']
-              }
-            }
-              else{
-                return {
-                        display: list[key].split('/')[5], 
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById('c5filterType').innerHTML = '';
+            var response = JSON.parse(xmlhttp.response);
+            console.log(response);
+
+            var results = response.narrower.map((data, key, list) => {
+
+                if (list[key]['prefLabel'] != undefined) {
+                    return {
+                        display: list[key]['prefLabel']['en'],
+                        property: list[key]['id']
+                    }
+                } else {
+                    return {
+                        display: list[key].split('/')[5],
                         property: list[key]
                       }
                 }
@@ -104,7 +77,6 @@ var c5filterTypeData = function () {
     };
 
     xmlhttp.open("GET", taxurl, true);
-    // xmlhttp.setRequestHeader("X-Roles-Test", "ContentMetadataEditor");
     xmlhttp.setRequestHeader("Accept", "application/ld+json");
     xmlhttp.setRequestHeader("x-apikey", _api);
     xmlhttp.setRequestHeader("Prefer", 'annotation=true');
@@ -114,162 +86,6 @@ var c5filterTypeData = function () {
 
 
 document.getElementById('getFilterType').addEventListener( "click",c5filterTypeData.bind(),false)
-
-
-//patternsLib.setup(libConfig);
-
-
-// libConfig for UAT as on 11/8/2016
-/* var libConfig = {
-
-  'locale': 'en_US',
-  'headers' : {
-      'Content-Type'   : 'application/json',
-      'Accept'         : 'application/ld+json',
-      /*  'X-Roles-Test'        : 'ContentMetadataEditor', */
-    /*  'Authorization'  : 'Basic Ymx1ZWJlcnJ5OmVAQkhSTUF2M2V5S2xiT1VjS0tAWl56Q0ZhMDRtYw==',
-      'Prefer' : 'annotation=true'
-    },
-  'database'       : '?db=qa12',
-  'server'         : 'https://uat.pearsonmeta.io',
-  'taxonomyserver' : 'https://uat.pearsonmeta.io',
-  'port'           : '80'
-
-}; */
-
-// ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
-
-
-//
-// A simple pattern usage : BUTTON
-//
-
-// Create an instance of a pattern object
-// The instance has following properties:
-// { patSetup: obj,
-//   pattern: string,
-//   uqid : number,
-//   resultsEventId : pattern + '-' + uqid,
-//   eventId : pattern + '-channel-' + uqid
-//   setup : function,
-//   run : function,
-//   on : function,
-//   off : function,
-//   fire : function
-// }
-/*var patButton = patternsLib.create(patternsLib.type.BUTTON);
-
-// Define a configuration for pattern instance
-var patConfig =  {arg : '00001', link : 'button.com1', selector : '#patternHolder1'};
-
-// Define a callback which will receive results back from the pattern instance
-var cb = (data) => {
-    // data is a JSON structure returned back from the pattern instance
-
-    // Here we are just displaying the stringified version of JSON structure
-    var e = document.getElementById('patternResp1');
-    e.innerHTML = JSON.stringify(data);
-};
-
-// Setup the instance using configuraton and callback
-patButton.setup(patConfig, cb);
-
-// Run the render method, processess user interactions and do teardown when finished
-patButton.run();
-
-
-
-
-
-// Following additional methods are available for
-// communicating with the live pattern instance
-
-var channelCB = (channelData) => {
-    // channel data is a JSON structure
-
-    // Here we are just displaying the stringified version of JSON structure
-    var e = document.getElementById('patternChannelResp1');
-    e.innerHTML = JSON.stringify(channelData);
-};
-patButton.on(channelCB);
-patButton.fire({ 'one': 'some data', 'two' : 99, 'three' : { 'nested' : {}} });
-patButton.off();
-
-
-// ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
-
-
-
-
-
-
-//
-// A simple pattern usage : BUTTONLONG
-//
-
-// Create an instance of a pattern object
-var patButton2 = patternsLib.create(patternsLib.type.BUTTONLONG);
-
-// Define a configuration for pattern instance
-var patConfig2 =  {arg : '00001', link : 'buttonLong.com2', selector : '#patternHolder2'};
-
-// Define a callback which will receive results back from the pattern instance
-var cb2 = (data) => {
-    // data is a JSON structure returned back from the pattern instance
-
-    // Here we are just displaying the stringified version of JSON structure
-    var e = document.getElementById('patternResp2');
-    e.innerHTML = JSON.stringify(data);
-};
-
-// Setup the instance using configuraton and callback
-patButton2.setup(patConfig2, cb2);
-
-// Run the render method, processess user interactions and do teardown when finished
-patButton2.run();
-
-// Following additional methods are available for
-// communicating with the live pattern instance
-//patButton.on();
-//patButton.off();
-//patButton.fire()
-
-// ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
-
-//
-// A simple pattern usage : BUTTON
-// (A test case for multiple instances of same pattern on a single page)
-//
-
-var patButton3 = patternsLib.create(patternsLib.type.BUTTON);
-
-var patConfig3 =  {arg : '00001', link : 'button.com3', selector : '#patternHolder3'};
-var cb3 = (data) => {
-    var e = document.getElementById('patternResp3');
-    e.innerHTML = JSON.stringify(data);
-};
-patButton3.setup(patConfig3, cb3);
-patButton3.run();
-//patButton.on();
-//patButton.off();
-//patButton.fire()
-*/
-
-/*var SaveCallBack = function (data) {debugger;
-   var e = document.getElementById('assesmentResp');
-   var content ='<div>';
-    for (var key in data) {
-      if (data.hasOwnProperty(key)) {
-        var property = '<p><span class="uppercase">'+key+'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>'+data[key]+'</span></p>';
-        if(typeof(data[key]) === 'string'){
-          content =  content+property;
-        }
-      }
-    }
-    content =content+'</div>';
-    e.innerHTML = content;
-};*/
-
 
 /* Function to generate SSO token */
 function generateToken(){
@@ -300,7 +116,7 @@ function generateToken(){
             }
         }
     };
-    
+
     xmlhttp.open("POST", loginUrl, true);
     xmlhttp.setRequestHeader("Content-type", "application/json");
     xmlhttp.setRequestHeader("X-OpenAM-Username", alfUname);
@@ -308,7 +124,7 @@ function generateToken(){
     xmlhttp.send();
 }
 
-// ==+== ==+== ASSESSMENT ==+== ==+== 
+// ==+== ==+====+====+== PATTERN  ASSESSMENT ==+== ==+====+== ==+==  
 
 var SaveCallBack = function (data) {
     var e = document.getElementById('assesmentResp');
@@ -347,7 +163,7 @@ onSaveAssesment = function(astName){
 onLaunchAssesment = function(astName,uuidTagid,planidTargid,
   publisherTargid,ISBNTargId,moduleNoTargId,chapterNoTargId,
   authorTargId,copyRightTargId,objAlignTarid,skillsTargid,
-  apiKeyTarId,sessionKeyTarId,renderderedTagSelector,type,environment){
+  adaptiveFlagTarId,apiKeyTarId,sessionKeyTarId,renderderedTagSelector,type,environment){
 var name = document.getElementById(astName).value;
 var assesmentUUID = document.getElementById(uuidTagid).value;
 var planId = document.getElementById(planidTargid).value;
@@ -362,13 +178,14 @@ var objAlignid = document.getElementById(objAlignTarid).value;
 var skillsId = document.getElementById(skillsTargid).value;
 var apiKeyId = document.getElementById(apiKeyTarId).value;
 var sessionKeyId = document.getElementById(sessionKeyTarId).value;
+var adaptiveFlagId = document.getElementById(adaptiveFlagTarId).checked;
 var typeId = type;
 /*var asConType = document.getElementsByName(assessContentTypeid)[0];
 var asContentType = asConType.options[asConType.selectedIndex].value;*/
 
-if(patAssesment && patAssesment.unmount){
-  patAssesment.unmount();
-}
+    if (patAssesment && patAssesment.unmount) {
+        patAssesment.unmount();
+    }
 
 libConfig.headers['x-apikey'] = apiKeyId;
 libConfig.headers['X-PearsonSSOSession'] = sessionKeyId;
@@ -414,7 +231,9 @@ if(skillsId!==''){
 var comma = ',';
 patAssesmentConfig.goalKeywords = splitString(skillsId, comma);
 }
-
+if(adaptiveFlagId!==''){
+  patAssesmentConfig.adaptiveFlag = adaptiveFlagId;
+}
 // Define a callback which will receive results back from the pattern instance
 var cbAssesment = function (data) {
     // data is a JSON structure returned back from the pattern instance
@@ -471,6 +290,7 @@ function splitString(stringToSplit, separator) {
   return itemArr;
 }
 
+// ==+== ==+====+====+== PATTERN ADD AN ASSET ==+== ==+====+== ==+== 
 var addAnAsset;
 
 onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
@@ -508,19 +328,20 @@ onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
     if(pafID !== ''){
         addAnAssetConfig.pafID = pafID;
     }
-    
-    //libConfig.alfToken = document.getElementById('alfToken').value;
+
+
     libConfig.alfuname = document.getElementById('alfuname').value;
     libConfig.alfpwd = document.getElementById('alfpwd').value;
     libConfig.nodeRef = document.getElementById('nodeRef').value;
-    libConfig.tabVisibility = document.getElementById('tabVisibility').value;
     libConfig.headers['X-PearsonSSOSession'] = document.getElementById('sessionKeyId').value;
-    //libConfig.imagesPath = document.getElementById('imagesPath').value;
-    addAnAssetConfig.nodeRef = document.getElementById('nodeRef').value;
-    libConfig.alfserver = document.getElementById('repoInst').value;
+    libConfig.headers['x-apikey'] = document.getElementById('apiKeyId').value;
     libConfig.repoName = document.getElementById('repoName').value;
-    libConfig['cmis'] = document.getElementById('workURN').value;
-    
+    addAnAssetConfig.nodeRef = document.getElementById('nodeRef').value;
+    addAnAssetConfig.alfserver = document.getElementById('repoInst').value;
+    addAnAssetConfig.tabVisibility = document.getElementById('tabVisibility').value;
+    addAnAssetConfig['cmis'] = document.getElementById('workURN').value;
+    addAnAssetConfig['epsserver'] = "https://us-school-stg.pearsoned.com/school";
+
     patternBroker.setup(libConfig);
 
      try{
@@ -663,7 +484,8 @@ var SaveCallBack1 = function (data) {
     e.innerHTML = content;
 };
 
-// ==+== ==+== QUESTION ==+== ==+== 
+
+// ==+== ==+== ==+== ==+==QUESTION ==+== ==+== ==+== ==+== 
 
 var patQuestion;
 
@@ -676,7 +498,7 @@ onSaveQuestion = function(quesName){
 onLaunchQuestion= function(quesName,uuidTagid,questionPlanidTargid,
   questionPublisherTarg,questionISBNid,questionModuleNoid,questionChapterNoid,
   questionBookAuthorid,
-  questionCopyRightid,quesObjAlignTarid,quesSkillsTarid,apiKeyTarId,sessionKeyTarId,
+  questionCopyRightid,quesObjAlignTarid,quesSkillsTarid,quesAdaptiveFlagTarId,apiKeyTarId,sessionKeyTarId,
   renderderedTagSelector,type,environment){
 var name = document.getElementById(quesName).value;
 var uuid = document.getElementById(uuidTagid).value;
@@ -691,6 +513,7 @@ var copyRightid = document.getElementById(questionCopyRightid).value
 var objAlignid = document.getElementById(quesObjAlignTarid).value
 var skillsTarid = document.getElementById(quesSkillsTarid).value
 var apiKeyId = document.getElementById(apiKeyTarId).value;
+var adaptiveFlagId = document.getElementById(quesAdaptiveFlagTarId).checked;
 var sessionKeyId = document.getElementById(sessionKeyTarId).value;
 var typeId = type;
 
@@ -738,6 +561,9 @@ if(copyRightid!==''){
 }
 if(objAlignid!==''){
   patQuestionConfig.objAlign = objAlignid;
+}
+if(adaptiveFlagId!==''){
+  patQuestionConfig.adaptiveFlag = adaptiveFlagId;
 }
 if(skillsTarid!==''){
 var comma = ',';
@@ -814,6 +640,7 @@ var SaveCallBackBank = function (data) {
     e.innerHTML = content;
 };
 
+// ==+== ==+== ==+== ==+== Pattern Bank ==+== ==+== ==+== ==+== 
 var patBank;
 
 onSaveBank = function(bankName){
@@ -942,9 +769,10 @@ patBank.on(SaveCallBackBank);
 
 }
 
-// ==+== ==+== REVIEW ASSET ==+== ==+== 
-onLaunchReviewAsset = function (renderderedTagSelector, type, uuid,
-                               caption, altText, copyrtInfo) {
+// ==+== ==+====+== ==+== PATTERN REVIEW ASSET ==+== ==+====+== ==+==
+
+onLaunchReviewAsset = function(renderderedTagSelector, type, uuid,
+    caption, altText, copyrtInfo) {
 
     var reviewAssetConfig =  {'selector' : renderderedTagSelector};
     
@@ -981,10 +809,7 @@ onLaunchReviewAsset = function (renderderedTagSelector, type, uuid,
     reviewAsset.run(reviewAsset);
 }
 
-
-//document.getElementById('questionStemImg').setAttribute('src',location.origin + '/images/default-thumbnail.gif');
-
-// ==+== ==+== PRODUCT LINKING ==+== ==+== 
+// ==+== ==+== ==+== ==+== PATTERN PRODUCT LINKING ==+== ==+== ==+== ==+====+== ==+== 
 
 var _productLink;
 
@@ -1023,12 +848,13 @@ if(_productLink && _productLink.unmount){
 }
 
     _productLink = patternBroker.create('ProductLink', patternProductLink);
-    
+
     //libConfig.alfToken = document.getElementById('alfToken').value;
     libConfig.alfuname = document.getElementById('alfuname').value;
     libConfig.alfpwd = document.getElementById('alfpwd').value;
-    libConfig.nodeRef = document.getElementById('nodeRef').value;    
+    libConfig.nodeRef = document.getElementById('nodeRef').value;
     libConfig.headers['X-PearsonSSOSession'] = document.getElementById('sessionKeyId').value;
+    libConfig.headers['x-apikey'] = document.getElementById('apiKeyId').value;
     patternBroker.setup(libConfig);
 
 _productLink.setup(_productLinkConfig, _productLinkCallBack);
@@ -1036,10 +862,10 @@ _productLink.setup(_productLinkConfig, _productLinkCallBack);
 _productLink.run(_productLink);
 _productLink.on(_productLinkOnsaveCallBack);
 
-    
-},false);
 
-// ==+== ==+== Search SCPatterns ==+== ==+== 
+}, false);
+
+// ==+== ==+====+== ==+==  PATTERN SEARCH SELECT ==+== ==+====+== ==+== 
 
 var _interactivePattern;
 document.getElementById("interactivePattern").addEventListener("click", function(event){ 

@@ -5,6 +5,11 @@
 .containerMetaData{
    composes: c2FontFamily from "../../../../../styles/patterns.css";
 }
+.containerMetaData * {
+    -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
  .assessmentMetaData {
     display: block;
     width: 100%;

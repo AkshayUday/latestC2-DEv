@@ -191,6 +191,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 
   if(ownProps && ownProps.libConfig){
+    if(ownProps.patConfig.patSetup.env==='production'){
+      delete ownProps.libConfig.headers['X-Roles-Test']; 
+    }
     metadata.libConfig = ownProps.libConfig;
   }
 

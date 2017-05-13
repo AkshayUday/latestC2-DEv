@@ -320,7 +320,7 @@ render() {
   }= this.props;
     return (
             <form>
-            <div className={styles.containerMetaData}>
+            <div id='ext_BankMetaData' className={styles.containerMetaData+' ext_BankMetaData'}>
             <section>
               <h2>{formatMessage(messages.MVM_Data)}</h2>
               <div  className={styles.assessmentMetaData}>

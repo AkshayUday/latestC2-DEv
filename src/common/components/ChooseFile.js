@@ -18,6 +18,7 @@ render() {
                 name={this.props.name}
                 className={this.props.choosefileclass}
                 onChange={this.props.value.onBlur}
+                state={this.state.file}
             />
         )
     }

@@ -103,7 +103,6 @@ function _factory(pattern, component) {
         eventId : pattern + '-channel-' + token,              // unique event channel for communicating with instance
         component : component,
         renderedComponent:null,
-        patConfig:null,
 
         /**
          * Setup pattern component using supplied configuration options,
@@ -122,6 +121,7 @@ function _factory(pattern, component) {
             this.patSetup.resultsEventId = instance.resultsEventId;
             this.patSetup.eventId = instance.eventId;
             this.patSetup.pattern = instance.pattern;
+
           
             token++;
 		        bean.on(this, this.resultsEventId, function (data) {

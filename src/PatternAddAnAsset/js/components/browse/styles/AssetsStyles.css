@@ -208,19 +208,21 @@
     text-overflow: ellipsis;
     width: 66.66%;
     float: left;
+    display: inline-table;
 }
 
 .resource-type{
     display: flex;
     position: relative;
-    width: 16.66%;
+    width: 13.66%;
     float: left;
+    margin-left: 48px;
 }
 
 .added-by{
     display: flex;
     position: relative;
-    width: 21.66%;
+    width: 17%;
     float: left;
 }
 

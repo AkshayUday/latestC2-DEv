@@ -113,8 +113,12 @@
   display: none;
 }
 .dropdownContainer{
-  float: left;
+  position:absolute;
+  top:0px;
+  left:0px;
+  
   display: block; 
+  width:40px;
 }
 .dropdownDisplay {
   float: left;

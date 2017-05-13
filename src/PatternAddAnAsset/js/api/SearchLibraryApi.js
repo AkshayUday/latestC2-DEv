@@ -99,7 +99,7 @@ export default {
         }else{
           fileTypeCond = ' AND d.cmis:contentStreamMimeType NOT IN(\'image/*\',\'audio/*\',\'video/*\')';
         }
-    return AlfrescoApiService.getAssetsBySearch(window.tdc.libConfig,SearchTextCond,fileTypeCond,sortValue,index,limit);
+    return AlfrescoApiService.getAssetsBySearch(window.tdc.patConfig,SearchTextCond,fileTypeCond,sortValue,index,limit);
    },
 
    getProductData(){
@@ -122,7 +122,7 @@ export default {
 /* Get EPS url */
 
   getEpsUrl(nodeRef){
-    return AlfrescoApiService.getEpsUrl(window.tdc.libConfig,nodeRef)
+    return AlfrescoApiService.getEpsUrl(window.tdc.patConfig,nodeRef)
   },
 
   difficultyLevelData(){

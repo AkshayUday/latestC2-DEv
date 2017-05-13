@@ -7,11 +7,10 @@
  * @file BrowseAssetsContainer - A container does data fetching and then renders its corresponding sub-component.
  * @author TDC
  */
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link, browserHistory, hashHistory } from 'react-router'
+import { Link, browserHistory, hashHistory } from 'react-router';
 import bean from 'bean';
 import {fetchingAssets} from '../action/assets';
 import {getCurrentValues} from '../utils/util';

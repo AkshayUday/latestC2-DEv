@@ -22,6 +22,7 @@
     overflow-x: hidden;
     max-height: 110px;
     margin:0px;
+    width: 74.8%;
     composes: col70 from "../../../styles/patterns.css";
     composes: padding0 from "../../../styles/patterns.css";
 }

@@ -6,5 +6,5 @@
 * Creation Date : 22/2/2017;
 **/
 .dropdownWrapper{
-	float: left;
+	position: relative;
 }

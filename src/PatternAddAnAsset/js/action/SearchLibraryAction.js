@@ -35,7 +35,7 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
     res.body.displayItemCount = maxItems;
     res.body.numberFound = res.body.numItems;
     res.body.totalRecords = res.body.results.length;
-    res.body.tabVisibility = window.tdc.libConfig.tabVisibility;
+    res.body.tabVisibility = window.tdc.patConfig.tabVisibility;
     res.body.sortIndex = sortIndex;
     res.body.lastPage = res.body.hasMoreItems;
     if(viewName){
@@ -52,7 +52,7 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
             let nodeRefText = res.body.results[i].properties['d.alfcmis:nodeRef'].value;
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
-            let thumbnailUrl = window.tdc.libConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
+            let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
 
             _resData = {'nodeRef':nodeRefText,
                 'mimetype':res.body.results[i].properties['d.cmis:contentStreamMimeType'].value,
@@ -71,7 +71,7 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
                 'type':'document'
             };
 
-            if(JSON.parse(window.tdc.libConfig['cmis'])['wURN'] == true){
+            if(JSON.parse(window.tdc.patConfig['cmis'])['wURN'] == true){
                 _resData = Object.assign(_resData, {'wURN': res.body.results[i].properties['r.cp:workURN']['value'],
                     'mURN': res.body.results[i].properties['d.cmis:objectId']['value']});
             }
@@ -116,7 +116,7 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             sortIndex = 0;
         }
 
-        let tabVisibility = JSON.parse(window.tdc.libConfig.tabVisibility);
+        let tabVisibility = JSON.parse(window.tdc.patConfig.tabVisibility);
         if(tabVisibility.image==false){
             if(fileTypeIndex==0){
                 fileTypeIndex=1;
@@ -268,7 +268,7 @@ export function updateDifficultyLevel(difficultyLevelId){
 export function sendToQuad(props){
     return (dispatch) => {
         let assetData = props.record;
-        let check = JSON.parse(window.tdc.libConfig.tabVisibility);
+        let check = JSON.parse(window.tdc.patConfig.tabVisibility);
 
         /*if(check.wURN != true){
          delete assetData['wURN'];
@@ -278,35 +278,6 @@ export function sendToQuad(props){
         if(check.epsUrl==true){
             let temp1 = assetData.nodeRef.split('/');
             let nodeRef = temp1[temp1.length -1];
-            //AlfrescoApiService.getSSOToken().then(function (res) {
-            //let SSOToken = res.body.tokenId;
-            // searchLibraryApi.getAssetRoutePath(window.tdc.libConfig,nodeRef).then(function (data){
-            //   let siteName,splitIndex;
-            //   let splitArr = data.body.qnamePath.prefixedName.split('/');
-            //   for(let i=0;i<splitArr.length;i++){
-            //    if(splitArr[i].indexOf('st:sites') >= 0){
-            //     //if(splitArr[i].includes('st:sites')){
-            //       let siteSplitArr = splitArr[i+1].split(':');
-            //       siteName = siteSplitArr[1];
-            //     }
-            //     if(splitArr[i].indexOf('documentLibrary') >= 0){
-            //     //if(splitArr[i].includes('documentLibrary')){
-            //          splitIndex = i+1;
-            //     }
-            //   }
-            //   let imagePath='';
-            //   for(let i=splitIndex;i<splitArr.length;i++){
-            //     let splitPathArr = splitArr[i].split(':');
-            //     imagePath+=splitPathArr[1]+'/';
-            //   }
-            // searchLibraryApi.getGuid(window.tdc.libConfig,siteName).then(function (responsedata){
-            //   let Guid = responsedata.body.entry.guid;
-            //   assetData.EpsUrl = window.tdc.libConfig.epsserver+'/'+Guid+'/'+imagePath;
-            //   bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
-            //   props.closePopup();
-            // });
-            // });
-            //});
             searchLibraryApi.getEpsUrl(nodeRef).then(function (data){
                 assetData.EpsUrl = data.body.publicationUrl;
                 bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
