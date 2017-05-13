@@ -29,7 +29,6 @@ const mapDispatchToProps = (dispatch) => {
 		// 	dispatch(getAssets(filters));
 		// }
 		setFilterTypeValue: (filterValue) => {
-			console.log(filterValue);
             dispatch({type:'FILTER_TYPE_VALUE' , value:filterValue});           
 		}
 	}

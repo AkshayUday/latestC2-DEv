@@ -91,10 +91,12 @@ export default{
 			        	fulfill({errMsg: 'Failure'});
 			        }
 			    }).catch(function (error) {
-			    	reject(error);
+						console.log(`Error in localForage service while saving data ${error}`);
+						reject(error);
 			    });
   			}).catch(function (error){
-  				reject(error);
+					console.log(`Error in localForage service ${error}`);
+					reject(error);
   			});
   		});
   		return promise

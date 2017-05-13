@@ -203,7 +203,7 @@ export function updateCurrentFolder(nodeRef){
         model.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
         model.patternName = SearchConstants.FOLDER_STRUCTURE;
         model.type = SearchConstants.LOCAL_INSTANCE;
-        model.parentNodeRef = window.tdc.libConfig.nodeRef;
+        model.parentNodeRef = window.tdc.patConfig.nodeRef;
         localForageService.saveFolderStructure(model);
     }
 }

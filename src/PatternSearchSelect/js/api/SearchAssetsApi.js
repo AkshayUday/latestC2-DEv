@@ -10,8 +10,6 @@ export function getSearchResults(filterObj,libConfig) {
     }
     
   }
-  console.log(filterObj.libConfig.headers);
-  console.log(window.tdc.libConfig.headers);
 
   return ScapiService.send(filterObj);
 }

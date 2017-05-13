@@ -77,11 +77,15 @@
     width: 100%;
 }
 
-.listViewTitle{
+.listViewTitle {
 	lost-flex-container: row;
 	width: 27.33%;
 	float: left;
 	padding-left: 23.66%;
+	&.searchListViewTitle {
+		 padding-left: 19.66%;
+		 width: 28.66%;
+	 }
 }
 
 
@@ -93,7 +97,7 @@
 
 .listViewAddedBy{
 	lost-flex-container: row;
-	width: 17.33%;
+	width: 17%;
     float: left;
 }
 

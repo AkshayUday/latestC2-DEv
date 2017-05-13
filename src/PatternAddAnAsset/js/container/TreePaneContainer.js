@@ -60,8 +60,8 @@ const mapDispatchToProps = (dispatch) => {
             let self = this;
             let getResPromise = localForageService.getLocalForageData(inputData);
             getResPromise.then(function (replyGet) {
-                if (Object.keys(replyGet[ inputData.patternName ]).includes(window.tdc.libConfig.nodeRef)) {
-                    const model = replyGet[ inputData.patternName ][window.tdc.libConfig.nodeRef];
+                if (replyGet[ inputData.patternName ] !== undefined && Object.keys(replyGet[ inputData.patternName ]).includes(window.tdc.patConfig.nodeRef)) {
+                    const model = replyGet[ inputData.patternName ][window.tdc.patConfig.nodeRef];
                     dispatch({
                         type: GET_FOLDER,
                         data: model

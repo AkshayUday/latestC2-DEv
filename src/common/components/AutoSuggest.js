@@ -12,7 +12,6 @@ const suggestions = [];
 function getSuggestions(value) {
   return suggestions
     .map(section => {
-      console.log(section);
       return {
         title: section.title,
         searchterm: section.searchterm  //section.languages.filter(language => regex.test(language.name))
@@ -101,8 +100,6 @@ class Search extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-   console.log('nextProps');
-   console.log(nextProps);
    this.setState({suggestions: nextProps.autoSuggestData});
    
    // this.setState({value: nextProps.hostfilename})

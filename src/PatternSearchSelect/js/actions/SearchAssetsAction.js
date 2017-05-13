@@ -177,14 +177,14 @@ export function getOnLoadLocalForageData(inputData){
 			let getResPromise = localForageService.getLocalForageData(inputData);
 			getResPromise.then(function (replyGet){
 				if(replyGet !== undefined){
-					if(replyGet[inputData.patternName].recentSearch !== undefined){
+					if(replyGet[inputData.patternName] !== undefined && replyGet[inputData.patternName].recentSearch !== undefined){
 						recentArr = replyGet[inputData.patternName].recentSearch.reverse();
 						dispatch({
 			    			type: 'GET_RECENT_SR_RESULT',
 					    	value: recentArr
 		    			});
 					}
-					if(replyGet[inputData.patternName].saveSearch !== undefined){
+					if(replyGet[inputData.patternName] !== undefined && replyGet[inputData.patternName].saveSearch !== undefined){
 						savedSrArr = replyGet[inputData.patternName].saveSearch.reverse();
 						dispatch({
 			    			type: 'GET_SAVED_SR_RESULT',
