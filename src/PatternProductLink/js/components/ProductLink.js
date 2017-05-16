@@ -134,15 +134,15 @@ const  mapDispatchToProps = (dispatch) => {
     },
     componentWillMount(){
      dispatch(loadAllProductBegin());
-          if (this.props.patConfig.patSetup.allProducts && this.props.patConfig.patSetup.allProducts.length > 0 ) {
+          if (this.props.libConfig.allProducts && this.props.libConfig.allProducts.length > 0 ) {
       // Check cached results to bypass refetching all products
-       dispatch(updateAllProduct(this.props.patConfig.patSetup.allProducts));
+       dispatch(updateAllProduct(this.props.libConfig.allProducts));
       } else{
         // dispatch({type:'ACTIVATE'});
         let repoPList = [];
         let repos = [];
         for (let i = 0; i < this.props.patConfig.patSetup.repoList.length; ++i) {
-            repos.push( ProductLinkApi.getProduct(this.props.patConfig.patSetup.repoList[i].repo,this.props.patConfig.patSetup.repoList[i].repoName,this.props.libConfig,this.props.patConfig) );
+            repos.push( ProductLinkApi.getProduct(this.props.patConfig.patSetup.repoList[i].repo,this.props.patConfig.patSetup.repoList[i].repoName,this.props.libConfig) );
         }
         let allProducts = [];
 
@@ -201,7 +201,7 @@ const  mapDispatchToProps = (dispatch) => {
             return data;
           })
           allProducts = res;
-          this.props.patConfig.patSetup.allProducts = allProducts;
+          this.props.libConfig.allProducts = allProducts;
           dispatch(updateAllProduct(allProducts));
           // dispatch({type:'DEACTIVATE'});
 
@@ -297,7 +297,7 @@ class ProductLinkComponent extends React.Component {
 	  //console.log('onLinkClick');
 	  //console.log(this.props);
     if(this.state.selectedVal !=''){
-    bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId,this.state.selectedVal);      
+    bean.fire(this.props.patConfig, this.props.patConfig.eventId,this.state.selectedVal);      
     this.setState({selectedVal:''});
     this.props.closeModal();
     }	  
@@ -322,9 +322,9 @@ class ProductLinkComponent extends React.Component {
       onChange:this.onChange
     };
     const status = (isLoading ? 'Loading...' : 'Type to load suggestions');
-     const plStyle = {
+    const plStyle = {
 		        border:'0px solid red'
-	    }
+    }
 
     if(isError){
       return (React.createElement(

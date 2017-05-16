@@ -33,18 +33,12 @@ class assets extends Component {
     
   }
 
-  launchImgPreview(event){
-    event.stopPropagation();
-    this.props.imgPreviewHandle(event);
-  }
-
   render() {
     const {formatDate} = this.props.intl;
      let item = this.props.productTemp,
         selectedRecord = this.props.selectedRecord,
         checked = false, fileSize, fileType = 'KB',
         setSelectedItem = this.props.setSelectedItem,
-        //imgPreviewHandle = this.props.imgPreviewHandle,
         resType,
         listView = this.props.listViewStyle;
 
@@ -53,30 +47,40 @@ class assets extends Component {
           fileSize = parseFloat(fileSize/1024).toFixed(2);
           fileType = 'MB'
         }
-         if(item.mimetype.indexOf('image') >= 0){
-       // if(item.mimetype.includes('image')===true){
-        item.url = item.url + '?c=queue&ph=true';
-        item.IconClass = 'fa-image';
-        resType = 'Image'
-       }
-        else if(item.mimetype.indexOf('video') >= 0){
-       //else if(item.mimetype.includes('video')===true){
-        item.url = item.url + '?c=queue&ph=true';
-         item.IconClass = 'fa-video-camera';
-         resType = 'Video'
-       }
-       else if(item.mimetype.indexOf('audio') >= 0){
-       //else if(item.mimetype.includes('audio')===true){
-         //item.url = item.url + '?c=queue&ph=true';
-         item.url = item.url + '?c=queue&ph=true';
-         item.IconClass = 'fa-volume-down';
-         resType = 'Audio'
-       }
-       else{
-        item.url = item.url + '?c=queue&ph=true';
-        item.IconClass = 'fa-file';
-        resType = 'Others'
-       }
+        if(item !== undefined && item !== ''){
+          if(item.mimetype !== undefined && item.mimetype !== ''
+            && item.mimetype !== null){
+              if(item.mimetype.indexOf('image') >= 0){
+             // if(item.mimetype.includes('image')===true){
+              item.url = item.url + '?c=queue&ph=true';
+              item.IconClass = 'fa-image';
+              resType = 'Image'
+             }
+              else if(item.mimetype.indexOf('video') >= 0){
+             //else if(item.mimetype.includes('video')===true){
+              item.url = item.url + '?c=queue&ph=true';
+               item.IconClass = 'fa-video-camera';
+               resType = 'Video'
+             }
+             else if(item.mimetype.indexOf('audio') >= 0){
+             //else if(item.mimetype.includes('audio')===true){
+               //item.url = item.url + '?c=queue&ph=true';
+               item.url = item.url + '?c=queue&ph=true';
+               item.IconClass = 'fa-volume-down';
+               resType = 'Audio'
+             }
+             else{
+              item.url = item.url + '?c=queue&ph=true';
+              item.IconClass = 'fa-file';
+              resType = 'Others'
+             }
+          }else{
+              item.url = item.url + '?c=queue&ph=true';
+              item.IconClass = 'fa-file';
+              resType = 'Others'
+             }
+        }
+    
 
        if (selectedRecord && selectedRecord.nodeRef === item.nodeRef) {
           checked = true;
@@ -95,26 +99,26 @@ class assets extends Component {
 
       let modify = item.modifiedBy !== undefined ? 'Uploaded by: '+item.modifiedBy : '';
       let fileInfo = item.size !== undefined ? ' File size: '+ fileSize + fileType : '';
+       let disType = '';
+       if(item.description !== null && item.description !== undefined){
+          if(item.description.indexOf('streamingMediaPackageType') !== -1){
+              disType = 'Meida Type: Streaming Media';
+          }
+          if(item.description.indexOf('smartLinkType') !== -1){
+            disType = 'Media Type: SmartLink';
+          }
+       }
        let pageRender;
        let radioBtn = <Radio name='assetsCheckbox' ref='radioComp' record={item} checked= {checked} customFn = {setSelectedItem} parent = {this.assetSelectedEvent}/>
-       let magniIcon = '';
        let imgTag = <img src={item.url} alt='product image' />
        let self = this;
-       if(this.props.fileType == 'image'){
-        magniIcon = (<span><i className="fa fa-search"></i></span>);
-       }
        if(this.props.pageView === 'grid-view'){
         lengthOfChar = 47;
        fileName = trimFolderName(modFileName,lengthOfChar);
               pageRender = (
             <div onClick={self.changeRadioButton.bind(self)} key={item.nodeRef}
                 className={AssetStyles.searchResultBox +' card-item1 '}>
-              <div className={AssetStyles.assetRadioBtn}>
-
-                <div className={AssetStyles.assetRadioCnt}>{radioBtn}</div> 
-                <div onClick={self.launchImgPreview.bind(self)} className={AssetStyles.imgPrevCnt}>{magniIcon} </div>
-
-              </div>
+              <div className={AssetStyles.assetRadioBtn}>{radioBtn}</div>
               <div className={AssetStyles.assetImage}>
                 {imgTag}
               </div>
@@ -127,8 +131,8 @@ class assets extends Component {
                 <div className={AssetStyles.footerIcon}>
                     <i className= {AssetStyles.browseTooltip +' fa ' + item.IconClass}></i>
                       <PE_tooltip className='assetDetailToolTip' position='right'
-                      content={ modify +' Date uploaded: '
-                      +formatDate(getModifiedOn(item.modifiedOn))+ fileInfo}>
+                      content={ modify +'@'+' Date uploaded: '
+                      +formatDate(getModifiedOn(item.modifiedOn))+'@'+ fileInfo +'@'+ disType}>
                         <i className='fa fa-info-circle'></i>
                       </PE_tooltip>
                 </div>
@@ -176,9 +180,7 @@ assets.propTypes = {
       productTemp: PropTypes.object,
       setSelectedItem: PropTypes.func,
       selectedRecord: PropTypes.object,
-      imgPreviewHandle: PropTypes.func,
       pageView: PropTypes.string,
-      listViewStyle: PropTypes.string,
-      fileType: PropTypes.string
+      listViewStyle: PropTypes.string
   }
 export default injectIntl(assets);

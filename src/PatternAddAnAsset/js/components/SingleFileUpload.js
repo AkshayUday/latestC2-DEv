@@ -55,8 +55,7 @@ class SingleFileUpload extends Component {
     this.setState({fileName:files[0].name});
     this.setState({file:files});
     this.setState({errDisplay : ''});
-    //this.setState({show:true})
-
+   
   }
    _tooltipClick(e){
         e.preventDefault()
@@ -64,6 +63,11 @@ class SingleFileUpload extends Component {
     onSave(values){
        values.file = this.state.file;
        let vStatus = validateuploadForm(values);
+       if(this.props.isParent){
+        this.setState({errDisplay : 'Please Select a Subfolder to Upload'})
+       } else 
+       
+      
        if(vStatus.file){       
           let msg = this.getErrMsg(vStatus.name)+' '+this.getErrMsg(vStatus.file);
           this.setState({errDisplay : msg});
@@ -129,7 +133,7 @@ class SingleFileUpload extends Component {
              <div className={Styles.peSingleuploadWrapper}>
                    <div className={Styles.peInput}>
                     <div className='errDisplay'>{message}</div>
-                   <ChooseFile choosefileclass= {Styles.peChooseFile} 
+                   <ChooseFile choosefileclass= {Styles.peChooseFile}
                     selectedFile={this.handleFile} name="filedata" id='filedata' value={file}/> 
                     <div className={Styles.fileNameDisp}>{this.state.fileName}</div>
                    </div>
@@ -149,7 +153,7 @@ class SingleFileUpload extends Component {
                         <div className={Styles.pePullRight}>
 
                           <ButtonComponent className={Styles.peBtn + ' ' + Styles.peBtnLarge + ' ' + Styles.peBtnPrimary} 
-                           buttonText={formatMessage(messages.Save_Upload)} buttonType="submit" disabled={!this.state.file} />
+                           buttonText={formatMessage(messages.Save_Upload)} disabled={this.state.file} buttonType="submit" />
 
                            
                         </div>
@@ -171,7 +175,6 @@ SingleFileUpload.propTypes = {
   asyncValidating: PropTypes.bool,
   intl: PropTypes.object,
   isParent : PropTypes.bool,
-  
   productName:PropTypes.string,
   clearModal : PropTypes.func,
   componentWillMount : PropTypes.func,

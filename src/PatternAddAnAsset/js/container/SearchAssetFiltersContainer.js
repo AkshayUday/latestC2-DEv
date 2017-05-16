@@ -13,7 +13,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {getSearchProductItems} from '../action/SearchLibraryAction';
+import {getSearchProductItems, searchLibButtonVisibility} from '../action/SearchLibraryAction';
 import {fetchSavedSearchData} from '../action/savedSearchAction';
 import searchAssetsFilter from '../components/browse/searchAssetsFilter';
 import SearchFilter from '../components/SearchFilter';

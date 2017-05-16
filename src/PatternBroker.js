@@ -103,6 +103,7 @@ function _factory(pattern, component) {
         eventId : pattern + '-channel-' + token,              // unique event channel for communicating with instance
         component : component,
         renderedComponent:null,
+        patConfig:null,
 
         /**
          * Setup pattern component using supplied configuration options,
@@ -121,10 +122,9 @@ function _factory(pattern, component) {
             this.patSetup.resultsEventId = instance.resultsEventId;
             this.patSetup.eventId = instance.eventId;
             this.patSetup.pattern = instance.pattern;
-
           
             token++;
-		        bean.on(this.patSetup, this.resultsEventId, function (data) {
+		        bean.on(this, this.resultsEventId, function (data) {
 			          if (resultsCB) {
                     resultsCB(data);
                 }
@@ -145,11 +145,11 @@ function _factory(pattern, component) {
         },
 
         on : function (cb) {
-            bean.on(this.patSetup, this.eventId, cb);
+            bean.on(this, this.eventId, cb);
         },
 
         off : function () {
-            bean.off(this.patSetup, this.eventId);
+            bean.off(this, this.eventId);
         },
 
         fire : function (...msgs) {
@@ -161,7 +161,7 @@ function _factory(pattern, component) {
                }
                this.renderedComponent._reactInternalInstance._renderedComponent._instance.refs.mvmContainer.getWrappedInstance().getWrappedInstance().submit();
             }else{
-               bean.fire(this.patConfig.patSetup, this.eventId, msgFromComp);
+               bean.fire(this, this.eventId, msgFromComp);
             }
 
         },

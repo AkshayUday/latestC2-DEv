@@ -29,11 +29,10 @@ export function saveSearchValues(value){
                 inputData.type = SearchConstants.LOCAL_INSTANCE;
                 let getResPromise = SavedSearchApi.getSavedSearchData(inputData);
                 getResPromise.then(function (responseData){
-                let savedData = [];
                     if(responseData.AddAnAsset){
                         let randomId = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
                         let saveObj = {'term': value,'id':randomId,'isChecked':false};
-                        savedData = responseData.AddAnAsset;
+                        let savedData = responseData.AddAnAsset;
                         let inputData = {
                             'userId': responseData.userId,
                             'patternName': window.tdc.patConfig.pattern,
@@ -47,14 +46,7 @@ export function saveSearchValues(value){
                             'sortIndex' : savedData.displayCount.sortIndex
                         }
                     SavedSearchApi.saveSearchValue(inputData).then(function (res){
-                      if(res.AddAnAsset){
-                      let afterSaveData = res.AddAnAsset;
-                      if(afterSaveData.saveSearch.length>savedData.saveSearch.length){
-                        alert('Search value saved successfully');
-                     }else{
-                       alert('Saved value already exists');
-                    }
-                    }
+                      alert('Search value saved successfully')
                     });
                 }
 

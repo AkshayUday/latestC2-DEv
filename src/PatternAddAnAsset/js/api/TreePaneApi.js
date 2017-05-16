@@ -24,7 +24,7 @@ getRootChildren() {
 * @param {string} token
  **/
  getSubFolders(nodeRef) {
-   return AlfrescoApiService.getSubFolders(window.tdc.patConfig,nodeRef,
+   return AlfrescoApiService.getSubFolders(window.tdc.libConfig,nodeRef,
    											window.tdc.libConfig.alfToken);
   }
 }

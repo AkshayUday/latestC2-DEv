@@ -27,7 +27,7 @@ let nodeRef;
   export function  getFolders(arg='browseasset'){
     return dispatch => {
 
-      assetsApi.getSubFolders(window.tdc.patConfig.nodeRef).then(function (res){ 
+      assetsApi.getSubFolders(window.tdc.libConfig.nodeRef).then(function (res){ 
 
         if(res.body !== undefined && res.body.results.length > 0){
            let treeFolder = JsonData.getCustomFolder(res.body);
@@ -35,7 +35,6 @@ let nodeRef;
               treeFolder.show = false;
              treeFolder = flagRootFolders(treeFolder);
              console.log(treeFolder);
-
              // highlightChildren(treeFolder, getFirstName(treeFolder));
              dispatch({
                type : GET_FOLDER,
@@ -87,7 +86,6 @@ let nodeRef;
 */
   export function  getSubFolders(arg='browseasset',folderName,child, nodeRef){ 
     return (dispatch,getState) => { 
-
 
       let _getState = getState().TreePaneReducers;
            assetsApi.getSubFolders(nodeRef).then(function (res){ 

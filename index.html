@@ -224,10 +224,6 @@
           <label for="skillsid" >Skill Codes:</label>
           <input type="text" id="skillsid" placeholder="Enter Skills Codes"/>
         </div>
-        <div style="margin-bottom:1em;">
-          <label for="AdaptiveFlagId" >Adaptive Flag:</label>
-          <input type="checkbox" id="adaptiveFlagId"/>
-        </div>
         <!--  <div style="margin-bottom:1em;">
               <label for="contentType" >Content Type:</label>
               <select style="padding: 0px 25px;" name="contentTypeid">
@@ -241,8 +237,9 @@
               </select>
         </div> -->
         <input type="button" id="#launchBtn" value="Launch" class="buttonStyle" onclick="onLaunchAssesment('name','assesmentUUID','planidTargid',
-'publisherTargid','ISBNid','moduleNoid','chapterNoid','authorId',
-            'copyRightid','objAlignid','skillsid','adaptiveFlagId','apiKeyId','sessionKeyId','#assesmentComp','Assesment')"/>
+                                                                                         'publisherTargid','ISBNid','moduleNoid','chapterNoid','authorId',
+                                                                                         'copyRightid','objAlignid','skillsid','apiKeyId','sessionKeyId',
+                                                                                         '#assesmentComp','Assesment')"/>
       </div>
       
       <div id="assesmentComp">
@@ -403,10 +400,6 @@
           <label for="skillsid" >Skill Codes:</label>
           <input type="text" id="quesSkillsid" placeholder="Enter Skills Codes"/>
         </div>
-         <div style="margin-bottom:1em;">
-          <label for="AdaptiveFlagId" >Adaptive Flag:</label>
-          <input type="checkbox" id="quesAdaptiveFlagId"/>
-        </div>
         <!--  <div style="margin-bottom:1em;">
               <label for="contentType">Content Type:</label>
               <select name="QcontentTypeid">
@@ -419,7 +412,8 @@
                 <option value="Assessment Item">Assessment Item</option>
               </select>
         </div> -->
-        <input type="button" id="#launchBtn" value="Launch" class="buttonStyle" onclick="onLaunchQuestion('qname', 'uuid','questionPlanidTargid','questionPublisherTarg','questionISBNid','questionModuleNoid','questionChapterNoid','questionBookAuthorid','questionCopyRightid','quesObjAlignid','quesSkillsid','quesAdaptiveFlagId','apiKeyId','sessionKeyId','#questionComp','Question')"/>
+        <input type="button" id="#launchBtn" value="Launch" class="buttonStyle" onclick="onLaunchQuestion('qname', 'uuid','questionPlanidTargid','questionPublisherTarg','questionISBNid','questionModuleNoid','questionChapterNoid','questionBookAuthorid','questionCopyRightid','quesObjAlignid','quesSkillsid','apiKeyId','sessionKeyId',
+                                                                                         '#questionComp','Question')"/>
       </div>
       <div id="questionComp">
       </div>

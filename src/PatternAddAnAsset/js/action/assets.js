@@ -19,6 +19,7 @@ import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 import store from '../../js/store';
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
+import {getFilterQueryForAssets, findPlatformOrSmartLink} from '../utils/util';
 
 let i = 1;
 
@@ -33,7 +34,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
     res.body.selectedIndex = parseInt(fileTypeIndex);
     res.body.numberFound = res.body.numItems,window.tdc.patConfig.assetsTotalCount;
     res.body.totalRecords = res.body.results.length;
-    res.body.tabVisibility = window.tdc.patConfig.tabVisibility;
+    res.body.tabVisibility = window.tdc.libConfig.tabVisibility;
     res.body.lastPage = res.body.hasMoreItems;
     if(viewName){
         res.body.viewName = viewName;
@@ -51,6 +52,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
     //   res.body.numberFound = a +(2*maxItems);
     // }
     // }
+    let mimeType, description, contentURL;
     if(responseData.length>0){
         for(let i=0;i<responseData.length;i++){
 
@@ -58,28 +60,32 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
             let nodeRefText = res.body.results[i].properties['d.alfcmis:nodeRef'].value;
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
-            let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
-            let imgPreviewUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
-
-            _resData = {'nodeRef':nodeRefText,
-                'mimetype':res.body.results[i].properties['d.cmis:contentStreamMimeType'].value,
+            let thumbnailUrl = window.tdc.libConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
+            mimeType = res.body.results[i].properties['d.cmis:contentStreamMimeType'].value;
+            description = res.body.results[i].properties['d.cmis:description'].value;
+             if(description !== null && description !== undefined &&
+                (description.indexOf('streamingMediaPackageType') !== -1 || description.indexOf('smartLinkType') !== -1)){
+                contentURL = findPlatformOrSmartLink(window.tdc.libConfig.alfserver,mimeType, description, nodeRefVal);
+            }
+            _resData = {'nodeRef':res.body.results[i].properties['d.alfcmis:nodeRef'].value,
+                'mimetype':mimeType,
                 'url': thumbnailUrl,
+                'contentURL': contentURL,
                 'displayName':res.body.results[i].properties['d.cmis:name'].value,
                 'name':res.body.results[i].properties['d.cmis:name'].value,
                 'fileName':res.body.results[i].properties['t.cmis:name'].value,
                 'title':res.body.results[i].properties['t.cm:title'].value,
                 'modifiedBy':res.body.results[i].properties['d.cmis:lastModifiedBy'].value,
                 'modifiedByUser':res.body.results[i].properties['d.cmis:lastModifiedBy'].value.toUpperCase(),
-                'description':res.body.results[i].properties['d.cmis:description'].value,
+                'description':description,
                 'modifiedOn':res.body.results[i].properties['d.cmis:lastModificationDate'].value,
                 'size':res.body.results[i].properties['d.cmis:contentStreamLength'].value,
                 'creationDate':res.body.results[i].properties['d.cmis:creationDate'].value,
                 'container':'documentLibrary',
-                'type':'document',
-                'previewUrl': imgPreviewUrl,
+                'type':'document'
             }
 
-            if(JSON.parse(window.tdc.patConfig['cmis'])['wURN'] == true){
+            if(JSON.parse(window.tdc.libConfig['cmis'])['wURN'] == true){
                 _resData = Object.assign(_resData, {'wURN': res.body.results[i].properties['r.cp:workURN']['value'],
                     'mURN': res.body.results[i].properties['d.cmis:objectId']['value']});
             }
@@ -91,6 +97,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
     res.body.items = items;
     return res.body;
 }
+
 /** @function fetchMetaData -
  * This method is used for fetching relevant assets data on selecting particular folder.
  * @param {*} noderef - Folder Id of selected folder
@@ -110,14 +117,15 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
         index = (pageNo*maxItems)-maxItems;
         limit = maxItems;
 
-        let fileTypeForSearch = {
+        /*let fileTypeForSearch = {
             0:'image/*',
             1:'video/*',
             2:'audio/*',
             3:'/*',
-        };
+        };*/
+        
 
-        let tabVisibility = JSON.parse(window.tdc.patConfig.tabVisibility);
+        let tabVisibility = JSON.parse(window.tdc.libConfig.tabVisibility);
         if(tabVisibility.image==false){
             if(fileTypeIndex==0){
                 fileTypeIndex=1;
@@ -138,7 +146,7 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             3:'ORDER BY cmis:name'
         };
 
-    assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],index,limit)
+    assetsApi.get_assets(nodeRef,getFilterQueryForAssets(fileTypeIndex),sortValues[sortIndex],index,limit)
       .then(function (res){
       let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
           dispatch({
@@ -238,10 +246,8 @@ const saveToLocalForageService = () => {
  */
 
 export function selectedRecord(record){
-    return {
-        type : SEND_TO_QUAD,
-        data : record
-    }
+   return {
+                type : SEND_TO_QUAD,
+                data : record
+            }
 }
-
-

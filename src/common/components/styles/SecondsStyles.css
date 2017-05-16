@@ -1,13 +1,13 @@
 .react-numeric-input{
-   padding-right: 4ex!important;
-    box-sizing: border-box!important;
-    border: 1px solid rgb(204, 204, 204)!important;
-    border-radius: 2px!important;
-    padding-left: 4px!important;
-    display: block!important;
-    -webkit-appearance: none!important;
-    line-height: normal!important;
-    margin-right: 5px!important;
+    padding-right: 3ex;
+    box-sizing: border-box;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 2px;
+    padding-left: 4px;
+    display: block;
+    -webkit-appearance: none;
+    line-height: normal;
+    margin: 5px;
 
 }
 

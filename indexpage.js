@@ -2,49 +2,75 @@ var patternBroker = this.PatternBroker.default;
 var patternAssessment = this.PatternAssessment.default;
 var patternBank = this.PatternBank.default;
 var patternQuestion = this.PatternQuestion.default;
+
 var patternProductLink = this.PatternProductLink.default;
 var patternAddAnAsset = this.PatternAddAnAsset.default;
 var PatternSearchSelect =this.PatternSearchSelect.default;
 
-var libConfig = {
-    'locale': 'en_US',
+// ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
 
-    'headers': {
-        'Content-Type': 'application/json',
-        'Accept': 'application/ld+json',
-        'Prefer': 'annotation=true'
-    },
-    'database': '?db=qa2',
-    'server': 'https://staging.data.pearson.com',
-    'taxonomyserver': 'https://staging.schema.pearson.com',
-    'port': '80',
-};
+// Initial (one time) library configuration
 
-var c5filterTypeData = function() {
-    var _token = document.getElementById('sessionKeyId').value;
-    var _api = document.getElementById('apiKeyId').value;
-    var xmlhttp = new XMLHttpRequest();
-    var taxurl = libConfig['taxonomyserver'] + '/ns/taxonomictype/interactives';
+// Headers which C1 expects: Access-Control-Allow-Headers:origin, content-type, accept, authorization
+/*
+  'headers' : {'Accept-Encoding': 'gzip,deflate',
+  'X-Roles'        : 'roleX,roleY,roleC',
+  'Authorization'  : 'Basic c3RyYXdiZXJyeToqbnJSUEc0akA1b1JCUnVDMkckITh4IzVqSFA=',
+  'Content-Type'   : 'application/json',
+  'Accept'         : 'application/ld+json',
+  'Access-Control-Allow-Credentials' : true
+  },
+*/
+
+var libConfig = {'locale': 'en_US',
+                   
+                   'headers' : {
+                                'Content-Type'   : 'application/json',
+                                'Accept'         : 'application/ld+json',
+                                // 'X-Roles-Test'        : 'ContentMetadataEditor',
+                                //'Authorization'  : 'Basic Ymx1ZWJlcnJ5OmVAQkhSTUF2M2V5S2xiT1VjS0tAWl56Q0ZhMDRtYw==',
+                                'Prefer' : 'annotation=true'
+        //'x-apikey' :  '5x8gLqCCfkOfgPkFd9YNotcAykeldvVd',
+                               //'X-PearsonSSOSession' : 'AQIC5wM2LY4SfczJwDEKiLveBuH9DtGGXLkfvRlveimpxgQ.*AAJTSQACMDIAAlNLABM0NjAwMDQ4NTYxOTkyNTk3NTU1AAJTMQACMDE.*'
+                               },
+                   'database'       : '?db=qa2',
+                   'server'         : 'https://staging.data.pearson.com',
+                  'taxonomyserver' : 'https://staging.schema.pearson.com',
+                   'port'           : '80',
+                   //'alfserver'      :'https://ukppewip.pearsoncms.com'
+                   //'alfserver'        :'https://staging.api.pearson.com/content/cmis/ukwip',
+                    'epsserver':     'https://us-school-stg.pearsoned.com/school'
+                  };
+
+
+
+
+var c5filterTypeData = function () {
+   var _token = document.getElementById('sessionKeyId').value;
+   var _api = document.getElementById('apiKeyId').value;
+   var xmlhttp = new XMLHttpRequest();
+   var taxurl = libConfig['taxonomyserver']+'/ns/taxonomictype/interactives';
 
     xmlhttp.onreadystatechange = function() {
 
       console.log(xmlhttp);
 
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById('c5filterType').innerHTML = '';
-            var response = JSON.parse(xmlhttp.response);
-            console.log(response);
-
-            var results = response.narrower.map((data, key, list) => {
-
-                if (list[key]['prefLabel'] != undefined) {
-                    return {
-                        display: list[key]['prefLabel']['en'],
-                        property: list[key]['id']
-                    }
-                } else {
-                    return {
-                        display: list[key].split('/')[5],
+      if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          document.getElementById('c5filterType').innerHTML= '';
+        var response = JSON.parse(xmlhttp.response);  
+        console.log(response);
+        
+        var results = response.narrower.map((data, key, list) => { 
+              
+              if(list[key]['prefLabel'] != undefined) {
+                return {
+                  display: list[key]['prefLabel']['en'],
+                  property : list[key]['id']
+              }
+            }
+              else{
+                return {
+                        display: list[key].split('/')[5], 
                         property: list[key]
                       }
                 }
@@ -77,6 +103,7 @@ var c5filterTypeData = function() {
     };
 
     xmlhttp.open("GET", taxurl, true);
+    // xmlhttp.setRequestHeader("X-Roles-Test", "ContentMetadataEditor");
     xmlhttp.setRequestHeader("Accept", "application/ld+json");
     xmlhttp.setRequestHeader("x-apikey", _api);
     xmlhttp.setRequestHeader("Prefer", 'annotation=true');
@@ -86,6 +113,162 @@ var c5filterTypeData = function() {
 
 
 document.getElementById('getFilterType').addEventListener( "click",c5filterTypeData.bind(),false)
+
+
+//patternsLib.setup(libConfig);
+
+
+// libConfig for UAT as on 11/8/2016
+/* var libConfig = {
+
+  'locale': 'en_US',
+  'headers' : {
+      'Content-Type'   : 'application/json',
+      'Accept'         : 'application/ld+json',
+      /*  'X-Roles-Test'        : 'ContentMetadataEditor', */
+    /*  'Authorization'  : 'Basic Ymx1ZWJlcnJ5OmVAQkhSTUF2M2V5S2xiT1VjS0tAWl56Q0ZhMDRtYw==',
+      'Prefer' : 'annotation=true'
+    },
+  'database'       : '?db=qa12',
+  'server'         : 'https://uat.pearsonmeta.io',
+  'taxonomyserver' : 'https://uat.pearsonmeta.io',
+  'port'           : '80'
+
+}; */
+
+// ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
+
+
+//
+// A simple pattern usage : BUTTON
+//
+
+// Create an instance of a pattern object
+// The instance has following properties:
+// { patSetup: obj,
+//   pattern: string,
+//   uqid : number,
+//   resultsEventId : pattern + '-' + uqid,
+//   eventId : pattern + '-channel-' + uqid
+//   setup : function,
+//   run : function,
+//   on : function,
+//   off : function,
+//   fire : function
+// }
+/*var patButton = patternsLib.create(patternsLib.type.BUTTON);
+
+// Define a configuration for pattern instance
+var patConfig =  {arg : '00001', link : 'button.com1', selector : '#patternHolder1'};
+
+// Define a callback which will receive results back from the pattern instance
+var cb = (data) => {
+    // data is a JSON structure returned back from the pattern instance
+
+    // Here we are just displaying the stringified version of JSON structure
+    var e = document.getElementById('patternResp1');
+    e.innerHTML = JSON.stringify(data);
+};
+
+// Setup the instance using configuraton and callback
+patButton.setup(patConfig, cb);
+
+// Run the render method, processess user interactions and do teardown when finished
+patButton.run();
+
+
+
+
+
+// Following additional methods are available for
+// communicating with the live pattern instance
+
+var channelCB = (channelData) => {
+    // channel data is a JSON structure
+
+    // Here we are just displaying the stringified version of JSON structure
+    var e = document.getElementById('patternChannelResp1');
+    e.innerHTML = JSON.stringify(channelData);
+};
+patButton.on(channelCB);
+patButton.fire({ 'one': 'some data', 'two' : 99, 'three' : { 'nested' : {}} });
+patButton.off();
+
+
+// ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
+
+
+
+
+
+
+//
+// A simple pattern usage : BUTTONLONG
+//
+
+// Create an instance of a pattern object
+var patButton2 = patternsLib.create(patternsLib.type.BUTTONLONG);
+
+// Define a configuration for pattern instance
+var patConfig2 =  {arg : '00001', link : 'buttonLong.com2', selector : '#patternHolder2'};
+
+// Define a callback which will receive results back from the pattern instance
+var cb2 = (data) => {
+    // data is a JSON structure returned back from the pattern instance
+
+    // Here we are just displaying the stringified version of JSON structure
+    var e = document.getElementById('patternResp2');
+    e.innerHTML = JSON.stringify(data);
+};
+
+// Setup the instance using configuraton and callback
+patButton2.setup(patConfig2, cb2);
+
+// Run the render method, processess user interactions and do teardown when finished
+patButton2.run();
+
+// Following additional methods are available for
+// communicating with the live pattern instance
+//patButton.on();
+//patButton.off();
+//patButton.fire()
+
+// ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+== ==+==
+
+//
+// A simple pattern usage : BUTTON
+// (A test case for multiple instances of same pattern on a single page)
+//
+
+var patButton3 = patternsLib.create(patternsLib.type.BUTTON);
+
+var patConfig3 =  {arg : '00001', link : 'button.com3', selector : '#patternHolder3'};
+var cb3 = (data) => {
+    var e = document.getElementById('patternResp3');
+    e.innerHTML = JSON.stringify(data);
+};
+patButton3.setup(patConfig3, cb3);
+patButton3.run();
+//patButton.on();
+//patButton.off();
+//patButton.fire()
+*/
+
+/*var SaveCallBack = function (data) {
+   var e = document.getElementById('assesmentResp');
+   var content ='<div>';
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        var property = '<p><span class="uppercase">'+key+'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>'+data[key]+'</span></p>';
+        if(typeof(data[key]) === 'string'){
+          content =  content+property;
+        }
+      }
+    }
+    content =content+'</div>';
+    e.innerHTML = content;
+};*/
+
 
 /* Function to generate SSO token */
 function generateToken(){
@@ -116,7 +299,7 @@ function generateToken(){
             }
         }
     };
-
+    
     xmlhttp.open("POST", loginUrl, true);
     xmlhttp.setRequestHeader("Content-type", "application/json");
     xmlhttp.setRequestHeader("X-OpenAM-Username", alfUname);
@@ -124,7 +307,7 @@ function generateToken(){
     xmlhttp.send();
 }
 
-// ==+== ==+====+====+== PATTERN  ASSESSMENT ==+== ==+====+== ==+==  
+// ==+== ==+== ASSESSMENT ==+== ==+== 
 
 var SaveCallBack = function (data) {
     var e = document.getElementById('assesmentResp');
@@ -163,7 +346,7 @@ onSaveAssesment = function(astName){
 onLaunchAssesment = function(astName,uuidTagid,planidTargid,
   publisherTargid,ISBNTargId,moduleNoTargId,chapterNoTargId,
   authorTargId,copyRightTargId,objAlignTarid,skillsTargid,
-  adaptiveFlagTarId,apiKeyTarId,sessionKeyTarId,renderderedTagSelector,type,environment){
+  apiKeyTarId,sessionKeyTarId,renderderedTagSelector,type,environment){
 var name = document.getElementById(astName).value;
 var assesmentUUID = document.getElementById(uuidTagid).value;
 var planId = document.getElementById(planidTargid).value;
@@ -178,14 +361,13 @@ var objAlignid = document.getElementById(objAlignTarid).value;
 var skillsId = document.getElementById(skillsTargid).value;
 var apiKeyId = document.getElementById(apiKeyTarId).value;
 var sessionKeyId = document.getElementById(sessionKeyTarId).value;
-var adaptiveFlagId = document.getElementById(adaptiveFlagTarId).checked;
 var typeId = type;
 /*var asConType = document.getElementsByName(assessContentTypeid)[0];
 var asContentType = asConType.options[asConType.selectedIndex].value;*/
 
-    if (patAssesment && patAssesment.unmount) {
-        patAssesment.unmount();
-    }
+if(patAssesment && patAssesment.unmount){
+  patAssesment.unmount();
+}
 
 libConfig.headers['x-apikey'] = apiKeyId;
 libConfig.headers['X-PearsonSSOSession'] = sessionKeyId;
@@ -231,9 +413,7 @@ if(skillsId!==''){
 var comma = ',';
 patAssesmentConfig.goalKeywords = splitString(skillsId, comma);
 }
-if(adaptiveFlagId!==''){
-  patAssesmentConfig.adaptiveFlag = adaptiveFlagId;
-}
+
 // Define a callback which will receive results back from the pattern instance
 var cbAssesment = function (data) {
     // data is a JSON structure returned back from the pattern instance
@@ -290,7 +470,6 @@ function splitString(stringToSplit, separator) {
   return itemArr;
 }
 
-// ==+== ==+====+====+== PATTERN ADD AN ASSET ==+== ==+====+== ==+== 
 var addAnAsset;
 
 onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
@@ -328,19 +507,19 @@ onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
     if(pafID !== ''){
         addAnAssetConfig.pafID = pafID;
     }
-
-
+    
+    //libConfig.alfToken = document.getElementById('alfToken').value;
     libConfig.alfuname = document.getElementById('alfuname').value;
     libConfig.alfpwd = document.getElementById('alfpwd').value;
+    libConfig.nodeRef = document.getElementById('nodeRef').value;
+    libConfig.tabVisibility = document.getElementById('tabVisibility').value;
     libConfig.headers['X-PearsonSSOSession'] = document.getElementById('sessionKeyId').value;
-    libConfig.headers['x-apikey'] = document.getElementById('apiKeyId').value;
-    libConfig.repoName = document.getElementById('repoName').value;
+    //libConfig.imagesPath = document.getElementById('imagesPath').value;
     addAnAssetConfig.nodeRef = document.getElementById('nodeRef').value;
-    addAnAssetConfig.alfserver = document.getElementById('repoInst').value;
-    addAnAssetConfig.tabVisibility = document.getElementById('tabVisibility').value;
-    addAnAssetConfig['cmis'] = document.getElementById('workURN').value;
-    addAnAssetConfig['epsserver'] = "https://us-school-stg.pearsoned.com/school";
-
+    libConfig.alfserver = document.getElementById('repoInst').value;
+    libConfig.repoName = document.getElementById('repoName').value;
+    libConfig['cmis'] = document.getElementById('workURN').value;
+    
     patternBroker.setup(libConfig);
 
      try{
@@ -364,22 +543,23 @@ document.getElementById('EpsContainer').style.visibility= 'hidden';
 var AddanAssetCallBack = function (data){ 
     //console.log(data);  
     //data.url = _.replace(data.url,'/thumbnails/',''); 
-    
-    var uniqueID = data.nodeRef.split('/')[3];
-    var assetType = data.mimetype.split('/')[0];
-    
-    data['uniqueID'] = uniqueID;
-    data['assetType'] = assetType;
-    
-    if(data['assetType'] == 'image'){
-        var img = new Image();
-        img.addEventListener("load", function(){            
-            data['thumbnail_height'] = this.height;
-            data['thumbnail_width'] =  this.width;      
-        });
+    if(data.mimetype !== undefined && data.mimetype !== null){
+        var uniqueID = data.nodeRef.split('/')[3];
+        var assetType = data.mimetype.split('/')[0];
         
-        img.src = data.url;
-    }   
+        data['uniqueID'] = uniqueID;
+        data['assetType'] = assetType;
+        
+        if(data['assetType'] == 'image'){
+            var img = new Image();
+            img.addEventListener("load", function(){            
+                data['thumbnail_height'] = this.height;
+                data['thumbnail_width'] =  this.width;      
+            });
+            
+            img.src = data.url;
+        }   
+    }
     
     document.getElementById('questionStemImg').setAttribute('src',data.url);
     if(data.EpsUrl){
@@ -393,9 +573,52 @@ var AddanAssetCallBack = function (data){
     
     var content ='<table class="addAnAssetTable">';
     for (var key in data) {
-      if (data.hasOwnProperty(key) && (key == 'wURN'  || key == 'mURN' || key == 'creationDate')) {                             
-           var property = '<tr><td class="addAnAssetTd">'+key+'</td><td class="addAnAssetTd">'+data[key]+'</td></tr>';  
-            content =  content+property;          
+      if (data.hasOwnProperty(key)) { 
+            /*if(key==='results'){
+              for(i=0;i<data[key].length;i++){
+                var tempValue = data[key][i].properties['s.avs:url'].value;
+                var property = '<tr><td class="addAnAssetTd">'+key+'</td><td class="addAnAssetTd">'+tempValue+'</td></tr>';  
+                content =  content+property;
+              }
+            }else{
+              var property = '<tr><td class="addAnAssetTd">'+key+'</td><td class="addAnAssetTd">'+data[key]+'</td></tr>';  
+              content =  content+property;
+            }*/
+            if(data.desc.indexOf('smartLinkType') !== -1){
+              if(key==='body'){
+                var res = data.body.results;
+                for(i=0;i<res.length;i++){
+                    var tempValue = data.body.results[0].properties['s.avs:url'].value;
+                    for(i=0;i<tempValue.length;i++){
+                      var property = '<tr><td class="addAnAssetTd">'+'Value'+'</td><td class="addAnAssetTd"><a target=_blank href='+tempValue[i]+'>'+tempValue[i]+'</a></td></tr>';  
+                      content =  content+property;
+                    }
+                }
+              }
+            }else if(data.desc.indexOf('streamingMediaPackageType') !== -1){
+              if(key==='body'){
+                var res = data.body;
+                for(var resKey in res){
+                  if(resKey==='sourceAssetFile'){
+                    var assetObj = res[resKey];
+                    for(var assetKey in assetObj){
+                      var property = '<tr><td class="addAnAssetTd">'+assetKey+'</td><td class="addAnAssetTd">'+assetObj[assetKey]+'</td></tr>';  
+                      content =  content+property;
+                    }
+                  }else if(resKey === 'mediaId'){
+                    var property = '<tr><td class="addAnAssetTd">'+resKey+'</td><td class="addAnAssetTd"><a target=_blank href='+res[resKey]+'>'+res[resKey]+'</a></td></tr>';  
+                    content =  content+property;
+                  }else{
+                    var property = '<tr><td class="addAnAssetTd">'+resKey+'</td><td class="addAnAssetTd">'+res[resKey]+'</td></tr>';  
+                    content =  content+property;
+                  }
+                }
+
+              }
+            }else if(data.hasOwnProperty(key) && (key == 'wURN'  || key == 'mURN' || key == 'creationDate')) {                             
+              var property = '<tr><td class="addAnAssetTd">'+key+'</td><td class="addAnAssetTd">'+data[key]+'</td></tr>';  
+              content =  content+property;          
+          }
       }
     }
     content =content+'</table>';
@@ -483,8 +706,7 @@ var SaveCallBack1 = function (data) {
     e.innerHTML = content;
 };
 
-
-// ==+== ==+== ==+== ==+==QUESTION ==+== ==+== ==+== ==+== 
+// ==+== ==+== QUESTION ==+== ==+== 
 
 var patQuestion;
 
@@ -497,7 +719,7 @@ onSaveQuestion = function(quesName){
 onLaunchQuestion= function(quesName,uuidTagid,questionPlanidTargid,
   questionPublisherTarg,questionISBNid,questionModuleNoid,questionChapterNoid,
   questionBookAuthorid,
-  questionCopyRightid,quesObjAlignTarid,quesSkillsTarid,quesAdaptiveFlagTarId,apiKeyTarId,sessionKeyTarId,
+  questionCopyRightid,quesObjAlignTarid,quesSkillsTarid,apiKeyTarId,sessionKeyTarId,
   renderderedTagSelector,type,environment){
 var name = document.getElementById(quesName).value;
 var uuid = document.getElementById(uuidTagid).value;
@@ -512,7 +734,6 @@ var copyRightid = document.getElementById(questionCopyRightid).value
 var objAlignid = document.getElementById(quesObjAlignTarid).value
 var skillsTarid = document.getElementById(quesSkillsTarid).value
 var apiKeyId = document.getElementById(apiKeyTarId).value;
-var adaptiveFlagId = document.getElementById(quesAdaptiveFlagTarId).checked;
 var sessionKeyId = document.getElementById(sessionKeyTarId).value;
 var typeId = type;
 
@@ -560,9 +781,6 @@ if(copyRightid!==''){
 }
 if(objAlignid!==''){
   patQuestionConfig.objAlign = objAlignid;
-}
-if(adaptiveFlagId!==''){
-  patQuestionConfig.adaptiveFlag = adaptiveFlagId;
 }
 if(skillsTarid!==''){
 var comma = ',';
@@ -639,7 +857,6 @@ var SaveCallBackBank = function (data) {
     e.innerHTML = content;
 };
 
-// ==+== ==+== ==+== ==+== Pattern Bank ==+== ==+== ==+== ==+== 
 var patBank;
 
 onSaveBank = function(bankName){
@@ -768,10 +985,9 @@ patBank.on(SaveCallBackBank);
 
 }
 
-// ==+== ==+====+== ==+== PATTERN REVIEW ASSET ==+== ==+====+== ==+==
-
-onLaunchReviewAsset = function(renderderedTagSelector, type, uuid,
-    caption, altText, copyrtInfo) {
+// ==+== ==+== REVIEW ASSET ==+== ==+== 
+onLaunchReviewAsset = function (renderderedTagSelector, type, uuid,
+                               caption, altText, copyrtInfo) {
 
     var reviewAssetConfig =  {'selector' : renderderedTagSelector};
     
@@ -808,7 +1024,10 @@ onLaunchReviewAsset = function(renderderedTagSelector, type, uuid,
     reviewAsset.run(reviewAsset);
 }
 
-// ==+== ==+== ==+== ==+== PATTERN PRODUCT LINKING ==+== ==+== ==+== ==+====+== ==+== 
+
+//document.getElementById('questionStemImg').setAttribute('src',location.origin + '/images/default-thumbnail.gif');
+
+// ==+== ==+== PRODUCT LINKING ==+== ==+== 
 
 var _productLink;
 
@@ -847,11 +1066,12 @@ if(_productLink && _productLink.unmount){
 }
 
     _productLink = patternBroker.create('ProductLink', patternProductLink);
-
+    
+    //libConfig.alfToken = document.getElementById('alfToken').value;
     libConfig.alfuname = document.getElementById('alfuname').value;
     libConfig.alfpwd = document.getElementById('alfpwd').value;
+    libConfig.nodeRef = document.getElementById('nodeRef').value;    
     libConfig.headers['X-PearsonSSOSession'] = document.getElementById('sessionKeyId').value;
-    libConfig.headers['x-apikey'] = document.getElementById('apiKeyId').value;
     patternBroker.setup(libConfig);
 
 _productLink.setup(_productLinkConfig, _productLinkCallBack);
@@ -859,10 +1079,10 @@ _productLink.setup(_productLinkConfig, _productLinkCallBack);
 _productLink.run(_productLink);
 _productLink.on(_productLinkOnsaveCallBack);
 
+    
+},false);
 
-}, false);
-
-// ==+== ==+====+== ==+==  PATTERN SEARCH SELECT ==+== ==+====+== ==+== 
+// ==+== ==+== Search SCPatterns ==+== ==+== 
 
 var _interactivePattern;
 document.getElementById("interactivePattern").addEventListener("click", function(event){ 

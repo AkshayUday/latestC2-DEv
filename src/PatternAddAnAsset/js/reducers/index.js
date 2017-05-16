@@ -35,7 +35,6 @@ import difficultyLevelReducer from './difficultyLevelReducer';
 import ReviewAssetReducers from '../../../PatternReviewAsset/js/reducers/ReviewAssetReducer';
 import SpinnerReducer from '../../../common/components/spinner/SpinnerReducer';
 import userFilterReducer  from './userFilterReducer';
-import imgPreviewReducer from './ImgPreviewReducer';
 
 const appMetaData = combineReducers({
     form: formReducer,
@@ -54,8 +53,7 @@ const appMetaData = combineReducers({
     ReviewAssetReducers,
     siteDataReducer,
     SpinnerReducer,
-    userFilterReducer,
-	imgPreviewReducer
+    userFilterReducer
 });
 
 /**

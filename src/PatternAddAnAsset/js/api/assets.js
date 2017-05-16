@@ -23,12 +23,12 @@ export default {
  * This function returns promise.
 */
    get_assets(nodeRef, filter, sortValue='ORDER BY cmis:creationDate desc',index, limit) {
-    if (filter !== '' && filter !== undefined) {
+    /*if (filter !== '' && filter !== undefined) {
         filterString = filter;
-    }
+    }*/
 
     let SearchTextCond= '';
-    let fileTypeCond = '';
+    /*let fileTypeCond = '';
         if(filterString!==''&&filterString!=='/*'){
           //fileTypeCond = ' AND d.cmis:contentStreamMimeType IN(\''+filter+'\')';
           fileTypeCond = ' AND d.cmis:contentStreamMimeType LIKE \''+filterString.split('/')[0]+'/%25\' ';
@@ -39,8 +39,15 @@ export default {
           fileTypeCond = ' AND d.cmis:contentStreamMimeType NOT LIKE \'image/%25\' AND d.cmis:contentStreamMimeType NOT LIKE \'audio/%25\' AND d.cmis:contentStreamMimeType NOT LIKE \'video/%25\' ';
 
 
-        }
+        }*/
 
-    return AlfrescoApiService.getAssetsByFolder(window.tdc.patConfig,nodeRef,SearchTextCond,fileTypeCond,sortValue,index,limit);
+    return AlfrescoApiService.getAssetsByFolder(window.tdc.libConfig,nodeRef,SearchTextCond,filter,sortValue,index,limit);
+  },
+
+  getContent(libConfig, requestURL){
+    AlfrescoApiService.getContentFromURL(window.tdc.libConfig, record.contentURL).then(
+      function (res){
+        return 
+      })
   }
 }

@@ -79,8 +79,23 @@ class PE_tooltip extends Component {
         return styles
     }
 
-    render(){
-        let self = this
+    render(){ debugger;
+        let self = this;
+        let content = [];
+        let contentStr = this.state.content;
+        if(contentStr !== undefined){
+            if(contentStr.indexOf('@') !== -1){
+                let cStr = contentStr.split('@');
+                for(let c=0; c<cStr.length; c++){
+                    if(cStr[c] !== ''){
+                        content.push(cStr[c]);
+                        content.push(<br/>);
+                    }
+                }
+            }else{
+                content = contentStr;
+            }
+        }
         return (
             <span ref={function (cont){self._container = cont}}
             className={this.props.className +' pe-tooltip--wrapper'}
@@ -91,7 +106,7 @@ class PE_tooltip extends Component {
                 className={this._tooltipClass.bind(this)()}
                 style={this._positionTip.bind(this)()}>
                     <span className='pe-tooltip--arrow'></span>
-                    <p>{this.state.content}</p>
+                    <p>{content}</p>
                 </div>
             </span>
         )

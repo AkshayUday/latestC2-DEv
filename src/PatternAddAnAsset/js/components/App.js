@@ -57,12 +57,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.displayName = 'App';
-     if (props.patConfig) {
+
+    if (props.patConfig) {
       window.tdc = {
-        patConfig: props.patConfig.patSetup,
+        patConfig: props.patConfig,
         libConfig: props.libConfig
       };
-     }
+    }
   }
 
 static propTypes= {

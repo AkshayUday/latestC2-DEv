@@ -16,6 +16,8 @@ module.exports = {
         errors.file = 'Please Choose a File'
       }else if(values.file.length===0){
         errors.file = 'Please Choose a File'
+      }else if (!values.name) {
+          errors.name = 'Please Enter required field Name'
       }else{
         FileName = values.file[0].name;
         // SplitString = FileName.split('.');

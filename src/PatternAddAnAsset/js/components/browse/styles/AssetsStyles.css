@@ -51,15 +51,6 @@
     padding-right: 13px;
 }
 
-.assetRadioCnt{
-    width: 90%;
-}
-
-.imgPrevCnt{
-    width: 10%;
-    cursor: pointer;
-}
-
 :global .assetNameToolTip .pe-tooltip{
     width: 150px!important;
     right: -50px!important;

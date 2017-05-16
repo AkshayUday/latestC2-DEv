@@ -82,7 +82,7 @@ class FolderPane extends Component{
     					child.highlight = false;
     					child.fileHiglighter = 'fa fa-folder';
     					if(child.isParent){
-    						nodeRef = window.tdc.patConfig.nodeRef;
+    						nodeRef = window.tdc.libConfig.nodeRef;
     					}else{
     						nodeRef = child.parentId;
     					}

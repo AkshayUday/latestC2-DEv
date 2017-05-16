@@ -67,7 +67,7 @@ class AssetFilters extends Component {
     * tab visibility parameters from sample application
     **/
 
-    let tabVisibility = JSON.parse(tdc.patConfig.tabVisibility)
+    let tabVisibility = JSON.parse(tdc.libConfig.tabVisibility)
     let tabtoVisible = this.state.selectedTab;
     if(!tabVisibility.image && this.state.selectedTab === 0){
       if(tabVisibility.video){

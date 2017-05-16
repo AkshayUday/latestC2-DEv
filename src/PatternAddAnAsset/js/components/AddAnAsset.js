@@ -105,7 +105,7 @@ class AddAnAsset extends Component {
     uploadProgress = '';
   }
 
-  let tabVisibility = JSON.parse(tdc.patConfig.tabVisibility);
+  let tabVisibility = JSON.parse(tdc.libConfig.tabVisibility);
   let tabToVisible =2;
   let defaultTabName = tabVisibility.defaulttab;
   if(defaultTabName !== undefined && defaultTabName !== null && defaultTabName !== ''){

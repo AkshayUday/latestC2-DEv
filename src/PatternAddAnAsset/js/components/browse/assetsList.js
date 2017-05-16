@@ -6,8 +6,6 @@ class assetsList extends Component {
         let cssGridLayout = this.props.cssGridLayout,
         setSelectedItem = this.props.setSelectedItem,
         selectedRecord = this.props.selectedRecord,
-        imgPreviewHandle = this.props.imgPreviewHandle,
-        fileType = this.props.fileType,
         self = this,
         styleName = 'list-viewItems',
         listView = this.props.listViewStyle;
@@ -24,9 +22,7 @@ class assetsList extends Component {
                             selectedRecord = {selectedRecord}
                             setSelectedItem= {setSelectedItem}
                             pageView = {self.props.pageView}
-                            listViewStyle = {listView}
-                            imgPreviewHandle = {imgPreviewHandle}
-                            fileType = {fileType}/>
+                            listViewStyle = {listView}/>
                 </div>
             );
         });
@@ -46,9 +42,7 @@ assetsList.propTypes = {
   selectedRecord: PropTypes.object,
   pageView: PropTypes.string,
   list: PropTypes.array,
-  listViewStyle: PropTypes.string,
-  imgPreviewHandle: PropTypes.func,
-  fileType: PropTypes.string
+  listViewStyle: PropTypes.string
 }
 
 

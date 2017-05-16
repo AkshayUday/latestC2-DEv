@@ -69,7 +69,7 @@ export default {
  * This function returns promise.
 */
 
-   searchAssets(searchText, filter,index,limit, sortValue='ORDER BY cmis:creationDate desc') {debugger
+   searchAssets(searchText, filter,index,limit, sortValue='ORDER BY cmis:creationDate desc') {
           if (filter !== '' && filter !== undefined) {
               filterUrl = filter;
           }
@@ -93,13 +93,13 @@ export default {
         }
 
         }
-        if(filterUrl!==''&&filterUrl!=='/*'){
+        /*if(filterUrl!==''&&filterUrl!=='/*'){
           //fileTypeCond = ' AND d.cmis:contentStreamMimeType IN(\''+filter+'\')';                    
           fileTypeCond = ' AND d.cmis:contentStreamMimeType LIKE \''+filterUrl.split('/')[0]+'/%25\' ';
         }else{
           fileTypeCond = ' AND d.cmis:contentStreamMimeType NOT IN(\'image/*\',\'audio/*\',\'video/*\')';
-        }
-    return AlfrescoApiService.getAssetsBySearch(window.tdc.patConfig,SearchTextCond,fileTypeCond,sortValue,index,limit);
+        }*/
+    return AlfrescoApiService.getAssetsBySearch(window.tdc.libConfig,SearchTextCond,filterUrl,sortValue,index,limit);
    },
 
    getProductData(){
@@ -122,7 +122,7 @@ export default {
 /* Get EPS url */
 
   getEpsUrl(nodeRef){
-    return AlfrescoApiService.getEpsUrl(window.tdc.patConfig,nodeRef)
+    return AlfrescoApiService.getEpsUrl(window.tdc.libConfig,nodeRef)
   },
 
   difficultyLevelData(){
