@@ -18,8 +18,6 @@ import {getNodeRef,
 import JsonData from '../components/folderpane/TreeNodeUtil';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS} from '../constants/paginationConstants';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
-import localForageService from '../../../common/util/localForageService';
-import SearchConstants from '../constants/SavedSearchConstant';
 
 let nodeRef;
 /**
@@ -198,14 +196,8 @@ export function updateCurrentFolder(nodeRef){
     dispatch({
       type : GET_FOLDER,
       data : model
-    });
-        const userID = window.tdc.libConfig.alfuname;
-        model.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
-        model.patternName = SearchConstants.FOLDER_STRUCTURE;
-        model.type = SearchConstants.LOCAL_INSTANCE;
-        model.parentNodeRef = window.tdc.libConfig.nodeRef;
-        localForageService.saveFolderStructure(model);
-    }
+    })
+  }
 }
 /**
 * @function setReference method is used for settting reference to the component

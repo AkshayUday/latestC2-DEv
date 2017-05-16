@@ -140,7 +140,7 @@ export function getModifiedOn(date){
         }
     })
   
-  modifiedOn = month+' '+dat+', '+year;
+  modifiedOn = month+' '+dat+' '+year;
   return modifiedOn;
 }
 

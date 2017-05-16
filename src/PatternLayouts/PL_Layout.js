@@ -7,11 +7,17 @@ import PL_Footer from './PL_Footer';
 import Spinner from '../common/components/spinner/Spinner';
 
 const PL_Layout = (props) => { 
+		let header = '';
+		if(props.showheader == undefined || props.showheader == null || props.showheader == true){
+			header = <PL_Header title={props.modalTitle}/>;
+		}else{
+			header = '';
+		}
 		let layout =(
 			<PL_Modal modalClassName={props.modalClass} open={props.open}
 				modalClose={props.modalClose}>
 				<div className={props.containerClassName} id={props.containerId}>
-				<PL_Header title={props.modalTitle}/>
+				{header}
 			    <Spinner>
 				<PL_Body>
 					{props.children}

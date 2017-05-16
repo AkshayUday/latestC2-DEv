@@ -51,6 +51,15 @@
     padding-right: 13px;
 }
 
+.assetRadioCnt{
+    width: 90%;
+}
+
+.imgPrevCnt{
+    width: 10%;
+    cursor: pointer;
+}
+
 :global .assetNameToolTip .pe-tooltip{
     width: 150px!important;
     right: -50px!important;
@@ -208,28 +217,26 @@
     text-overflow: ellipsis;
     width: 66.66%;
     float: left;
-    display: inline-table;
 }
 
 .resource-type{
     display: flex;
     position: relative;
-    width: 13.66%;
+    width: 16.66%;
     float: left;
-    margin-left: 48px;
 }
 
 .added-by{
     display: flex;
     position: relative;
-    width: 17%;
+    width: 16.66%;
     float: left;
 }
 
 .date-modified{
     display: flex;
     position: relative;
-    width: 18%;
+    width: 25%;
     float: left;
 }
 
@@ -237,8 +244,4 @@
     min-height: 40px;
     max-width: 150px;
     word-break: break-all;
-}
-
-.radioButtonStyle{
-    margin: 10px 3px;
 }

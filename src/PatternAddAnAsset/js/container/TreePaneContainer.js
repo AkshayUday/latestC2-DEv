@@ -52,30 +52,14 @@ const mapDispatchToProps = (dispatch) => {
     return {
         componentWillMount: function () {
             // this.props.clearModal();
-            let inputData = {};
-            const userID = window.tdc.libConfig.alfuname;
-            inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
-            inputData.patternName = SearchConstants.FOLDER_STRUCTURE;
-            inputData.type = SearchConstants.LOCAL_INSTANCE;
-            let self = this;
-            let getResPromise = localForageService.getLocalForageData(inputData);
-            getResPromise.then(function (replyGet) {
-                if (Object.keys(replyGet[ inputData.patternName ]).includes(window.tdc.libConfig.nodeRef)) {
-                    const model = replyGet[ inputData.patternName ][window.tdc.libConfig.nodeRef];
-                    dispatch({
-                        type: GET_FOLDER,
-                        data: model
-                    });
-                    self.props.toggle(model, model[ 0 ].fileName, model.currentFolder)
-                }
-                else {
-                    console.log('Parent NodeRef is not exists');
-                    dispatch(getFolders());
-                }
-            }).catch(function (err) {
-                console.log(`Localforage not exist in TreePaneContainer for ${inputData.patternName}`, err)
+            if(!this.props.browsestate && this.props.folder === undefined){
                 dispatch(getFolders());
-            });
+            }else{
+                dispatch({
+                    type : GET_FOLDER,
+                    data : this.props.folder,
+                })
+            }
         },
         toggle:function (model,foldername, nodeRef){
             console.log(' Folder Name : '+ foldername +' ... '+' Node Ref : '+nodeRef);

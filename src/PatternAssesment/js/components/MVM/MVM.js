@@ -136,7 +136,7 @@ handleChange(tags,src){
 componentWillReceiveProps(nextProps) {
     //bean.fire(this.props.patConfig, this.props.patConfig.resultsEventId,nextProps);
     if(nextProps.errMsg==='Save Success'){
-      bean.fire(this.props.patConfig, this.props.patConfig.eventId,nextProps);
+      bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId,nextProps);
       this.setErrMsg('');
     }
     if (nextProps.contentTypeData) {

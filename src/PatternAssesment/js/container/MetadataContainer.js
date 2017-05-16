@@ -45,7 +45,7 @@ const getSelectedValues = (dataArray) => {
 */
 const mapStateToProps = (state, ownProps) => {
 
-bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
+bean.fire(ownProps.patConfig.patSetup, ownProps.patConfig.resultsEventId,state.form.mvm);
 
     const metadata = getSelectedValues(state.Metadatareducers);
     let patConfig = {};

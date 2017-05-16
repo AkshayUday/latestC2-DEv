@@ -79,27 +79,26 @@
 
 .listViewTitle{
 	lost-flex-container: row;
-	width: 27.33%;
-	float: left;
-	padding-left: 23.66%;
+	width: 35%;
+    float: left;
+    padding-left: 6%;
 }
-
 
 .listViewType{
 	lost-flex-container: row;
-	width: 13.66%;
+	width: 16.66%;
     float: left;
 }
 
 .listViewAddedBy{
 	lost-flex-container: row;
-	width: 17.33%;
+	width: 16.66%;
     float: left;
 }
 
 .listViewDateModifed{
 	lost-flex-container: row;
-	width: 18%;
+	width: 25%;
     float: left;
 }
 

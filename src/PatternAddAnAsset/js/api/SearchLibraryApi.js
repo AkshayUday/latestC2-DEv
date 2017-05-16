@@ -69,7 +69,7 @@ export default {
  * This function returns promise.
 */
 
-   searchAssets(searchText, filter,index,limit, sortValue='ORDER BY cmis:creationDate desc') {
+   searchAssets(searchText, filter,index,limit, sortValue='ORDER BY cmis:creationDate desc') {debugger
           if (filter !== '' && filter !== undefined) {
               filterUrl = filter;
           }

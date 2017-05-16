@@ -124,7 +124,7 @@ function _factory(pattern, component) {
 
           
             token++;
-		        bean.on(this, this.resultsEventId, function (data) {
+		        bean.on(this.patSetup, this.resultsEventId, function (data) {
 			          if (resultsCB) {
                     resultsCB(data);
                 }
@@ -145,11 +145,11 @@ function _factory(pattern, component) {
         },
 
         on : function (cb) {
-            bean.on(this, this.eventId, cb);
+            bean.on(this.patSetup, this.eventId, cb);
         },
 
         off : function () {
-            bean.off(this, this.eventId);
+            bean.off(this.patSetup, this.eventId);
         },
 
         fire : function (...msgs) {
@@ -161,7 +161,7 @@ function _factory(pattern, component) {
                }
                this.renderedComponent._reactInternalInstance._renderedComponent._instance.refs.mvmContainer.getWrappedInstance().getWrappedInstance().submit();
             }else{
-               bean.fire(this, this.eventId, msgFromComp);
+               bean.fire(this.patConfig.patSetup, this.eventId, msgFromComp);
             }
 
         },

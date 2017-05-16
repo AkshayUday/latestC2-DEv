@@ -297,7 +297,7 @@ class ProductLinkComponent extends React.Component {
 	  //console.log('onLinkClick');
 	  //console.log(this.props);
     if(this.state.selectedVal !=''){
-    bean.fire(this.props.patConfig, this.props.patConfig.eventId,this.state.selectedVal);      
+    bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId,this.state.selectedVal);      
     this.setState({selectedVal:''});
     this.props.closeModal();
     }	  

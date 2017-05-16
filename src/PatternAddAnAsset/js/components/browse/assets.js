@@ -33,12 +33,18 @@ class assets extends Component {
     
   }
 
+  launchImgPreview(event){
+    event.stopPropagation();
+    this.props.imgPreviewHandle(event);
+  }
+
   render() {
     const {formatDate} = this.props.intl;
      let item = this.props.productTemp,
         selectedRecord = this.props.selectedRecord,
         checked = false, fileSize, fileType = 'KB',
         setSelectedItem = this.props.setSelectedItem,
+        //imgPreviewHandle = this.props.imgPreviewHandle,
         resType,
         listView = this.props.listViewStyle;
 
@@ -91,15 +97,24 @@ class assets extends Component {
       let fileInfo = item.size !== undefined ? ' File size: '+ fileSize + fileType : '';
        let pageRender;
        let radioBtn = <Radio name='assetsCheckbox' ref='radioComp' record={item} checked= {checked} customFn = {setSelectedItem} parent = {this.assetSelectedEvent}/>
+       let magniIcon = '';
        let imgTag = <img src={item.url} alt='product image' />
        let self = this;
+       if(this.props.fileType == 'image'){
+        magniIcon = (<span><i className="fa fa-search"></i></span>);
+       }
        if(this.props.pageView === 'grid-view'){
         lengthOfChar = 47;
        fileName = trimFolderName(modFileName,lengthOfChar);
               pageRender = (
             <div onClick={self.changeRadioButton.bind(self)} key={item.nodeRef}
                 className={AssetStyles.searchResultBox +' card-item1 '}>
-              <div className={AssetStyles.assetRadioBtn}>{radioBtn}</div>
+              <div className={AssetStyles.assetRadioBtn}>
+
+                <div className={AssetStyles.assetRadioCnt}>{radioBtn}</div> 
+                <div onClick={self.launchImgPreview.bind(self)} className={AssetStyles.imgPrevCnt}>{magniIcon} </div>
+
+              </div>
               <div className={AssetStyles.assetImage}>
                 {imgTag}
               </div>
@@ -122,7 +137,6 @@ class assets extends Component {
             
          }else{
             let fileNameStyle = '';
-           const radioButtonStyle = `col-md-1 radio-box ${AssetStyles.radioButtonStyle}`;
             if(listView === 'browListViewWidth'){
               fileNameStyle = 'fileNameStyle';
               listView = AssetStyles.browListViewWidth;
@@ -136,7 +150,7 @@ class assets extends Component {
               pageRender = (<div
                 onClick={self.changeRadioButton.bind(self)} className={listView}>
              <div className={AssetStyles.listView}>
-                  <div className={radioButtonStyle}>{radioBtn}</div>
+                <div className='col-md-1 radio-box'>{radioBtn}</div>
                 <div className={AssetStyles.listImageSize}>{imgTag}</div>
                 <div className={AssetStyles.listViewNameStyle}>
                 <PE_tooltip className='assetNameToolTip' position='right' content={modFileName}>
@@ -162,7 +176,9 @@ assets.propTypes = {
       productTemp: PropTypes.object,
       setSelectedItem: PropTypes.func,
       selectedRecord: PropTypes.object,
+      imgPreviewHandle: PropTypes.func,
       pageView: PropTypes.string,
-      listViewStyle: PropTypes.string
+      listViewStyle: PropTypes.string,
+      fileType: PropTypes.string
   }
 export default injectIntl(assets);

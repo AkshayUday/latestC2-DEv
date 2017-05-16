@@ -186,6 +186,14 @@ const mapDispatchToProps = (dispatch) => {
                     dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,maxItems,fileTypeIndex,sortIndex,viewName));
                 })
             }
+        },
+        
+        showImgPreview:function (assetData){
+            assetData.showImgPreview = true;
+          dispatch({
+          type : 'IMAGE_PREVIEW_LAUNCH',
+          data : assetData
+          });
         }
     }
 }

@@ -20,7 +20,8 @@ class assetsContainer extends Component {
             selectedItem:null,
             pageView : this.props.pageDetails.viewName,
             viewName : 'grid-view',
-            sortValue : 0
+            sortValue : 0,
+            imgPreviewEnable: false
 
         }
         if(this.saveSearch){
@@ -74,6 +75,12 @@ class assetsContainer extends Component {
         this.props.onChange(event,this.state.sortValue);
     }
 
+    showImgPreview(event){
+        //this.props.assetsData.imgPreviewEnable = true;
+        //this.setState({imgPreviewEnable: true});
+        this.props.showImgPreview(JSON.parse(JSON.stringify(this.props.assetsData)));
+        event.stopPropagation();
+    }
 
     render() {
         let limit = this.state.limitRecords,
@@ -82,6 +89,8 @@ class assetsContainer extends Component {
             setSelectedItem = this.props.setSelectedItem,
             selectedRecord = this.props.selectedRecord,
             cssGridLayout = this.state.cssGridLayout,
+            showImgPreview = this.showImgPreview.bind(this),
+            fileType = this.props.filter,
             resultsArray = [],
             columnHeader = '',
             pageView,
@@ -227,6 +236,8 @@ class assetsContainer extends Component {
             cssGridLayout = {cssGridLayout}
             pageView = {pageView}
             listViewStyle = {liComStyle}
+            imgPreviewHandle={showImgPreview}
+            fileType = {fileType}
                 />
                 </div>
             );
@@ -269,7 +280,9 @@ assetsContainer.propTypes = {
     searchValue:PropTypes.string,
     collapse : PropTypes.bool,
     sortIndex: PropTypes.string,
-    viewName: PropTypes.string
+    viewName: PropTypes.string,
+    showImgPreview: PropTypes.func,
+    filter: PropTypes.string
 }
 
 module.exports = assetsContainer;

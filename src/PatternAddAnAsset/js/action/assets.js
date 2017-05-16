@@ -59,9 +59,11 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
             let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
+            let imgPreviewUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
 
-            _resData = {'nodeRef':res.body.results[i].properties['d.alfcmis:nodeRef'].value,
+            _resData = {'nodeRef':nodeRefText,
                 'mimetype':res.body.results[i].properties['d.cmis:contentStreamMimeType'].value,
+                'url': thumbnailUrl,
                 'displayName':res.body.results[i].properties['d.cmis:name'].value,
                 'name':res.body.results[i].properties['d.cmis:name'].value,
                 'fileName':res.body.results[i].properties['t.cmis:name'].value,
@@ -73,7 +75,8 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
                 'size':res.body.results[i].properties['d.cmis:contentStreamLength'].value,
                 'creationDate':res.body.results[i].properties['d.cmis:creationDate'].value,
                 'container':'documentLibrary',
-                'type':'document'
+                'type':'document',
+                'previewUrl': imgPreviewUrl,
             }
 
             if(JSON.parse(window.tdc.patConfig['cmis'])['wURN'] == true){
