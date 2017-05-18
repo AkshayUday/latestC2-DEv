@@ -48,18 +48,51 @@ const mapStateToProps = (state) => {
  *  will be merged into the component’s props
  * @param {function} toggle
  */
+ 
+ 
+ 
+ 
+//const mapDispatchToProps = (dispatch) => {
+ //   return {
+     //   componentWillMount: function () {
+            // this.props.clearModal();
+      //      if(!this.props.browsestate && this.props.folder === undefined){
+            
+         //       dispatch(getFolders());
+          //  }else{
+             //   dispatch({
+             //       type : GET_FOLDER,
+             //       data : this.props.folder,
+              //  })
+          //  }
 const mapDispatchToProps = (dispatch) => {
     return {
         componentWillMount: function () {
             // this.props.clearModal();
-            if(!this.props.browsestate && this.props.folder === undefined){
+            let inputData = {};
+            const userID = window.tdc.libConfig.alfuname;
+            inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+            inputData.patternName = SearchConstants.FOLDER_STRUCTURE;
+            inputData.type = SearchConstants.LOCAL_INSTANCE;
+            let self = this;
+            let getResPromise = localForageService.getLocalForageData(inputData);
+            getResPromise.then(function (replyGet) {
+                if (replyGet[ inputData.patternName ] !== undefined && Object.keys(replyGet[ inputData.patternName ]).includes(window.tdc.patConfig.nodeRef)) {
+                    const model = replyGet[ inputData.patternName ][window.tdc.patConfig.nodeRef];
+                    dispatch({
+                        type: GET_FOLDER,
+                        data: model
+                    });
+                    self.props.toggle(model, model[ 0 ].fileName, model.currentFolder)
+                }
+                else {
+                    console.log('Parent NodeRef is not exists');
+                    dispatch(getFolders());
+                }
+            }).catch(function (err) {
+                console.log(`Localforage not exist in TreePaneContainer for ${inputData.patternName}`, err)
                 dispatch(getFolders());
-            }else{
-                dispatch({
-                    type : GET_FOLDER,
-                    data : this.props.folder,
-                })
-            }
+            });
         },
         toggle:function (model,foldername, nodeRef){
             console.log(' Folder Name : '+ foldername +' ... '+' Node Ref : '+nodeRef);

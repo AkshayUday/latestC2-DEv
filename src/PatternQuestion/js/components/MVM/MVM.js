@@ -109,7 +109,8 @@ let validations = {
      'secs':false,
      'adaptiveFlag':false,
      'copyrightInfo': false,
-     'eTag': false
+     'eTag': false,
+     'metadataType':false
 };
 /**
  * @augments React.Component
@@ -176,7 +177,7 @@ handleChange(tags,src){
 componentWillReceiveProps(nextProps) {
     //bean.fire(this.props.patConfig, this.props.patConfig.resultsEventId,nextProps);
     if(nextProps.errMsg==='Save Success'){
-      bean.fire(this.props.patConfig, this.props.patConfig.eventId,nextProps);
+      bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId,nextProps);
       this.setErrMsg('');
     }
     if (nextProps.contentTypeData) {
@@ -212,7 +213,7 @@ componentWillReceiveProps(nextProps) {
     /*if(nextProps.goalSuggestions){
       this.state.goalSuggest = nextProps.goalSuggestions;
     }*/
-    this.state.isChecked = nextProps.adaptiveFlag;
+    //this.state.isChecked = nextProps.adaptiveFlag;
 }
 /** An event. Its name is module:QuestionMetaData.event:onBlur.
 * @event module:QuestionMetaData.event:onBlur
@@ -359,7 +360,7 @@ render() {
     fields : {uuid, filename,name,urn,contentType,audience,modNo,
               author,planId,chapNo,difficultyLevel,knowledgeLevel,discipline,
               publisher,isbn,goalAlignment,objAlign,timeReq,desc,keywords,
-              prodKeywords,goalKeywords,hours,mins,secs,adaptiveFlag,copyrightInfo,eTag},handleSubmit
+              prodKeywords,goalKeywords,hours,mins,secs,adaptiveFlag,metadataType,copyrightInfo,eTag},handleSubmit
         }= this.props;
 
     return (
@@ -481,7 +482,7 @@ MVMComponent = reduxForm({
      fields: ['uuid', 'filename','name','urn','isbn','planId','modNo','chapNo','author',
               'contentType','audience','difficultyLevel','knowledgeLevel','publisher',
               'discipline','goalAlignment','objAlign','timeReq','desc','keywords',
-              'prodKeywords','goalKeywords','hours','mins','secs','adaptiveFlag','copyRight','eTag'],
+              'prodKeywords','goalKeywords','hours','mins','secs','adaptiveFlag','metadataType','copyRight','eTag'],
      ...generateValidation(validations)
   })(MVMComponent);
 

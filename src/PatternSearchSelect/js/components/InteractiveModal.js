@@ -31,7 +31,7 @@ class InteractiveModal extends React.Component{
 		document.querySelector('body').style.overflow='auto'; // Enable background scroll after modal is closed
 		this.setState({open:false});
 		this.clearModal();
-		bean.fire(this.props.patConfig,this.props.patConfig.eventId,this.state.callBackValue);
+		bean.fire(this.props.patConfig.patSetup,this.props.patConfig.eventId,this.state.callBackValue);
 	}
 
 	closeModal(){

@@ -41,7 +41,7 @@ const getSelectedValues = (dataArray) => {
 */
 const mapStateToProps = (state, ownProps) => {
 
-bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
+bean.fire(ownProps.patConfig.patSetup, ownProps.patConfig.resultsEventId,state.form.mvm);
  
     const metadata = getSelectedValues(state.Metadatareducers);
     let patConfig = {};
@@ -98,6 +98,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
       const initialValue = {
         uuid : metadata.uuid,
         filename : metadata.filename,
+        metadataType: metadata.metadataType,
         name : metadata.name,
         urn : metadata.urn,
         planId: metadata.planId,
@@ -130,6 +131,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
       return {
           //suggestions: metadata.suggestions,
           prodSuggestions: metadata.prodSuggestions,
+          metadataType: metadata.metadataType,
           //goalSuggestions: metadata.goalSuggestions,
           contentTypeData : metadata.contentTypeData,
           audienceRolesData : metadata.audienceRolesData,

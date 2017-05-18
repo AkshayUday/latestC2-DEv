@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
       		})
 		},
 
-		sendPreviewSelectedToQuad(selIndx, closeFn){e
+		sendPreviewSelectedToQuad(selIndx, closeFn){
 		  let mockProps = {};
 		  mockProps.record = this.props.preview[selIndx];
 		  mockProps.closePopup = closeFn;

@@ -35,18 +35,6 @@ class EntryPopup extends React.Component{
     closeOnSelect() {
         this.setState({open:false});
         document.querySelector('body').style.overflow='auto';
-        const {displayvaluecount, sortIndex, viewName, displayValueCountForList} = store.getState().userFilterReducer;
-        let inputData = {};
-        const userID = window.tdc.libConfig.alfuname;
-        inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
-        inputData.patternName = window.tdc.patConfig.pattern;
-        inputData.type = SearchConstants.LOCAL_INSTANCE;
-        inputData.saveType = SearchConstants.SAVE_SEARCH;
-        inputData.gridMode = displayvaluecount;
-        inputData.viewMode = viewName;
-        inputData.listMode = displayValueCountForList;
-        inputData.sortIndex = sortIndex;
-        localForageService.saveLocalForageData(inputData);
         this.props.clearModal();
     }
 
@@ -63,7 +51,7 @@ class EntryPopup extends React.Component{
         this.sendPreviewSelectedToQuad(selIndx, this.closeOnSelect);
     }
 
-    render(){
+    render(){ debugger;
         const { open } = this.state;
         let componentToDisplay;
         let dispHeader = true;

@@ -154,8 +154,15 @@ uploadAsset(libConfigData,nodeRef,title,fileName,postData){
 
 
 getEpsUrl(libConfigData,nodeRef){
-	let requestUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/publication-url?nodeRef=workspace://SpacesStore/'+window.tdc.patConfig.nodeRef;
+	let requestUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/publication-url?nodeRef=workspace://SpacesStore/'+nodeRef;
 	return getRequest(window.tdc.libConfig.headers['x-apikey'],window.tdc.libConfig.headers['X-PearsonSSOSession'],requestUrl);
+},
+
+/**
+* this method is used to get content from Platform and smarlink assets
+**/
+getContentFromURL(libConfig,requestURL){
+	return getRequest(libConfig.headers['x-apikey'],libConfig.headers['X-PearsonSSOSession'],requestURL);
 }
 }
 

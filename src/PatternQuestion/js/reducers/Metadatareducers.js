@@ -45,6 +45,7 @@ const initilizeValues = [{
   //product:'',
   eTag:'',
   errMsg:'',
+  metadataType: '',
   onloadValue:{}
 }]
 /**@function Metadatareducers

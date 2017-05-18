@@ -179,7 +179,7 @@ var skillsId = document.getElementById(skillsTargid).value;
 var apiKeyId = document.getElementById(apiKeyTarId).value;
 var sessionKeyId = document.getElementById(sessionKeyTarId).value;
 var adaptiveFlagId = document.getElementById(adaptiveFlagTarId).checked;
-var typeId = type;
+var typeId = type; 
 /*var asConType = document.getElementsByName(assessContentTypeid)[0];
 var asContentType = asConType.options[asConType.selectedIndex].value;*/
 
@@ -241,7 +241,7 @@ var cbAssesment = function (data) {
     var e = document.getElementById('compResp');
     //e.innerHTML = String(data);
     var metadataContent ='<table>';
-    for (var key in data) {
+    for (var key in data) { 
       if (data.hasOwnProperty(key) && typeof(data[key]) === 'object' && data[key].hasOwnProperty('value')) {
         var property = '<tr><td class="uppercase">'+key+'</td><td>'+data[key].value+'</td></tr>';
         if(typeof(data[key].value) === 'string'){
@@ -260,6 +260,9 @@ var cbAssesment = function (data) {
             var selectedProperty = '<tr><td class="uppercase">'+key+'</td><td>'+selectedValue+'</td></tr>';
             metadataContent =  metadataContent+selectedProperty;
           }
+        }else if(key === 'adaptiveFlag'&& typeof(data[key].value) === 'boolean'){
+            var selectedProperty = '<tr><td class="uppercase">'+key+'</td><td>'+data[key].value+'</td></tr>';
+            metadataContent =  metadataContent+selectedProperty;
         }
       }
     }
@@ -364,22 +367,23 @@ document.getElementById('EpsContainer').style.visibility= 'hidden';
 var AddanAssetCallBack = function (data){ 
     //console.log(data);  
     //data.url = _.replace(data.url,'/thumbnails/',''); 
-    
-    var uniqueID = data.nodeRef.split('/')[3];
-    var assetType = data.mimetype.split('/')[0];
-    
-    data['uniqueID'] = uniqueID;
-    data['assetType'] = assetType;
-    
-    if(data['assetType'] == 'image'){
-        var img = new Image();
-        img.addEventListener("load", function(){            
-            data['thumbnail_height'] = this.height;
-            data['thumbnail_width'] =  this.width;      
-        });
+    if(data.mimetype !== undefined && data.mimetype !== null){
+        var uniqueID = data.nodeRef.split('/')[3];
+        var assetType = data.mimetype.split('/')[0];
         
-        img.src = data.url;
-    }   
+        data['uniqueID'] = uniqueID;
+        data['assetType'] = assetType;
+        
+        if(data['assetType'] == 'image'){
+            var img = new Image();
+            img.addEventListener("load", function(){            
+                data['thumbnail_height'] = this.height;
+                data['thumbnail_width'] =  this.width;      
+            });
+            
+            img.src = data.url;
+        }   
+    }
     
     document.getElementById('questionStemImg').setAttribute('src',data.url);
     if(data.EpsUrl){
@@ -393,9 +397,52 @@ var AddanAssetCallBack = function (data){
     
     var content ='<table class="addAnAssetTable">';
     for (var key in data) {
-      if (data.hasOwnProperty(key) && (key == 'wURN'  || key == 'mURN' || key == 'creationDate')) {                             
-           var property = '<tr><td class="addAnAssetTd">'+key+'</td><td class="addAnAssetTd">'+data[key]+'</td></tr>';  
-            content =  content+property;          
+      if (data.hasOwnProperty(key)) { 
+            /*if(key==='results'){
+              for(i=0;i<data[key].length;i++){
+                var tempValue = data[key][i].properties['s.avs:url'].value;
+                var property = '<tr><td class="addAnAssetTd">'+key+'</td><td class="addAnAssetTd">'+tempValue+'</td></tr>';  
+                content =  content+property;
+              }
+            }else{
+              var property = '<tr><td class="addAnAssetTd">'+key+'</td><td class="addAnAssetTd">'+data[key]+'</td></tr>';  
+              content =  content+property;
+            }*/
+            if(data.desc.indexOf('smartLinkType') !== -1){
+              if(key==='body'){
+                var res = data.body.results;
+                for(i=0;i<res.length;i++){
+                    var tempValue = data.body.results[0].properties['s.avs:url'].value;
+                    for(i=0;i<tempValue.length;i++){
+                      var property = '<tr><td class="addAnAssetTd">'+'Value'+'</td><td class="addAnAssetTd"><a target=_blank href='+tempValue[i]+'>'+tempValue[i]+'</a></td></tr>';  
+                      content =  content+property;
+                    }
+                }
+              }
+            }else if(data.desc.indexOf('streamingMediaPackageType') !== -1){
+              if(key==='body'){
+                var res = data.body;
+                for(var resKey in res){
+                  if(resKey==='sourceAssetFile'){
+                    var assetObj = res[resKey];
+                    for(var assetKey in assetObj){
+                      var property = '<tr><td class="addAnAssetTd">'+assetKey+'</td><td class="addAnAssetTd">'+assetObj[assetKey]+'</td></tr>';  
+                      content =  content+property;
+                    }
+                  }else if(resKey === 'mediaId'){
+                    var property = '<tr><td class="addAnAssetTd">'+resKey+'</td><td class="addAnAssetTd"><a target=_blank href='+res[resKey]+'>'+res[resKey]+'</a></td></tr>';  
+                    content =  content+property;
+                  }else{
+                    var property = '<tr><td class="addAnAssetTd">'+resKey+'</td><td class="addAnAssetTd">'+res[resKey]+'</td></tr>';  
+                    content =  content+property;
+                  }
+                }
+
+              }
+            }else if(data.hasOwnProperty(key) && (key == 'wURN'  || key == 'mURN' || key == 'creationDate')) {                             
+              var property = '<tr><td class="addAnAssetTd">'+key+'</td><td class="addAnAssetTd">'+data[key]+'</td></tr>';  
+              content =  content+property;          
+          }
       }
     }
     content =content+'</table>';
@@ -574,7 +621,7 @@ var cbQuestion = function (data) {
     var e = document.getElementById('questionCompResp');
     //e.innerHTML = String(data);
     var metadataContent ='<table>';
-    for (var key in data) {
+    for (var key in data) { 
       if (data.hasOwnProperty(key) && typeof(data[key]) === 'object' && data[key].hasOwnProperty('value')) {
         var property = '<tr><td class="uppercase">'+key+'</td><td>'+data[key].value+'</td></tr>';
         if(typeof(data[key].value) === 'string'){
@@ -593,6 +640,9 @@ var cbQuestion = function (data) {
             var selectedProperty = '<tr><td class="uppercase">'+key+'</td><td>'+selectedValue+'</td></tr>';
             metadataContent =  metadataContent+selectedProperty;
           }
+        }else if(key === 'adaptiveFlag' && typeof(data[key].value) === 'boolean'){
+            var selectedProperty = '<tr><td class="uppercase">'+key+'</td><td>'+data[key].value+'</td></tr>';
+            metadataContent =  metadataContent+selectedProperty;
         }
       }
     }

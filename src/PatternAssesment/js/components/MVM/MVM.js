@@ -170,7 +170,7 @@ componentWillReceiveProps(nextProps) {
       this.state.prodSuggest = nextProps.prodSuggestions;
     }
     //if(nextProps.adaptiveFlag){
-      this.state.isChecked = nextProps.adaptiveFlag;
+      //this.state.isChecked = nextProps.adaptiveFlag;
     //}
 }
 /** An event. Its name is module:AssessmentMetadata.event:onBlur.

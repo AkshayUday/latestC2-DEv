@@ -23,6 +23,7 @@ import bean from 'bean';
 import store from '../../js/store';
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
+import {getFilterQueryForAssets, findPlatformOrSmartLink} from '../utils/util';
 
 function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName,sortIndex){
     res.body.showTabs = true;
@@ -46,6 +47,7 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
     //res.body.token = token;
     let items=[];
     let responseData = res.body.results;
+    let mimeType, description, contentURL;
     if(responseData.length>0){
         for(let i=0;i<responseData.length;i++){
             let _resData = '';
@@ -53,7 +55,12 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
             let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
-
+            mimeType = res.body.results[i].properties['d.cmis:contentStreamMimeType'].value;
+            description = res.body.results[i].properties['d.cmis:description'].value;
+            if(description !== null && description !== undefined &&
+                (description.indexOf('streamingMediaPackageType') !== -1 || description.indexOf('smartLinkType') !== -1)){
+                contentURL = findPlatformOrSmartLink(window.tdc.patConfig.alfserver,mimeType, description, nodeRefVal);
+            }
             _resData = {'nodeRef':nodeRefText,
                 'mimetype':res.body.results[i].properties['d.cmis:contentStreamMimeType'].value,
                 'url': thumbnailUrl,
@@ -142,15 +149,16 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             3:'ORDER BY cmis:name'
         };
 
-            let saveObj;
-            if(value!==''&&value!==undefined){
-                saveObj = {'term': value};
-            }
+        let saveObj;
+        if(value!==''&&value!==undefined){
+            saveObj = {'term': value};
+        }
 
         //AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
         //let token = JSON.parse(success.text).data.ticket;
-        searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex]) .then(function (res) {
-            //console.log(res);
+        // searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex]) .then(function (res) {
+        //console.log(res);
+        searchLibraryApi.searchAssets(value,getFilterQueryForAssets(fileTypeIndex),index,limit, sortValues[sortIndex]) .then(function (res) {
             let assetData=getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName,sortIndex);
             dispatch({
                 type : SEARCH_DISPLAY_ASSETS,
@@ -158,36 +166,36 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             });
 
             //dispatch(searchLibButtonVisibility(false));
-                const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
-                let inputData = {}
+            const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
+            let inputData = {}
             const userID = window.tdc.libConfig.alfuname;
             inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
             inputData.patternName = window.tdc.patConfig.pattern;
-                inputData.type = SearchConstants.LOCAL_INSTANCE;
-                let getResPromise = localForageService.getLocalForageData(inputData);
-                getResPromise.then(function (replyGet){
-                    if (replyGet[ inputData.patternName ].displayCount !== undefined) {
-                        const {gridMode, listMode } =  replyGet[ inputData.patternName ].displayCount;
-                        let displayCountForGrid, displayCountForList;
-                        if (viewName !== 'list-view') {
-                            displayCountForGrid = maxItems;
-                            displayCountForList = listMode;
-                        } else {
-                            displayCountForGrid = gridMode;
-                            displayCountForList = maxItems;
-                        }
-                        dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
-                        saveToLocalForageService(saveObj);
+            inputData.type = SearchConstants.LOCAL_INSTANCE;
+            let getResPromise = localForageService.getLocalForageData(inputData);
+            getResPromise.then(function (replyGet){
+                if (replyGet[ inputData.patternName ].displayCount !== undefined) {
+                    const {gridMode, listMode } =  replyGet[ inputData.patternName ].displayCount;
+                    let displayCountForGrid, displayCountForList;
+                    if (viewName !== 'list-view') {
+                        displayCountForGrid = maxItems;
+                        displayCountForList = listMode;
                     } else {
-                        dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
-                        saveToLocalForageService(saveObj);
+                        displayCountForGrid = gridMode;
+                        displayCountForList = maxItems;
                     }
-                }).catch(function (err,saveObj) {
-                    console.log('serach library action', err);
+                    dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
+                    saveToLocalForageService(saveObj);
+                } else {
                     dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
                     saveToLocalForageService(saveObj);
-        });
+                }
+            }).catch(function (err,saveObj) {
+                console.log('serach library action', err);
+                dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
+                saveToLocalForageService(saveObj);
             });
+        });
     }
 }
 
@@ -270,22 +278,25 @@ export function sendToQuad(props){
         let assetData = props.record;
         let check = JSON.parse(window.tdc.patConfig.tabVisibility);
 
-        /*if(check.wURN != true){
-         delete assetData['wURN'];
-         delete assetData['mURN'];
-         }*/
-
-        if(check.epsUrl==true){
+        if(assetData !== null && assetData !== undefined &&
+            assetData.contentURL !== undefined){
+            AlfrescoApiService.getContentFromURL(window.tdc.libConfig, assetData.contentURL)
+                .then(function (response){
+                    response.desc = assetData.description;
+                    bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,response);
+                })
+        }else if(check.epsUrl==true){
             let temp1 = assetData.nodeRef.split('/');
             let nodeRef = temp1[temp1.length -1];
             searchLibraryApi.getEpsUrl(nodeRef).then(function (data){
                 assetData.EpsUrl = data.body.publicationUrl;
+                assetData.desc = 'EpsMeida';
                 bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
             },function (error){
                 console.log('Fetching EPS url failed' + error);
             });
-        }
-        else{
+        }else{
+            assetData.desc = 'NormalMedia';
             bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
         }
         props.closePopup();

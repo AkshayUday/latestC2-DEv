@@ -64,6 +64,11 @@ class SingleFileUpload extends Component {
     onSave(values){
        values.file = this.state.file;
        let vStatus = validateuploadForm(values);
+       if(this.props.isParent){
+        this.setState({errDisplay : 'Please Select a Subfolder to Upload'})
+       } else 
+       
+      
        if(vStatus.file){       
           let msg = this.getErrMsg(vStatus.name)+' '+this.getErrMsg(vStatus.file);
           this.setState({errDisplay : msg});

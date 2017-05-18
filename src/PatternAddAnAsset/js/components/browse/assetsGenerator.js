@@ -116,13 +116,14 @@ class assetsContainer extends Component {
             size = 1;
             pageView = 'list-view';
             liComStyle = 'list-width';
+            const listViewTitle =  `${AssetGeneratorStyles.listViewTitle} ${this.props.isSearchLibrary ? AssetGeneratorStyles.searchListViewTitle : ''}`;
             columnHeader = (
-                <div className={AssetGeneratorStyles.listViewColumn}>
-        <div className={AssetGeneratorStyles.listViewTitle}><b>Filename</b></div>
-            <div className={AssetGeneratorStyles.listViewType} ><b>Type</b></div>
-            <div className={AssetGeneratorStyles.listViewAddedBy}><b>Added by</b></div>
-            <div className={AssetGeneratorStyles.listViewDateModifed}><b>Date Modifed</b></div>
-            </div>
+              <div className={AssetGeneratorStyles.listViewColumn}>
+                  <div className={listViewTitle}><b>Filename</b></div>
+                  <div className={AssetGeneratorStyles.listViewType}><b>Type</b></div>
+                  <div className={AssetGeneratorStyles.listViewAddedBy}><b>Added by</b></div>
+                  <div className={AssetGeneratorStyles.listViewDateModifed}><b>Date Modifed</b></div>
+              </div>
         )
         }
 

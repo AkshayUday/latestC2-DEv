@@ -19,6 +19,7 @@ import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 import store from '../../js/store';
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
+import {getFilterQueryForAssets, findPlatformOrSmartLink} from '../utils/util';
 
 let i = 1;
 
@@ -51,6 +52,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
     //   res.body.numberFound = a +(2*maxItems);
     // }
     // }
+    let mimeType, description, contentURL;
     if(responseData.length>0){
         for(let i=0;i<responseData.length;i++){
 
@@ -59,18 +61,24 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
             let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
-            let imgPreviewUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
-
-            _resData = {'nodeRef':nodeRefText,
-                'mimetype':res.body.results[i].properties['d.cmis:contentStreamMimeType'].value,
+            mimeType = res.body.results[i].properties['d.cmis:contentStreamMimeType'].value;
+            description = res.body.results[i].properties['d.cmis:description'].value;
+             if(description !== null && description !== undefined &&
+                (description.indexOf('streamingMediaPackageType') !== -1 || description.indexOf('smartLinkType') !== -1)){
+                contentURL = findPlatformOrSmartLink(window.tdc.patConfig.alfserver,mimeType, description, nodeRefVal);
+            }
+	    let imgPreviewUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
+            _resData = {'nodeRef':res.body.results[i].properties['d.alfcmis:nodeRef'].value,
+                'mimetype':mimeType,
                 'url': thumbnailUrl,
+                'contentURL': contentURL,
                 'displayName':res.body.results[i].properties['d.cmis:name'].value,
                 'name':res.body.results[i].properties['d.cmis:name'].value,
                 'fileName':res.body.results[i].properties['t.cmis:name'].value,
                 'title':res.body.results[i].properties['t.cm:title'].value,
                 'modifiedBy':res.body.results[i].properties['d.cmis:lastModifiedBy'].value,
                 'modifiedByUser':res.body.results[i].properties['d.cmis:lastModifiedBy'].value.toUpperCase(),
-                'description':res.body.results[i].properties['d.cmis:description'].value,
+                'description':description,
                 'modifiedOn':res.body.results[i].properties['d.cmis:lastModificationDate'].value,
                 'size':res.body.results[i].properties['d.cmis:contentStreamLength'].value,
                 'creationDate':res.body.results[i].properties['d.cmis:creationDate'].value,
@@ -110,12 +118,13 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
         index = (pageNo*maxItems)-maxItems;
         limit = maxItems;
 
-        let fileTypeForSearch = {
+        /*let fileTypeForSearch = {
             0:'image/*',
             1:'video/*',
             2:'audio/*',
             3:'/*',
-        };
+        };*/
+        
 
         let tabVisibility = JSON.parse(window.tdc.patConfig.tabVisibility);
         if(tabVisibility.image==false){
@@ -138,7 +147,7 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             3:'ORDER BY cmis:name'
         };
 
-    assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],index,limit)
+    assetsApi.get_assets(nodeRef,getFilterQueryForAssets(fileTypeIndex),sortValues[sortIndex],index,limit)
       .then(function (res){
       let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
           dispatch({

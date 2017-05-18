@@ -93,7 +93,7 @@ class SearchSpec extends Component{
 		this.state.actionTypes.set('PAGING_MAX', Util.getActionObj('GET_PAGE_MAX', this.state.pageLimit));
 
 		let type, value;
-		if(textValue !== '' && textValue !== undefined){
+		if(textValue !== '' && textValue !== undefined && textValue.trim().length > 0){
 				type = 'GET_GENERIC_ALL',
 				value = textValue.trim();
 		}else{

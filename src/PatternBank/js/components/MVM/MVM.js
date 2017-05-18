@@ -33,7 +33,7 @@ export const fields = ['uuid','filename', 'name', 'urn', 'isbn','modNo','chapNo'
                        'difficultyLevel','knowledgeLevel','publisher',
                        'discipline', 'goalAlignment','objAlign',
                        'timeReq','desc','keywords','prodKeywords','goalKeywords',
-                       'hours','mins','secs','copyrightInfo','eTag'];
+                       'hours','mins','secs','copyrightInfo','eTag','metadataType'];
 /**
  * The validations value.
  * @type {object}
@@ -66,7 +66,8 @@ let validations = {
      'mins':false,
      'secs':false,
      'eTag':false,
-     'copyrightInfo':false
+     'copyrightInfo':false,
+     'metadataType':false
 };
 /**
  * @augments React.Component
@@ -121,7 +122,7 @@ handleChange(tags,src){
 componentWillReceiveProps(nextProps) {
     //bean.fire(this.props.patConfig, this.props.patConfig.resultsEventId,nextProps);
     if(nextProps.errMsg==='Save Success'){
-      bean.fire(this.props.patConfig, this.props.patConfig.eventId,nextProps);
+      bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId,nextProps);
       this.setErrMsg('');
     }
     if (nextProps.contentTypeData) {
@@ -315,7 +316,7 @@ render() {
                 planId,chapNo,difficultyLevel,
               knowledgeLevel,copyrightInfo,discipline,publisher,
               isbn,goalAlignment,objAlign,timeReq,desc,keywords,
-              prodKeywords,goalKeywords,hours,mins,secs,eTag},
+              prodKeywords,goalKeywords,hours,mins,secs,eTag,metadataType},
     handleSubmit
   }= this.props;
     return (
@@ -428,7 +429,7 @@ MVMComponent = reduxForm({
               'author','contentType','audience','difficultyLevel',
               'knowledgeLevel','publisher','copyrightInfo','discipline',
               'goalAlignment','objAlign','timeReq','desc','keywords',
-              'prodKeywords','goalKeywords','hours','mins','secs','eTag'],
+              'prodKeywords','goalKeywords','hours','mins','secs','eTag','metadataType'],
      ...generateValidation(validations)
   })(MVMComponent);
 

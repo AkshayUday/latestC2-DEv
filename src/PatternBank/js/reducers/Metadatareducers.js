@@ -43,6 +43,7 @@ const initilizeValues = [{
   secs: '',
   eTag:'',
   copyrightInfo: '',
+  metadataType: '',
   onloadValue:{}
 }]
 /**@function Metadatareducers

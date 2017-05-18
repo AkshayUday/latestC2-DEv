@@ -40,7 +40,7 @@ const getSelectedValues = (dataArray) => {
 */
 const mapStateToProps = (state, ownProps) => {
 
-bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
+bean.fire(ownProps.patConfig.patSetup, ownProps.patConfig.resultsEventId,state.form.mvm);
   
     const metadata = getSelectedValues(state.Metadatareducers);
     let patConfig = {};
@@ -96,6 +96,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
       const initialValue = {
         uuid : metadata.uuid,
         filename : metadata.filename,
+        metadataType: metadata.metadataType,
         name : metadata.name,
         urn : metadata.urn,
         planId: metadata.planId,
@@ -131,6 +132,7 @@ bean.fire(ownProps.patConfig, ownProps.patConfig.resultsEventId,state.form.mvm);
         prodSuggestions: metadata.prodSuggestions,
         //goalSuggestions: metadata.goalSuggestions,
         contentTypeData : metadata.contentTypeData,
+        metadataType: metadata.metadataType,
         audienceRolesData : metadata.audienceRolesData,
         difficultyLevelData : metadata.difficultyLevelData,
         knowledgeLevelData : metadata.knowledgeLevelData,
@@ -199,6 +201,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     componentWillMount(){
+      this.state.isChecked = ownProps.patConfig.patSetup.adaptiveFlag;
       dispatch(fetchMetaDataTaxonomy(metadata))
     },
     onSave(values, dispatch){

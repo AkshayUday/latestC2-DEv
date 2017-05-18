@@ -172,4 +172,3 @@ epsupload PatternProductLink.js
 epsupload PatternQuestion.js
 epsupload Patternvendor.js
 epsupload PatternSearchSelect.js
-epsupload PatternSearchSelect.js

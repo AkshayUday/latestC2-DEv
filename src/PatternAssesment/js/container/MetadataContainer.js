@@ -168,6 +168,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     componentWillMount(){
+      this.state.isChecked = ownProps.patConfig.patSetup.adaptiveFlag;
       dispatch(fetchMetaDataTaxonomy(metadata))
     },
     onSave(values, dispatch){
