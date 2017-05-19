@@ -286,15 +286,22 @@ export function sendToQuad(props){
                     bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,response);
                 })
         }else if(check.epsUrl==true){
-            let temp1 = assetData.nodeRef.split('/');
-            let nodeRef = temp1[temp1.length -1];
-            searchLibraryApi.getEpsUrl(nodeRef).then(function (data){
-                assetData.EpsUrl = data.body.publicationUrl;
-                assetData.desc = 'EpsMeida';
-                bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
-            },function (error){
-                console.log('Fetching EPS url failed' + error);
-            });
+                let temp1 = assetData.nodeRef.split('/');
+                let nodeRef = temp1[temp1.length -1];
+                searchLibraryApi.getEpsUrl(nodeRef).then(function (data) {
+                    assetData.EpsUrl = data.body.publicationUrl;
+                    assetData.desc = 'EpsMeida';
+                    getResultObj(nodeRef, nodeRef).then(function (resultKey) {
+                        searchLibraryApi.getNonEpsUrl(nodeRef).then(function (data) {
+                        console.log('---->', data)
+                        bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
+                    }, function (error) {
+                        console.log('Fetching Non EPS url failed' + error);
+                        });
+                    });
+                }, function (error) {
+                    console.log('Fetching EPS url failed' + error);
+                });
         }else{
             assetData.desc = 'NormalMedia';
             bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
@@ -302,3 +309,14 @@ export function sendToQuad(props){
         props.closePopup();
     }
 }
+
+function getResultObj(nodeRef, resultsArray) {
+     new Promise(function parseNodeRefToGetProductResult(resolve, reject) {
+        if (nodeRef === resultsArray) {
+            resolve('test---akshay')
+        } else {
+            reject();
+        }
+    });
+}
+

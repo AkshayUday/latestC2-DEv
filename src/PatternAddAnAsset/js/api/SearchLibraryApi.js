@@ -122,7 +122,10 @@ export default {
 /* Get EPS url */
 
   getEpsUrl(nodeRef){
-    return AlfrescoApiService.getEpsUrl(window.tdc.patConfig,nodeRef)
+    return AlfrescoApiService.getEpsUrl(window.tdc.libConfig,nodeRef)
+  },
+  getNonEpsUrl(nodeRef){
+    return AlfrescoApiService.getNonEpsUrl(window.tdc.libConfig,nodeRef)
   },
 
   difficultyLevelData(){

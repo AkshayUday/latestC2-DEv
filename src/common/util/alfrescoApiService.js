@@ -157,6 +157,13 @@ getEpsUrl(libConfigData,nodeRef){
 	let requestUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/publication-url?nodeRef=workspace://SpacesStore/'+nodeRef;
 	return getRequest(window.tdc.libConfig.headers['x-apikey'],window.tdc.libConfig.headers['X-PearsonSSOSession'],requestUrl);
 },
+getNonEpsUrl(libConfigData,nodeRef){
+	console.log('test',nodeRef)
+	let baseUrl = libConfigData.alfserver+queryBaseUrl();
+	let requestUrl = baseUrl+'?cmisselector=query&q=SELECT d.*, e.exif:pixelXDimension, e.exif:pixelYDimension FROM cmis:document AS d JOIN exif:exif AS e ON d.cmis:objectId =' +
+		'e.cmis:objectId where d.cmis:objectId = \''+nodeRef+'\'';
+	return getRequest(libConfigData.headers['X-PearsonSSOSession'],requestUrl);
+},
 
 /**
 * this method is used to get content from Platform and smarlink assets
