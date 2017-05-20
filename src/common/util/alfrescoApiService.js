@@ -157,12 +157,29 @@ getEpsUrl(libConfigData,nodeRef){
 	let requestUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/publication-url?nodeRef=workspace://SpacesStore/'+nodeRef;
 	return getRequest(window.tdc.libConfig.headers['x-apikey'],window.tdc.libConfig.headers['X-PearsonSSOSession'],requestUrl);
 },
-getNonEpsUrl(libConfigData,nodeRef){
-	console.log('test',nodeRef)
-	let baseUrl = libConfigData.alfserver+queryBaseUrl();
-	let requestUrl = baseUrl+'?cmisselector=query&q=SELECT d.*, e.exif:pixelXDimension, e.exif:pixelYDimension FROM cmis:document AS d JOIN exif:exif AS e ON d.cmis:objectId =' +
-		'e.cmis:objectId where d.cmis:objectId = \''+nodeRef+'\'';
-	return getRequest(libConfigData.headers['X-PearsonSSOSession'],requestUrl);
+getNonEpsUrl(libConfigData,nodeRef, resultKey){
+	let baseUrl = window.tdc.patConfig.alfserver+queryBaseUrl();
+	let cmisQuery;
+	switch(resultKey) {
+		case 'P:exif:exif':
+			cmisQuery = '?cmisselector=query&q=SELECT d.*, e.exif:pixelXDimension, e.exif:pixelYDimension FROM cmis:document AS d JOIN exif:exif AS e ON d.cmis:objectId =  e.cmis:objectId where d.cmis:objectId = \''+nodeRef+'\'';
+			break;
+		case 'P:cplg:contentAsset':
+			cmisQuery = '?cmisselector=query&q=SELECT d.*, e.exif:pixelXDimension, e.exif:pixelYDimension FROM cmis:document AS d JOIN exif:exif AS e ON d.cmis:objectId =  e.cmis:objectId where d.cmis:objectId = \''+nodeRef+'\'';
+			break;
+		case 'P:cm:copiedfrom':
+			cmisQuery = '?cmisselector=query&q=SELECT d.*, e.exif:pixelXDimension, e.exif:pixelYDimension FROM cmis:document AS d JOIN exif:exif AS e ON d.cmis:objectId =  e.cmis:objectId where d.cmis:objectId = \''+nodeRef+'\'';
+			break;
+		default :
+			cmisQuery = 'invalid';
+			break;
+	}
+	let requestUrl = baseUrl+cmisQuery;
+	return getRequest(window.tdc.libConfig.headers['x-apikey'],window.tdc.libConfig.headers['X-PearsonSSOSession'],requestUrl);
+},
+getWorkUrn(nodeRef) {
+	let requestUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/assign-work-urn?nodeId=' + nodeRef;
+	return postRequest(window.tdc.libConfig.headers['x-apikey'],window.tdc.libConfig.headers['X-PearsonSSOSession'],requestUrl,{});
 },
 
 /**

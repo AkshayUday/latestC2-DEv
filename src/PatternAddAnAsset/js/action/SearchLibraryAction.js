@@ -23,6 +23,7 @@ import bean from 'bean';
 import store from '../../js/store';
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
+import {getFilterQueryForAssets, findPlatformOrSmartLink} from '../utils/util';
 
 function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName,sortIndex){
     res.body.showTabs = true;
@@ -35,7 +36,7 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
     res.body.displayItemCount = maxItems;
     res.body.numberFound = res.body.numItems;
     res.body.totalRecords = res.body.results.length;
-    res.body.tabVisibility = window.tdc.libConfig.tabVisibility;
+    res.body.tabVisibility = window.tdc.patConfig.tabVisibility;
     res.body.sortIndex = sortIndex;
     res.body.lastPage = res.body.hasMoreItems;
     if(viewName){
@@ -46,14 +47,20 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
     //res.body.token = token;
     let items=[];
     let responseData = res.body.results;
+    let mimeType, description, contentURL;
     if(responseData.length>0){
         for(let i=0;i<responseData.length;i++){
             let _resData = '';
             let nodeRefText = res.body.results[i].properties['d.alfcmis:nodeRef'].value;
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
-            let thumbnailUrl = window.tdc.libConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
-
+            let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
+            mimeType = res.body.results[i].properties['d.cmis:contentStreamMimeType'].value;
+            description = res.body.results[i].properties['d.cmis:description'].value;
+            if(description !== null && description !== undefined &&
+                (description.indexOf('streamingMediaPackageType') !== -1 || description.indexOf('smartLinkType') !== -1)){
+                contentURL = findPlatformOrSmartLink(window.tdc.patConfig.alfserver,mimeType, description, nodeRefVal);
+            }
             _resData = {'nodeRef':nodeRefText,
                 'mimetype':res.body.results[i].properties['d.cmis:contentStreamMimeType'].value,
                 'url': thumbnailUrl,
@@ -71,7 +78,7 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
                 'type':'document'
             };
 
-            if(JSON.parse(window.tdc.libConfig['cmis'])['wURN'] == true){
+            if(JSON.parse(window.tdc.patConfig['cmis'])['wURN'] == true){
                 _resData = Object.assign(_resData, {'wURN': res.body.results[i].properties['r.cp:workURN']['value'],
                     'mURN': res.body.results[i].properties['d.cmis:objectId']['value']});
             }
@@ -116,7 +123,7 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             sortIndex = 0;
         }
 
-        let tabVisibility = JSON.parse(window.tdc.libConfig.tabVisibility);
+        let tabVisibility = JSON.parse(window.tdc.patConfig.tabVisibility);
         if(tabVisibility.image==false){
             if(fileTypeIndex==0){
                 fileTypeIndex=1;
@@ -149,25 +156,16 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
 
         //AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
         //let token = JSON.parse(success.text).data.ticket;
-        dispatch({
-            type: 'ACTIVATE'
-        })
-
-        searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex]) .then(function (res) {
-            //console.log(res);
+        // searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex]) .then(function (res) {
+        //console.log(res);
+        searchLibraryApi.searchAssets(value,getFilterQueryForAssets(fileTypeIndex),index,limit, sortValues[sortIndex]) .then(function (res) {
             let assetData=getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName,sortIndex);
             dispatch({
                 type : SEARCH_DISPLAY_ASSETS,
                 data : assetData
             });
 
-
-            dispatch({
-                type: 'DEACTIVATE'
-            })
-
-
-            dispatch(searchLibButtonVisibility(false));
+            //dispatch(searchLibButtonVisibility(false));
             const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
             let inputData = {}
             const userID = window.tdc.libConfig.alfuname;
@@ -197,10 +195,6 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
                 dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
                 saveToLocalForageService(saveObj);
             });
-        },(error) => {
-            dispatch({
-                type: 'DEACTIVATE'
-            })
         });
     }
 }
@@ -226,14 +220,7 @@ const saveToLocalForageService = (saveObj) => {
 }
 
 export function getProductDetails(){
-
     return dispatch => {
-
-
-        dispatch({
-            type: 'ACTIVATE'
-        })
-
         searchLibraryApi.getProductData().then(function (res) {
             let productData = {};
             let responseData = res.body.results;
@@ -245,13 +232,7 @@ export function getProductDetails(){
                 type: 'SITE_DATA',
                 data: productData
             })
-            dispatch({
-                type: 'DEACTIVATE'
-            })
-
-        },(error) => {     dispatch({
-            type: 'DEACTIVATE'
-        })})
+        })
     }
 }
 
@@ -267,22 +248,22 @@ export function getDifficultyLevels(){
     }
 }
 
-const getDifficultyLevelValues = (dataArray) => {
-    if (dataArray.length > 0) {
-        return dataArray[dataArray.length-1];
-    }
+// const getDifficultyLevelValues = (dataArray) => {
+//     if (dataArray.length > 0) {
+//         return dataArray[dataArray.length-1];
+//     }
 
-    return [];
-}
+//     return [];
+// }
 
-export function searchLibButtonVisibility(isSavedSearch){
-    return (dispatch) => {
-        dispatch({
-            type: SEARCH_BUTTON_VISIBILITY,
-            isSavedSearch:{'isSavedSearch':isSavedSearch}
-        })
-    }
-}
+// export function searchLibButtonVisibility(isSavedSearch){
+//     return (dispatch) => {
+//         dispatch({
+//             type: SEARCH_BUTTON_VISIBILITY,
+//             isSavedSearch:{'isSavedSearch':isSavedSearch}
+//         })
+//     }
+// }
 
 export function updateDifficultyLevel(difficultyLevelId){
     return {
@@ -295,21 +276,9 @@ export function updateDifficultyLevel(difficultyLevelId){
 export function sendToQuad(props){
     return (dispatch) => {
         let assetData = props.record;
-        let check = JSON.parse(window.tdc.libConfig.tabVisibility);
+        let check = JSON.parse(window.tdc.patConfig.tabVisibility);
 
-        /*if(check.wURN != true){
-         delete assetData['wURN'];
-         delete assetData['mURN'];
-         }*/
-        //if(assetData !== null && assetData !== undefined &&
-        //  assetData.contentURL !== undefined){
-        //    AlfrescoApiService.getContentFromURL(window.tdc.libConfig, assetData.contentURL)
-        //      .then(function (response){
-        //          response.desc = assetData.description;
-        //          bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,response);
-        //      })
-        //}else if(check.epsUrl==true){
-        //    let temp1 = assetData.nodeRef.split('/');
+        // let temp1 = assetData.nodeRef.split('/');
         //    let nodeRef = temp1[temp1.length -1];
         //    searchLibraryApi.getEpsUrl(nodeRef).then(function (data) {
         //        assetData.EpsUrl = data.body.publicationUrl;
@@ -325,60 +294,82 @@ export function sendToQuad(props){
         //    }, function (error) {
         //        console.log('Fetching EPS url failed' + error);
         //    });
-        //}else{
-        //    assetData.desc = 'NormalMedia';
-        if(check.epsUrl==true){
+        if(assetData !== null && assetData !== undefined &&
+            assetData.contentURL !== undefined){
+            AlfrescoApiService.getContentFromURL(window.tdc.libConfig, assetData.contentURL)
+                .then(function (response){
+                    response.desc = assetData.description;
+                    bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,response);
+                })
+        }   else if(check.epsUrl==true){
             let temp1 = assetData.nodeRef.split('/');
             let nodeRef = temp1[temp1.length -1];
-            //AlfrescoApiService.getSSOToken().then(function (res) {
-            //let SSOToken = res.body.tokenId;
-            // searchLibraryApi.getAssetRoutePath(window.tdc.libConfig,nodeRef).then(function (data){
-            //   let siteName,splitIndex;
-            //   let splitArr = data.body.qnamePath.prefixedName.split('/');
-            //   for(let i=0;i<splitArr.length;i++){
-            //    if(splitArr[i].indexOf('st:sites') >= 0){
-            //     //if(splitArr[i].includes('st:sites')){
-            //       let siteSplitArr = splitArr[i+1].split(':');
-            //       siteName = siteSplitArr[1];
-            //     }
-            //     if(splitArr[i].indexOf('documentLibrary') >= 0){
-            //     //if(splitArr[i].includes('documentLibrary')){
-            //          splitIndex = i+1;
-            //     }
-            //   }
-            //   let imagePath='';
-            //   for(let i=splitIndex;i<splitArr.length;i++){
-            //     let splitPathArr = splitArr[i].split(':');
-            //     imagePath+=splitPathArr[1]+'/';
-            //   }
-            // searchLibraryApi.getGuid(window.tdc.libConfig,siteName).then(function (responsedata){
-            //   let Guid = responsedata.body.entry.guid;
-            //   assetData.EpsUrl = window.tdc.libConfig.epsserver+'/'+Guid+'/'+imagePath;
-            //   bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
-            //   props.closePopup();
-            // });
-            // });
-            //});
-            searchLibraryApi.getEpsUrl(nodeRef).then(function (data){
-                assetData.EpsUrl = data.body.publicationUrl;
-                bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
-            },function (error){
-                console.log('Fetching EPS url failed' + error);
-            });
-        }
-        else{
+            searchLibraryApi.getWorkUrn(nodeRef).then(function (workUrnData) {
+                let workURNObj = JSON.parse(workUrnData.text)
+                assetData.workURN = workURNObj.workURN;
+                console.log('--workURN-->', workURNObj.workURN)
+                searchLibraryApi.getEpsUrl(nodeRef).then(function (data){
+                    assetData.EpsUrl = data.body.publicationUrl;
+                    assetData.desc = 'EpsMeida';
+                    console.log('--EpsUrl-->', data.body.publicationUrl)
+                    getResultObj(assetData.nodeRef, props.pageDetails).then(function (resultKey) {
+                        searchLibraryApi.getNonEpsUrl(nodeRef, resultKey).then(function (data) {
+                            console.log('--Non Eps Url-->', data)
+                            bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
+                        }, function (error) {
+                            console.log('Fetching Non EPS url failed' + error);
+                        });
+                    });
+                },function (error){
+                    console.log('Fetching EPS url failed' + error);
+                });
+            })
+        }else{
+            assetData.desc = 'NormalMedia';
             bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
         }
         props.closePopup();
     }
 }
 
-function getResultObj(nodeRef, resultsArray) {
-     new Promise(function parseNodeRefToGetProductResult(resolve, reject) {
-        if (nodeRef === resultsArray) {
-            resolve('test---akshay')
-        } else {
-            reject();
+function getResultObj(nodeRef, pageDetails) {
+     return new Promise(function parseNodeRefToGetProductResult(resolve, reject) {
+         try {
+             const productsLength = pageDetails.results.length;
+             for (let productItem = 0; productItem < productsLength; productItem++) {
+                 console.log(nodeRef, pageDetails.results[productItem].properties['d.alfcmis:nodeRef' ].value)
+                 if(nodeRef === pageDetails.results[productItem].properties['d.alfcmis:nodeRef'].value){
+                     filterSecondaryObjectTypeIds(pageDetails.results[productItem].properties['d.cmis:secondaryObjectTypeIds'].value)
+                       .then(function (resultKey) {
+                           resolve(resultKey)
+                       });
+                     break;
+                 }
+             }
+         } catch (error) {
+             console.log('Parsing error in product result', error)
+             reject('error');
+         }
+     });
+}
+
+function filterSecondaryObjectTypeIds(secondaryObjectTypeIds) {
+    return new Promise(function parseFilterObject(resolve, reject) {
+        try {
+            let length = secondaryObjectTypeIds.length;
+            let propertyForNonEpsUrl;
+            for (let i = 0; i < length ; i++) {
+                if (secondaryObjectTypeIds[i] === 'P:exif:exif' || secondaryObjectTypeIds[i] === 'P:cplg:contentAsset' || secondaryObjectTypeIds[i] === 'P:cm:copiedfrom') {
+                    propertyForNonEpsUrl = secondaryObjectTypeIds[i];
+                    resolve(propertyForNonEpsUrl);
+                    break;
+                }
+            }
+            if (propertyForNonEpsUrl === undefined){
+                reject('P:exif:exif or P:cplg:contentAsset or P:cm:copiedfrom is not exist in secondaryObjectTypeIds')
+            }
+        } catch (error) {
+            reject(error)
         }
     });
 }

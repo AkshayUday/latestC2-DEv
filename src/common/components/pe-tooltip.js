@@ -79,7 +79,7 @@ class PE_tooltip extends Component {
         return styles
     }
 
-    render(){ debugger;
+    render(){
         let self = this;
         let content = [];
         let contentStr = this.state.content;

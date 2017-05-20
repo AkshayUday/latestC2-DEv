@@ -51,7 +51,7 @@ class EntryPopup extends React.Component{
         this.sendPreviewSelectedToQuad(selIndx, this.closeOnSelect);
     }
 
-    render(){ debugger;
+    render(){
         const { open } = this.state;
         let componentToDisplay;
         let dispHeader = true;

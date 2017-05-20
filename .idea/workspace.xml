@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a77cd5c-ffb1-4e8c-a2cc-53c3c7e5ec75" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternAddAnAsset.js" afterPath="$PROJECT_DIR$/lib/PatternAddAnAsset.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternAssessment.js" afterPath="$PROJECT_DIR$/lib/PatternAssessment.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternBank.js" afterPath="$PROJECT_DIR$/lib/PatternBank.js" />
@@ -12,7 +14,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternSearchSelect.js" afterPath="$PROJECT_DIR$/lib/PatternSearchSelect.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/Patternvendor.js" afterPath="$PROJECT_DIR$/lib/Patternvendor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/EntryPopup.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/EntryPopup.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/pe-tooltip.js" afterPath="$PROJECT_DIR$/src/common/components/pe-tooltip.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util/alfrescoApiService.js" afterPath="$PROJECT_DIR$/src/common/util/alfrescoApiService.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -34,27 +39,13 @@
     <favorites_list name="latestC2-DEv" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="assets.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js">
+    <leaf>
+      <file leaf-file-name="SearchLibraryAction.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-              <folding>
-                <marker date="1495139123000" expanded="true" signature="607:613" placeholder="{...}" />
-                <marker date="1495139123000" expanded="true" signature="4673:6111" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="4828:5089" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="5104:5190" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="5205:6090" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="5264:5555" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="5319:5534" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="5572:6066" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="5727:6043" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="6730:7602" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="6830:7339" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="7028:7318" placeholder="&lt;xml/&gt;" />
-                <marker date="1495139123000" expanded="true" signature="7092:7295" placeholder="&lt;xml/&gt;" />
-              </folding>
+            <state vertical-scroll-proportion="0.4955157">
+              <caret line="317" column="99" selection-start-line="317" selection-start-column="90" selection-end-line="317" selection-end-column="99" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,40 +54,8 @@
         <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="124" column="34" selection-start-line="124" selection-start-column="34" selection-end-line="124" selection-end-column="34" />
+              <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assets.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="149" column="20" selection-start-line="149" selection-start-column="14" selection-end-line="149" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assets.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/assets.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="39" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchLibraryAction.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.397463">
-              <caret line="290" column="74" selection-start-line="290" selection-start-column="74" selection-end-line="290" selection-end-column="74" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -104,8 +63,18 @@
       <file leaf-file-name="alfrescoApiService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/util/alfrescoApiService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="158" column="2" selection-start-line="158" selection-start-column="2" selection-end-line="158" selection-end-column="2" />
+            <state vertical-scroll-proportion="-9.37037">
+              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.375">
+              <caret line="480" column="135" selection-start-line="480" selection-start-column="135" selection-end-line="480" selection-end-column="135" />
               <folding />
             </state>
           </provider>
@@ -125,14 +94,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchAssetFiltersContainer.js" />
-        <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" />
         <option value="$PROJECT_DIR$/src/common/util/localForageServiceUtil.js" />
         <option value="$PROJECT_DIR$/indexpage.js" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SingleFileFolderContainer.js" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/TreePaneContainer.js" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js" />
+        <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/EntryPopup.js" />
+        <option value="$PROJECT_DIR$/src/common/components/pe-tooltip.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js" />
         <option value="$PROJECT_DIR$/src/common/util/alfrescoApiService.js" />
+        <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" />
       </list>
     </option>
   </component>
@@ -171,6 +143,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,53 +220,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="latestC2-DEv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="latestC2-DEv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PatternAddAnAsset" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="action" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="latestC2-DEv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="latestC2-DEv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -441,26 +373,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21564482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32780084" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.84150326" sideWeight="0.11383928" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9294606" sideWeight="0.88616073" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39783654" sideWeight="0.48363096" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32780084" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -521,45 +453,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/reducers/userFilterReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/container/searchAssetsContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="2" selection-start-line="0" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/someData.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/SortAssets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/Dropdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/components/browseAssetUtil.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.254717">
           <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -616,6 +514,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3499006">
           <caret line="249" column="8067" selection-start-line="249" selection-start-column="8067" selection-end-line="249" selection-end-column="8067" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -692,14 +591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-43.75">
-          <caret line="529" column="35" selection-start-line="529" selection-start-column="29" selection-end-line="529" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/components/CollapseFolder.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.084745765">
@@ -747,6 +638,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.028248588">
           <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -790,13 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33258426">
           <caret line="11" column="30" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/pe-tooltip.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3235955">
-          <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -849,6 +734,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50955415">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -856,28 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.182432">
           <caret line="124" column="12" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-          <folding>
-            <marker date="1495139123000" expanded="true" signature="607:613" placeholder="{...}" />
-            <marker date="1495139123000" expanded="true" signature="4673:6111" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="4828:5089" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="5104:5190" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="5205:6090" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="5264:5555" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="5319:5534" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="5572:6066" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="5727:6043" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="6730:7602" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="6830:7339" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="7028:7318" placeholder="&lt;xml/&gt;" />
-            <marker date="1495139123000" expanded="true" signature="7092:7295" placeholder="&lt;xml/&gt;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -892,7 +756,72 @@
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/assets.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="149" column="20" selection-start-line="149" selection-start-column="14" selection-end-line="149" selection-end-column="24" />
+          <caret line="156" column="20" selection-start-line="156" selection-start-column="20" selection-end-line="156" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/esdoc/file/src/BrowseAssets/js/components/common/pe-tooltip.js.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.57461023">
+          <caret line="151" column="6" selection-start-line="151" selection-start-column="6" selection-end-line="151" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/SingleFileUpload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6143498">
+          <caret line="61" column="19" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/esdoc/file/src/UploadContent/js/components/common/pe-tooltip.js.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9777282">
+          <caret line="151" column="6" selection-start-line="151" selection-start-column="6" selection-end-line="151" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/components/pe-tooltip.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.5687103">
+          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/EntryPopup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20718816">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="58" selection-start-line="24" selection-start-column="58" selection-end-line="24" selection-end-column="58" />
+          <folding>
+            <marker date="1495139123000" expanded="true" signature="607:613" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/PatternQuestion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.375">
+          <caret line="480" column="135" selection-start-line="480" selection-start-column="135" selection-end-line="480" selection-end-column="135" />
           <folding />
         </state>
       </provider>
@@ -900,26 +829,24 @@
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="124" column="34" selection-start-line="124" selection-start-column="34" selection-end-line="124" selection-end-column="34" />
+          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/util/alfrescoApiService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="158" column="2" selection-start-line="158" selection-start-column="2" selection-end-line="158" selection-end-column="2" />
+        <state vertical-scroll-proportion="-9.37037">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.397463">
-          <caret line="290" column="74" selection-start-line="290" selection-start-column="74" selection-end-line="290" selection-end-column="74" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.4955157">
+          <caret line="317" column="99" selection-start-line="317" selection-start-column="90" selection-end-line="317" selection-end-column="99" />
+          <folding />
         </state>
       </provider>
     </entry>

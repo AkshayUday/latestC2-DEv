@@ -124,8 +124,11 @@ export default {
   getEpsUrl(nodeRef){
     return AlfrescoApiService.getEpsUrl(window.tdc.libConfig,nodeRef)
   },
-  getNonEpsUrl(nodeRef){
-    return AlfrescoApiService.getNonEpsUrl(window.tdc.libConfig,nodeRef)
+  getNonEpsUrl(nodeRef, resultKey){
+    return AlfrescoApiService.getNonEpsUrl(window.tdc.libConfig,nodeRef,resultKey)
+  },
+  getWorkUrn(nodeRef){
+    return AlfrescoApiService.getWorkUrn(nodeRef)
   },
 
   difficultyLevelData(){
