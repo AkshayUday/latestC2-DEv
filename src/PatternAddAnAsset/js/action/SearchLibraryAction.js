@@ -142,16 +142,16 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             3:'ORDER BY cmis:name'
         };
 
-            let saveObj;
-            if(value!==''&&value!==undefined){
-                saveObj = {'term': value};
-            }
+        let saveObj;
+        if(value!==''&&value!==undefined){
+            saveObj = {'term': value};
+        }
 
         //AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
         //let token = JSON.parse(success.text).data.ticket;
-         dispatch({
+        dispatch({
             type: 'ACTIVATE'
-            })
+        })
 
         searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex]) .then(function (res) {
             //console.log(res);
@@ -162,46 +162,46 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             });
 
 
-             dispatch({
-            type: 'DEACTIVATE'
+            dispatch({
+                type: 'DEACTIVATE'
             })
 
 
             dispatch(searchLibButtonVisibility(false));
-                const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
-                let inputData = {}
+            const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
+            let inputData = {}
             const userID = window.tdc.libConfig.alfuname;
             inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
             inputData.patternName = window.tdc.patConfig.pattern;
-                inputData.type = SearchConstants.LOCAL_INSTANCE;
-                let getResPromise = localForageService.getLocalForageData(inputData);
-                getResPromise.then(function (replyGet){
-                    if (replyGet[ inputData.patternName ].displayCount !== undefined) {
-                        const {gridMode, listMode } =  replyGet[ inputData.patternName ].displayCount;
-                        let displayCountForGrid, displayCountForList;
-                        if (viewName !== 'list-view') {
-                            displayCountForGrid = maxItems;
-                            displayCountForList = listMode;
-                        } else {
-                            displayCountForGrid = gridMode;
-                            displayCountForList = maxItems;
-                        }
-                        dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
-                        saveToLocalForageService(saveObj);
+            inputData.type = SearchConstants.LOCAL_INSTANCE;
+            let getResPromise = localForageService.getLocalForageData(inputData);
+            getResPromise.then(function (replyGet){
+                if (replyGet[ inputData.patternName ].displayCount !== undefined) {
+                    const {gridMode, listMode } =  replyGet[ inputData.patternName ].displayCount;
+                    let displayCountForGrid, displayCountForList;
+                    if (viewName !== 'list-view') {
+                        displayCountForGrid = maxItems;
+                        displayCountForList = listMode;
                     } else {
-                        dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
-                        saveToLocalForageService(saveObj);
+                        displayCountForGrid = gridMode;
+                        displayCountForList = maxItems;
                     }
-                }).catch(function (err,saveObj) {
-                    console.log('serach library action', err);
+                    dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: displayCountForGrid, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: displayCountForList }});
+                    saveToLocalForageService(saveObj);
+                } else {
                     dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
                     saveToLocalForageService(saveObj);
-        });
-            },(error) => {
-                         dispatch({
-            type: 'DEACTIVATE'
-            })
+                }
+            }).catch(function (err,saveObj) {
+                console.log('serach library action', err);
+                dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
+                saveToLocalForageService(saveObj);
             });
+        },(error) => {
+            dispatch({
+                type: 'DEACTIVATE'
+            })
+        });
     }
 }
 
@@ -230,9 +230,9 @@ export function getProductDetails(){
     return dispatch => {
 
 
-            dispatch({
+        dispatch({
             type: 'ACTIVATE'
-            })
+        })
 
         searchLibraryApi.getProductData().then(function (res) {
             let productData = {};
@@ -245,13 +245,13 @@ export function getProductDetails(){
                 type: 'SITE_DATA',
                 data: productData
             })
-                dispatch({
-            type: 'DEACTIVATE'
+            dispatch({
+                type: 'DEACTIVATE'
             })
 
         },(error) => {     dispatch({
             type: 'DEACTIVATE'
-            })})
+        })})
     }
 }
 
