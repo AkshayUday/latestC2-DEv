@@ -147,10 +147,6 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             3:'ORDER BY cmis:name'
         };
 
-         dispatch({
-            type: 'ACTIVATE'
-            })
-
     assetsApi.get_assets(nodeRef,getFilterQueryForAssets(fileTypeIndex),sortValues[sortIndex],index,limit)
       .then(function (res){
       let assetData = getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName);
@@ -162,9 +158,6 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
       },function (error){
        console.log('fetching assets data:' + error);
       });
-      dispatch({
-            type: 'DEACTIVATE'
-            })
 
         // if(window.tdc.patConfig.maxItemsFlag){
         // assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],index,limit)
