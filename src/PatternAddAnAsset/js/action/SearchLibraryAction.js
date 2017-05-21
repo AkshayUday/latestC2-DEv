@@ -315,7 +315,11 @@ export function sendToQuad(props){
                     getResultObj(assetData.nodeRef, props.pageDetails).then(function (resultKey) {
                         searchLibraryApi.getNonEpsUrl(nodeRef, resultKey).then(function (data) {
                             console.log('--Non Eps Url-->', data)
-                            bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
+                            getAssetDataProperties(data.body, assetData, resultKey).then(function (resultData) {
+                                assetData = resultData;
+                                console.log('-- assetData -->', JSON.stringify(assetData))
+                                bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
+                            })
                         }, function (error) {
                             console.log('Fetching Non EPS url failed' + error);
                         });
@@ -337,7 +341,6 @@ function getResultObj(nodeRef, pageDetails) {
          try {
              const productsLength = pageDetails.results.length;
              for (let productItem = 0; productItem < productsLength; productItem++) {
-                 console.log(nodeRef, pageDetails.results[productItem].properties['d.alfcmis:nodeRef' ].value)
                  if(nodeRef === pageDetails.results[productItem].properties['d.alfcmis:nodeRef'].value){
                      filterSecondaryObjectTypeIds(pageDetails.results[productItem].properties['d.cmis:secondaryObjectTypeIds'].value)
                        .then(function (resultKey) {
@@ -368,6 +371,31 @@ function filterSecondaryObjectTypeIds(secondaryObjectTypeIds) {
             if (propertyForNonEpsUrl === undefined){
                 reject('P:exif:exif or P:cplg:contentAsset or P:cm:copiedfrom is not exist in secondaryObjectTypeIds')
             }
+        } catch (error) {
+            reject(error)
+        }
+    });
+}
+
+function getAssetDataProperties(propertiesResponseBody, assetData, resultKey) {
+    return new Promise(function getProperties(resolve, reject) {
+        try {
+            console.log('resultKey', resultKey)
+            switch (resultKey) {
+                case 'P:exif:exif':
+                    if ('e.exif:pixelXDimension' in propertiesResponseBody.results[ 0 ].properties) {
+                        assetData.width = propertiesResponseBody.results[ 0 ].properties[ 'e.exif:pixelXDimension'].value
+                    }
+                    if ('e.exif:pixelYDimension' in propertiesResponseBody.results[ 0 ].properties) {
+                        assetData.height = propertiesResponseBody.results[ 0 ].properties[ 'e.exif:pixelYDimension' ].value
+                    }
+                    break;
+                case 'P:cplg:contentAsset':
+                    break;
+                case 'P:cm:copiedfrom':
+                    break;
+            }
+            resolve(assetData)
         } catch (error) {
             reject(error)
         }
