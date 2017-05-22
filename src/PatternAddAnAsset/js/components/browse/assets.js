@@ -139,9 +139,11 @@ class assets extends Component {
               </div>
               <footer className={AssetStyles.assetFooter}>
               <div className={AssetStyles.nameIcon}>
-                <PE_tooltip className='assetNameToolTip' position='right' content={modFileName}>
+                <PE_tooltip className='assetNameToolTip' position='right'  content={ modify +'@'+' Date uploaded: '
+                      +formatDate(getModifiedOn(item.modifiedOn))+'@'+ fileInfo +'@'+ disType}>
                 <label><a className={AssetStyles.ellipsisInline}><strong>{fileName}</strong></a></label>
                 </PE_tooltip>
+
               </div>
                 <div className={AssetStyles.footerIcon}>
                     <i className= {AssetStyles.browseTooltip +' fa ' + item.IconClass}></i>
@@ -173,7 +175,8 @@ class assets extends Component {
                   <div className={radioButtonStyle}>{radioBtn}</div>
                 <div className={AssetStyles.listImageSize}>{imgTag}</div>
                 <div className={AssetStyles.listViewNameStyle}>
-                <PE_tooltip className='assetNameToolTip' position='right' content={modFileName}>
+                <PE_tooltip className='assetNameToolTip' position='right' content={ modify +'@'+' Date uploaded: '
+                      +formatDate(getModifiedOn(item.modifiedOn))+'@'+ fileInfo +'@'+ disType}>
                   <span className={'fileName '+ AssetStyles.fileNameStyle}>{fileName}</span>
                 </PE_tooltip>
                 </div>
