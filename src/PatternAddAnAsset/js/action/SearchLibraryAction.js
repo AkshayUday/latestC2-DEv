@@ -277,38 +277,21 @@ export function sendToQuad(props){
     return (dispatch) => {
         let assetData = props.record;
         let check = JSON.parse(window.tdc.patConfig.tabVisibility);
-
-        // let temp1 = assetData.nodeRef.split('/');
-        //    let nodeRef = temp1[temp1.length -1];
-        //    searchLibraryApi.getEpsUrl(nodeRef).then(function (data) {
-        //        assetData.EpsUrl = data.body.publicationUrl;
-        //        assetData.desc = 'EpsMeida';
-        //        getResultObj(nodeRef, nodeRef).then(function (resultKey) {
-        //            searchLibraryApi.getNonEpsUrl(nodeRef).then(function (data) {
-        //                console.log('---->', data)
-        //                bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
-        //            }, function (error) {
-        //                console.log('Fetching Non EPS url failed' + error);
-        //            });
-        //        });
-        //    }, function (error) {
-        //        console.log('Fetching EPS url failed' + error);
-        //    });
-        if(assetData !== null && assetData !== undefined &&
-            assetData.contentURL !== undefined){
-            AlfrescoApiService.getContentFromURL(window.tdc.libConfig, assetData.contentURL)
-                .then(function (response){
-                    response.desc = assetData.description;
-                    bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,response);
-                })
-        }   else if(check.epsUrl==true){
-            let temp1 = assetData.nodeRef.split('/');
-            let nodeRef = temp1[temp1.length -1];
-            searchLibraryApi.getWorkUrn(nodeRef).then(function (workUrnData) {
-                let workURNObj = JSON.parse(workUrnData.text)
-                assetData.workURN = workURNObj.workURN;
-                console.log('--workURN-->', workURNObj.workURN)
-                searchLibraryApi.getEpsUrl(nodeRef).then(function (data){
+        let temp1 = assetData.nodeRef.split('/');
+        let nodeRef = temp1[ temp1.length - 1 ];
+        searchLibraryApi.getWorkUrn(nodeRef).then(function (workUrnData) {
+            let workURNObj = JSON.parse(workUrnData.text)
+            assetData.workURN = workURNObj.workURN;
+            console.log('--workURN-->', workURNObj.workURN)
+            if (assetData !== null && assetData !== undefined &&
+              assetData.contentURL !== undefined) {
+                AlfrescoApiService.getContentFromURL(window.tdc.libConfig, assetData.contentURL)
+                  .then(function (response) {
+                      response.desc = assetData.description;
+                      bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, response);
+                  })
+            } else if (check.epsUrl == true) {
+                searchLibraryApi.getEpsUrl(nodeRef).then(function (data) {
                     assetData.EpsUrl = data.body.publicationUrl;
                     assetData.desc = 'EpsMeida';
                     console.log('--EpsUrl-->', data.body.publicationUrl)
@@ -317,21 +300,21 @@ export function sendToQuad(props){
                             console.log('--Non Eps Url-->', data)
                             getAssetDataProperties(data.body, assetData, resultKey).then(function (resultData) {
                                 assetData = resultData;
-                                console.log('-- assetData -->', JSON.stringify(assetData))
+                                console.log('-- assetData -->', assetData)
                                 bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
                             })
                         }, function (error) {
                             console.log('Fetching Non EPS url failed' + error);
                         });
                     });
-                },function (error){
+                }, function (error) {
                     console.log('Fetching EPS url failed' + error);
                 });
-            })
-        }else{
-            assetData.desc = 'NormalMedia';
-            bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId,assetData);
-        }
+            } else {
+                assetData.desc = 'NormalMedia';
+                bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
+            }
+        });
         props.closePopup();
     }
 }
@@ -380,7 +363,6 @@ function filterSecondaryObjectTypeIds(secondaryObjectTypeIds) {
 function getAssetDataProperties(propertiesResponseBody, assetData, resultKey) {
     return new Promise(function getProperties(resolve, reject) {
         try {
-            console.log('resultKey', resultKey)
             switch (resultKey) {
                 case 'P:exif:exif':
                     if ('e.exif:pixelXDimension' in propertiesResponseBody.results[ 0 ].properties) {
