@@ -365,7 +365,7 @@ onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
 
 document.getElementById('EpsContainer').style.visibility= 'hidden';
 var AddanAssetCallBack = function (data){ 
-    //console.log(data);  
+    console.log(data);  
     //data.url = _.replace(data.url,'/thumbnails/',''); 
     if(data.mimetype !== undefined && data.mimetype !== null){
         var uniqueID = data.nodeRef.split('/')[3];
@@ -412,11 +412,22 @@ var AddanAssetCallBack = function (data){
               if(key==='body'){
                 var res = data.body.results;
                 for(i=0;i<res.length;i++){
-                    var tempValue = data.body.results[0].properties['s.avs:url'].value;
-                    for(i=0;i<tempValue.length;i++){
-                      var property = '<tr><td class="addAnAssetTd">'+'Value'+'</td><td class="addAnAssetTd"><a target=_blank href='+tempValue[i]+'>'+tempValue[i]+'</a></td></tr>';  
+                    var urlObj = data.body.results[i].properties['s.avs:url'];
+                    for(var objs in urlObj){
+                      if(objs === 'value'){
+                        var property = '<tr><td class="addAnAssetTd">'+objs+'</td><td class="addAnAssetTd"><a target=_blank href='+urlObj[objs]+'>'+urlObj[objs]+'</a></td></tr>';  
+                        content =  content+property;
+                      }else{
+                        var property = '<tr><td class="addAnAssetTd">'+objs+'</td><td class="addAnAssetTd">'+urlObj[objs]+'</td></tr>';  
+                        content =  content+property;
+                      }
+                    }
+                    var jsonObj = data.body.results[i].properties['s.avs:jsonString'];
+                    for(var objs in jsonObj){
+                      var property = '<tr><td class="addAnAssetTd">'+objs+'</td><td class="addAnAssetTd">'+jsonObj[objs]+'</td></tr>';  
                       content =  content+property;
                     }
+                    
                 }
               }
             }else if(data.desc.indexOf('streamingMediaPackageType') !== -1){

@@ -43,7 +43,7 @@ class EntryPopup extends React.Component{
         this.props.preview.showImgPreview = false;
         this.setState({showImgPreview: false});
         this.preserveFolderTree();
-     // this.setState({imgPreview: false});
+        // this.setState({imgPreview: false});
     }
 
     selectPreviewAsset(){
@@ -57,21 +57,21 @@ class EntryPopup extends React.Component{
         let dispHeader = true;
         if(this.props.preview.showImgPreview){
             componentToDisplay = (<ImagePreview backhandle={this.backFromPreview} assetObjList = {this.props.preview} children={this.props.children} clearModal={this.clearModal}
-        closeModal={this.closeOnSelect} selectAsset = {this.selectPreviewAsset} />);
-                dispHeader = false;
+            closeModal={this.closeOnSelect} selectAsset = {this.selectPreviewAsset} />);
+            dispHeader = false;
         }else{
             componentToDisplay = (<AddAnAsset children={this.props.children} clearModal={this.clearModal}
-        closeModal={this.closeOnSelect} />);
+            closeModal={this.closeOnSelect} />);
         }
         return(
-            <PL_Layout containerId='ext_AddAnAsset' 
-            containerClassName='ext_AddAnAsset' 
-            open={open} modalTitle='Add An Asset'
+            <PL_Layout containerId='ext_AddAnAsset'
+        containerClassName='ext_AddAnAsset'
+        open={open} modalTitle='Add An Asset'
         modalClass={PopupStyles.addAnAssetLayout}
         modalClose={this.closeOnSelect}
         showheader = {dispHeader}>
 
-    <div className={PopupStyles.modalBodyDiv}>
+            <div className={PopupStyles.modalBodyDiv}>
         {componentToDisplay}
     </div>
         </PL_Layout>

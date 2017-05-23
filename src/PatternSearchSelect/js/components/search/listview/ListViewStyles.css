@@ -18,11 +18,15 @@
 	/*padding-top: 2%;*/
 }
 .columnHeader div{
-	flex: 1;
+	flex: 2.01;
 	cursor: pointer;
 }
 .columnHeader div:nth-child(1){
-	flex: 1;
+	flex: 3;
+	padding-left:2%;
+}
+.columnHeader div:nth-child(3){
+	flex: 1.1;
 }
 .spaceBetween{
 	padding-left: 2%;
@@ -36,11 +40,14 @@
 }
 
 .rowContent div{
-	flex:1;
+	flex:2;
 	
 }
 
 .rowContent div:nth-child(1){
+	flex:3;
+}
+.rowContent div:nth-child(3){
 	flex:1;
 }
 

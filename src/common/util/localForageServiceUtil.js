@@ -55,22 +55,39 @@ export default {
         let tempArr = [];
         if(inputData.patternName === 'interactivePattern'){
             tempArr = this.checkCaseInSensitive(rawArr,inputData);
+            return this.saveThreeValues(rawArr,inputData);
         }else{
+            let checkExists = false;
+            let matchVal={};
             if(typeof inputData.saveValue == 'object'){
                 for(let i=0;i<rawArr.length;i++){
-                    if(rawArr[i].term.toLowerCase()!==inputData.saveValue.term.toLowerCase()){
+                    if(rawArr[i].term.toLowerCase()==inputData.saveValue.term.toLowerCase()){
+                       checkExists = true;
+                       matchVal = rawArr[i];
+                    }else{
                         tempArr.push(rawArr[i]);
                     }
                 }
             }else{
                 for(let i=0;i<rawArr.length;i++){
                     if(rawArr[i]!==inputData.saveValue){
-                        tempArr.push(rawArr[i]);
+                        checkExists = true;
                     }
                 }
             }
+            if(!checkExists){
+                if(inputData.isThreeSave){
+                    if(rawArr.length>=3){
+                        rawArr.shift();
+                    }
+                }
+                rawArr.push(inputData.saveValue);
+            }else{
+                tempArr.push(matchVal);
+                rawArr = tempArr;
+            }
+            return rawArr;
         }
-        return this.saveThreeValues(tempArr,inputData);
     },
 
     saveThreeValues(tempArr,inputData){

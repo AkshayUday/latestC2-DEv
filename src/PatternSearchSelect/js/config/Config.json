@@ -45,7 +45,7 @@
   "saveSearch": true,
   "multiSelect": false,
   "zibraRows": false,
-  "Title": "Search Library",
+  "Title": "Search Assessments",
   "cancelLabel": "Cancel",
   "acceptLabel": "Select",
   "patternTitle":"Enter Search Term"
