@@ -284,12 +284,12 @@ export function sendToQuad(props){
             assetData.workURN = workURNObj.workURN;
             console.log('--workURN-->', workURNObj.workURN)
             if (assetData !== null && assetData !== undefined &&
-              assetData.contentURL !== undefined) {
+                assetData.contentURL !== undefined) {
                 AlfrescoApiService.getContentFromURL(window.tdc.libConfig, assetData.contentURL)
-                  .then(function (response) {
-                      response.desc = assetData.description;
-                      bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, response);
-                  })
+                    .then(function (response) {
+                        response.desc = assetData.description;
+                        bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, response);
+                    })
             } else if (check.epsUrl == true) {
                 searchLibraryApi.getEpsUrl(nodeRef).then(function (data) {
                     assetData.EpsUrl = data.body.publicationUrl;
@@ -320,23 +320,23 @@ export function sendToQuad(props){
 }
 
 function getResultObj(nodeRef, pageDetails) {
-     return new Promise(function parseNodeRefToGetProductResult(resolve, reject) {
-         try {
-             const productsLength = pageDetails.results.length;
-             for (let productItem = 0; productItem < productsLength; productItem++) {
-                 if(nodeRef === pageDetails.results[productItem].properties['d.alfcmis:nodeRef'].value){
-                     filterSecondaryObjectTypeIds(pageDetails.results[productItem].properties['d.cmis:secondaryObjectTypeIds'].value)
-                       .then(function (resultKey) {
-                           resolve(resultKey)
-                       });
-                     break;
-                 }
-             }
-         } catch (error) {
-             console.log('Parsing error in product result', error)
-             reject('error');
-         }
-     });
+    return new Promise(function parseNodeRefToGetProductResult(resolve, reject) {
+        try {
+            const productsLength = pageDetails.results.length;
+            for (let productItem = 0; productItem < productsLength; productItem++) {
+                if(nodeRef === pageDetails.results[productItem].properties['d.alfcmis:nodeRef'].value){
+                    filterSecondaryObjectTypeIds(pageDetails.results[productItem].properties['d.cmis:secondaryObjectTypeIds'].value)
+                        .then(function (resultKey) {
+                            resolve(resultKey)
+                        });
+                    break;
+                }
+            }
+        } catch (error) {
+            console.log('Parsing error in product result', error)
+            reject('error');
+        }
+    });
 }
 
 function filterSecondaryObjectTypeIds(secondaryObjectTypeIds) {

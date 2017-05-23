@@ -478,7 +478,7 @@
               </div>
               <div class='row'>
                 <label for="tabVisibility" >Tab Visibility/EPS Url:</label>
-                <input type="text" id="tabVisibility" value='{ "audio" : true, "image": true, "other":true, "video": true,"epsUrl":true, "defaulttab": "search"}'/>
+                <input type="text" id="tabVisibility" value='{ "audio" : true, "image": true, "other":true, "video": true,"epsUrl":false, "defaulttab": "search"}'/>
               </div>
               <div class='row'>
                 <label for="repoInput" >Repo Input:</label>
@@ -614,8 +614,8 @@
     if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
         document.write('<script src="./lib/polyfill.min.js"><\/script>');
 </script>
-<!--     <script src="/lib/PatternsLib.js"></script>
- -->    <script type="text/javascript" src="./lib/Patternvendor.js"></script>
+<div id='version'></div>
+          <script type="text/javascript" src="./lib/Patternvendor.js"></script>
           <script type="text/javascript" src="./lib/PatternSearchSelect.js"></script>
           <script type="text/javascript" src="./lib/PatternBroker.js"></script>
           <script type="text/javascript" src="./lib/PatternAddAnAsset.js"></script>
@@ -624,5 +624,6 @@
           <script type="text/javascript" src="./lib/PatternProductLink.js"></script>
           <script type="text/javascript" src="./lib/PatternQuestion.js"></script>
     <script src="indexpage.js"></script>
+    <script src="./sampleappversion.js"></script>
   </body>
 </html>

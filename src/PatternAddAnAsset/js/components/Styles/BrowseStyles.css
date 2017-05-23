@@ -28,7 +28,7 @@
     font-weight: 500;
 }
 .filter-container{
-	display: flex;
+	display: block;
 	width: 25%;
 	flex-flow: column wrap;
 	height:330px;
