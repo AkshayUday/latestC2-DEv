@@ -212,63 +212,29 @@ const mapDispatchToProps = (dispatch) => {
                 });
             },
             onSuggestionSelected: (event, { suggestion, suggestionValue, sectionIndex, method }) => {
-    //         console.log('onSuggestionSelected');
-    // console.log(suggestionValue);
-
-     let inputData = identifyUserId();
-                inputData.type = SearchConstants.LOCAL_INSTANCE;
-                let getResPromise = localForageService.getLocalForageData(inputData);
-                getResPromise.then(function (responseData){
-        //	console.log(lastvalue);
-        //	console.log(suggestionValue);
-        // if(suggestionValue.trim() != undefined && suggestionValue.trim() != ''){
-        //     let chkVal = find(lastvalue, { 'term': suggestionValue.trim()});
-        //     if(chkVal == undefined){
-        //         let sval = {term:suggestionValue.trim()};
-        //         console.log(sval);
-        //         if(lastvalue.length >= 3){
-        //             lastvalue.pop(lastvalue.unshift(sval));
-        //         }else{
-        //             lastvalue.unshift(sval);
-        //         }
-        //     }
-
-        // }
-        let viewName = '';
-        if(document.querySelector('.dropdown-display span i')){
-            if(document.querySelector('.dropdown-display span i').className=='fa fa-list'){
-                viewName = 'list-view';
-            }else{
-                viewName = 'grid-view';
-            }
-        }
-
-        //localforage.setItem('last_three_search', lastvalue, function (err, val) {
-            //console.log(val);
-
-            dispatch({
-                type : 'RESET_SEARCH_TABS',
-                data : false
-            });
-
-            dispatch(getSearchProductItems(suggestionValue.trim(),DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,0,'',viewName));
-            dispatch({
-                type : 'SEND_TO_QUAD',
-                data : {}
-            });
-
-            document.querySelectorAll('#displayContainerDiv')[0].style.display = 'block';
-            document.querySelectorAll('.selectBtn')[0].style.display = 'inline-block';
-
-            let selectedTab = document.querySelector('#searchfilterAssets .ReactTabs__Tab--selected').textContent;
-            if(selectedTab == 'Saved Search'){
-                document.querySelectorAll('#searchfilterAssets .ReactTabs__Tab')[0].click();
-            }
-
-        //});
-
-    })
-
+              let inputData = {};
+              const userID = window.tdc.libConfig.alfuname;
+              inputData.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+              inputData.patternName = window.tdc.patConfig.pattern;
+              inputData.type = SearchConstants.LOCAL_INSTANCE;
+              let getResPromise = localForageService.getLocalForageData(inputData);
+              getResPromise.then(function (replyGet) {
+                if (replyGet[ inputData.patternName ].displayCount !== undefined) {
+                  const {viewMode, gridMode, listMode, sortIndex } =  replyGet[ inputData.patternName ].displayCount;
+                  let displayCount;
+                  if (replyGet[ inputData.patternName ].displayCount.viewMode === 'list-view') {
+                    displayCount = listMode ? listMode : 25;
+                  } else {
+                    displayCount = gridMode ? gridMode : 9;
+                  }
+                  patternExistance(dispatch, suggestionValue.trim(), displayCount, sortIndex, viewMode)
+                } else {
+                  patternExistance(dispatch, suggestionValue.trim())
+                }
+              }).catch(function (err) {
+                console.log('Localforage not exist in SearchCompleteContainer', err)
+                patternExistance(dispatch, searchString)
+              })
 
 },
 
@@ -330,6 +296,32 @@ const mapDispatchToProps = (dispatch) => {
     }
 
 }
+}
+
+const patternExistance = (dispatch, searchString, displayCount, sortIndex, viewMode) => {
+  dispatch({
+    type: 'RESET_SEARCH_TABS',
+    data: false
+  });
+
+  if (sortIndex !== undefined && viewMode !== undefined) {
+    dispatch(getSearchProductItems(searchString, DEFAULT_PAGE_NO, displayCount, 0, sortIndex, viewMode));
+  } else {
+    dispatch(getSearchProductItems(searchString, DEFAULT_PAGE_NO, DEFAULT_MAX_RESULTS, 0));
+  }
+
+  dispatch({
+    type: 'SEND_TO_QUAD',
+    data: {}
+  });
+
+  document.querySelectorAll('#displayContainerDiv')[ 0 ].style.display = 'block';
+  //document.querySelectorAll('.selectBtn')[0].style.display = 'inline-block';
+  //
+  //let selectedTab = document.querySelector('#searchfilterAssets .ReactTabs__Tab--selected').textContent;
+  //if(selectedTab == 'Saved Search'){
+  //    document.querySelectorAll('#searchfilterAssets .ReactTabs__Tab')[0].click();
+  //};
 }
 
 const SearchCompleteContainer = connect(
