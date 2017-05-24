@@ -295,7 +295,8 @@ export function sendToQuad(props){
                     assetData.EpsUrl = data.body.publicationUrl;
                     assetData.desc = 'EpsMeida';
                     console.log('--EpsUrl-->', data.body.publicationUrl)
-                    getResultObj(assetData.nodeRef, props.pageDetails).then(function (resultKey) {
+                    getResultObj(assetData.nodeRef, props.pageDetails, assetData).then(function (resultKey) {
+                        console.log('--- resultKey --->', resultKey)
                         searchLibraryApi.getNonEpsUrl(nodeRef, resultKey).then(function (data) {
                             console.log('--Non Eps Url-->', data)
                             getAssetDataProperties(data.body, assetData, resultKey).then(function (resultData) {
@@ -319,7 +320,7 @@ export function sendToQuad(props){
     }
 }
 
-function getResultObj(nodeRef, pageDetails) {
+function getResultObj(nodeRef, pageDetails, assetData) {
     return new Promise(function parseNodeRefToGetProductResult(resolve, reject) {
         try {
             const productsLength = pageDetails.results.length;
@@ -333,6 +334,7 @@ function getResultObj(nodeRef, pageDetails) {
                 }
             }
         } catch (error) {
+            bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
             console.log('Parsing error in product result', error)
             reject('error');
         }
@@ -373,12 +375,19 @@ function getAssetDataProperties(propertiesResponseBody, assetData, resultKey) {
                     }
                     break;
                 case 'P:cplg:contentAsset':
+                    if ('c.cplg:keywords' in propertiesResponseBody.results[ 0 ].properties) {
+                        assetData['iptc:keywords'] = propertiesResponseBody.results[ 0 ].properties[ 'c.cplg:keywords'].value
+                    }
+                    if ('c.cplg:altText' in propertiesResponseBody.results[ 0 ].properties) {
+                        assetData['alt-text'] = propertiesResponseBody.results[ 0 ].properties[ 'c.cplg:altText' ].value
+                    }
                     break;
                 case 'P:cm:copiedfrom':
                     break;
             }
             resolve(assetData)
         } catch (error) {
+            bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, assetData);
             reject(error)
         }
     });
