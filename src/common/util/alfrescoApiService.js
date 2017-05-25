@@ -168,7 +168,7 @@ export default {
                 cmisQuery = '?cmisselector=query&q=SELECT d.*, c.cplg:keywords, c.cplg:altText FROM cmis:document AS d JOIN cplg:contentAsset AS c ON d.cmis:objectId = c.cmis:objectId where d.cmis:objectId = \''+nodeRef+'\'';
                 break;
             case 'P:cm:copiedfrom':
-                cmisQuery = '?cmisselector=query&q=SELECT d.*, e.exif:pixelXDimension, e.exif:pixelYDimension FROM cmis:document AS d JOIN exif:exif AS e ON d.cmis:objectId =  e.cmis:objectId where d.cmis:objectId = \''+nodeRef+'\'';
+                cmisQuery = '?cmisselector=query&q=SELECT d.* FROM cmis:document AS d where d.cmis:objectId = \''+nodeRef+'\'&includeRelationships=source';
                 break;
             default :
                 cmisQuery = 'invalid';

@@ -383,6 +383,16 @@ function getAssetDataProperties(propertiesResponseBody, assetData, resultKey) {
                     }
                     break;
                 case 'P:cm:copiedfrom':
+                    if ('cmis:description' in propertiesResponseBody.results[ 0 ].relationships[0 ].properties) {
+                        assetData['dc: Description'] = propertiesResponseBody.results[ 0 ].relationships[0 ].properties[ 'cmis:description' ].value;
+                    }
+                    if ('cmis:objectTypeId' in propertiesResponseBody.results[ 0 ].relationships[0 ].properties &&
+                      propertiesResponseBody.results[ 0 ].relationships[0].properties['cmis:objectTypeId' ].value === 'R:cm:original') {
+                        if ('cmis:targetId' in propertiesResponseBody.results[ 0 ].relationships[0 ].properties) {
+                            let wasDerivedFrom = propertiesResponseBody.results[ 0 ].relationships[0 ].properties[ 'cmis:targetId' ].value;
+                            assetData.wasDerivedFrom = wasDerivedFrom.split(';')[0];
+                        }
+                    }
                     break;
             }
             resolve(assetData)
