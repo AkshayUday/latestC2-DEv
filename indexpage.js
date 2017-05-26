@@ -365,7 +365,7 @@ onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
 
 document.getElementById('EpsContainer').style.visibility= 'hidden';
 var AddanAssetCallBack = function (data){ 
-    console.log(data);  
+    console.log('data---->', data);
     //data.url = _.replace(data.url,'/thumbnails/',''); 
     if(data.mimetype !== undefined && data.mimetype !== null){
         var uniqueID = data.nodeRef.split('/')[3];
@@ -392,6 +392,40 @@ var AddanAssetCallBack = function (data){
     }
     else{
         document.getElementById('EpsContainer').style.visibility= 'hidden';
+    }
+    if(data.height || data.width || data['iptc:keywords'] || data['alt-text'] || data['dc: Description'] || data.wasDerivedFrom){
+      document.getElementById('additionalPropertyContainer').style.visibility= 'visible';
+      var element = document.getElementById('additionalPropertyBackResp');
+      var contentData ='<table>';
+      var propertyForNonEps;
+      if (data.height) {
+        propertyForNonEps = '<tr><td class="uppercase">height</td><td>'+data.height+'</td></tr>';
+        contentData = contentData+propertyForNonEps;
+      }
+      if (data.width) {
+        propertyForNonEps = '<tr><td class="uppercase">width</td><td>'+data.width+'</td></tr>';
+        contentData = contentData+propertyForNonEps;
+      }
+      if (data['iptc:keywords']) {
+        propertyForNonEps = '<tr><td class="uppercase">iptc:keywords</td><td>'+data['iptc:keywords']+'</td></tr>';
+        contentData = contentData+propertyForNonEps;
+      }
+      if (data['alt-text']) {
+        propertyForNonEps = '<tr><td class="uppercase">alt-text</td><td>'+data['alt-text']+'</td></tr>';
+        contentData = contentData+propertyForNonEps;
+      }
+      if (data['dc: Description']) {
+        propertyForNonEps = '<tr><td class="uppercase">iptc:keywords</td><td>'+data['dc: Description']+'</td></tr>';
+        contentData = contentData+propertyForNonEps;
+      }
+      if (data.wasDerivedFrom) {
+        propertyForNonEps = '<tr><td class="uppercase">wasDerivedFrom</td><td>'+data.wasDerivedFrom+'</td></tr>';
+        contentData = contentData+propertyForNonEps;
+      }
+      contentData =contentData+'</table>';
+      element.innerHTML = contentData;
+    } else {
+      document.getElementById('additionalPropertyContainer').style.visibility= 'hidden';
     }
     var ele = document.getElementById('addAnAssetCBResp');
     

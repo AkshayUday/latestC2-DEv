@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7a77cd5c-ffb1-4e8c-a2cc-53c3c7e5ec75" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/indexpage.js" afterPath="$PROJECT_DIR$/indexpage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternAddAnAsset.js" afterPath="$PROJECT_DIR$/lib/PatternAddAnAsset.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PatternProductLink.js" afterPath="$PROJECT_DIR$/lib/PatternProductLink.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/Patternvendor.js" afterPath="$PROJECT_DIR$/lib/Patternvendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" afterPath="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util/alfrescoApiService.js" afterPath="$PROJECT_DIR$/src/common/util/alfrescoApiService.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,21 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SearchLibraryAction.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SearchLibraryAction.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="370" column="8" selection-start-line="370" selection-start-column="8" selection-end-line="370" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assets.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2380953">
-              <caret line="108" column="72" selection-start-line="108" selection-start-column="72" selection-end-line="108" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.43037975">
+              <caret line="351" column="48" selection-start-line="351" selection-start-column="48" selection-end-line="351" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -52,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="130" column="42" selection-start-line="130" selection-start-column="42" selection-end-line="130" selection-end-column="42" />
+              <caret line="127" column="44" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -61,9 +53,36 @@
       <file leaf-file-name="alfrescoApiService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/util/alfrescoApiService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="161" column="22" selection-start-line="161" selection-start-column="22" selection-end-line="161" selection-end-column="22" />
+            <state vertical-scroll-proportion="-7.5185184">
+              <caret line="162" column="55" selection-start-line="162" selection-start-column="55" selection-end-line="162" selection-end-column="55" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="indexpage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/indexpage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.6666666">
+              <caret line="395" column="127" selection-start-line="395" selection-start-column="127" selection-end-line="395" selection-end-column="127" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-148.52942">
+              <caret line="621" column="24" selection-start-line="621" selection-start-column="18" selection-end-line="621" selection-end-column="24" />
+              <folding>
+                <element signature="n#style#0;n#div#6;n#div#8;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#6;n#div#8;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#10;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#11;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#11;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#11;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,17 +102,17 @@
       <list>
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SearchAssetFiltersContainer.js" />
         <option value="$PROJECT_DIR$/src/common/util/localForageServiceUtil.js" />
-        <option value="$PROJECT_DIR$/indexpage.js" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/SingleFileFolderContainer.js" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/container/TreePaneContainer.js" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/TreePaneAction.js" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/EntryPopup.js" />
         <option value="$PROJECT_DIR$/src/common/components/pe-tooltip.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js" />
+        <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/indexpage.js" />
         <option value="$PROJECT_DIR$/src/common/util/alfrescoApiService.js" />
         <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js" />
-        <option value="$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js" />
       </list>
     </option>
   </component>
@@ -478,6 +497,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21564482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32780084" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39759037" sideWeight="0.1952079" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9294606" sideWeight="0.88616073" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -491,7 +511,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -561,13 +580,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/PatternProductLink/js/components/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="142" column="14" selection-start-line="142" selection-start-column="14" selection-end-line="142" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternProductLink/js/components/ProductLink.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -586,13 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.882353">
           <caret line="93" column="28" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/indexpage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="354" column="44" selection-start-line="354" selection-start-column="26" selection-end-line="354" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -757,13 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.033333335">
-          <caret line="480" column="135" selection-start-line="480" selection-start-column="135" selection-end-line="480" selection-end-column="135" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/autoComplete.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -892,34 +890,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25">
+          <caret line="96" column="21" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/karma.conf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/api/SearchLibraryApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="130" column="42" selection-start-line="130" selection-start-column="42" selection-end-line="130" selection-end-column="42" />
+          <caret line="127" column="44" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/util/alfrescoApiService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="161" column="22" selection-start-line="161" selection-start-column="22" selection-end-line="161" selection-end-column="22" />
+        <state vertical-scroll-proportion="-7.5185184">
+          <caret line="162" column="55" selection-start-line="162" selection-start-column="55" selection-end-line="162" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/indexpage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6666666">
+          <caret line="395" column="127" selection-start-line="395" selection-start-column="127" selection-end-line="395" selection-end-column="127" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-148.52942">
+          <caret line="621" column="24" selection-start-line="621" selection-start-column="18" selection-end-line="621" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#div#6;n#div#8;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#6;n#div#8;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#10;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#11;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#11;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#11;n#div#1;n#div#1;n#div#12;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/action/SearchLibraryAction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="370" column="8" selection-start-line="370" selection-start-column="8" selection-end-line="370" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PatternAddAnAsset/js/components/browse/assets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2380953">
-          <caret line="108" column="72" selection-start-line="108" selection-start-column="72" selection-end-line="108" selection-end-column="72" />
+        <state vertical-scroll-proportion="0.43037975">
+          <caret line="351" column="48" selection-start-line="351" selection-start-column="48" selection-end-line="351" selection-end-column="48" />
           <folding />
         </state>
       </provider>
