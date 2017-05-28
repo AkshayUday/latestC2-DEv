@@ -364,8 +364,7 @@ onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
 }
 
 document.getElementById('EpsContainer').style.visibility= 'hidden';
-var AddanAssetCallBack = function (data){ 
-    console.log('data---->', data);
+var AddanAssetCallBack = function (data){
     //data.url = _.replace(data.url,'/thumbnails/',''); 
     if(data.mimetype !== undefined && data.mimetype !== null){
         var uniqueID = data.nodeRef.split('/')[3];

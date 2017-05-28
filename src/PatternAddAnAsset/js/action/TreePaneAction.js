@@ -113,6 +113,12 @@ let nodeRef;
                   type : GET_FOLDER,
                   data : model,
               })
+                  const userID = window.tdc.libConfig.alfuname;
+                  model.userId = (userID !== undefined && userID.length > 0) ? userID : SearchConstants.UNKNOWN_ID;
+                  model.patternName = SearchConstants.FOLDER_STRUCTURE;
+                  model.type = SearchConstants.LOCAL_INSTANCE;
+                  model.parentNodeRef = window.tdc.patConfig.nodeRef;
+                  localForageService.saveFolderStructure(model);
                 }else{
                   console.log('Folder does not have children');
                 }
