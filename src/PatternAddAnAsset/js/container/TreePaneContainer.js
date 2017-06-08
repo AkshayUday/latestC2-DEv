@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch) => {
                         type: GET_FOLDER,
                         data: model
                     });
-                    self.props.toggle(model, model[ 0 ].fileName, model.currentFolder)
+                    self.props.toggle(model, model[ 0 ].fileName, model.currentFolder, self.props.pageNav.currPageNo)
                 }
                 else {
                     console.log('Parent NodeRef is not exists');
@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(getFolders());
             });
         },
-        toggle:function (model,foldername, nodeRef){
+        toggle:function (model,foldername, nodeRef, curPageNo){
             console.log(' Folder Name : '+ foldername +' ... '+' Node Ref : '+nodeRef);
             // recentlySelectedChild(nodeRef);
             dispatch(updateCurrentFolder(nodeRef));
@@ -128,8 +128,9 @@ const mapDispatchToProps = (dispatch) => {
                 } else {
                     displayCount = gridMode ? gridMode: 9;
                 }
-                dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO, displayCount, 0, sortIndex, viewMode));
-            }).catch(function (err) {
+                let currentPageNo = (curPageNo===undefined  || curPageNo==='') ? DEFAULT_PAGE_NO: curPageNo;
+                dispatch(fetchingAssets(nodeRef, currentPageNo, displayCount, 0, sortIndex, viewMode));
+            }).catch(function (err) { 
                 console.log('Localforage not exist in TreePaneContainer', err)
                 let viewName;
                 if(document.querySelectorAll('.dropdown-display').length > 0){

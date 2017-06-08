@@ -47,7 +47,7 @@ function SendWithAlfCreds(libConfig,requestUrl){
 
 export default {
 
-	/* Alfresco Get SSO Token */
+    /* Alfresco Get SSO Token */
 
     getSSOToken(){
         return Promise.promisifyAll(

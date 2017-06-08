@@ -12,6 +12,10 @@ const imgPreviewReducer = (state = initilizeValues, action)=>{
         ...state, action.data
       ];
     break;
+    case 'SEARCH_INPUT_DATA':
+      return [
+        ...state, action.data
+      ];
     default:
       return state
     }

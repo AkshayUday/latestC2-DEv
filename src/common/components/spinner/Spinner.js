@@ -14,7 +14,9 @@ class Spinner extends React.Component {
         super(props);
      }
 	 
- render() {
+ render() {	 
+
+   // console.log(this.props);
 	// style={{position:'static'}}
   	return(
       <Loadable active={this.props.isActive} spinner  background='transparent' color="black" spinnerSize="70px" text='Loading ...' >

@@ -61,7 +61,7 @@ constructor(props) {
       this.props.secs.value = 0;
     }
         if(this.props.secs.value == 0){
-      this.props.secs.value = '';
+      this.props.secs.value = 0;
     }
     }
 /**
@@ -80,7 +80,7 @@ constructor(props) {
             format={this.myFormat} name="ss" value={this.state.secs}{...divProps}/>
          </div>
       );
-   }
+   }s
 }
  SecondsComponent.propTypes= {
     id:React.PropTypes.string,

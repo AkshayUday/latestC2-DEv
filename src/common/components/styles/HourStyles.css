@@ -7,14 +7,21 @@
     display: block!important;
     -webkit-appearance: none!important;
     line-height: normal!important;
-    margin-right: 5px!important;
-
+    /*margin-right: 5px!important;*/
 }
+
 .assessmentHours span b{
 border:none !important;
 background:none !important;
 box-shadow:none !important;
-bottom: 10px !important;
+bottom: 14px !important;
+}
+.assessmentHours input{
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+}
+.assessmentHours span{
+    vertical-align: bottom;
 }
 
 .assessmentHours span b:nth-child(2) i{
@@ -29,9 +36,10 @@ bottom: 10px !important;
 .assessmentHours {
     width: 10%;
     float: left;
+    margin-top: 20px;
 }
 .assessmentHours {
-    margin: 1px -90px;
+    margin: 2px -90px;
 }
 
 .assessmentHours label {
@@ -42,4 +50,5 @@ bottom: 10px !important;
     color: #8c8c8c;
     font-size: 0.875rem; 
     padding-top: 30px;
+    vertical-align: bottom;
 }

@@ -29,18 +29,14 @@ displayJson(jsonObj,self){
 			
 			itemArr.push(<div>
 					<div className={savedSearchStyles.row}>
-					<span className={savedSearchStyles.savedSearchChkbox}>
 					<CheckboxComponent
 						name={searchTerm}
-						val={searchTerm}
 						className={savedSearchStyles.PlCheckBox}
 						id={id}
+						val = {searchTerm}
 						checked={item.isChecked}
 						onChangeHandler={self.checkChangeHandler.bind(this)}/>
-					</span>
-					<span>{searchTerm}</span>
 					</div>
-					<div>{filter}</div>
 				</div>);
 
 		});

@@ -7,7 +7,13 @@ class ListRows extends Component{
 	constructor(props){ 
 		super(props);
 		this.setSelectedItem = this.setSelectedItem.bind(this);
-		this.state = { setSelectedItemId: ''};
+		debugger;
+		if(this.props.panel == 'assessment' && this.props.prevSelectedAssessment != ''){
+			this.state = { setSelectedItemId: this.props.prevSelectedAssessment.id};	
+		}else{
+			this.state = { setSelectedItemId: ''};	
+		}
+		
 		
 	}
 	setSelectedItem(selectedItem){ 
@@ -15,6 +21,10 @@ class ListRows extends Component{
 		this.props.radioHandler(selectedItem);
 		this.setState({setSelectedItemId:selectedItem.id});
 
+	}
+
+	handleSelectedAssessment(){
+		this.setState({setSelectedItemId:''});
 	}
 
     assetSelectedEvent(me, isTrue=true) {
@@ -26,12 +36,24 @@ class ListRows extends Component{
 	    }
    }
 
+   componentDidMount() {
+    if (typeof this.props.getChildToParent === 'function') {
+      this.props.getChildToParent(this.exposedMethod.bind(this));
+    }
+   }
+
+   exposedMethod(){
+	   	  this.setState({
+	      setSelectedItemId: ''
+	    });
+   }
 
 	render(){ 
 		let self = this;
 		let isZibra = this.props.zibraRows ? ListStyles.zibrarows : ListStyles.noZibraRows;
 		let rowContent = 'No Results Found';
-		if(this.props.rows.length > 0){
+		let length = this.props.rows ? this.props.rows.length : 0;
+		if(length > 0){
 			rowContent = this.props.rows.map(function (row){
             let checked = false;
 		    
@@ -50,12 +72,17 @@ class ListRows extends Component{
 									  parent={self.assetSelectedEvent}
 									  customFn={self.setSelectedItem} checked={checked}/>
 							</div>
+							
 							<div className='rowTitle'>
 								{row.title}
 							</div>
+
 						</div>
-						<div className='rowType'>{row.type}</div>
-						<div className='rowDatemodified'>{row.dateModified}</div>
+						{self.props.panel == 'assessment' && 
+						<div className={ListStyles.rowType}>{row.type}</div>
+					    }
+
+						<div className={ListStyles.rowDatemodified}>{row.dateModified}</div>
 					</div>
 				
 					)
@@ -75,6 +102,10 @@ ListRows.propTypes = {
 	rows: React.PropTypes.array,
 	zibraRows: React.PropTypes.bool,
 	radioHandler: React.PropTypes.func,
-	record : React.PropTypes.object
+	record : React.PropTypes.object,
+	panel : React.PropTypes.string,
+	prevSelectedAssessment: React.PropTypes.object,
+	getChildToParent: React.PropTypes.object
+
 }
 export default ListRows;

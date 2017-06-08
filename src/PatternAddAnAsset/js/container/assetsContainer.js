@@ -188,8 +188,9 @@ const mapDispatchToProps = (dispatch) => {
             }
         },
         
-        showImgPreview:function (assetData){
+        showImgPreview:function (assetData,selectedAsset){
             assetData.showImgPreview = true;
+            assetData.selectedAsset = selectedAsset;
           dispatch({
           type : 'IMAGE_PREVIEW_LAUNCH',
           data : assetData

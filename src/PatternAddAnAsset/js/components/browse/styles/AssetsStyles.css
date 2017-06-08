@@ -27,6 +27,7 @@
     display: block;
     border: 0px solid $HairlineGray;
     box-sizing: border-box;
+    object-fit: cover;
 }
 .assetRadio{
     display: flex;
@@ -58,6 +59,10 @@
 .imgPrevCnt{
     width: 10%;
     cursor: pointer;
+}
+
+.hideImgPrevCnt{
+    width: 10%;
 }
 
 :global .assetNameToolTip .pe-tooltip{
@@ -166,7 +171,7 @@
     margin-left: 10px;
 }
 .ellipsisInline{
-    word-break: break-all;
+    
     display: flex;
     width: 168px;
     height: 60px;
@@ -175,6 +180,7 @@
     cursor: default;
     color: $Cerulean;
     word-wrap: break-word;
+    word-break: break-all;
 }
 .footer-icon{
     display: flex;
@@ -187,7 +193,7 @@
     display: flex;
     flex-flow: row wrap;
     border-bottom: 1px solid $HairlineGray;
-    margin: 10px;
+    margin: 10px 0px;
     color: #8B8686;
     width: 600px;
 }
@@ -210,6 +216,16 @@
     margin-bottom: 8px;
 }
 
+.listImageSize img{
+    width: 53px;
+    height: 40px;
+    margin: 10px;
+    display: block;
+    border: 1px solid $HairlineGray;
+    box-sizing: border-box;
+    object-fit: cover;
+}
+
 .listViewNameStyle{
     word-wrap: break-word;
     padding-left: 20px;
@@ -217,7 +233,7 @@
     text-overflow: ellipsis;
     width: 66.66%;
     float: left;
-    display: inline-table;
+    /*display: inline-table;*/
 }
 
 .resource-type{
@@ -225,7 +241,7 @@
     position: relative;
     width: 13.66%;
     float: left;
-    margin-left: 48px;
+    margin-left:57px;
 }
 
 .added-by{

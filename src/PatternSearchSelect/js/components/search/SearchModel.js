@@ -23,7 +23,7 @@ class SearchModel extends Component {
 	onSearchIconClick(){ 
 		this.props.filter(this.state.textValue);
 	}
-	getAutoData(val){ 		
+	getAutoData(val){ 	
       this.state.textValue = val;
       this.props.currAutoData(val);		
 	}
@@ -36,7 +36,12 @@ class SearchModel extends Component {
 					</div>
 					<div className={SearchModal.seachTexBoxWrapper}>
 						<div className={SearchModal.searchTextBox}>
-							<Search autoSuggestData = {this.props.autoSuggestData}  hostfilename = {this.props.hostfilename} onSearchIconClick={this.onSearchIconClick} getAutoData = {this.getAutoData}/>
+							<Search autoSuggestData = {this.props.autoSuggestData}  
+							hostfilename = {this.props.hostfilename} 
+							onSearchIconClick={this.onSearchIconClick} 
+							getAutoData = {this.getAutoData} 
+							prevSelectedValue = {this.props.prevSelectedValue} 
+							/>
 						</div>
 						<div className={SearchModal.searchBtn}>
 							<i className="fa fa-search" aria-hidden="true"  
@@ -54,7 +59,8 @@ SearchModel.propTypes={
 	autoSuggestData: React.PropTypes.array,		
 	currAutoData: React.PropTypes.func,
 	hostfilename: React.PropTypes.string,
-	patternTitle: React.PropTypes.string
+	patternTitle: React.PropTypes.string,
+	prevSelectedValue : React.PropTypes.string
 }
 
 export default SearchModel;

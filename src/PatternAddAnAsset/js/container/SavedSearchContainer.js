@@ -71,7 +71,6 @@ const mapDispatchToProps = (dispatch) => {
        dispatch(fetchSavedSearchData(page,DEFAULT_SAVED_SEARCH_MAX_RESULTS));
      },
     handleChange(obj){
-      event.preventDefault();
       dispatch(saveCheckedvalue(obj));
       dispatch(checkBoxHandler(obj));
     }

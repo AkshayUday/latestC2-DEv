@@ -1,7 +1,7 @@
 import {getSearchResults} from '../api/SearchAssetsApi';
 import SearchAssetsConstants from '../constants/SearchActionTypes'
 import Util from '../util/SearchAssetsUtil';
-import {map,last,includes}  from 'lodash';
+import {map,last,includes,cloneDeep,omit}  from 'lodash';
 import localForageService from '../../../common/util/localForageService';
 import SearchConstants from '../constants/SavedSearchConstant';
 import SavedSearchUtil from '../util/SavedSearchUtil';
@@ -10,16 +10,26 @@ import SavedSearchUtil from '../util/SavedSearchUtil';
 * This method is used to invoke the API and get back the search data for 
 * particular search and post it in state.
 **/
-export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
+export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig,patConfig,
+	searchTaxonomicType,productValue){
 	return (dispatch, getState) => { 
 		let srValue = '';
-		let sortObj = {}
+		let sortObj = {};
+		console.log(patConfig);
+        let _qualifier;
+        _qualifier = (patConfig.patSetup.searchTypeOptVal === 'journal' )?'&qualified=workExample':'';
+        let searchType = patConfig.patSetup.searchTypeOptVal
+		let _productValue = productValue;
+		let _addQualified = (searchTaxonomicType === 'Journal') ? '&qualified=workExample':''; 
 		let queryObject = {
 			action: 'Search',
+			_type : searchType,
 			data:{
-				searchterms : 'type=AssessmentInstrument&qualified=workExample'
+				// searchterms : 'type=AssessmentInstrument&qualified=workExample'
+				searchterms : 'type=AssessmentInstrument&status=https://schema.pearson.com/ns/contentlifecyclestatus/final'+_addQualified,
 			}
 		};
+
 		// filterObj = new Map([...filterObj.entries()].sort());
 		if(filterObj !== '' && filterObj !== undefined){
 			let valueObj, queryparams='',pagingParams='', searchterms = queryObject.data.searchterms;
@@ -66,8 +76,8 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
 			//     _filterTypeParam = _filterTypeParam.concat('&taxonomicType='+_getFilterProperty[i]['property']);
 
 			//  }
-
-        	 _filterTypeParam = '&taxonomicType=' + _getFilterProperty.map((value,index,iteratee) => iteratee[index].property).join(',');
+			// Adding AND condition for taxonimic types to fetch correct assessments for TDX/MMI/CITE
+        	 _filterTypeParam = /*'&taxonomicType=' + */_getFilterProperty.map((value,index,iteratee) => '&taxonomicType='+iteratee[index].property).join('');
         	}
         }
         
@@ -75,12 +85,18 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
         	queryObject.data.searchterms = queryObject.data.searchterms.concat(_filterTypeParam)
         }
 
-/*
+
+        if(_productValue == true && patConfig.patSetup.productId != ''){
+	        let actionObj = getActionObject({type:'GET_IN_REGISTER'});
+			let productParam = setSearchTextValue(actionObj, {value:patConfig.patSetup.productId});
+	        queryObject.data.searchterms  = queryObject.data.searchterms + productParam;
+        }
+
         dispatch({
 				type: 'ERROR',
 				value: ''
 				});
-*/
+
         dispatch({
           type: 'ACTIVATE'
         })
@@ -114,7 +130,8 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
 
 		const promise = getSearchResults(queryObject,libConfig);
 		promise.then(function (replyGet){
-    	let results = Util.getRequiredParameter(replyGet,filterTypeData);
+		//adding searchTaxonomicType for get exact type
+		let results = Util.getRequiredParameter(replyGet,filterTypeData, searchTaxonomicType);
     	// console.log(filterTypeData);
     	// let searchResults = {'listResults' : results};
     		dispatch({
@@ -149,6 +166,14 @@ export function getAssets(filterObj, filterTypeValue, filterTypeData,libConfig){
 
 	}
 }
+
+export function validateTaxonomicTypes(value, index, array){
+			let returnValue = false;
+			if(value === 'TDX' || value === 'CITE' || value === 'Journal'){
+				returnValue = true;
+			}
+			return returnValue;
+	}
 
 export function saveLocalForageData(inputData){
 	return (dispatch, getState) => {
@@ -246,8 +271,11 @@ export function getFilterType(libConfig){
                       }
                 }
     		    });
-    		
-
+    	// added three taxonomic types until API gets ready
+    	results.unshift({display:'Shared Writing', property:'https://schema.pearson.com/ns/taxonomictype/Shared Writing'});
+    	results.unshift({display:'Journal', property:'https://schema.pearson.com/ns/taxonomictype/Journal'});
+    	results.unshift({display:'CITE', property:'https://schema.pearson.com/ns/taxonomictype/CITE'});
+    	results.unshift({display:'TDX', property:'https://schema.pearson.com/ns/taxonomictype/TDX'});
 
 		dispatch({
 			type: 'FILTER_TYPE_DATA',
@@ -280,6 +308,173 @@ export function getFilterType(libConfig){
         });
 
 	}
+}
+
+export function getAssessmentItems(itemsData,libConfig){
+	return (dispatch,getState) => {
+        
+        console.log(itemsData);
+
+		let assessmentItemsObject = {
+			action: 'Read One',
+			_type:'TDX',
+			data:{
+				// searchterms : 'type=AssessmentInstrument&qualified=workExample'
+				// searchterms : 'type=AssessmentInstrument'
+				uuid:itemsData.uuid
+			}
+		};
+
+		dispatch({
+					type: 'ERROR',
+					value: ''
+			    })
+
+        dispatch({
+          type: 'ACTIVATE'
+        })
+        getSearchResults(assessmentItemsObject,libConfig).then((replyGet) => {
+           console.log(replyGet);
+           let result = omit(cloneDeep(replyGet)['origjsonld'],'@context');
+           console.log(result);
+           let hasPartItems = Util.getHasPartItems(result);
+           console.log(hasPartItems);
+
+            dispatch({
+			   type: 'ASSESSMENT_ITEMS',
+			   value: result
+	    	});
+
+           dispatch({
+			   type: 'HAS_PART_ITEMS',
+			   value: hasPartItems
+	    	});
+
+			dispatch({
+			type: 'DEACTIVATE'
+			})
+
+
+        },(error) => {
+        	console.log(error);
+			if(error.message == 'timeout' || error == ''){
+				dispatch({
+				type: 'ERROR',
+				value: 'Network issue please try again.'
+				})
+			}
+
+        	dispatch({
+          type: 'DEACTIVATE'
+        })
+        
+        }).catch(e => {
+        	console.log(e);
+
+        	dispatch({
+          type: 'DEACTIVATE'
+        })
+        
+        })
+      
+ 	    //   let itemsObject = {
+		// 	action: 'Read One',
+		// 	data:{
+		// 		// searchterms : 'type=AssessmentInstrument&qualified=workExample'
+		// 		// searchterms : 'type=AssessmentInstrument'
+		// 	}
+		// };
+
+        // getSearchResults(itemsObject,libConfig).then((replyGet) => {
+        //    console.log(replyGet);
+        // },(error) => {
+        // 	console.log(error);
+        
+        // }).catch(e => {
+        // 	console.log(e);
+        
+        // })
+
+
+	}
+}
+
+
+export function getAssessment(assessmentData,libConfig,callBack) {
+       // debugger;
+
+        return (dispatch,getState) => {
+        console.log(assessmentData);
+
+		let assessmentObject = {
+			action: 'Read One',
+			_type:'TDX',
+			data:{
+
+				uuid:assessmentData.uuid
+			}
+		};
+
+		dispatch({
+					type: 'ERROR',
+					value: ''
+			    })
+
+        dispatch({
+          type: 'ACTIVATE'
+        })
+
+        getSearchResults(assessmentObject,libConfig).then((replyGet) => {
+           console.log(replyGet);
+           let result = omit(cloneDeep(replyGet)['origjsonld'],'@context');
+           console.log(result);
+
+           assessmentData.assessmentData = result;
+
+
+           let hasPartItems = Util.getHasPartItems(result);
+           console.log(hasPartItems);
+
+            dispatch({
+			   type: 'ASSESSMENT_ITEMS',
+			   value: result
+	    	});
+
+           dispatch({
+			   type: 'HAS_PART_ITEMS',
+			   value: hasPartItems
+	    	});
+
+           dispatch({
+          		type: 'DEACTIVATE'
+           })
+           
+
+           callBack(assessmentData);
+
+
+        },(error) => {
+        	console.log(error);
+        	if(error.message == 'timeout' || error == ''){
+				dispatch({
+				type: 'ERROR',
+				value: 'Network issue please try again.'
+				})
+			}
+
+        	dispatch({
+          type: 'DEACTIVATE'
+        })
+        
+        }).catch(e => {
+        	console.log(e);
+        	dispatch({
+          type: 'DEACTIVATE'
+        })
+        
+        });
+
+     }
 }
 
 /**
@@ -339,6 +534,10 @@ export function getActionObject(filterObj){
 
 		case 'GET_PAGE_MAX':
 		searchItems = SearchAssetsConstants.GET_PAGE_MAX;
+		break;
+
+		case 'GET_IN_REGISTER':
+		searchItems = SearchAssetsConstants.GET_IN_REGISTER;
 		break;
 
 		default:

@@ -6,7 +6,7 @@ import Style from './styles/FilterType.css';
 class FilterType extends React.Component {
    constructor(props) {
     super(props); 
-
+    // debugger;
     this.state = {
          filters : [],
          showFilterType:false,
@@ -21,6 +21,8 @@ class FilterType extends React.Component {
     this.createCheckboxes = this.createCheckboxes.bind(this);
     this.onClick = this.onClick.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.handleProduct = this.props.handleProduct.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentWillMount(){
@@ -38,7 +40,7 @@ class FilterType extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps.filterTypeData.length);
+    // console.log(nextProps.filterTypeData.length);
     if(nextProps.filterTypeData.length > 0) {
       if(nextProps.filterTypeData.length != this.props.filters[0]['options'].length){
          this.props.filters[0]['options'] = nextProps.filterTypeData;
@@ -68,7 +70,11 @@ class FilterType extends React.Component {
   }
 
   componentDidUpdate(){
+    // debugger;
     document.addEventListener('click', this.handleDocumentClick, false);
+    // if(this.props.filters[0]['options']['length'] > 1){
+    //   this.setState({filters:this.props.filters});
+    // }
   }
 
   componentWillUpdate(){
@@ -76,6 +82,11 @@ class FilterType extends React.Component {
   }
 
   componentDidMount(){
+     // debugger;
+    if(this.props.filters[0]['options']['length'] > 1){
+      // this.setState({filters:this.props.filters});
+      this.state.filters = this.props.filters;
+    }
 
   }
   
@@ -182,9 +193,13 @@ class FilterType extends React.Component {
 
     return (      
       <div ref="filterType">
-        <div id="filterType">
-        <label>Filter: Type <a onClick={this.onClick} href='#' style={{color:'black'}}><i className={'fa ' + toggleIcon} aria-hidden="true"></i></a></label>
-         </div>
+        <div id="filterType" style={{float:'left'}}>
+        <label>Filters:&nbsp;&nbsp;Type <a onClick={this.onClick} href='#' style={{color:'black'}}><i className={'fa ' + toggleIcon} aria-hidden="true"></i></a></label>
+        </div>
+        <div style={{float:'left'}}>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product <input type="checkbox" name="productvalueflag" id="productvalueflag" onChange = {this.handleProduct}/>
+        </div>
+
         {this.state.showFilterType && this.createCheckboxes()}
       </div>
     );
@@ -199,7 +214,8 @@ FilterType.propTypes = {
   getAssetsWithManifestation : React.PropTypes.func,
   getValue : React.PropTypes.func,
   hostfilename: React.PropTypes.string,
-  localForData : React.PropTypes.object
+  localForData : React.PropTypes.object,
+  handleProduct : React.PropTypes.func
 }
 
 

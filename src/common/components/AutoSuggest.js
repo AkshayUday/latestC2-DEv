@@ -101,8 +101,8 @@ class Search extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-   console.log('nextProps');
-   console.log(nextProps);
+   // console.log('nextProps');
+   // console.log(nextProps);
    this.setState({suggestions: nextProps.autoSuggestData});
    
    // this.setState({value: nextProps.hostfilename})
@@ -110,8 +110,15 @@ class Search extends Component {
   } 
 
   componentWillMount(){
-    this.setState({value: this.props.hostfilename});
-    this.props.getAutoData(this.props.hostfilename);
+   
+    if(this.props.prevSelectedValue != undefined){
+       this.setState({value: this.props.prevSelectedValue});
+       this.props.getAutoData(this.props.prevSelectedValue);
+    }else{
+       this.setState({value: this.props.hostfilename});
+       this.props.getAutoData(this.props.hostfilename);
+    }
+   
   }
 
   render() {
@@ -148,7 +155,8 @@ class Search extends Component {
 Search.propTypes = {
  getAutoData : React.PropTypes.func,
  hostfilename: React.PropTypes.string,
- onSearchIconClick: React.PropTypes.func
+ onSearchIconClick: React.PropTypes.func,
+ prevSelectedValue : React.PropTypes.string
 }
 
 

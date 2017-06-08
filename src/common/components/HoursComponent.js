@@ -56,7 +56,7 @@ constructor(props) {
   }
   componentWillReceiveProps(){
     if(this.props.hours.value == 0){
-      this.props.hours.value = '';
+      this.props.hours.value = 0;
     }
     if(this.props.hours.value == -1){
       this.props.hours.value = 23;

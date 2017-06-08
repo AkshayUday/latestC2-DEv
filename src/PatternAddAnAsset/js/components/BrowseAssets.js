@@ -27,7 +27,9 @@ class BrowseAssets extends Component {
         super(props);
         this.state = {
             record: this.props.record,
-            toggleFolder: true
+            toggleFolder: true,
+            currPageNo: this.props.pageDetails.pageNo,
+            currPageLimit: this.props.pageDetails.pageLimit
         };
         this.sendToQuad = props.sendToQuad.bind(this);
         this.closeBrowseAssets = props.closeBrowseAssets.bind(this);
@@ -82,7 +84,7 @@ class BrowseAssets extends Component {
                                 <div className={BrowseAsset.filtersLabel}>Documents</div>
                                 <PL_Scroll classname={BrowseAsset.area} contentName={BrowseAsset.scroll}>
                                    <FolderTree clearModal={this.props.clearModal}
-                                          browsestate={isBoolean} folder={this.props.folder}/>
+                                          browsestate={isBoolean} folder={this.props.folder} pageNav={this.state}/>
                                 </PL_Scroll>
                                 </div>);
                     }

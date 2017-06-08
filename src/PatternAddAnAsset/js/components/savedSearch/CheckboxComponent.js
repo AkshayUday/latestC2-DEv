@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 
 class CheckboxComponent extends Component {
 
-	constructor(props){
-    		super(props);
-    		this.state={
-      			id: this.props.id,
-      			name : this.props.name,
+  constructor(props){
+        super(props);
+        this.state={
+            id: this.props.id,
+            name : this.props.name,
             checked:this.props.checked
-  			};
+        };
         this.changedBox = this.changedBox.bind(this);
-	}
+  }
 
   changedBox(e){
     console.log(this.state);
@@ -42,14 +42,16 @@ class CheckboxComponent extends Component {
 
    render() {
     console.log('inside render of CheckBocConponent');
-   	 let name = this.props.name;
-   	 let id = this.props.id;
+     let name = this.props.name;
+     let id = this.props.id;
      let checked = this.props.checked;
+     let value = this.props.val;
      let className = this.props.className;
-   	  let self = this;
+      let self = this;
       return (
-         <input type="checkbox" className={className} name={name} id={id} checked={checked} onChange={this.changedBox}/>
-
+        <label>
+         <input type="checkbox" value={value} className={className} name={name} id={id} checked={this.state.checked} onChange={this.changedBox}/>&nbsp;&nbsp;{value}
+        </label>
       );
    }
 }
@@ -59,6 +61,7 @@ CheckboxComponent.propTypes = {
         name: PropTypes.string,
         checked: PropTypes.any,
         className: PropTypes.string,
+        val: PropTypes.string,
         onChangeHandler: PropTypes.func
     }
 

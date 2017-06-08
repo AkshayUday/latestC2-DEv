@@ -10,7 +10,7 @@ const sort_asc =  '&sort=http://schema.org/value,http://www.w3.org/ns/ldp%23Asce
 
 const initial_paging_value = '&page=value';
 const paging_max_count = '&max-member-count=value';
-
+const inRegister  = '&inRegister=urn:pearson:register:value';
 
 const filterType = {
     action: 'TaxonomicType',
@@ -25,7 +25,8 @@ const actionTypes = {
 	GET_FILTER_TYPE: filterType,
 	GET_PAGE_INITAL : initial_paging_value,
 	GET_PAGE_MAX : paging_max_count,
-	QUERY_OBJECT : QUERY_OBJECT
+	QUERY_OBJECT : QUERY_OBJECT,
+	GET_IN_REGISTER : inRegister
 }
 
 module.exports = actionTypes;

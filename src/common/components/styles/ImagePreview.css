@@ -1,7 +1,27 @@
 @lost flexbox flex;
 
 .prvwsize{
-	width: 62%;
+	width: 100%;
+}
+
+
+.details{
+ float: left;
+ width:40%;
+ padding-left:20px;
+}
+.details label{
+float: left;
+}
+
+.info{
+ float: right;
+ width:auto;
+ padding-right:20px;
+}
+
+.info div{
+float:left;
 }
 
 

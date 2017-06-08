@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SearchComponent from '../components/search/SearchSpec'
-import {getAssets,getFilterType,getOnLoadLocalForageData,saveLocalForageData} from '../actions/SearchAssetsAction'
+import {getAssets,getFilterType,getOnLoadLocalForageData,saveLocalForageData, 
+validateTaxonomicTypes} from '../actions/SearchAssetsAction';
 import {last} from 'lodash';
 import SearchConstants from '../constants/SavedSearchConstant';
 
@@ -15,7 +16,8 @@ const mapStateToProps = (state) => {
 		recentSearchData: searchData.recentSearchData,
 		savedSearchData: searchData.savedSearchData,
 		autoSuggestData: searchData.autoSuggestData,
-		localForData: searchData.localForData
+		localForData: searchData.localForData,
+		productValue: searchData.productValue
 	}
 }
 
@@ -28,9 +30,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 	 			} 
 	 		}
  		)())
-			ownProps.libConfig.patternName = ownProps.patConfig.pattern;
-			dispatch(getAssets(this.state.actionTypes, this.props.filterTypeValue, _filterTypeData,ownProps.libConfig));
+		//verify an Array contains TDX/CITE/Journal
+ 		if(this.props.filterTypeValue.some(validateTaxonomicTypes)){
+ 			let result = this.props.filterTypeValue.filter(validateTaxonomicTypes);
+ 			if(result.length >= 2){
+ 				dispatch({type: 'ERROR', value: 'Select only one from TDX/CITE/Journal'});
+ 				dispatch({type: 'DEACTIVATE'});
+ 			}else{
+				ownProps.libConfig.patternName = ownProps.patConfig.pattern;
+				dispatch(getAssets(this.state.actionTypes, this.props.filterTypeValue, _filterTypeData,ownProps.libConfig,ownProps.patConfig
+					,result.join(''),this.props.productValue));
+ 			}
+ 		}else{
+ 			dispatch({type: 'ERROR', value: 'Select atleast one from TDX/CITE/Journal'});
+ 			dispatch({type: 'DEACTIVATE'});
+ 		}
 		},
+		
 		getFilterType: function (){
 			dispatch(getFilterType(ownProps.libConfig));
 		},

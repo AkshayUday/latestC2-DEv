@@ -14,6 +14,9 @@ const ListView = (props) => {
 				            clickedItem = {props.clickedItem}/>
 			<PL_Scroll classname={ListStyles.area}>
 				<ListRow rows={props.rows} 
+				         panel = {props.panel}
+				         getChildToParent = {props.getChildToParent}
+				         prevSelectedAssessment = {props.prevSelectedAssessment}
 						 zibraRows={props.zibraRows}
 						 radioHandler={props.radioHandler}/>
 			</PL_Scroll>
@@ -30,6 +33,9 @@ ListView.propTypes = {
 	radioHandler: React.PropTypes.func,
 	onColumnSort: React.PropTypes.func,
 	columnsort: React.PropTypes.bool,
-	clickedItem: React.PropTypes.string
+	clickedItem: React.PropTypes.string,
+	panel: React.PropTypes.string,
+	prevSelectedAssessment : React.PropTypes.object,
+	getChildToParent : React.PropTypes.object
 }
 export default ListView;

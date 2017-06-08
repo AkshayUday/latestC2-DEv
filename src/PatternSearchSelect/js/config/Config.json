@@ -37,6 +37,18 @@
       "property": "cat-type-2"
     }]
   }],
+  "itemcolumns": [{
+      "display": "Title",
+      "property": "name",
+      "sort": false,
+      "align": "left"
+    },{
+      "display": "Date Modified",
+      "property": "dateModified",
+      "sort": false,
+      "align": "right"
+    }
+  ],
 
   "sortOptions" : ["date uploaded (descending)",
                     "date uploaded (ascending)",

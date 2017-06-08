@@ -32,10 +32,10 @@ module.exports = {
 
     getFilterQueryForAssets(index){
         let fileTypeForSearch = {
-            0:' AND (d.cmis:contentStreamMimeType LIKE '+'\'image/%25\''+' OR (d.cmis:objectTypeId = '+'\'D:avs:smartLink\''+' AND t.cm:description LIKE '+'\'%25"smartLinkType"'+':%25"Image"%25\''+')) ',
+            0:' AND ((d.cmis:contentStreamMimeType LIKE '+'\'image/%25\''+' OR d.cmis:contentStreamMimeType LIKE '+'\'application/illustrator\''+') OR (d.cmis:objectTypeId = '+'\'D:avs:smartLink\''+' AND t.cm:description LIKE '+'\'%25"smartLinkType"'+':%25"Image"%25\''+')) ',
             1:' AND (d.cmis:contentStreamMimeType LIKE '+'\'video/%25\''+' OR (d.cmis:objectTypeId = '+'\'D:avs:smartLink\''+' AND t.cm:description LIKE '+'\'%25"smartLinkType"'+':%25"Video"%25\''+') OR t.cm:description LIKE '+'\'%25"streamingMediaPackageType":'+'%25"Video"%25\') ',
             2:' AND (d.cmis:contentStreamMimeType LIKE '+'\'audio/%25\''+' OR (d.cmis:objectTypeId = '+'\'D:avs:smartLink\''+' AND t.cm:description LIKE '+'\'%25"smartLinkType"'+':%25"Audio"%25\''+') OR t.cm:description LIKE '+'\'%25"streamingMediaPackageType":'+'%25"Audio"%25\') ',
-            3:' AND (d.cmis:objectTypeId = '+'\'D:avs:smartLink\' OR (d.cmis:contentStreamMimeType NOT LIKE \'image/%25\' AND d.cmis:contentStreamMimeType NOT LIKE \'audio/%25\' AND d.cmis:contentStreamMimeType NOT LIKE \'video/%25\')) AND (d.cmis:objectTypeId <> \'D:avs:smartLink\' OR (t.cm:description NOT LIKE \'%25"smartLinkType":%25"Image"%25\' AND '+ 
+            3:' AND (d.cmis:objectTypeId = '+'\'D:avs:smartLink\' OR (d.cmis:contentStreamMimeType NOT LIKE \'image/%25\' AND d.cmis:contentStreamMimeType NOT LIKE \'application/illustrator\' AND d.cmis:contentStreamMimeType NOT LIKE \'audio/%25\' AND d.cmis:contentStreamMimeType NOT LIKE \'video/%25\')) AND (d.cmis:objectTypeId <> \'D:avs:smartLink\' OR (t.cm:description NOT LIKE \'%25"smartLinkType":%25"Image"%25\' AND '+ 
                 't.cm:description NOT LIKE '+'\'%25"smartLinkType":%25"Video"%25\' AND t.cm:description NOT LIKE \'%25"smartLinkType":%25"Audio"%25\')) AND '+
                 '(t.cm:description IS NULL OR t.cm:description NOT LIKE \'%25"streamingMediaPackageType":%25"Video"%25\') AND '+ 
                 '(t.cm:description IS NULL OR t.cm:description NOT LIKE \'%25"streamingMediaPackageType":%25"Audio"%25\')'

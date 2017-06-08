@@ -7,16 +7,24 @@
     display: block!important;
     -webkit-appearance: none!important;
     line-height: normal!important;
-    margin-right: 5px!important;
+     /*margin-right: 5px!important;*/
 
 }
 .assessmentMinutes span b{
 border:none !important;
 background:none !important;
 box-shadow:none !important;
-bottom: 10px !important;
+bottom: 14px !important;
 }
 
+.assessmentMinutes span{
+  vertical-align: bottom;
+}
+
+.assessmentMinutes input{
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+}
 .assessmentMinutes span b:nth-child(2) i{
   border-width: 0px 0.8ex 0.8ex!important;
   border-color: transparent transparent rgba(0, 0, 0, 0.5) !important;
@@ -30,6 +38,7 @@ bottom: 10px !important;
 .assessmentMinutes {
     float: left;
     width: 11%;
+    margin-top: 20px;
 }
 .assessmentMinutes {
  margin: 2px 92px;
@@ -43,4 +52,6 @@ bottom: 10px !important;
     color: #8c8c8c;
     font-size: 0.875rem;
     padding-top: 30px;
+    vertical-align: bottom;
+
 }

@@ -79,10 +79,6 @@ const mapStateToProps = (state) => {
     if (data.length !== 0) {
         temp = JSON.parse(JSON.stringify(data.items));
     }
-    let searchValue = '';
-    if(state.autoComplete.length > 0){
-        searchValue = state.autoComplete[state.autoComplete.length-1].text;
-    }
     const { sortIndex } = state.userFilterReducer;
     const { viewName } = state.userFilterReducer;
     return {
@@ -92,7 +88,7 @@ const mapStateToProps = (state) => {
         productName: siteData.productName,
         isSearchLibrary: true,
         difficultLevelData: [],
-        searchValue:searchValue,
+        searchValue:data.SearchValue,
         sortIndex,
         viewName
     }
@@ -175,6 +171,15 @@ const mapDispatchToProps = (dispatch) => {
                     dispatch(getSearchProductItems(searchValue, DEFAULT_PAGE_NO, maxItems, fileTypeIndex, sortIndex, viewName));
                 })
             }
+        },
+
+        showImgPreview:function (assetData,selectedAsset){
+            assetData.showImgPreview = true;
+            assetData.selectedAsset = selectedAsset;
+          dispatch({
+          type : 'IMAGE_PREVIEW_LAUNCH',
+          data : assetData
+          });
         }
     }
 }

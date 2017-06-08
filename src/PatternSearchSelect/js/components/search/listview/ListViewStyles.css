@@ -8,14 +8,14 @@
 .columnHeader{
 	display: flex;
 	border-bottom: 1px solid lightgrey;
+	margin:8px;
+	padding-bottom:10px;
 }
 .area{
     height: 280px;
-    /*padding-top: 2%;*/
 }
 .filterArea{
 	height: 160px;
-	/*padding-top: 2%;*/
 }
 .columnHeader div{
 	flex: 2.01;
@@ -30,6 +30,7 @@
 }
 .spaceBetween{
 	padding-left: 2%;
+	text-indent:0px;
 }
 .rowContent{
 	display: flex;
@@ -38,12 +39,10 @@
     align-items: center;
     min-height: 37px;
 }
-
 .rowContent div{
 	flex:2;
 	
 }
-
 .rowContent div:nth-child(1){
 	flex:3;
 }
@@ -61,6 +60,10 @@
 
 .rowTitleWrapper{
 	display: flex;
+	width:50%;
+}
+.rowType{
+	flex:1;
 }
 
 .rowRadioBtn{
@@ -71,6 +74,7 @@
     flex-flow: column;
     flex: 1;
     height: 280px;
+    margin-top:10px;
 }
 .noZibraRows{
 	display: flex;

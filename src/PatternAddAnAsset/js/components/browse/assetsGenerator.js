@@ -75,11 +75,8 @@ class assetsContainer extends Component {
         this.props.onChange(event,this.state.sortValue);
     }
 
-    showImgPreview(event){
-        //this.props.assetsData.imgPreviewEnable = true;
-        //this.setState({imgPreviewEnable: true});
-        this.props.showImgPreview(JSON.parse(JSON.stringify(this.props.assetsData)));
-        event.stopPropagation();
+    showImgPreview(selectedAsset){
+        this.props.showImgPreview(JSON.parse(JSON.stringify(this.props.assetsData)),selectedAsset);
     }
 
     render() {

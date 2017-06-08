@@ -539,10 +539,10 @@ function _createJSON(data, eTag) {
         if (k.includes('discipline')) {
             obj['discipline'] = data[k];
         }
-        else
-        if (k.includes('hasAlignment')) {
-            obj['goalKeywords'] = data[k];
-        }
+        // else
+        // if (k.includes('hasAlignment')) {
+        //     obj['goalKeywords'] = data[k];
+        // }
         else
         if (k.includes('difficultyLevel') || k.includes('difficultylevel')) {
             obj['difficultyLevel'] = data[k];

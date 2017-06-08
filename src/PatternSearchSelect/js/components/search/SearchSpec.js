@@ -5,6 +5,7 @@ import FilterModel from './FilterModel'
 import ListView from './listview/ListView'
 import SearchPaging from './SearchPaging'
 
+
 import Util from '../../util/SearchAssetsUtil'
 
 const rows = [];
@@ -33,7 +34,29 @@ class SearchSpec extends Component{
 				sortLocalTitle=this.props.localForData[this.props.patConfig.pattern].sortColName;
 			}
 		}
-		this.state={
+		
+		debugger;
+		
+		if(this.props.isBack != undefined && this.props.isBack == true && this.props.assessmentPreviousState != ''){
+			 
+			this.state = {
+				filterStatus : this.props.assessmentPreviousState.filterStatus,
+				config : this.props.assessmentPreviousState.config,
+				pageNo: this.props.assessmentPreviousState.pageNo,
+				pageLimit:this.props.assessmentPreviousState.pageLimit,
+				columnsort : this.props.assessmentPreviousState.columnsort,
+				clickedItem : this.props.assessmentPreviousState.clickedItem,
+				freeText: this.props.assessmentPreviousState.freeText,
+				actionTypes: this.props.assessmentPreviousState.actionTypes,
+				sugSaveVal: this.props.assessmentPreviousState.sugSaveVal,
+				displayCount :this.props.assessmentPreviousState.displayCount,
+				isSuccess: this.props.assessmentPreviousState.isSuccess,
+				prevSelectedAssessment : this.props.assessmentPreviousState.selectedAssessment
+			}
+
+		}else{
+
+		  this.state = {
 			filterStatus : false,
 			config : this.props.componentConfig,
 			pageNo:1,
@@ -44,10 +67,16 @@ class SearchSpec extends Component{
 			actionTypes: new Map(),
 			sugSaveVal: '',
 			displayCount :'',
-			isSuccess: false
+			isSuccess: false,
+			prevSelectedAssessment : ''
 		}
+
+		}
+
+	
 	}
 	onColumnSort(mdsProperty){ 
+
 		if(mdsProperty != 'taxonomicType'){
 			this.setState({clickedItem: mdsProperty});
 			//this.setState({columnsort : !this.state.columnsort});
@@ -56,8 +85,7 @@ class SearchSpec extends Component{
 			let type = this.state.columnsort ? 'GET_SORT_ASC' : 'GET_SORT_DESC';
 			this.state.actionTypes.set('ZSORT', Util.getActionObj(type, mdsProperty));
 			this.getAssetsWithManifestation();
-		}
-		
+		}		
 	}
 
 	getAssetsWithManifestation(){ 
@@ -80,6 +108,7 @@ class SearchSpec extends Component{
 	}
 
 	handlePageChange(pageNo){
+
 		this.setState({pageNo : pageNo});
 		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', pageNo));
 		this.state.actionTypes.set('PAGING_MAX', Util.getActionObj('GET_PAGE_MAX', this.state.pageLimit));
@@ -87,13 +116,14 @@ class SearchSpec extends Component{
 	}
 
 	getValue(textValue){ 
-		this.setState({freeText : textValue});
+
+	    this.setState({freeText : textValue});
 		this.setState({pageNo: 1});
 		this.state.actionTypes.set('PAGE_INIT', Util.getActionObj('GET_INTIAL_PAGE', 1));
 		this.state.actionTypes.set('PAGING_MAX', Util.getActionObj('GET_PAGE_MAX', this.state.pageLimit));
 
 		let type, value;
-		if(textValue !== '' && textValue !== undefined && textValue.trim().length > 0){
+		if(textValue !== '' && textValue !== undefined){
 				type = 'GET_GENERIC_ALL',
 				value = textValue.trim();
 		}else{
@@ -102,19 +132,60 @@ class SearchSpec extends Component{
 		}
 
 		this.state.actionTypes.set('FREE_TEXT', Util.getActionObj(type, value));
+		
+        // this.state.prevSelectedAssessment = '';
+
+        this.props.handleAssessmentSelectButton();
 		this.getAssetsWithManifestation();
+
 	}
 	currAutoData(sugValue){		
 		this.setState({sugSaveVal: sugValue});		
 	}
 	onRadioBtnClick(selectedRecord){
+		console.log(selectedRecord);
+		debugger;
 		this.props.getCallBackData(selectedRecord);
 	}
 
 	componentDidMount(){
-		// degugger;
-		this.props.getFilterType();
+		debugger;
+		if(this.props.filterTypeData.length < 1){
+			this.props.getFilterType();	
+		}
+		
+		
+		// if (typeof this.props.getChildToParent === 'function') {
+	 //      this.props.getChildToParent(this.exposedMethod.bind(this));
+	 //    }
 	}
+
+
+  
+	// shouldComponentUpdate(nextProps, nextState){
+	// 	// console.log(nextProps);
+	// 	// console.log(nextState);
+	// 	// if(nextProps.isBack == true){
+	// 	// // this.setState({isAssessment:true,isAssessmentItems:false,isBack:false});
+	// 	// return false;
+	// 	// }else{
+	// 	// return true;	
+	// 	// }
+
+	// }
+
+	// shouldComponentUpdate(nextProps, nextState){
+	// 	debugger
+	// 	console.log(nextProps, nextState);
+ //        return true;
+	// }
+
+	componentWillUnmount(){
+		debugger;
+		console.log('Removed');
+		this.props.getAssessmentPreviousState(this.state);
+	}
+
 	componentWillReceiveProps(newProps) {
 		if(newProps.localForData !== undefined){
 			if(newProps.localForData[this.props.patConfig.pattern] !== undefined && newProps.localForData[this.props.patConfig.pattern].sortSelection.order !== undefined){
@@ -147,7 +218,7 @@ class SearchSpec extends Component{
 			zibraRows,filters, patternTitle} = this.state.config;
        
 			let pageDetail ={
-				totalRecords: this.props.results.length,
+				totalRecords: this.props.results ? this.props.results.length : 0,
 				pageNo: this.state.pageNo,
 				pageLimit: this.state.pageLimit,
 				lastPage: true
@@ -160,7 +231,8 @@ class SearchSpec extends Component{
                 {this.props.error}
 				</div>
 					<SearchModel patternTitle={patternTitle} filter={this.getValue} autoSuggestData= {this.props.autoSuggestData}
-					getAutoData={this.props.getAutoData} currAutoData={this.currAutoData} hostfilename = {this.props.patConfig.patSetup.filename}/>
+					getAutoData={this.props.getAutoData} currAutoData={this.currAutoData} 
+					hostfilename = {this.props.patConfig.patSetup.filename} prevSelectedValue = {this.props.assessmentPreviousState.freeText} />
 					<FilterModel filterStatus={this.filterFlag.bind(this)} 
 								 displayOptions={displayOptions}
 								 sortOptions={sortOptions}
@@ -174,7 +246,11 @@ class SearchSpec extends Component{
 								 displayCount={this.state.displayCount}
 								 isSuccess={this.state.isSuccess}
 								 />
-					<ListView flag={this.state.filterStatus} 
+					<ListView 
+					          flag={this.state.filterStatus} 
+					          getChildToParent ={this.props.getChildToParent}
+							  panel = {'assessment'}
+							  prevSelectedAssessment = {this.state.prevSelectedAssessment}
 							  columns={columns}
 							  zibraRows={zibraRows} rows={this.props.results}
 							  radioHandler={this.onRadioBtnClick}
@@ -182,6 +258,8 @@ class SearchSpec extends Component{
 							  columnsort = {this.state.columnsort}
 							  clickedItem = {this.state.clickedItem}
 							  />
+				   
+				    
 					<SearchPaging pageDetails={pageDetail} handlePageChange={this.handlePageChange}/>
 				</div>
 			);
@@ -204,7 +282,13 @@ SearchSpec.propTypes = {
 	savedSearch: React.PropTypes.func,
 	srSaveValue: React.PropTypes.string,
 	getAutoData: React.PropTypes.string,
-	localForData : React.PropTypes.object
+	localForData : React.PropTypes.object,
+	filterTypeData: React.PropTypes.object,
+	isBack :React.PropTypes.bool,
+	getAssessmentPreviousState: React.PropTypes.func,
+	assessmentPreviousState : React.PropTypes.object,
+	handleAssessmentSelectButton : React.PropTypes.object,
+	getChildToParent : React.PropTypes.object
 }
 export default SearchSpec;
 

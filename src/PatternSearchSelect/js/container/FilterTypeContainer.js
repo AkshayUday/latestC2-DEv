@@ -31,6 +31,10 @@ const mapDispatchToProps = (dispatch) => {
 		setFilterTypeValue: (filterValue) => {
 			console.log(filterValue);
             dispatch({type:'FILTER_TYPE_VALUE' , value:filterValue});           
+		},
+		handleProduct(ev){
+			debugger;
+			 dispatch({type:'PRODUCT_VALUE' , value:ev.currentTarget.checked});
 		}
 	}
 

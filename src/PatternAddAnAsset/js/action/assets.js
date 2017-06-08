@@ -9,8 +9,6 @@
  * @author TDC
  *
  */
-
-
 import assetsApi from '../api/assets';
 import fileUploadApi from '../api/fileUploadApi';
 import { DISPLAY_ASSETS, SEND_TO_QUAD} from '../constants/fileUploadConstants';
@@ -22,6 +20,7 @@ import SearchConstants from '../constants/SavedSearchConstant';
 import {getFilterQueryForAssets, findPlatformOrSmartLink} from '../utils/util';
 
 let i = 1;
+
 
 function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
     res.body.showTabs = true;
@@ -60,14 +59,14 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
             let nodeRefText = res.body.results[i].properties['d.alfcmis:nodeRef'].value;
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
-            let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
+            let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
             mimeType = res.body.results[i].properties['d.cmis:contentStreamMimeType'].value;
             description = res.body.results[i].properties['d.cmis:description'].value;
              if(description !== null && description !== undefined &&
                 (description.indexOf('streamingMediaPackageType') !== -1 || description.indexOf('smartLinkType') !== -1)){
                 contentURL = findPlatformOrSmartLink(window.tdc.patConfig.alfserver,mimeType, description, nodeRefVal);
             }
-	    let imgPreviewUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
+        let imgPreviewUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
             _resData = {'nodeRef':res.body.results[i].properties['d.alfcmis:nodeRef'].value,
                 'mimetype':mimeType,
                 'url': thumbnailUrl,
@@ -85,6 +84,7 @@ function getAssetsData(res,index,limit,pageNo,maxItems,fileTypeIndex,viewName){
                 'container':'documentLibrary',
                 'type':'document',
                 'previewUrl': imgPreviewUrl,
+                'currTabName': 'browse'
             }
 
             if(JSON.parse(window.tdc.patConfig['cmis'])['wURN'] == true){
@@ -158,13 +158,18 @@ export function fetchingAssets(nodeRef,pageNo,maxItems,
             type : DISPLAY_ASSETS,
             data : assetData
           });
+            dispatch({
+            type: 'DEACTIVATE'
+            })
+
           persistDisplayCount(dispatch, sortIndex, viewName, maxItems)
       },function (error){
        console.log('fetching assets data:' + error);
-      });
-      dispatch({
+       dispatch({
             type: 'DEACTIVATE'
             })
+      });
+      
 
         // if(window.tdc.patConfig.maxItemsFlag){
         // assetsApi.get_assets(nodeRef,fileTypeForSearch[fileTypeIndex],sortValues[sortIndex],index,limit)

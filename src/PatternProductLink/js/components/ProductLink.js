@@ -200,7 +200,8 @@ const  mapDispatchToProps = (dispatch) => {
             }   
             return data;
           })
-          allProducts = res;
+          //allProducts = res;
+          allProducts = sortBy(res, [function (data) { return data.name.toLowerCase(); }]); // Sort the all products
           this.props.patConfig.patSetup.allProducts = allProducts;
           dispatch(updateAllProduct(allProducts));
           // dispatch({type:'DEACTIVATE'});

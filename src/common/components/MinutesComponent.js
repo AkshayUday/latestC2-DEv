@@ -61,7 +61,7 @@ constructor(props) {
       this.props.mins.value = 0;
     }
     if(this.props.mins.value == 0){
-      this.props.mins.value = '';
+      this.props.mins.value = 0;
     }
     }
 /**

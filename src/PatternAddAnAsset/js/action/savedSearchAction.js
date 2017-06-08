@@ -15,7 +15,7 @@ import SearchConstants from '../constants/SavedSearchConstant';
 import {AUTO_COMPLETE} from '../constants/searchLibraryConstants';
 import {getSearchProductItems } from '../action/SearchLibraryAction';
 import {DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS,DEFAULT_SAVED_SEARCH_MAX_RESULTS} from '../constants/paginationConstants';
-import store from './../store'
+import store from './../store';
 
 /** @function saveSearchValues -
  * This method is for saving a search value
@@ -195,7 +195,6 @@ export function runSearch(){
                     type : 'RESET_SEARCH_TABS',
                     data : false
                 });
-
                 const displayCount = store.getState().userFilterReducer.viewName === 'list-view' ? store.getState().userFilterReducer.displayValueCountForList : store.getState().userFilterReducer.displayvaluecount
                 dispatch(getSearchProductItems(item.name,DEFAULT_PAGE_NO,displayCount,0, store.getState().userFilterReducer.sortIndex, store.getState().userFilterReducer.viewName));
                 dispatch ({

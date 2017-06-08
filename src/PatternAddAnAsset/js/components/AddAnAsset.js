@@ -107,7 +107,14 @@ class AddAnAsset extends Component {
 
   let tabVisibility = JSON.parse(tdc.patConfig.tabVisibility);
   let tabToVisible =2;
-  let defaultTabName = tabVisibility.defaulttab;
+  let defaultTabName = '';
+  if(this.props.currActiveTab === 'browse'){
+    defaultTabName = 'browse';
+  }else if(this.props.currActiveTab === 'search'){
+    defaultTabName = tabVisibility.defaulttab;
+  }else{
+    defaultTabName = tabVisibility.defaulttab;
+  }
   if(defaultTabName !== undefined && defaultTabName !== null && defaultTabName !== ''){
     if(defaultTabName == 'search')
       tabToVisible = 1;
@@ -156,7 +163,8 @@ AddAnAsset.propTypes = {
   onSave: PropTypes.func,
   closeModal:PropTypes.func,
   clearModal : PropTypes.func,
-  pathname:PropTypes.string
+  pathname:PropTypes.string,
+  currActiveTab:PropTypes.string
 }
 
 module.exports = AddAnAsset;

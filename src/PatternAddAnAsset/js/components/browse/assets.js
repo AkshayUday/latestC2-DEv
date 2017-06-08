@@ -35,7 +35,7 @@ class assets extends Component {
 
     launchImgPreview(event){
         event.stopPropagation();
-        this.props.imgPreviewHandle(event);
+        this.props.imgPreviewHandle(this.props.productTemp);
     }
 
     render() {
@@ -59,6 +59,7 @@ class assets extends Component {
                 if(item.mimetype.indexOf('image') >= 0){
                     // if(item.mimetype.includes('image')===true){
                     item.url = item.url + '?c=queue&ph=true';
+              item.previewUrl = item.previewUrl + '?c=queue&ph=true';
                     item.IconClass = 'fa-image';
                     resType = 'Image'
                 }
@@ -94,11 +95,12 @@ class assets extends Component {
         let modFileName;
         let fileName;
         let lengthOfChar;
+        let itemTitle = '';
         if(item.title){
-            modFileName = item.title;
+            itemTitle = item.title;
         }else{
             let splitName = item.name.split('.');
-            modFileName = splitName[0];
+            itemTitle = splitName[0];
         }
 
         modFileName = item.fileName;
@@ -108,7 +110,7 @@ class assets extends Component {
         let disType = '';
         if(item.description !== null && item.description !== undefined){
             if(item.description.indexOf('streamingMediaPackageType') !== -1){
-                disType = 'Meida Type: Streaming Media';
+                disType = 'Media Type: Streaming Media';
             }
             if(item.description.indexOf('smartLinkType') !== -1){
                 disType = 'Media Type: SmartLink';
@@ -117,29 +119,38 @@ class assets extends Component {
         let pageRender;
         let radioBtn = <Radio name='assetsCheckbox' ref='radioComp' record={item} checked= {checked} customFn = {setSelectedItem} parent = {this.assetSelectedEvent}/>
         let magniIcon = '';
-        let imgTag = <img src={item.url} alt='product image' />
-            let self = this;
-        if(this.props.fileType == 'image'){
-            magniIcon = (<span><i className="fa fa-search"></i></span>);
+       let magniIconCssCls = '';
+       let imgTag = <img src={item.url} alt='product image' />
+       let self = this; 
+       if((this.props.fileType == 'image') && (this.props.productTemp.mimetype !='application/illustrator') && (window.tdc.patConfig.imagePreview.indexOf('true') > 0)){
+        if ((this.props.productTemp.description !== null)&& (this.props.productTemp.description.indexOf('smartLinkType') > 0)) {
+
+        }else{
+          magniIcon = (<span><i className="fa fa-search" onClick={self.launchImgPreview.bind(self)}></i></span>);
+          magniIconCssCls = AssetStyles.imgPrevCnt;
         }
-        if(this.props.pageView === 'grid-view'){
-            lengthOfChar = 47;
-            fileName = trimFolderName(modFileName,lengthOfChar);
-            pageRender = (
-                <div onClick={self.changeRadioButton.bind(self)} key={item.nodeRef}
-            className={AssetStyles.searchResultBox +' card-item1 '}>
-        <div className={AssetStyles.assetRadioBtn}>
+       }else{
+        magniIconCssCls = AssetStyles.hideImgPrevCnt;
+       }
+       if(this.props.pageView === 'grid-view'){
+        lengthOfChar = 47;
+       fileName = trimFolderName(modFileName,lengthOfChar);
+              pageRender = (
+            <div onClick={self.changeRadioButton.bind(self)} key={item.nodeRef}
+                className={AssetStyles.searchResultBox +' card-item1 '}>
+              <div className={AssetStyles.assetRadioBtn}>
 
-        <div className={AssetStyles.assetRadioCnt}>{radioBtn}</div>
-            <div onClick={self.launchImgPreview.bind(self)} className={AssetStyles.imgPrevCnt}>{magniIcon} </div>
-
-            </div>
-            <div className={AssetStyles.assetImage}>
-            {imgTag}
-        </div>
-            <footer className={AssetStyles.assetFooter}>
-        <div className={AssetStyles.nameIcon}>
-        <PE_tooltip className='assetNameToolTip' position='right'  content={ modFileName +'@'+ disType}>
+                <div className={AssetStyles.assetRadioCnt}>{radioBtn}</div> 
+                 <div className={magniIconCssCls}>
+                 {magniIcon} 
+                 </div>
+              </div>
+              <div className={AssetStyles.assetImage}>
+                {imgTag}
+              </div>
+              <footer className={AssetStyles.assetFooter}>
+              <div className={AssetStyles.nameIcon}>
+                <PE_tooltip className='assetNameToolTip' position='right' content={modFileName}>
                 <label><a className={AssetStyles.ellipsisInline}><strong>{fileName}</strong></a></label>
             </PE_tooltip>
 
@@ -174,7 +185,7 @@ class assets extends Component {
         <div className={radioButtonStyle}>{radioBtn}</div>
                 <div className={AssetStyles.listImageSize}>{imgTag}</div>
             <div className={AssetStyles.listViewNameStyle}>
-        <PE_tooltip className='assetNameToolTip' position='right' content={ modFileName +'@'+ disType}>
+        <PE_tooltip className='assetNameToolTip' position='right' content={ itemTitle +'@'+ disType}>
                 <span className={'fileName '+ AssetStyles.fileNameStyle}>{fileName}</span>
                 </PE_tooltip>
                 </div>

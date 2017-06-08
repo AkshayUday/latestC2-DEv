@@ -8,7 +8,12 @@ const initilizeData = [{
   savedSearchData:[],
   autoSuggestData: [],
   errorMsg:'',
-  localForData: {}
+  localForData: {},
+  assessmentItems :[],
+  hasPartItems:[],
+  assessmentSelected :[],
+  hasPartSelected:[],
+  productValue : false
 }
 ]
 
@@ -21,12 +26,28 @@ const searchAssetsReducer = (state = initilizeData, action) => {
           ...state, {..._last, listResults: action.value}
       ]
     break;
+    
+    case 'PRODUCT_VALUE':   
+      debugger;
+    return  [...state, {..._last, productValue : action.value}];
 
     case 'FILTER_TYPE_DATA':   
     	return  [...state, {..._last, filterTypeData : action.value}];
     
     case 'FILTER_TYPE_VALUE':
     return [...state, {..._last, filterTypeValue : action.value}];
+
+    case 'ASSESSMENT_ITEMS':
+    return [...state, {..._last, assessmentItems : action.value}];
+    
+    case 'HAS_PART_ITEMS':
+    return [...state, {..._last, hasPartItems : action.value}];
+
+    case 'ASSESSMENT_SELECTED_DATA':
+    return [...state, {..._last, assessmentSelected : action.value}];
+    
+    case 'HAS_PART_SELECTED_DATA':
+    return [...state, {..._last, hasPartSelected : action.value}];
 
     case 'ERROR':
     return [...state, {..._last, error : action.value}];

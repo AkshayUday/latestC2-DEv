@@ -64,6 +64,7 @@ export default {
   },
 
   createJSON(data, eTag) {
+    // debugger;
     const obj = { };
     for (const k in data) {
         if (k.includes('name')) {
@@ -115,7 +116,7 @@ export default {
             obj['urn'] = data[k];
         }
         else
-        if (k.includes('id')) {
+        if (k === 'id') {
             obj['id'] = data[k];
         }else
         if (k.includes('alignmentObjective')) {
@@ -165,6 +166,9 @@ export default {
       }
        if (k.includes('taxonomicType')) {              
                 obj['taxonomicType'] = data[k]; 
+      }
+      if (k.includes('hasPart')) {              
+                obj['hasPart'] = data[k]; 
       }
 
       if(k.includes('label')){

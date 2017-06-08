@@ -54,28 +54,32 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
             let nodeRefText = res.body.results[i].properties['d.alfcmis:nodeRef'].value;
             let temp = nodeRefText.split('/');
             let nodeRefVal = temp[temp.length -1];
-            let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/doclib';
+            let thumbnailUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
             mimeType = res.body.results[i].properties['d.cmis:contentStreamMimeType'].value;
             description = res.body.results[i].properties['d.cmis:description'].value;
             if(description !== null && description !== undefined &&
                 (description.indexOf('streamingMediaPackageType') !== -1 || description.indexOf('smartLinkType') !== -1)){
                 contentURL = findPlatformOrSmartLink(window.tdc.patConfig.alfserver,mimeType, description, nodeRefVal);
             }
+            let imgPreviewUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
             _resData = {'nodeRef':nodeRefText,
                 'mimetype':res.body.results[i].properties['d.cmis:contentStreamMimeType'].value,
                 'url': thumbnailUrl,
+                'contentURL' : contentURL,
                 'displayName':res.body.results[i].properties['d.cmis:name'].value,
                 'name':res.body.results[i].properties['d.cmis:name'].value,
                 'fileName':res.body.results[i].properties['t.cmis:name'].value,
                 'title':res.body.results[i].properties['t.cm:title'].value,
                 'modifiedBy':res.body.results[i].properties['d.cmis:lastModifiedBy'].value,
                 'modifiedByUser':res.body.results[i].properties['d.cmis:lastModifiedBy'].value.toUpperCase(),
-                'description':res.body.results[i].properties['d.cmis:description'].value,
+                'description':description,
                 'modifiedOn':res.body.results[i].properties['d.cmis:lastModificationDate'].value,
                 'size':res.body.results[i].properties['d.cmis:contentStreamLength'].value,
                 'creationDate':res.body.results[i].properties['d.cmis:creationDate'].value,
                 'container':'documentLibrary',
-                'type':'document'
+                'type':'document',
+                'previewUrl': imgPreviewUrl,
+                'currTabName': 'search'
             };
 
             if(JSON.parse(window.tdc.patConfig['cmis'])['wURN'] == true){
@@ -106,6 +110,15 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
  */
 export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sortIndex,viewName = 'grid-mode'){
     return dispatch => {
+        let inputData = {};
+        inputData.value = value;
+        inputData.pageNo = pageNo;
+        inputData.maxItems = maxItems;
+        inputData.fileTypeIndex = fileTypeIndex;
+        inputData.sortIndex = sortIndex;
+        inputData.viewName = viewName;
+        inputData.backTab = 'search';
+
         let index, limit;
         index = (pageNo*maxItems)-maxItems;
         limit = maxItems;
@@ -154,10 +167,19 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             saveObj = {'term': value};
         }
 
+         dispatch({
+                type: 'SEARCH_INPUT_DATA',
+                data : inputData
+            });
+
         //AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
         //let token = JSON.parse(success.text).data.ticket;
         // searchLibraryApi.searchAssets(value,fileTypeForSearch[fileTypeIndex],index,limit, sortValues[sortIndex]) .then(function (res) {
         //console.log(res);
+        dispatch({
+            type: 'ACTIVATE'
+            })
+
         searchLibraryApi.searchAssets(value,getFilterQueryForAssets(fileTypeIndex),index,limit, sortValues[sortIndex]) .then(function (res) {
             let assetData=getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName,sortIndex);
             dispatch({
@@ -165,6 +187,10 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
                 data : assetData
             });
 
+             dispatch({
+            type: 'DEACTIVATE'
+            })
+             
             //dispatch(searchLibButtonVisibility(false));
             const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
             let inputData = {}
@@ -346,7 +372,7 @@ function filterSecondaryObjectTypeIds(secondaryObjectTypeIds) {
         try {
             let length = secondaryObjectTypeIds.length;
             let propertyForNonEpsUrl;
-            for (let i = 0; i < length ; i++) {
+            for (let lue{
                 if (secondaryObjectTypeIds[i] === 'P:exif:exif' || secondaryObjectTypeIds[i] === 'P:cplg:contentAsset' || secondaryObjectTypeIds[i] === 'P:cm:copiedfrom') {
                     propertyForNonEpsUrl = secondaryObjectTypeIds[i];
                     resolve(propertyForNonEpsUrl);
@@ -387,7 +413,7 @@ function getAssetDataProperties(propertiesResponseBody, assetData, resultKey) {
                         assetData['dc: Description'] = propertiesResponseBody.results[ 0 ].relationships[0 ].properties[ 'cmis:description' ].value;
                     }
                     if ('cmis:objectTypeId' in propertiesResponseBody.results[ 0 ].relationships[0 ].properties &&
-                      propertiesResponseBody.results[ 0 ].relationships[0].properties['cmis:objectTypeId' ].value === 'R:cm:original') {
+                        propertiesResponseBody.results[ 0 ].relationships[0].properties['cmis:objectTypeId' ].value === 'R:cm:original') {
                         if ('cmis:targetId' in propertiesResponseBody.results[ 0 ].relationships[0 ].properties) {
                             let wasDerivedFrom = propertiesResponseBody.results[ 0 ].relationships[0 ].properties[ 'cmis:targetId' ].value;
                             assetData.wasDerivedFrom = wasDerivedFrom.split(';')[0];

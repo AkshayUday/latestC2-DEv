@@ -12,7 +12,10 @@ function checkAndAdd(autoCompleteData,title) {
 export function populateAutoComplete(text,savedSearch,lastThreeSearch) {
     return dispatch => {
       let searchText = text.trim();
-    	searchLibraryApi.autoComplete_Data(searchText).then(function (data){
+      dispatch({
+            type: 'ACTIVATE'
+            })
+      searchLibraryApi.autoComplete_Data(searchText).then(function (data){
         let responseData = data.body.results;
         let autoCompleteData = [];
         let _title = [];
@@ -87,6 +90,11 @@ export function populateAutoComplete(text,savedSearch,lastThreeSearch) {
         });
 
         }
+
+        dispatch({
+            type: 'DEACTIVATE'
+            })
+        
         
     });
 
