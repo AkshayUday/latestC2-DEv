@@ -229,16 +229,20 @@ export default {
         let saveInputObj = {};
         saveInputObj.userId = inputData.userId;
         saveInputObj[ inputData.patternName ] = {};
-        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = [];
-        if (replyGetData !== null && replyGetData[ inputData.patternName ] !== undefined) {
-            replyGetData[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
+        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = {};
+        saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ][ inputData.register ] = [];
+        if (replyGetData !== null && replyGetData[ inputData.patternName ] !== undefined
+          && replyGetData[ inputData.patternName ][ inputData.parentNodeRef ] !==undefined) {
+            replyGetData[ inputData.patternName ][ inputData.parentNodeRef ][ inputData.register ] = inputData;
         } else if (inputData[ 0 ] !== undefined) {
-            saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ] = inputData;
+            saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ][ inputData.register ] = inputData;
         }
-        if (replyGetData !== null && replyGetData[ inputData.patternName ] !== undefined && replyGetData[ inputData.patternName ][ inputData.parentNodeRef ].currentFolder !== undefined) {
-            replyGetData[ inputData.patternName ][ inputData.parentNodeRef ].currentFolder = inputData.currentFolder;
+        if (replyGetData !== null && replyGetData[ inputData.patternName ] !== undefined
+          && replyGetData[ inputData.patternName ][ inputData.parentNodeRef ] !== undefined
+          && replyGetData[ inputData.patternName ][ inputData.parentNodeRef ][ inputData.register ] !== undefined) {
+            replyGetData[ inputData.patternName ][ inputData.parentNodeRef ][ inputData.register ].currentFolder = inputData.currentFolder;
         } else if (inputData.currentFolder !== undefined) {
-            saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ].currentFolder = inputData.currentFolder;
+            saveInputObj[ inputData.patternName ][ inputData.parentNodeRef ][ inputData.register ].currentFolder = inputData.currentFolder;
         }
         return (replyGetData !== null && replyGetData[ inputData.patternName ] !== undefined) ? replyGetData : saveInputObj;
     }

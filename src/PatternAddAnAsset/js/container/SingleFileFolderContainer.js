@@ -45,7 +45,8 @@ const mapDispatchToProps = (dispatch) => {
             let getResPromise = localForageService.getLocalForageData(inputData);
             getResPromise.then(function (replyGet) {
                 if (Object.keys(replyGet[ inputData.patternName ]).includes(window.tdc.patConfig.nodeRef)) {
-                    const model = replyGet[ inputData.patternName ][window.tdc.patConfig.nodeRef];
+                  const registerValue = window.tdc.patConfig.register ? window.tdc.patConfig.register : SearchConstants.EMPTY_ID;
+                  const model = replyGet[ inputData.patternName ][window.tdc.patConfig.nodeRef][registerValue];
                     dispatch({
                         type: GET_FOLDER,
                         data: model

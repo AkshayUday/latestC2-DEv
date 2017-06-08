@@ -347,6 +347,7 @@ onLaunchAddAnAsset = function (renderderedTagSelector, uuid,
     addAnAssetConfig.tabVisibility = document.getElementById('tabVisibility').value;
     addAnAssetConfig['cmis'] = document.getElementById('workURN').value;
     addAnAssetConfig['epsserver'] = "https://us-school-stg.pearsoned.com/school";
+    addAnAssetConfig.register = document.getElementById('register').value;
 
     patternBroker.setup(libConfig);
 

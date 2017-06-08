@@ -118,6 +118,7 @@ let nodeRef;
                     model.patternName = SearchConstants.FOLDER_STRUCTURE;
                     model.type = SearchConstants.LOCAL_INSTANCE;
                     model.parentNodeRef = window.tdc.patConfig.nodeRef;
+                    model.register = window.tdc.patConfig.register ? window.tdc.patConfig.register : SearchConstants.EMPTY_ID;
                     localForageService.saveFolderStructure(model);
                 }else{
                   console.log('Folder does not have children');
@@ -210,6 +211,7 @@ export function updateCurrentFolder(nodeRef){
         model.patternName = SearchConstants.FOLDER_STRUCTURE;
         model.type = SearchConstants.LOCAL_INSTANCE;
         model.parentNodeRef = window.tdc.patConfig.nodeRef;
+        model.register = window.tdc.patConfig.register ? window.tdc.patConfig.register : SearchConstants.EMPTY_ID;
         localForageService.saveFolderStructure(model);
     }
 }
