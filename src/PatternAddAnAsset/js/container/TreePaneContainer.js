@@ -78,9 +78,6 @@ const mapDispatchToProps = (dispatch) => {
             let getResPromise = localForageService.getLocalForageData(inputData);
             getResPromise.then(function (replyGet) {
                 if (replyGet[ inputData.patternName ] !== undefined && Object.keys(replyGet[ inputData.patternName ]).includes(window.tdc.patConfig.nodeRef)) {
-                    if (window.tdc.patConfig.register) {
-                        console.log('Not Empty .....')
-                    }
                     const registerValue = window.tdc.patConfig.register ? window.tdc.patConfig.register : SearchConstants.EMPTY_ID;
                     const model = replyGet[ inputData.patternName ][window.tdc.patConfig.nodeRef][registerValue];
                     dispatch({
