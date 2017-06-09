@@ -108,6 +108,7 @@ class assets extends Component {
         let modify = item.modifiedBy !== undefined ? 'Uploaded by: '+item.modifiedBy : '';
         let fileInfo = item.size !== undefined ? ' File size: '+ fileSize + fileType : '';
         let disType = '';
+        let description = '';
         if(item.description !== null && item.description !== undefined){
             if(item.description.indexOf('streamingMediaPackageType') !== -1){
                 disType = 'Media Type: Streaming Media';
@@ -115,6 +116,7 @@ class assets extends Component {
             if(item.description.indexOf('smartLinkType') !== -1){
                 disType = 'Media Type: SmartLink';
             }
+          description = (item.description.length > 47) ? ' Description: '+ item.description.substring(0, 47) + '...' : ' Description: '+ item.description;
         }
         let pageRender;
         let radioBtn = <Radio name='assetsCheckbox' ref='radioComp' record={item} checked= {checked} customFn = {setSelectedItem} parent = {this.assetSelectedEvent}/>
@@ -158,8 +160,8 @@ class assets extends Component {
             <div className={AssetStyles.footerIcon}>
         <i className= {AssetStyles.browseTooltip +' fa ' + item.IconClass}></i>
             <PE_tooltip className='assetDetailToolTip' position='right'
-            content={ modify +'@'+' Date uploaded: '
-                +formatDate(getModifiedOn(item.modifiedOn))+'@'+ fileInfo +'@'+ disType}>
+            content={ ' Title: '+itemTitle+'@'+modify +'@'+' Date uploaded: '
+                +formatDate(getModifiedOn(item.modifiedOn))+'@'+ fileInfo +'@'+disType+'@'+description}>
                 <i className='fa fa-info-circle'></i>
                 </PE_tooltip>
                 </div>
@@ -185,7 +187,7 @@ class assets extends Component {
         <div className={radioButtonStyle}>{radioBtn}</div>
                 <div className={AssetStyles.listImageSize}>{imgTag}</div>
             <div className={AssetStyles.listViewNameStyle}>
-        <PE_tooltip className='assetNameToolTip' position='right' content={ itemTitle +'@'+ disType}>
+        <PE_tooltip className='assetNameToolTip' position='right' content={fileName}>
                 <span className={'fileName '+ AssetStyles.fileNameStyle}>{fileName}</span>
                 </PE_tooltip>
                 </div>
