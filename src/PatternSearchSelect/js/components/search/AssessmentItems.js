@@ -147,14 +147,14 @@ class AssessmentItem extends React.Component {
         <div id="assessmentItems">
         <br/>
         <div id="assessmentName">
-          <label><b>Assessment:{title}</b></label>
+          <label><b>Assessment:</b>{title}</label>
         </div>
-        <br/>
         <hr />
-        <br />
+        <div>
         <center>
-        <label><b>Assessment Items</b></label></center>
-        <br />
+        <label><b>Assessment Items</b></label>
+        </center>
+        </div>
         </div>
        
             <ListView  

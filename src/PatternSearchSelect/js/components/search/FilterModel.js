@@ -50,7 +50,9 @@ class FilterModel extends Component{
         		<FilterType filterStatus={this.props.filterStatus} filters={this.props.filters}
         		localForData = {this.props.localForData} 
         		getAssetsWithManifestation = {this.props.getAssetsWithManifestation} 
-        		getValue = {this.props.getValue} hostfilename = {this.props.hostfilename}/>
+        		getValue = {this.props.getValue} hostfilename = {this.props.hostfilename}
+        		patConfig = {this.props.patConfig}
+        		/>
         	</div>
         </div>
         </div>
@@ -77,6 +79,7 @@ FilterModel.propTypes={
 	localForData : React.PropTypes.object,		
 	displayCount : React.PropTypes.string,
 	isSuccess:React.PropTypes.bool,
-	errMsg:React.PropTypes.string
+	errMsg:React.PropTypes.string,
+	patConfig : React.PropTypes.object
 }
 export default FilterModel;

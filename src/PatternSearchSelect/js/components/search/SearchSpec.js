@@ -35,7 +35,7 @@ class SearchSpec extends Component{
 			}
 		}
 		
-		debugger;
+		// debugger;
 		
 		if(this.props.isBack != undefined && this.props.isBack == true && this.props.assessmentPreviousState != ''){
 			 
@@ -245,6 +245,7 @@ class SearchSpec extends Component{
 								 onChange={this.handleItemCountChange}
 								 displayCount={this.state.displayCount}
 								 isSuccess={this.state.isSuccess}
+								 patConfig = {this.props.patConfig}
 								 />
 					<ListView 
 					          flag={this.state.filterStatus} 

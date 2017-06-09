@@ -201,7 +201,7 @@
     min-height: 400px;
    object-fit: contain;}
   :global .image-gallery-slide .image-gallery-description {
-    background: rgba(0, 0, 0, 0.4);
+   display: none;
     bottom: 70px;
     color: #fff;
     left: 0;

@@ -48,23 +48,23 @@ const mapStateToProps = (state) => {
  *  will be merged into the component’s props
  * @param {function} toggle
  */
- 
- 
- 
- 
+
+
+
+
 //const mapDispatchToProps = (dispatch) => {
- //   return {
-     //   componentWillMount: function () {
-            // this.props.clearModal();
-      //      if(!this.props.browsestate && this.props.folder === undefined){
-            
-         //       dispatch(getFolders());
-          //  }else{
-             //   dispatch({
-             //       type : GET_FOLDER,
-             //       data : this.props.folder,
-              //  })
-          //  }
+    //   return {
+    //   componentWillMount: function () {
+    // this.props.clearModal();
+    //      if(!this.props.browsestate && this.props.folder === undefined){
+
+    //       dispatch(getFolders());
+    //  }else{
+    //   dispatch({
+    //       type : GET_FOLDER,
+    //       data : this.props.folder,
+    //  })
+    //  }
 const mapDispatchToProps = (dispatch) => {
     return {
         componentWillMount: function () {
@@ -131,7 +131,7 @@ const mapDispatchToProps = (dispatch) => {
                 }
                 let currentPageNo = (curPageNo===undefined  || curPageNo==='') ? DEFAULT_PAGE_NO: curPageNo;
                 dispatch(fetchingAssets(nodeRef, currentPageNo, displayCount, 0, sortIndex, viewMode));
-            }).catch(function (err) { 
+            }).catch(function (err) {
                 console.log('Localforage not exist in TreePaneContainer', err)
                 let viewName;
                 if(document.querySelectorAll('.dropdown-display').length > 0){

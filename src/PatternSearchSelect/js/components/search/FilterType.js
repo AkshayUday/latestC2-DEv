@@ -187,8 +187,9 @@ class FilterType extends React.Component {
 
   render() {
 
-   // console.log(this.props);
-
+ 
+   console.log(this.props);
+ debugger;
     let toggleIcon = this.state.showFilterType?'fa-chevron-down':'fa-chevron-up';
 
     return (      
@@ -197,7 +198,9 @@ class FilterType extends React.Component {
         <label>Filters:&nbsp;&nbsp;Type <a onClick={this.onClick} href='#' style={{color:'black'}}><i className={'fa ' + toggleIcon} aria-hidden="true"></i></a></label>
         </div>
         <div style={{float:'left'}}>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product <input type="checkbox" name="productvalueflag" id="productvalueflag" onChange = {this.handleProduct}/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Product <input type="checkbox" name="productvalueflag" id="productvalueflag" onChange = {this.handleProduct}/> <label> {this.props.patConfig.patSetup.productId} </label>
         </div>
 
         {this.state.showFilterType && this.createCheckboxes()}
@@ -215,7 +218,8 @@ FilterType.propTypes = {
   getValue : React.PropTypes.func,
   hostfilename: React.PropTypes.string,
   localForData : React.PropTypes.object,
-  handleProduct : React.PropTypes.func
+  handleProduct : React.PropTypes.func,
+  patConfig : React.PropTypes.object
 }
 
 

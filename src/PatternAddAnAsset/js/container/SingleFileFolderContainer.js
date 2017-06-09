@@ -13,22 +13,22 @@ import {GET_FOLDER} from '../constants/TreePaneConstant'
 
 
 const getSelectedValues = (dataArray) => {
-  if (dataArray.length > 0) {
-    return dataArray[dataArray.length-1];
-  }
-  return [];
+    if (dataArray.length > 0) {
+        return dataArray[dataArray.length-1];
+    }
+    return [];
 }
 
 const mapStateToProps = (state) => {
-  let data = getSelectedValues(state.TreePaneReducers);
-  let siteData = getSelectedValues(state.siteDataReducer);
-  return {
-   model: data,
-   show : data.show,
-   productName: siteData.productName,
-   //targetFolder:data1,
-   //FolderID: data1.FolderID
-  }
+    let data = getSelectedValues(state.TreePaneReducers);
+    let siteData = getSelectedValues(state.siteDataReducer);
+    return {
+        model: data,
+        show : data.show,
+        productName: siteData.productName,
+        //targetFolder:data1,
+        //FolderID: data1.FolderID
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -45,8 +45,8 @@ const mapDispatchToProps = (dispatch) => {
             let getResPromise = localForageService.getLocalForageData(inputData);
             getResPromise.then(function (replyGet) {
                 if (Object.keys(replyGet[ inputData.patternName ]).includes(window.tdc.patConfig.nodeRef)) {
-                  const registerValue = window.tdc.patConfig.register ? window.tdc.patConfig.register : SearchConstants.EMPTY_ID;
-                  const model = replyGet[ inputData.patternName ][window.tdc.patConfig.nodeRef][registerValue];
+                    const registerValue = window.tdc.patConfig.register ? window.tdc.patConfig.register : SearchConstants.EMPTY_ID;
+                    const model = replyGet[ inputData.patternName ][window.tdc.patConfig.nodeRef][registerValue];
                     dispatch({
                         type: GET_FOLDER,
                         data: model
@@ -75,12 +75,12 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(getSubFolders('upload',foldername,child,nodeRef));
         }
 
-  }
+    }
 }
 
 const SingleFileFolderContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(FolderPane)
 
 export default SingleFileFolderContainer;

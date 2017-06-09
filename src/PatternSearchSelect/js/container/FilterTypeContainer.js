@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 
 }
 
-const mapDispatchToProps = (dispatch) => { 
+const mapDispatchToProps = (dispatch,ownProps) => { 
 
 	return {
 		// getAssetsWithManifestation: function (filters){

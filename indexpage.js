@@ -994,28 +994,28 @@ document.getElementById("interactivePattern").addEventListener("click", function
 
         var ele = document.getElementById('interactivePatternResponse');
         var content ='<table>';
-    var property;
+        var property;
 
         for (var key in data) {
             if (data.hasOwnProperty(key)) {
-          property ='';
-          if(key == 'assessmentData'){
-            property = '<tr><td class="uppercase">'+key+'</td><td>'+JSON.stringify(data[key])+'</td></tr>';
-                content =  content+property;
-          }else if(key == 'itemsData'){
-            property = '<tr><td class="uppercase">'+key+'</td><td>'+JSON.stringify(data[key])+'</td></tr>';
-            content =  content+property;
-          }else{
-            property = '<tr><td class="uppercase">'+key+'</td><td>'+data[key]+'</td></tr>';
-            content =  content+property;
-            }
+                property ='';
+                if(key == 'assessmentData'){
+                    property = '<tr><td class="uppercase">'+key+'</td><td>'+JSON.stringify(data[key])+'</td></tr>';
+                    content =  content+property;
+                }else if(key == 'itemsData'){
+                    property = '<tr><td class="uppercase">'+key+'</td><td>'+JSON.stringify(data[key])+'</td></tr>';
+                    content =  content+property;
+                }else{
+                    property = '<tr><td class="uppercase">'+key+'</td><td>'+data[key]+'</td></tr>';
+                    content =  content+property;
+                }
 
             }
         }
         content =content+'</table>';
         ele.innerHTML = content;
 
-    console.log(data);
+        console.log(data);
 
     };
 
@@ -1047,56 +1047,56 @@ document.getElementById("interactivePattern").addEventListener("click", function
     libConfig.headers['X-PearsonSSOSession'] = document.getElementById('sessionKeyId').value;
     libConfig.headers['x-apikey'] = document.getElementById('apiKeyId').value;
     libConfig.userId = document.getElementById('alfuname').value;
-_interactivePatternConfig.searchmode = '';
+    _interactivePatternConfig.searchmode = '';
 
-var searchmode  = document.getElementsByName('searchmode');
+    var searchmode  = document.getElementsByName('searchmode');
 
-console.log(searchmode);
+    console.log(searchmode);
 
-for (var i = 0, length = searchmode.length; i < length; i++) {
-    if (searchmode[i].checked) {
+    for (var i = 0, length = searchmode.length; i < length; i++) {
+        if (searchmode[i].checked) {
 
-        _interactivePatternConfig.searchmode = searchmode[i].value;
+            _interactivePatternConfig.searchmode = searchmode[i].value;
 
-        break;
+            break;
+        }
     }
-}
 
-var searchTypeOpt   = document.getElementById("searchSelectType");
-var searchTypeOptVal = searchTypeOpt.options[searchTypeOpt.selectedIndex].value;
-var productId =  document.getElementById("productId").value;
+    var searchTypeOpt   = document.getElementById("searchSelectType");
+    var searchTypeOptVal = searchTypeOpt.options[searchTypeOpt.selectedIndex].value;
+    var productId =  document.getElementById("productId").value;
 
-   _interactivePatternConfig.searchTypeOptVal = searchTypeOptVal;
-   _interactivePatternConfig.productId = productId;
-   
-   _interactivePatternConfig.searchSelectAssessmentURN = document.getElementById('searchSelectAssessmentURN').value;
+    _interactivePatternConfig.searchTypeOptVal = searchTypeOptVal;
+    _interactivePatternConfig.productId = productId;
+
+    _interactivePatternConfig.searchSelectAssessmentURN = document.getElementById('searchSelectAssessmentURN').value;
     // debugger;
 
     patternBroker.setup(libConfig);
 
-     try{
+    try{
         if ((_interactivePatternConfig.selector==='#interactivePatternSelector')
-        && (_interactivePatternConfig.searchmode === '')) {
+            && (_interactivePatternConfig.searchmode === '')) {
 
-        throw new Error('Search mode is not set.  Please provide/select a search mode');
+            throw new Error('Search mode is not set.  Please provide/select a search mode');
         }else if((_interactivePatternConfig.selector==='#interactivePatternSelector')
-        && (_interactivePatternConfig.searchTypeOptVal === '')){
-        throw new Error('Search Select Type is not set.  Please provide/select a Search Select Type');
+            && (_interactivePatternConfig.searchTypeOptVal === '')){
+            throw new Error('Search Select Type is not set.  Please provide/select a Search Select Type');
         }else if(_interactivePatternConfig.searchSelectAssessmentURN != ''
-          && _interactivePatternConfig.searchmode == 'full'){
-           throw new Error('Select Search mode Partial');
+            && _interactivePatternConfig.searchmode == 'full'){
+            throw new Error('Select Search mode Partial');
         }else{
 
-    _interactivePattern.setup(_interactivePatternConfig, searchAndSelectCallBack);
+            _interactivePattern.setup(_interactivePatternConfig, searchAndSelectCallBack);
 
-         if(_interactivePattern.patSetup && _interactivePattern.unmount){
-          _interactivePattern.unmount();
-         }
+            if(_interactivePattern.patSetup && _interactivePattern.unmount){
+                _interactivePattern.unmount();
+            }
 
-    _interactivePattern.run(_interactivePattern);
-    _interactivePattern.on(searchAndSelectonSave);
+            _interactivePattern.run(_interactivePattern);
+            _interactivePattern.on(searchAndSelectonSave);
         }
-      }catch (e){
+    }catch (e){
         console.log(e.message);
         alert(e.message);
     }

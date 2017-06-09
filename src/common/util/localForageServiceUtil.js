@@ -62,8 +62,8 @@ export default {
             if(typeof inputData.saveValue == 'object'){
                 for(let i=0;i<rawArr.length;i++){
                     if(rawArr[i].term.toLowerCase()==inputData.saveValue.term.toLowerCase()){
-                       checkExists = true;
-                       matchVal = rawArr[i];
+                        checkExists = true;
+                        matchVal = rawArr[i];
                     }else{
                         tempArr.push(rawArr[i]);
                     }

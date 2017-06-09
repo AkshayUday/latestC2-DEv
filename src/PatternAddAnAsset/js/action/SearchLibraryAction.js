@@ -16,7 +16,7 @@
 import searchLibraryApi from '../api/SearchLibraryApi';
 import fileUploadApi from '../api/fileUploadApi';
 import { SAVED_SEARCH_VALUE,SEARCH_DISPLAY_ASSETS,UPDATE_CHECKBOX_VALUE,SEARCH_BUTTON_VISIBILITY }
-  from '../constants/searchLibraryConstants';
+    from '../constants/searchLibraryConstants';
 import { fetchSavedSearchData, checkBoxHandler } from '../action/savedSearchAction';
 import AlfrescoApiService from '../../../common/util/alfrescoApiService';
 import bean from 'bean';
@@ -58,7 +58,7 @@ function getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewNa
             mimeType = res.body.results[i].properties['d.cmis:contentStreamMimeType'].value;
             description = res.body.results[i].properties['d.cmis:description'].value;
             if(description !== null && description !== undefined &&
-              (description.indexOf('streamingMediaPackageType') !== -1 || description.indexOf('smartLinkType') !== -1)){
+                (description.indexOf('streamingMediaPackageType') !== -1 || description.indexOf('smartLinkType') !== -1)){
                 contentURL = findPlatformOrSmartLink(window.tdc.patConfig.alfserver,mimeType, description, nodeRefVal);
             }
             let imgPreviewUrl = window.tdc.patConfig.alfserver+'/alfresco-proxy/s/api/node/workspace/SpacesStore/'+nodeRefVal+'/content/thumbnails/imgpreview';
@@ -167,10 +167,10 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
             saveObj = {'term': value};
         }
 
-        dispatch({
-            type: 'SEARCH_INPUT_DATA',
-            data : inputData
-        });
+         dispatch({
+                type: 'SEARCH_INPUT_DATA',
+                data : inputData
+            });
 
         //AlfrescoApiService.getAlfToken(window.tdc.libConfig).then(function (success){
         //let token = JSON.parse(success.text).data.ticket;
@@ -178,7 +178,7 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
         //console.log(res);
         dispatch({
             type: 'ACTIVATE'
-        })
+            })
 
         searchLibraryApi.searchAssets(value,getFilterQueryForAssets(fileTypeIndex),index,limit, sortValues[sortIndex]) .then(function (res) {
             let assetData=getAssetData(res,index,limit,pageNo,maxItems,value,fileTypeIndex,viewName,sortIndex);
@@ -187,10 +187,10 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
                 data : assetData
             });
 
-            dispatch({
-                type: 'DEACTIVATE'
+             dispatch({
+            type: 'DEACTIVATE'
             })
-
+             
             //dispatch(searchLibButtonVisibility(false));
             const indexForSort = sortIndex ? sortIndex : store.getState().userFilterReducer.sortIndex;
             let inputData = {}
@@ -216,7 +216,7 @@ export function getSearchProductItems(value,pageNo,maxItems, fileTypeIndex, sort
                     dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
                     saveToLocalForageService(saveObj);
                 }
-            }).catch(function (err,saveObj) {
+            }).catch(function (err) {
                 console.log('serach library action', err);
                 dispatch({ type: 'CHECK_SELECT', payload: { displayvaluecount: maxItems, sortIndex: indexForSort, viewName: viewName, displayValueCountForList: 25 }});
                 saveToLocalForageService(saveObj);
@@ -310,12 +310,12 @@ export function sendToQuad(props){
             assetData.workURN = workURNObj.workURN;
             console.log('--workURN-->', workURNObj.workURN)
             if (assetData !== null && assetData !== undefined &&
-              assetData.contentURL !== undefined) {
+                assetData.contentURL !== undefined) {
                 AlfrescoApiService.getContentFromURL(window.tdc.libConfig, assetData.contentURL)
-                  .then(function (response) {
-                      response.desc = assetData.description;
-                      bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, response);
-                  })
+                    .then(function (response) {
+                        response.desc = assetData.description;
+                        bean.fire(window.tdc.patConfig, window.tdc.patConfig.eventId, response);
+                    })
             } else if (check.epsUrl == true) {
                 searchLibraryApi.getEpsUrl(nodeRef).then(function (data) {
                     assetData.EpsUrl = data.body.publicationUrl;
@@ -353,9 +353,9 @@ function getResultObj(nodeRef, pageDetails, assetData) {
             for (let productItem = 0; productItem < productsLength; productItem++) {
                 if(nodeRef === pageDetails.results[productItem].properties['d.alfcmis:nodeRef'].value){
                     filterSecondaryObjectTypeIds(pageDetails.results[productItem].properties['d.cmis:secondaryObjectTypeIds'].value)
-                      .then(function (resultKey) {
-                          resolve(resultKey)
-                      });
+                        .then(function (resultKey) {
+                            resolve(resultKey)
+                        });
                     break;
                 }
             }
@@ -413,7 +413,7 @@ function getAssetDataProperties(propertiesResponseBody, assetData, resultKey) {
                         assetData['dc: Description'] = propertiesResponseBody.results[ 0 ].relationships[0 ].properties[ 'cmis:description' ].value;
                     }
                     if ('cmis:objectTypeId' in propertiesResponseBody.results[ 0 ].relationships[0 ].properties &&
-                      propertiesResponseBody.results[ 0 ].relationships[0].properties['cmis:objectTypeId' ].value === 'R:cm:original') {
+                        propertiesResponseBody.results[ 0 ].relationships[0].properties['cmis:objectTypeId' ].value === 'R:cm:original') {
                         if ('cmis:targetId' in propertiesResponseBody.results[ 0 ].relationships[0 ].properties) {
                             let wasDerivedFrom = propertiesResponseBody.results[ 0 ].relationships[0 ].properties[ 'cmis:targetId' ].value;
                             assetData.wasDerivedFrom = wasDerivedFrom.split(';')[0];
