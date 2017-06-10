@@ -165,6 +165,9 @@
     visibility: visible;
 }
 
+:global .pe-tooltip--pTag{
+    word-break: break-all;
+}
 .assetFooter{
     display:  flex;
     flex-flow: column wrap;

@@ -106,7 +106,7 @@ class PE_tooltip extends Component {
                 className={this._tooltipClass.bind(this)()}
                 style={this._positionTip.bind(this)()}>
                     <span className='pe-tooltip--arrow'></span>
-                    <p>{content}</p>
+                    <p className="pe-tooltip--pTag">{content}</p>
                 </div>
             </span>
         )
