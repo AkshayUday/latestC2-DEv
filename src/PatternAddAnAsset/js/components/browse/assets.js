@@ -116,7 +116,7 @@ class assets extends Component {
             if(item.description.indexOf('smartLinkType') !== -1){
                 disType = 'Media Type: SmartLink';
             }
-          description = (item.description.length > 47) ? ' Description: '+ item.description.substring(0, 47) + '...' : ' Description: '+ item.description;
+          description = trimFolderName(item.description, 47);
         }
         let pageRender;
         let radioBtn = <Radio name='assetsCheckbox' ref='radioComp' record={item} checked= {checked} customFn = {setSelectedItem} parent = {this.assetSelectedEvent}/>

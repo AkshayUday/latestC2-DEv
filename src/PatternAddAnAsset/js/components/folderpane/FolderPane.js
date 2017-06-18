@@ -41,6 +41,9 @@ class FolderPane extends Component{
 			this.getSubFolders = props.getSubFolders.bind(this);
 		}
 
+		if(this.props.componentWillReceiveProps){
+			this.componentWillReceiveProps = props.componentWillReceiveProps.bind(this);
+		}
     }   
     /**
     * @function toggle used to get the childrens of the clicked folder
@@ -159,7 +162,8 @@ FolderPane.propTypes = {
     componentWillMount: PropTypes.func,
     toggle: PropTypes.func,
     model: PropTypes.array,
-    getSubFolders :PropTypes.func
+    getSubFolders :PropTypes.func,
+	  componentWillReceiveProps: PropTypes.func
 }
 
 export default FolderPane;

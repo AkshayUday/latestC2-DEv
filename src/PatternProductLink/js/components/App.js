@@ -34,7 +34,13 @@ class App extends React.Component{
      this.state = {
      	open:true
      }    
-     document.querySelector('body').style.overflow='hidden';// Prevent background 
+     document.querySelector('body').style.overflow='hidden';// Prevent background
+		if (props.patConfig) {
+			window.tdc = {
+				patConfig: props.patConfig,
+				libConfig: props.libConfig
+			};
+		}
 	}
 
 	static propTypes= {

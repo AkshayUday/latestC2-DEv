@@ -9,6 +9,7 @@ import styles from './productlink.css';
 import theme from './plautosuggestTheme.css';
 
 import {messages} from './ProductLinkDefaultMessages';
+import FolderTree from '../container/TreePaneContainer';
 
 import { updateInputValue,
          clearSuggestions,
@@ -110,7 +111,7 @@ const  mapDispatchToProps = (dispatch) => {
 	  console.log(suggestionValue);
 	  console.log(sectionIndex);
 	  console.log(method);*/
-	  
+    window.tdc.patConfig.alfserver = suggestion.repoInstance;
 	  this.setState({selectedVal:suggestion});
     this.setState({lbtndisabled:suggestion})
     },
@@ -345,29 +346,32 @@ class ProductLinkComponent extends React.Component {
       ));  
     }    
 
-    return (      
-      <div style={{plStyle}} id='productLinkAutoSuggest'>
-       <div className={styles.plBodyHead}>
-          Link to an existing product&apos;s assets:
+    return (
+      <div>
+        <div style={{plStyle}} id='productLinkAutoSuggest'>
+          <div className={styles.plBodyHead}>
+            Link to an existing product&apos;s assets:
+          </div>
+          <div className={styles.plAutoSuggestDiv}>
+            <Autosuggest id="productLink"
+                         theme={theme}
+                         suggestions={suggestions}
+                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                         getSuggestionValue={getSuggestionValue}
+                         renderSuggestion={renderSuggestion}
+                         inputProps={inputProps}
+                         onSuggestionSelected={this.onSuggestionSelected}
+                         shouldRenderSuggestions={this.shouldRenderSuggestions}
+                         onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}/>
+          </div>
+          <div className={styles.plAutoSuggestBtnDiv}>
+            <button disabled={!this.state.lbtndisabled} className={styles.plLinkButton}
+                    onClick={() => {this.onLinkClick()}} type="button">{formatMessage(messages.LINK)}</button>
+          </div>
         </div>
-        <div className={styles.plAutoSuggestDiv}>
-        <Autosuggest id="productLink"
-          theme={theme}
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
-          onSuggestionSelected={this.onSuggestionSelected}
-          shouldRenderSuggestions={this.shouldRenderSuggestions}
-          onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested} />
+        {this.state.selectedVal.nodeRef ? <FolderTree nodeRef={this.state.selectedVal.nodeRef}/> : null}
       </div>
-		  <div className={styles.plAutoSuggestBtnDiv}>
-          <button disabled={!this.state.lbtndisabled} className={styles.plLinkButton} onClick={() => {this.onLinkClick()}} type="button">{formatMessage(messages.LINK)}</button>
-		  </div>
-      </div>
-
     );
   }
 }
