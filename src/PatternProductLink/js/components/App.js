@@ -141,15 +141,12 @@ return(
 	<IntlProvider locale={locale} messages={translations[locale]}>
 		<Provider store={store}>
 		 <Modal open={this.state.open} overlayClassName={styles.plContainer} closeOnOverlayClick={false} modalClassName={styles.plProductLinkModal} onClose={this.closeModal} little>
-        <div id='ext_ProductLink' className='ext_ProductLink'>
+        <div id='ext_ProductLink' className='ext_ProductLink' style={{'min-height': '400px'}}>
         <div className={styles.plModalHeadDiv}>
 			<div className={styles.plModalTitle}>Link to a Product</div>
 		</div>
 		<div className={styles.plModalBodyDiv}>
 			<ProductLink  ref="ProductLink" patConfig={this.props.patConfig} libConfig={this.props.libConfig} closeModal={this.closeModal}/>
-		</div>
-		<div className={styles.plModalFooterDiv}>
-			<button type="button" className={styles.plCancelButton} onClick={() => { this.closeModal()}}>Cancel</button>		
 		</div>
 		</div>
        </Modal>

@@ -108,7 +108,7 @@ class FolderPane extends Component{
     		}
         	this.props.toggle(model,foldername, nodeRef);
 					if (this.props.updateNodeRef) {
-						this.updateNodeRef(nodeRef);
+						this.updateNodeRef(nodeRef, foldername);
 					}
     	}
 

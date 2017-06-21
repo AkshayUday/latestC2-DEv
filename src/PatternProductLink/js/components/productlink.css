@@ -1,3 +1,4 @@
+@import "../../../styles/variables.css";
 /* ProductLink.js CSS */
 
 /*.ProductLinkModal .plModalBodyDiv .plBodyHead{*/
@@ -10,14 +11,38 @@
 
 /*.ProductLinkModal .plModalBodyDiv .plAutoSuggestDiv{
 */
-.plAutoSuggestDiv{
-     lost-column:3/4 0;
+.plModalFooterDiv{
+    padding:15px 15px;
+    background-color: $BrightlyLit;
+    composes: textAlignright from "../../../styles/patterns.css";
+    border-top: 1px solid #bbb;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
+
+/*.ProductLinkModal .plModalFooterDiv .plCancelButton{*/
+.plCancelButton{
+    composes: c2BlueButton from "../../../styles/patterns.css";
+}
+
+/*.productLinkclsLoader {
+    z-index: 9999;
+    background: url(../../../../images/loading.gif) center no-repeat rgba(255, 255, 255, 0.26);
+    display: block;
+    position: relative;
+    height: 200px;
+    background-size: 100px;
+}*/
+
 
 /*.ProductLinkModal .plModalBodyDiv .plAutoSuggestBtnDiv{
 */
 .plAutoSuggestBtnDiv{
-    lost-column:1/4 0;
+    float: left;
+    margin-left: 300px;
+    width: 80px;
 }
 
 /*.ProductLinkModal .plModalBodyDiv .plAutoSuggestBtnDiv .plLinkButton{
@@ -25,6 +50,8 @@
 .plLinkButton{
     composes: c2BlueButton from "../../../styles/patterns.css";
     composes: col100 from "../../../styles/patterns.css";
+    width: 18%;
+    margin-right: 10px;
 
 }
 
@@ -41,6 +68,14 @@
     background-color:rgba(255, 255, 255, 0.26);    
     height: 198px;
     background-size: 100px;
+}
+
+.folderTree {
+    overflow: auto;
+    max-height: 300px;
+    height: inherit;
+    border: 1px solid #cccccc;
+    margin-bottom: 70px;
 }
 
 

@@ -7,7 +7,6 @@
 	height:26px;
     composes: col100 from "../../../styles/patterns.css";
     font-size: 16px;
-    padding: 0px 10px;
 }
 
 .suggestionsContainer{
@@ -22,7 +21,8 @@
     overflow-x: hidden;
     max-height: 110px;
     margin:0px;
-    width: 74.8%;
+    width: 97.5%;
+    background: white;
     composes: col70 from "../../../styles/patterns.css";
     composes: padding0 from "../../../styles/patterns.css";
 }

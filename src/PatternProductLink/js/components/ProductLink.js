@@ -296,16 +296,16 @@ class ProductLinkComponent extends React.Component {
 
     //console.log('componentDidMount');
   }
-  updateNodeRefInProducLink(nodeRef){
+  updateNodeRefInProducLink(nodeRef, folderName){
     let selectedFolder = this.state.selectedVal;
     selectedFolder.nodeRef = nodeRef ? nodeRef : this.state.selectedVal.nodeRef;
+    selectedFolder.name = folderName ? this.state.selectedVal.name + '/' + folderName : this.state.selectedVal.name;
     bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId, selectedFolder);
   }
   onLinkClick(){
 	  //console.log('onLinkClick');
 	  //console.log(this.props);
     if(this.state.selectedVal !=''){
-    console.log(this.props.patConfig.patSetup, this.props.patConfig.eventId,this.state.selectedVal)
     this.setState({selectedVal:''});
     this.props.closeModal();
     }	  
@@ -331,7 +331,8 @@ class ProductLinkComponent extends React.Component {
     };
     const status = (isLoading ? 'Loading...' : 'Type to load suggestions');
      const plStyle = {
-		        border:'0px solid red'
+		        border:'0px solid red',
+            marginBottom: '10px'
 	    }
 
     if(isError){
@@ -354,29 +355,30 @@ class ProductLinkComponent extends React.Component {
 
     return (
       <div>
-        <div style={{plStyle}} id='productLinkAutoSuggest'>
+        <div style={plStyle} id='productLinkAutoSuggest'>
           <div className={styles.plBodyHead}>
             Link to an existing product&apos;s assets:
           </div>
-          <div className={styles.plAutoSuggestDiv}>
-            <Autosuggest id="productLink"
-                         theme={theme}
-                         suggestions={suggestions}
-                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                         getSuggestionValue={getSuggestionValue}
-                         renderSuggestion={renderSuggestion}
-                         inputProps={inputProps}
-                         onSuggestionSelected={this.onSuggestionSelected}
-                         shouldRenderSuggestions={this.shouldRenderSuggestions}
-                         onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}/>
-          </div>
-          <div className={styles.plAutoSuggestBtnDiv}>
+          <Autosuggest id="productLink"
+                       theme={theme}
+                       suggestions={suggestions}
+                       onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                       onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                       getSuggestionValue={getSuggestionValue}
+                       renderSuggestion={renderSuggestion}
+                       inputProps={inputProps}
+                       onSuggestionSelected={this.onSuggestionSelected}
+                       shouldRenderSuggestions={this.shouldRenderSuggestions}
+                       onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}/>
+        </div>
+        {this.state.selectedVal.nodeRef ?
+          <div className={styles.folderTree}><FolderTree nodeRef={this.state.selectedVal.nodeRef}
+                                                         updateNodeRef={this.updateNodeRefInProducLink}/></div> : null}
+        <div className={styles.plModalFooterDiv}>
             <button disabled={!this.state.lbtndisabled} className={styles.plLinkButton}
                     onClick={() => {this.onLinkClick()}} type="button">{formatMessage(messages.LINK)}</button>
-          </div>
+            <button type="button" className={styles.plCancelButton} onClick={() => {this.props.closeModal()}}>Cancel</button>
         </div>
-        {this.state.selectedVal.nodeRef ? <FolderTree nodeRef={this.state.selectedVal.nodeRef} updateNodeRef={this.updateNodeRefInProducLink}/> : null}
       </div>
     );
   }
