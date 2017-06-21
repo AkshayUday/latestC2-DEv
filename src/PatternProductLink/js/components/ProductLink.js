@@ -112,6 +112,7 @@ const  mapDispatchToProps = (dispatch) => {
 	  console.log(sectionIndex);
 	  console.log(method);*/
     window.tdc.patConfig.alfserver = suggestion.repoInstance;
+    bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId,suggestion);
 	  this.setState({selectedVal:suggestion});
     this.setState({lbtndisabled:suggestion})
     },
@@ -239,6 +240,7 @@ class ProductLinkComponent extends React.Component {
     this.onSuggestionsUpdateRequested = this.props.onSuggestionsUpdateRequested.bind(this);
   	this.onLinkClick = this.onLinkClick.bind(this);
     this.componentWillMount = this.props.componentWillMount.bind(this);
+    this.updateNodeRefInProducLink = this.updateNodeRefInProducLink.bind(this);
   	this.state = {
   		selectedVal:'',
       value:'',
@@ -294,12 +296,16 @@ class ProductLinkComponent extends React.Component {
 
     //console.log('componentDidMount');
   }
-  
+  updateNodeRefInProducLink(nodeRef){
+    let selectedFolder = this.state.selectedVal;
+    selectedFolder.nodeRef = nodeRef ? nodeRef : this.state.selectedVal.nodeRef;
+    bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId, selectedFolder);
+  }
   onLinkClick(){
 	  //console.log('onLinkClick');
 	  //console.log(this.props);
     if(this.state.selectedVal !=''){
-    bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId,this.state.selectedVal);      
+    console.log(this.props.patConfig.patSetup, this.props.patConfig.eventId,this.state.selectedVal)
     this.setState({selectedVal:''});
     this.props.closeModal();
     }	  
@@ -370,7 +376,7 @@ class ProductLinkComponent extends React.Component {
                     onClick={() => {this.onLinkClick()}} type="button">{formatMessage(messages.LINK)}</button>
           </div>
         </div>
-        {this.state.selectedVal.nodeRef ? <FolderTree nodeRef={this.state.selectedVal.nodeRef}/> : null}
+        {this.state.selectedVal.nodeRef ? <FolderTree nodeRef={this.state.selectedVal.nodeRef} updateNodeRef={this.updateNodeRefInProducLink}/> : null}
       </div>
     );
   }

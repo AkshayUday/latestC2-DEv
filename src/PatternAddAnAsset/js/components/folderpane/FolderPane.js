@@ -40,7 +40,9 @@ class FolderPane extends Component{
 		if(this.props.getSubFolders){
 			this.getSubFolders = props.getSubFolders.bind(this);
 		}
-
+		if(this.props.updateNodeRef) {
+			this.updateNodeRef = props.updateNodeRef.bind(this)
+		}
 		if(this.props.componentWillReceiveProps){
 			this.componentWillReceiveProps = props.componentWillReceiveProps.bind(this);
 		}
@@ -105,6 +107,9 @@ class FolderPane extends Component{
     		}
     		}
         	this.props.toggle(model,foldername, nodeRef);
+					if (this.props.updateNodeRef) {
+						this.updateNodeRef(nodeRef);
+					}
     	}
 
     	/**
@@ -143,7 +148,9 @@ class FolderPane extends Component{
 												<FolderPane 
 												model={items} 
 												toggle={self.props.toggle}
-												getSubFolders = {self.props.getSubFolders} />
+												getSubFolders = {self.props.getSubFolders}
+												updateNodeRef = {self.props.updateNodeRef}
+												/>
 												</div>);
 							}
 
@@ -163,7 +170,8 @@ FolderPane.propTypes = {
     toggle: PropTypes.func,
     model: PropTypes.array,
     getSubFolders :PropTypes.func,
-	  componentWillReceiveProps: PropTypes.func
+	  componentWillReceiveProps: PropTypes.func,
+	  updateNodeRef: PropTypes.func
 }
 
 export default FolderPane;

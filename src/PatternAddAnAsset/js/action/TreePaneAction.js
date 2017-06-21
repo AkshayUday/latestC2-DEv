@@ -36,7 +36,6 @@ export function  getFolders(arg='browseasset'){
                 if(treeFolder !== undefined && treeFolder.length > 0){
                     treeFolder.show = false;
                     treeFolder = flagRootFolders(treeFolder);
-                    console.log(treeFolder);
 
                     // highlightChildren(treeFolder, getFirstName(treeFolder));
                     dispatch({
