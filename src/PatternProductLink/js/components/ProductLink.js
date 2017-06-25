@@ -25,6 +25,7 @@ import ProductLinkApi from '../api/ProductLinkApi';
 import Promise from 'bluebird';
 
 import {upperFirst, toLower, map, chain, sortBy,values, pick, flatten, filter, includes} from 'lodash';
+import store from '../store';
 
 //let allProducts=[];
 
@@ -42,7 +43,7 @@ const getSearchProduct =  ({value},allProducts) => {
   const regex = new RegExp('^' + escapedValue, 'i');
 
   return allProducts.filter(product => regex.test(product.name));
-}
+};
 
 
 
@@ -112,6 +113,7 @@ const  mapDispatchToProps = (dispatch) => {
 	  console.log(sectionIndex);
 	  console.log(method);*/
     window.tdc.patConfig.alfserver = suggestion.repoInstance;
+    window.tdc.patConfig.nodeRef = suggestion.nodeRef;
     bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId,suggestion);
 	  this.setState({selectedVal:suggestion});
     this.setState({lbtndisabled:suggestion})
@@ -296,10 +298,9 @@ class ProductLinkComponent extends React.Component {
 
     //console.log('componentDidMount');
   }
-  updateNodeRefInProducLink(nodeRef, folderName){
+  updateNodeRefInProducLink(nodeRef){
     let selectedFolder = this.state.selectedVal;
-    selectedFolder.nodeRef = nodeRef ? nodeRef : this.state.selectedVal.nodeRef;
-    selectedFolder.name = folderName ? this.state.selectedVal.name + '/' + folderName : this.state.selectedVal.name;
+    selectedFolder.nodeRef = nodeRef ? nodeRef :  window.tdc.patConfig.nodeRef;
     bean.fire(this.props.patConfig.patSetup, this.props.patConfig.eventId, selectedFolder);
   }
   onLinkClick(){

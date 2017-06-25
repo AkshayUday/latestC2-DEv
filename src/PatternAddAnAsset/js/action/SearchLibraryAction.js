@@ -252,7 +252,10 @@ export function getProductDetails(){
             let responseData = res.body.results;
             if(responseData.length>0){
                 productData.nodeRef = res.body.results[0].properties['cmis:objectId'].value;
-                productData.productName = res.body.results[0].properties['cmis:name'].value;
+                // productData.productName = res.body.results[0].properties['cmis:name'].value;
+                const productPath = res.body.results[0].properties['cmis:path'].value
+                const absolutePath = productPath.split('/Sites/')[1];
+                productData.productName = absolutePath ? absolutePath : productPath;
             }
             dispatch({
                 type: 'SITE_DATA',

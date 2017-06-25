@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch) => {
         previousNodeRef = nextProps.nodeRef;
       }
     },
-    toggle:function (model,foldername, nodeRef, curPageNo){
+    toggle:function (model,foldername, nodeRef){
       console.log(' Folder Name : '+ foldername +' ... '+' Node Ref : '+nodeRef);
       dispatch(updateCurrentFolder(nodeRef));
     },

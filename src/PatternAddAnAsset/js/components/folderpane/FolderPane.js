@@ -77,8 +77,7 @@ class FolderPane extends Component{
 	    				//if(!oldStyle.includes('pe_filter_enabled')){
     						child.style = folderPaneStyles.patternFilterEnabled+' '+oldStyle;
     					}
-                        let _foldername = foldername;  
-                        child.items = this.getSubFolders(_foldername,child,nodeRef);
+                        child.items = this.getSubFolders(foldername,child,nodeRef);
     				}else{ // folder close
     					child.style = child.style.replace(folderPaneStyles.patternFilterEnabled, '');
                         child.style = child.style+ ' tree-node-selected';
@@ -108,7 +107,7 @@ class FolderPane extends Component{
     		}
         	this.props.toggle(model,foldername, nodeRef);
 					if (this.props.updateNodeRef) {
-						this.updateNodeRef(nodeRef, foldername);
+						this.updateNodeRef(nodeRef);
 					}
     	}
 

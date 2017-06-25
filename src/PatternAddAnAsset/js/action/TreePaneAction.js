@@ -44,7 +44,9 @@ export function  getFolders(arg='browseasset'){
                     })
                     nodeRef = getNodeRef(getNodeRefValue(getFirstObj(treeFolder)));
                     if(arg == 'browseasset'){
-                        //dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS, 0));
+                        if (treeFolder[0].fileName !== 'documentLibrary') {
+                            dispatch(fetchingAssets(nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS, 0));
+                        }
                     }else{
                         // let curFolder = _.filter(treeFolder)[0]['nodeRef'].split('/')[3];
                         let FolderID = {};
@@ -57,10 +59,12 @@ export function  getFolders(arg='browseasset'){
                     }
 
                 }else{
+                    dispatch(fetchingAssets(window.tdc.patConfig.nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS, 0));
                     console.log('No Folders found in this search');
                 }
 
             }else{
+                dispatch(fetchingAssets(window.tdc.patConfig.nodeRef, DEFAULT_PAGE_NO,DEFAULT_MAX_RESULTS, 0));
                 console.log('No Folders found in this search');
             }
         },function (error){
